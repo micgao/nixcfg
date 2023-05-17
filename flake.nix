@@ -7,25 +7,38 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-wayland = {
+      url = "github:nix-community/nixpkgs-wayland";
+    };
     hyprland.url = "github:hyprwm/Hyprland";
     hardware.url = "github:nixos/nixos-hardware/master";
+    helix.url = "github:helix-editor/helix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-    outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: {
-    nixosConfigurations = {
-      x1e3 = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [ ./nixos/configuration.nix ];
+  outputs = { self, nixpkgs, home-manager, hyprland, helix, ... }@inputs:
+    let
+      inherit (self) outputs;
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+    in
+    rec {
+      packages = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+	in import ./pkgs { inherit pkgs; }
+      );
+      overlays = import ./overlays { inherit inputs; };
+      nixosConfigurations = {
+        x1e3 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/configuration.nix ];
+        };
       };
     };
-
-    homeConfigurations = {
-      "micgao@x1e3" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ ./home-manager/home.nix ];
-      };
-    };
-  };
 }

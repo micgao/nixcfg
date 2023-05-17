@@ -1,15 +1,16 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, lib, ... }: {
   nixpkgs = {
     overlays = [
       inputs.emacs-overlay.overlay
     ];
   };
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacsPgtk;
+  home = {
+    packages = with pkgs; [
+      ((emacsPackagesFor emacsPgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]))
+    ];
   };
   services.emacs = {
     enable = true;
-    package = pkgs.emacsPgtk;
+    package = with pkgs; ((emacsPackagesFor emacsPgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]));
   };
 }
