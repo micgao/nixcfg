@@ -1,12 +1,37 @@
-width=400
-height=250
-filter_rate=100
+## General
+show=drun
+prompt=Apps
+normal_window=true
+layer=top
+term=foot
+
+## Geometry
+width=400px
+height=320px
+location=0
+orientation=vertical
+halign=fill
+line_wrap=off
+dynamic_lines=false
+
+## Images
 allow_markup=true
-no_actions=true
-insensitive=true
 allow_images=true
-image_size=40
+image_size=24
+
+## Search
+exec_search=false
+hide_search=false
+parse_search=false
+insensitive=false
+
+## Other
+hide_scroll=true
+no_actions=true
+sort_order=default
 gtk_dark=true
-run-cache_file=/dev/null
-run-always_parse_args=true
-run-exec_search=true
+filter_rate=100
+
+## Keys
+key_expand=Tab
+key_exit=Escape

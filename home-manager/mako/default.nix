@@ -9,4 +9,5 @@
       inputs.nixpkgs-wayland.packages.${system}.mako
     ];
   };
+  xdg.configFile."mako/config".source = ./config;
 }

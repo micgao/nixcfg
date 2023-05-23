@@ -1,19 +1,23 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
-    ./steam.nix
     ./bat.nix
     ./browsers.nix
     ./emacs.nix
     ./emulators.nix
     ./fonts.nix
+    ./gaming.nix
     ./gitui.nix
-    ./mako.nix
     ./neovim.nix
+    ./passwordstore.nix
+    ./vscodium.nix
     ./zathura.nix
     ./zsh.nix
     ./alacritty
+    ./bottom
     ./helix
     ./hyprland
+    ./mako
+    ./music
     ./waybar
     ./wezterm
     ./wofi
@@ -36,39 +40,42 @@
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "22.11";
     pointerCursor = {
-      package = pkgs.catppuccin-cursors.mochaDark;
-      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
       size = 16;
+      x11.enable = true;
+      gtk.enable = true;
     };
     sessionPath = [
       "/var/lib/flatpak/exports/share"
       "$HOME/.local/share/flatpak/exports/share"
-      "$HOME/.local/bin"
     ];
     packages = with pkgs; [
-      inputs.nixpkgs-wayland.packages.${system}.imv
-      inputs.nixpkgs-wayland.packages.${system}.kanshi
-      inputs.nixpkgs-wayland.packages.${system}.wlay
-      inputs.nixpkgs-wayland.packages.${system}.wl-clipboard
-      inputs.nixpkgs-wayland.packages.${system}.wtype
+      imv
+      kanshi
+      wlay
+      wl-clipboard
+      wtype
       rustup
+      nodejs
       nushell
       clipboard-jh
       rclone
-      dconf
       keepassxc
       pavucontrol
+      playerctl
+      networkmanagerapplet
       obsidian
       cryptomator
+      xdg-utils
       (ripgrep.override {withPCRE2 = true;})
       fd
       imagemagick
       zstd
       sqlite
       distrobox
-      libvirt
       virt-manager
-      qemu_full
+      wineWowPackages.wayland
       feather-wallet
       picocrypt
     ];
@@ -77,26 +84,82 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      package = pkgs.catppuccin-cursors.mochaDark;
-      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
       size = 16;
+    };
+    iconTheme = {
+      name = "Nordzy";
+      package = pkgs.nordzy-icon-theme;
+    };
+    font = {
+      package = pkgs.inter;
+      name = "Inter";
+    };
+    theme = {
+      package = pkgs.dracula-theme;
+      name = "Dracula";
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      color-scheme = "prefer-dark";
     };
   };
 
   qt = {
     enable = true;
     platformTheme = "gtk";
-  };
-
-  services.xsettingsd = {
-    enable = true;
-    settings = {
-      "Net/IconThemeName" = "Dracula";
-      "Net/ThemeName" = "Dracula";
+    style = {
+      name = "breeze";
+      package = pkgs.breeze-qt5;
     };
   };
-    
+
+  services = {
+    xsettingsd = {
+      enable = true;
+      settings = {
+        "Xft/Hinting" = 1;
+        "Xft/HintStyle" = "hintslight";
+        "Xft/Antiaslias" = 1;
+        "Xft/RGBA" = "rgb";
+        "Net/IconThemeName" = "Dracula";
+        "Net/ThemeName" = "Dracula";
+      };
+    };
+  };
+
+  xdg = {
+    enable = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+  };
+
+  programs.feh.enable = true;
+
+  programs.htop.enable = true;
+
+  programs.jq.enable = true;
+
+  programs.tealdeer.enable = true;
+
+  programs.nnn = {
+    enable = true;
+    package = pkgs.nnn.override ({ withNerdIcons = true; });
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
+
   programs.home-manager.enable = true;
+
   programs.git.enable = true;
 
   systemd.user.startServices = "sd-switch";

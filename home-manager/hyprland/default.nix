@@ -8,15 +8,14 @@
     qt6.qtwayland
     libsForQt5.qt5ct
     libsForQt5.qt5.qtwayland
-    nvidia-vaapi-driver
-    libva
     hyprpaper
     hyprpicker
+    xorg.xprop
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     systemdIntegration = true;
     disableAutoreload = true;
     xwayland = {
