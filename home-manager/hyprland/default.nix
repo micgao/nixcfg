@@ -3,14 +3,21 @@
     inputs.hyprland.homeManagerModules.default
   ];
 
+  nixpkgs.overlays = [
+    inputs.nixpkgs-wayland.overlay
+  ];
+
   home.packages = with pkgs; [
-    wlr-randr
     qt6.qtwayland
     libsForQt5.qt5ct
     libsForQt5.qt5.qtwayland
     hyprpaper
     hyprpicker
-    xorg.xprop
+    imv
+    kanshi
+    wlay
+    wl-clipboard
+    wtype
   ];
 
   wayland.windowManager.hyprland = {

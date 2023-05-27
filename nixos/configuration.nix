@@ -19,8 +19,8 @@
     kernelParams = [
       "intel_iommu=on"
       "quiet"
-      "splash"
     ];
+
     loader = {
       systemd-boot = {
         enable = true;
@@ -40,6 +40,12 @@
     systemPackages = with pkgs; [
       curl
       wget
+      acpi
+      libva
+      libva-utils
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-tools
     ];
     homeBinInPath = true;
     localBinInPath = true;
@@ -60,7 +66,7 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-      ];
+      j];
       xdgOpenUsePortal = true;
     };
   };
@@ -114,9 +120,11 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+      inputs.nixpkgs-wayland.overlay
     ];
     config = {
       allowUnfree = true;
+      allowUnfreePredicate = (_: true);
     };
   };
 
@@ -134,7 +142,10 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        libva
+        intel-media-driver
+        libvdpau-va-gl
+        vaapiIntel
+        vaapiVdpau
         nvidia-vaapi-driver
       ];
     };
@@ -142,15 +153,19 @@
       modesetting.enable = true;
       open = false;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
-      powerManagement.enable = true;
       nvidiaSettings = true;
     };
   };
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
       auto-optimise-store = lib.mkDefault true;
+      builders-use-substitutes = true;
+      keep-derivations = true;
+      keep-outputs = true;
+      max-jobs = "auto";
+      warn-dirty = false;
       trusted-users = [ "root" "@wheel" ];
     };
     gc = {
@@ -163,6 +178,16 @@
   };
 
   fonts = {
+    fonts = with pkgs; [
+      material-symbols
+      roboto
+      noto-fonts
+      inter
+      hubot-sans
+      mona-sans
+      source-sans-pro
+      (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro"]; })
+    ];
     fontDir = {
       enable = true;
       decompressFonts = true;
@@ -184,16 +209,24 @@
         ];
         monospace = [
           "Iosevka SS04 Extended"
+          "SauceCodePro Nerd Font Mono"
+          "JetBrainsMonoNL Nerd Font Mono"
+          "Noto Color Emoji"
         ];
         sansSerif = [
           "Inter"
+          "Hubot-Sans"
+          "Source Sans Pro"
+          "Noto Color Emoji"
         ];
         serif = [
           "Inter"
+          "Noto Serif"
+          "Noto Color Emoji"
         ];
       };
     };
-    enableDefaultFonts = true;
+    enableDefaultFonts = false;
   };
 
   virtualisation = {
@@ -215,7 +248,12 @@
   };
 
   networking = {
-    networkmanager.enable = true;
+    wireless.iwd.enable = true;
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      wifi.backend = "iwd";
+    };
     hostName = "x1e3";
   };
 
@@ -223,41 +261,29 @@
 
   time.timeZone = "America/Toronto";
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "nvidia" ];
-    libinput.enable = true;
-  };
-
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    nvidiaPatches = true;
-    xwayland = {
+  services = {
+    gnome.gnome-keyring.enable = true;
+    xserver = {
       enable = true;
-      hidpi = false;
+      videoDrivers = [ "nvidia" ];
+      libinput.enable = true;
     };
-  };
-
-  programs.steam = {
-    enable = true;
-    gamescopeSession = {
+    pipewire = {
       enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
     };
+    acpid.enable = true;
+    btrfs.autoScrub.enable = true;
+    thermald.enable = true;
+    upower.enable = true;
+    tlp.enable = true;
   };
-
-  programs.zsh.enable = true;
 
   sound.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-  };
 
   users = {
     defaultUserShell = pkgs.zsh;
@@ -267,9 +293,14 @@
       extraGroups = [
         "wheel"
         "video"
+        "audio"
+        "input"
         "gamemode"
         "vboxusers"
         "libvirtd"
+        "networkmanager"
+        "podman"
+        "git"
       ];
     };
     extraGroups = {
@@ -277,12 +308,49 @@
     };
   };
 
-  programs.mtr.enable = true;
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryFlavor = "gnome3";
+  programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        curl
+        glib
+        glibc
+        icu
+        libunwind
+        libuuid
+        libsecret
+        openssl
+        stdenv.cc.cc
+        util-linux
+        zlib
+      ];
+    };
+    java ={
+      enable = true;
+      package = pkgs.jre;
+    };
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      nvidiaPatches = true;
+      xwayland = {
+        enable = true;
+        hidpi = false;
+      };
+    };
+    mtr.enable = true;
+    zsh.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryFlavor = "gnome3";
+    };
+    steam = {
+      enable = true;
+      gamescopeSession = {
+        enable = true;
+      };
+    };
   };
 
   services.openssh = {

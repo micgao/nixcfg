@@ -2,32 +2,33 @@
   imports = [
     ./bat.nix
     ./browsers.nix
+    ./direnv.nix
     ./emacs.nix
     ./emulators.nix
     ./fonts.nix
     ./gaming.nix
+    ./gpg.nix
     ./gitui.nix
     ./neovim.nix
     ./passwordstore.nix
     ./vscodium.nix
-    ./zathura.nix
     ./zsh.nix
     ./alacritty
     ./bottom
     ./helix
     ./hyprland
     ./mako
-    ./music
+    ./media
     ./waybar
     ./wezterm
     ./wofi
+    ./zathura
   ];
 
   nixpkgs = {
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      inputs.nixpkgs-wayland.overlay
     ];
     config = {
       allowUnfree = true;
@@ -40,9 +41,9 @@
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "22.11";
     pointerCursor = {
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
-      size = 16;
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      size = 24;
       x11.enable = true;
       gtk.enable = true;
     };
@@ -51,20 +52,18 @@
       "$HOME/.local/share/flatpak/exports/share"
     ];
     packages = with pkgs; [
-      imv
-      kanshi
-      wlay
-      wl-clipboard
-      wtype
       rustup
       nodejs
+      python3Minimal
       nushell
       clipboard-jh
+      xplr
       rclone
       keepassxc
       pavucontrol
       playerctl
       networkmanagerapplet
+      megacmd
       obsidian
       cryptomator
       xdg-utils
@@ -73,6 +72,7 @@
       imagemagick
       zstd
       sqlite
+      insomnia
       distrobox
       virt-manager
       wineWowPackages.wayland
@@ -84,27 +84,27 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
-      size = 16;
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      size = 24;
     };
     iconTheme = {
-      name = "Nordzy";
-      package = pkgs.nordzy-icon-theme;
+      name = "Dracula";
+      package = pkgs.dracula-icon-theme;
     };
     font = {
-      package = pkgs.inter;
       name = "Inter";
+      package = pkgs.inter;
     };
     theme = {
-      package = pkgs.dracula-theme;
       name = "Dracula";
+      package = pkgs.dracula-theme;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
     gtk4.extraConfig = {
-      color-scheme = "prefer-dark";
+      gtk-application-prefer-dark-theme = true;
     };
   };
 
