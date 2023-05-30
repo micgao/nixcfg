@@ -7,8 +7,6 @@
       ./cachix.nix
       inputs.home-manager.nixosModules.home-manager
       inputs.hyprland.nixosModules.default
-      inputs.hardware.nixosModules.common-cpu-intel
-      inputs.hardware.nixosModules.common-pc-laptop-ssd
       inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme
       inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
     ];
@@ -136,7 +134,6 @@
   };
 
   hardware = {
-    cpu.intel.updateMicrocode = true;
     opengl = {
       enable = true;
       driSupport = true;
@@ -180,6 +177,9 @@
   fonts = {
     fonts = with pkgs; [
       material-symbols
+      fira-code
+      fira-code-symbols
+      font-awesome
       roboto
       noto-fonts
       inter
@@ -245,10 +245,26 @@
     virtualbox.host = {
       enable = true;
     };
+    vmware.host = {
+      enable = true;
+    };
   };
 
   networking = {
-    wireless.iwd.enable = true;
+    wireless.iwd = {
+      enable = true;
+      settings = {
+        General = {
+          EnableNetworkConfiguration = true;
+        };
+        Network = {
+          NameResolvingService = "systemd";
+        };
+        Settings = {
+          AutoConnect = true;
+        };
+      };
+    };
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
@@ -262,7 +278,6 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    gnome.gnome-keyring.enable = true;
     xserver = {
       enable = true;
       videoDrivers = [ "nvidia" ];
@@ -283,8 +298,6 @@
     tlp.enable = true;
   };
 
-  sound.enable = true;
-
   users = {
     defaultUserShell = pkgs.zsh;
     users.micgao = {
@@ -300,7 +313,6 @@
         "libvirtd"
         "networkmanager"
         "podman"
-        "git"
       ];
     };
     extraGroups = {
@@ -359,8 +371,6 @@
       permitRootLogin = "no";
     };
   };
-
-  hardware.enableRedistributableFirmware = true;
 
   system.stateVersion = "22.11";
 

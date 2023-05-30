@@ -29,6 +29,7 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+      inputs.nixpkgs-wayland.overlay
     ];
     config = {
       allowUnfree = true;
@@ -62,7 +63,6 @@
       keepassxc
       pavucontrol
       playerctl
-      networkmanagerapplet
       megacmd
       obsidian
       cryptomator
@@ -72,12 +72,13 @@
       imagemagick
       zstd
       sqlite
-      insomnia
       distrobox
       virt-manager
       wineWowPackages.wayland
       feather-wallet
       picocrypt
+      timeshift
+      monero-gui
     ];
   };
 
