@@ -1,5 +1,4 @@
 { inputs, outputs, lib, config, pkgs, ... }:
-
 {
   imports =
     [
@@ -8,17 +7,21 @@
       inputs.home-manager.nixosModules.home-manager
       inputs.hyprland.nixosModules.default
       inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme
+      inputs.hardware.nixosModules.common-gpu-intel
       inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
     ];
 
   boot = {
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_xanmod;
     kernelParams = [
       "intel_iommu=on"
       "quiet"
     ];
-
+    blacklistedKernelModules = [
+      "nouveau"
+      "nvidiafb"
+    ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -31,6 +34,13 @@
     initrd = {
       verbose = false;
       systemd.dbus.enable = true;
+    };
+  };
+
+  systemd = {
+    services = {
+      systemd-udev-settle.enable = false;
+      NetworkManager-wait-online.enable = false;
     };
   };
 
@@ -139,14 +149,13 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        intel-media-driver
-        libvdpau-va-gl
-        vaapiIntel
-        vaapiVdpau
         nvidia-vaapi-driver
       ];
     };
     nvidia = {
+      powerManagement = {
+        enable = true;
+      };
       modesetting.enable = true;
       open = false;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
@@ -163,7 +172,6 @@
       keep-outputs = true;
       max-jobs = "auto";
       warn-dirty = false;
-      trusted-users = [ "root" "@wheel" ];
     };
     gc = {
       automatic = true;
@@ -298,6 +306,8 @@
     tlp.enable = true;
   };
 
+  sound.enable = false;
+
   users = {
     defaultUserShell = pkgs.zsh;
     users.micgao = {
@@ -311,6 +321,7 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
+        "qemu-libvirtd"
         "networkmanager"
         "podman"
       ];
@@ -355,7 +366,6 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "gnome3";
     };
     steam = {
       enable = true;
@@ -368,7 +378,7 @@
   services.openssh = {
     enable = true;
     settings = {
-      permitRootLogin = "no";
+      PermitRootLogin = "no";
     };
   };
 
