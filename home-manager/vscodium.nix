@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium-fhs;
+    package = pkgs.vscodium;
     mutableExtensionsDir = true;
     enableUpdateCheck = true;
     enableExtensionUpdateCheck = true;

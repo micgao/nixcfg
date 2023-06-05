@@ -5,16 +5,19 @@
 
   nixpkgs.overlays = [
     inputs.nixpkgs-wayland.overlay
+    inputs.hyprpaper.overlays.default
+    inputs.hyprpicker.overlays.default
   ];
 
   home.packages = with pkgs; [
     qt6.qtwayland
     libsForQt5.qt5ct
+    libsForQt5.breeze-qt5
+    libsForQt5.qtstyleplugins
     libsForQt5.qt5.qtwayland
     hyprpaper
     hyprpicker
     imv
-    kanshi
     wlay
     wl-clipboard
     wtype
@@ -22,7 +25,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = null;
     systemdIntegration = true;
     disableAutoreload = true;
     xwayland = {

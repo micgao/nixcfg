@@ -1,27 +1,31 @@
 { inputs, outputs, lib, config, pkgs, ... }:
+
 {
-  imports =
-    [
+  imports = [
       ./hardware-configuration.nix
       ./cachix.nix
       inputs.home-manager.nixosModules.home-manager
       inputs.hyprland.nixosModules.default
       inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme
-      inputs.hardware.nixosModules.common-gpu-intel
       inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
-    ];
+  ];
 
   boot = {
+    bootspec = {
+      enableValidation = true;
+    };
+    loader.timeout = 0;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.linuxPackages_lqx;
     kernelParams = [
       "intel_iommu=on"
       "quiet"
     ];
     blacklistedKernelModules = [
-      "nouveau"
-      "nvidiafb"
     ];
+    extraModprobeConfig = ''
+      options nvidia-drm modeset=1
+    '';
     loader = {
       systemd-boot = {
         enable = true;
@@ -33,14 +37,23 @@
     };
     initrd = {
       verbose = false;
-      systemd.dbus.enable = true;
+      systemd = {
+        dbus.enable = true;
+        network = {
+          wait-online.enable = false;
+        };
+      };
     };
+  };
+
+  console = {
+    useXkbConfig = true;
+    earlySetup = false;
   };
 
   systemd = {
     services = {
       systemd-udev-settle.enable = false;
-      NetworkManager-wait-online.enable = false;
     };
   };
 
@@ -49,19 +62,29 @@
       curl
       wget
       acpi
+      glxinfo
       libva
+      glmark2
       libva-utils
       vulkan-loader
       vulkan-validation-layers
       vulkan-tools
+      vulkan-headers
+      egl-wayland
     ];
-    homeBinInPath = true;
-    localBinInPath = true;
-    enableAllTerminfo = true;
     variables = {
+      LIBSEAT_BACKEND = "logind";
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      LIBSEAT_BACKEND = "logind";
+      QT_QPA_PLATFORM = "wayland";
+    };
+    homeBinInPath = true;
+    localBinInPath = true;
+    enableAllTerminfo = true;
     shells = with pkgs; [
       zsh
       nushell
@@ -73,19 +96,189 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-      j];
-      xdgOpenUsePortal = true;
+        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+      ];
     };
   };
 
   qt = {
     enable = true;
     platformTheme = "qt5ct";
-    style = "gtk2";
   };
 
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      inputs.nixpkgs-wayland.overlay
+    ];
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+      micgao = import ../home-manager;
+    };
+  };
+
+  hardware = {
+    pulseaudio.enable = false;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+      ];
+    };
+    nvidia = {
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
+    };
+  };
+
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      auto-optimise-store = lib.mkDefault true;
+      builders-use-substitutes = true;
+      keep-derivations = true;
+      keep-outputs = true;
+      max-jobs = "auto";
+      warn-dirty = false;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 2d";
+    };
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+  };
+
+  fonts = {
+    fonts = with pkgs; [
+      material-symbols
+      font-awesome
+      roboto
+      noto-fonts
+      inter
+      hubot-sans
+      mona-sans
+      source-sans-pro
+      source-serif-pro
+      (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly"]; })
+    ];
+    fontDir = {
+      enable = true;
+      decompressFonts = true;
+    };
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      cache32Bit = true;
+      includeUserConf = true;
+      localConf = ''
+        <alias>
+          <family>Iosevka Term SS04 Extended Symbols</family>
+          <prefer>
+              <family>Iosevka Term SS04 Extended</family>
+              <family>Symbols Nerd Font</family>
+          </prefer>
+        </alias>
+      '';
+      subpixel.lcdfilter = "light";
+      hinting = {
+        enable = true;
+        style = "hintmedium";
+      };
+      defaultFonts = {
+        emoji = [
+          "Noto Color Emoji"
+        ];
+        monospace = [
+          "Iosevka Fixed SS04 Extended Symbols"
+          "JetBrainsMonoNL Nerd Font Mono"
+        ];
+        sansSerif = [
+          "Inter"
+          "Source Sans Pro"
+        ];
+        serif = [
+          "Inter"
+          "Source Serif Pro"
+        ];
+      };
+    };
+  };
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      enableNvidia = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+      qemu.package = pkgs.qemu_kvm;
+    };
+    # virtualbox.host = {
+    #    enable = true;
+    # };
+    vmware.host = {
+      enable = true;
+    };
+  };
+
+  networking = {
+    #wireless.iwd = {
+    #  enable = true;
+    #  settings = {
+    #    General = {
+    #      EnableNetworkConfiguration = true;
+    #    };
+    #    Network = {
+    #      NameResolvingService = "systemd";
+    #    };
+    #    Settings = {
+    #      AutoConnect = true;
+    #    };
+    #  };
+    #};
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      wifi.backend = "iwd";
+    };
+    hostName = "X1E3";
+  };
+
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  time.timeZone = "America/Toronto";
+
   services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+        StreamLocalBindUnlink = "yes";
+        GatewayPorts = "clientspecified";
+      };
+    };
     dbus = {
       enable = true;
       implementation = "broker";
@@ -117,193 +310,30 @@
         };
       };
     };
-  };
-
-  security = {
-    rtkit.enable = true;
-    polkit.enable = true;
-  };
-
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      inputs.nixpkgs-wayland.overlay
-    ];
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
-  };
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      micgao = import ../home-manager;
-    };
-  };
-
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-      ];
-    };
-    nvidia = {
-      powerManagement = {
-        enable = true;
-      };
-      modesetting.enable = true;
-      open = false;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-      nvidiaSettings = true;
-    };
-  };
-
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
-      auto-optimise-store = lib.mkDefault true;
-      builders-use-substitutes = true;
-      keep-derivations = true;
-      keep-outputs = true;
-      max-jobs = "auto";
-      warn-dirty = false;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 2d";
-    };
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-  };
-
-  fonts = {
-    fonts = with pkgs; [
-      material-symbols
-      fira-code
-      fira-code-symbols
-      font-awesome
-      roboto
-      noto-fonts
-      inter
-      hubot-sans
-      mona-sans
-      source-sans-pro
-      (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro"]; })
-    ];
-    fontDir = {
-      enable = true;
-      decompressFonts = true;
-    };
-    fontconfig = {
-      enable = true;
-      includeUserConf = true;
-      antialias = true;
-      subpixel = {
-        rgba = "rgb";
-        lcdfilter = "light";
-      };
-      hinting = {
-        enable = true;
-      };
-      defaultFonts = {
-        emoji = [
-          "Noto Color Emoji"
-        ];
-        monospace = [
-          "Iosevka SS04 Extended"
-          "SauceCodePro Nerd Font Mono"
-          "JetBrainsMonoNL Nerd Font Mono"
-          "Noto Color Emoji"
-        ];
-        sansSerif = [
-          "Inter"
-          "Hubot-Sans"
-          "Source Sans Pro"
-          "Noto Color Emoji"
-        ];
-        serif = [
-          "Inter"
-          "Noto Serif"
-          "Noto Color Emoji"
-        ];
-      };
-    };
-    enableDefaultFonts = false;
-  };
-
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      enableNvidia = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-    libvirtd = {
-      enable = true;
-      onBoot = "ignore";
-      onShutdown = "shutdown";
-      qemu.package = pkgs.qemu_kvm;
-    };
-    virtualbox.host = {
-      enable = true;
-    };
-    vmware.host = {
-      enable = true;
-    };
-  };
-
-  networking = {
-    wireless.iwd = {
-      enable = true;
-      settings = {
-        General = {
-          EnableNetworkConfiguration = true;
-        };
-        Network = {
-          NameResolvingService = "systemd";
-        };
-        Settings = {
-          AutoConnect = true;
-        };
-      };
-    };
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-      wifi.backend = "iwd";
-    };
-    hostName = "x1e3";
-  };
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  time.timeZone = "America/Toronto";
-
-  services = {
     xserver = {
-      enable = true;
       videoDrivers = [ "nvidia" ];
       libinput.enable = true;
     };
     pipewire = {
       enable = true;
+      audio.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
       wireplumber.enable = true;
     };
+    resilio = {
+      enable = true;
+      deviceName = "X1E3";
+      enableWebUI = true;
+      httpListenAddr = "127.0.0.1";
+      httpListenPort = 9000;
+    };
+    roon-bridge.enable = true;
+    roon-server.enable = true;
     acpid.enable = true;
     btrfs.autoScrub.enable = true;
-    thermald.enable = true;
-    upower.enable = true;
-    tlp.enable = true;
   };
 
   sound.enable = false;
@@ -354,7 +384,6 @@
     };
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       nvidiaPatches = true;
       xwayland = {
         enable = true;
@@ -369,16 +398,14 @@
     };
     steam = {
       enable = true;
-      gamescopeSession = {
-        enable = true;
-      };
     };
-  };
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+    gamemode = {
+      enable = true;
+      enableRenice = true;
     };
   };
 

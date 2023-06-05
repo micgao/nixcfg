@@ -1,14 +1,11 @@
-# GLOBAL CONFIGURATION OPTIONS
 max-history=100
 sort=-time
 
-# BINDING OPTIONS
 on-button-left=dismiss
 on-button-middle=none
 on-button-right=dismiss-all
 on-touch=dismiss
 
-# STYLE OPTIONS
 width=300
 height=100
 margin=10

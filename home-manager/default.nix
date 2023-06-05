@@ -8,32 +8,43 @@
     ./fonts.nix
     ./gaming.nix
     ./gpg.nix
-    ./gitui.nix
+    ./git.nix
+    ./gtk.nix
     ./neovim.nix
+    ./nix-database-index.nix
     ./passwordstore.nix
+    ./pfetch.nix
     ./vscodium.nix
+    ./qt.nix
     ./zsh.nix
     ./alacritty
     ./bottom
+    ./fuzzel
     ./helix
     ./hyprland
     ./mako
     ./media
+    ./swaylock
     ./waybar
     ./wezterm
     ./wofi
+    ./wlogout
     ./zathura
   ];
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      inputs.nixpkgs-wayland.overlay
-    ];
+    overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
+    };
+  };
+
+  nix = {
+    package = lib.mkDefault pkgs.nix;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      warn-dirty = false;
     };
   };
 
@@ -48,17 +59,20 @@
       x11.enable = true;
       gtk.enable = true;
     };
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+    };
     sessionPath = [
-      "/var/lib/flatpak/exports/share"
-      "$HOME/.local/share/flatpak/exports/share"
+      "$HOME/.cargo/bin/"
     ];
     packages = with pkgs; [
+      nix-init
       rustup
       nodejs
       python3Minimal
-      nushell
       clipboard-jh
       xplr
+      joshuto
       rclone
       keepassxc
       pavucontrol
@@ -82,54 +96,15 @@
     ];
   };
 
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
-      size = 24;
-    };
-    iconTheme = {
-      name = "Dracula";
-      package = pkgs.dracula-icon-theme;
-    };
-    font = {
-      name = "Inter";
-      package = pkgs.inter;
-    };
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-    style = {
-      name = "breeze";
-      package = pkgs.breeze-qt5;
-    };
-  };
-
   services = {
     xsettingsd = {
       enable = true;
       settings = {
-        "Xft/Hinting" = 1;
-        "Xft/HintStyle" = "hintslight";
-        "Xft/Antiaslias" = 1;
-        "Xft/RGBA" = "rgb";
-        "Net/IconThemeName" = "Dracula";
-        "Net/ThemeName" = "Dracula";
+        "Net/IconThemeName" = "${config.gtk.iconTheme.name}";
+        "Net/ThemeName" = "${config.gtk.theme.name}";
       };
     };
+    playerctld.enable = true;
   };
 
   xdg = {
@@ -160,8 +135,6 @@
   };
 
   programs.home-manager.enable = true;
-
-  programs.git.enable = true;
 
   systemd.user.startServices = "sd-switch";
 

@@ -28,6 +28,9 @@
   programs.mpv = {
     enable = true;
   };
+  programs.ncspot = {
+    enable = true;
+  };
   xdg.configFile."mpd/mpd.conf".source = ./mpd.conf;
   xdg.configFile."mpv/mpv.conf".source = ./mpv.conf;
 }

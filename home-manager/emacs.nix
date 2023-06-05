@@ -6,11 +6,11 @@
   };
   home = {
     packages = with pkgs; [
-      ((emacsPackagesFor emacsPgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]))
+      ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]))
     ];
   };
   services.emacs = {
     enable = true;
-    package = with pkgs; ((emacsPackagesFor emacsPgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]));
+    package = with pkgs; ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]));
   };
 }

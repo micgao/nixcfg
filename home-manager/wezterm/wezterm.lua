@@ -11,13 +11,22 @@ config.set_environment_variables = {
 }
 config.term = "wezterm"
 config.color_scheme = "Sequoia Moonlight"
+config.font = wezterm.font_with_fallback {
+  {
+    family = "Iosevka Term SS04",
+    weight = "Regular",
+  },
+  {
+    family = "Symbols Nerd Font",
+  },
+}
+config.font_size = 11.5
 config.scrollback_lines = 9001
 config.enable_scroll_bar = false
 config.audible_bell = "Disabled"
 config.bold_brightens_ansi_colors = "BrightAndBold"
 config.enable_wayland = true
 config.enable_tab_bar = false
-config.front_end = "WebGpu"
 config.check_for_updates = false
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
@@ -31,4 +40,3 @@ config.window_padding = {
 }
 
 return config
-
