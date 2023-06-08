@@ -93,6 +93,7 @@
       picocrypt
       timeshift
       monero-gui
+      jetbrains-toolbox
     ];
   };
 

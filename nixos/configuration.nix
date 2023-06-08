@@ -14,11 +14,10 @@
     bootspec = {
       enableValidation = true;
     };
-    loader.timeout = 0;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [
-      "intel_iommu=on"
+      # "intel_iommu=on"
       "quiet"
     ];
     blacklistedKernelModules = [
@@ -61,16 +60,10 @@
     systemPackages = with pkgs; [
       curl
       wget
-      acpi
       glxinfo
       libva
-      glmark2
-      libva-utils
       vulkan-loader
       vulkan-validation-layers
-      vulkan-tools
-      vulkan-headers
-      egl-wayland
     ];
     variables = {
       LIBSEAT_BACKEND = "logind";
@@ -131,7 +124,6 @@
   };
 
   hardware = {
-    pulseaudio.enable = false;
     opengl = {
       enable = true;
       driSupport = true;
@@ -234,9 +226,9 @@
       onShutdown = "shutdown";
       qemu.package = pkgs.qemu_kvm;
     };
-    # virtualbox.host = {
-    #    enable = true;
-    # };
+    virtualbox.host = {
+       enable = true;
+    };
     vmware.host = {
       enable = true;
     };
@@ -273,10 +265,7 @@
     openssh = {
       enable = true;
       settings = {
-        PasswordAuthentication = false;
         PermitRootLogin = "no";
-        StreamLocalBindUnlink = "yes";
-        GatewayPorts = "clientspecified";
       };
     };
     dbus = {
@@ -299,7 +288,6 @@
       lidSwitchExternalPower = "ignore";
       lidSwitchDocked = "ignore";
     };
-    flatpak.enable = true;
     fstrim.enable = true;
     greetd = {
       vt = 1;
@@ -362,26 +350,6 @@
   };
 
   programs = {
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        curl
-        glib
-        glibc
-        icu
-        libunwind
-        libuuid
-        libsecret
-        openssl
-        stdenv.cc.cc
-        util-linux
-        zlib
-      ];
-    };
-    java ={
-      enable = true;
-      package = pkgs.jre;
-    };
     hyprland = {
       enable = true;
       nvidiaPatches = true;
@@ -396,20 +364,8 @@
       enable = true;
       enableSSHSupport = true;
     };
-    steam = {
-      enable = true;
-    };
-    gamescope = {
-      enable = true;
-      capSysNice = true;
-    };
-    gamemode = {
-      enable = true;
-      enableRenice = true;
-    };
   };
 
   system.stateVersion = "22.11";
-
 }
 

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   steam-with-pkgs = pkgs.steam.override {
     extraPkgs = pkgs: with pkgs; [
@@ -18,16 +18,21 @@ in
 {
   home.packages = with pkgs; [
     steam-with-pkgs
-    prismlauncher
     protontricks
     (lutris.override {extraPkgs = p: [p.libnghttp2];})
     gamescope
+    gamemode
     winetricks
   ];
   programs.mangohud = {
     enable = true;
     settings = {
-      preset = 3;
+      preset = 2;
+      time = true;
+      gamemode = true;
+      vkbasalt = true;
+      media_player = true;
+      horizontal = true;
     };
   };
 }
