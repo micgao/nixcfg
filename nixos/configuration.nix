@@ -8,26 +8,31 @@
       inputs.hyprland.nixosModules.default
       inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme
       inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
+      inputs.nix-ld.nixosModules.nix-ld
   ];
 
   boot = {
     bootspec = {
       enableValidation = true;
     };
-    consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [
-      # "intel_iommu=on"
-      "quiet"
-    ];
-    blacklistedKernelModules = [
-    ];
+    tmp = {
+      cleanOnBoot = true;
+    };
     extraModprobeConfig = ''
       options nvidia-drm modeset=1
     '';
+    consoleLogLevel = 0;
+    kernelPackages = pkgs.linuxPackages_lqx;
+    extraModulePackages = [
+    ];
+    kernelParams = [
+      "intel_iommu=on"
+      "quiet"
+    ];
     loader = {
       systemd-boot = {
         enable = true;
+        editor = false;
         consoleMode = "auto";
         configurationLimit = 10;
         netbootxyz.enable = true;
@@ -35,6 +40,12 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
+      kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
       verbose = false;
       systemd = {
         dbus.enable = true;
@@ -62,13 +73,19 @@
       wget
       glxinfo
       libva
+      libglvnd
+      glmark2
+      libva-utils
       vulkan-loader
       vulkan-validation-layers
+      egl-wayland
     ];
     variables = {
-      LIBSEAT_BACKEND = "logind";
       EDITOR = "nvim";
       VISUAL = "nvim";
+      NIXOS_OZONE_WL = "1";
+      LIBSEAT_BACKEND = "logind";
+      QT_QPA_PLATFORM = "wayland";
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -89,7 +106,6 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
       ];
     };
   };
@@ -133,9 +149,11 @@
       ];
     };
     nvidia = {
+      open = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
+    enableRedistributableFirmware = true;
   };
 
   nix = {
@@ -188,10 +206,9 @@
           </prefer>
         </alias>
       '';
-      subpixel.lcdfilter = "light";
       hinting = {
         enable = true;
-        style = "hintmedium";
+        style = "hintfull";
       };
       defaultFonts = {
         emoji = [
@@ -199,7 +216,6 @@
         ];
         monospace = [
           "Iosevka Fixed SS04 Extended Symbols"
-          "JetBrainsMonoNL Nerd Font Mono"
         ];
         sansSerif = [
           "Inter"
@@ -223,7 +239,7 @@
     libvirtd = {
       enable = true;
       onBoot = "ignore";
-      onShutdown = "shutdown";
+      onShutdown = "suspend";
       qemu.package = pkgs.qemu_kvm;
     };
     virtualbox.host = {
@@ -235,20 +251,6 @@
   };
 
   networking = {
-    #wireless.iwd = {
-    #  enable = true;
-    #  settings = {
-    #    General = {
-    #      EnableNetworkConfiguration = true;
-    #    };
-    #    Network = {
-    #      NameResolvingService = "systemd";
-    #    };
-    #    Settings = {
-    #      AutoConnect = true;
-    #    };
-    #  };
-    #};
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
@@ -350,6 +352,16 @@
   };
 
   programs = {
+    nix-ld = {
+      enable = true;
+    };
+    steam = {
+      enable = true;
+      package = with pkgs; steam.override { extraPkgs = pkgs: [ attr ]; };
+      gamescopeSession = {
+        enable = true;
+      };
+    };
     hyprland = {
       enable = true;
       nvidiaPatches = true;

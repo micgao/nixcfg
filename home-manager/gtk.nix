@@ -4,21 +4,21 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "Qogir";
+      package = pkgs.qogir-icon-theme;
       size = 24;
     };
     iconTheme = {
-      name = "Dracula";
-      package = pkgs.dracula-icon-theme;
+      name = "Qogir";
+      package = pkgs.qogir-icon-theme;
     };
     font = {
       name = "Inter";
       package = pkgs.inter;
     };
     theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
+      name = "Arc-Dark";
+      package = pkgs.arc-theme;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;

@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     qt6.qtwayland
+    qt6.qt5compat
     libsForQt5.qt5ct
     libsForQt5.breeze-qt5
     libsForQt5.qtstyleplugins

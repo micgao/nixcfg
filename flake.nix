@@ -9,9 +9,14 @@
     };
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
@@ -24,11 +29,13 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, nix-ld, ... }@inputs:
 
   let
     inherit (self) outputs;
     forAllSystems = nixpkgs.lib.genAttrs [
+      "aarch64-linux"
+      "i686-linux"
       "x86_64-linux"
     ];
   in

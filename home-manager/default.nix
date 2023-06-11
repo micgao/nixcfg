@@ -53,8 +53,8 @@
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "22.11";
     pointerCursor = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "Qogir";
+      package = pkgs.qogir-icon-theme;
       size = 24;
       x11.enable = true;
       gtk.enable = true;
@@ -83,6 +83,7 @@
       xdg-utils
       (ripgrep.override {withPCRE2 = true;})
       fd
+      circumflex
       imagemagick
       zstd
       sqlite
@@ -91,6 +92,7 @@
       wineWowPackages.wayland
       feather-wallet
       picocrypt
+      qobuz-dl
       timeshift
       monero-gui
       jetbrains-toolbox
@@ -123,6 +125,10 @@
   programs.jq.enable = true;
 
   programs.tealdeer.enable = true;
+
+  programs.pywal.enable = true;
+
+  programs.newsboat.enable = true;
 
   programs.nnn = {
     enable = true;
