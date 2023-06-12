@@ -6,8 +6,7 @@
   };
   services.mako = {
     enable = true;
-    package = inputs.nixpkgs-wayland.packages."x86_64-linux".mako;
-    iconPath = "${config.gtk.iconTheme.package}/share/icons/Dracula";
+    iconPath = "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark";
   };
   xdg.configFile."mako/config".source = ./config;
 }

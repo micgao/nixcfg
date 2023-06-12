@@ -9,16 +9,20 @@
       size = 24;
     };
     iconTheme = {
-      name = "Qogir";
-      package = pkgs.qogir-icon-theme;
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
     font = {
       name = "Inter";
       package = pkgs.inter;
     };
     theme = {
-      name = "Arc-Dark";
-      package = pkgs.arc-theme;
+      name = "Catppuccin-Mocha-Compact-Mauve-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["mauve"];
+        size = "compact";
+        variant = "mocha";
+      };
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;

@@ -4,7 +4,7 @@
     ./browsers.nix
     ./direnv.nix
     ./emacs.nix
-    ./emulators.nix
+    # ./emulators.nix
     ./fonts.nix
     ./gaming.nix
     ./gpg.nix
@@ -12,8 +12,9 @@
     ./gtk.nix
     ./neovim.nix
     ./nix-database-index.nix
+    ./reaper.nix
     ./passwordstore.nix
-    ./pfetch.nix
+    # ./pfetch.nix
     ./vscodium.nix
     ./qt.nix
     ./zsh.nix
@@ -27,7 +28,7 @@
     ./swaylock
     ./waybar
     ./wezterm
-    ./wofi
+    # ./wofi
     ./wlogout
     ./zathura
   ];
@@ -71,6 +72,7 @@
       nodejs
       python3Minimal
       clipboard-jh
+      circumflex
       xplr
       joshuto
       rclone
@@ -79,11 +81,10 @@
       playerctl
       megacmd
       obsidian
-      cryptomator
+      # cryptomator
       xdg-utils
       (ripgrep.override {withPCRE2 = true;})
       fd
-      circumflex
       imagemagick
       zstd
       sqlite
@@ -91,7 +92,7 @@
       virt-manager
       wineWowPackages.wayland
       feather-wallet
-      picocrypt
+      # picocrypt
       qobuz-dl
       timeshift
       monero-gui
@@ -119,8 +120,6 @@
   };
 
   programs.feh.enable = true;
-
-  programs.htop.enable = true;
 
   programs.jq.enable = true;
 
