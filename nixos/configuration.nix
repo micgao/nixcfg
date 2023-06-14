@@ -18,9 +18,6 @@
     tmp = {
       cleanOnBoot = true;
     };
-    extraModprobeConfig = ''
-      options nvidia-drm modeset=1
-    '';
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
     extraModulePackages = [
@@ -40,12 +37,6 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
-      kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
       verbose = false;
       systemd = {
         dbus.enable = true;
@@ -150,11 +141,14 @@
       ];
     };
     nvidia = {
-      open = true;
+      powerManagement.enable = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
+      nvidiaSettings = true;
     };
+    enableAllFirmware = true;
     enableRedistributableFirmware = true;
+    wirelessRegulatoryDatabase = true;
   };
 
   nix = {
@@ -323,7 +317,6 @@
     };
     roon-bridge.enable = true;
     roon-server.enable = true;
-    acpid.enable = true;
     btrfs.autoScrub.enable = true;
   };
 
