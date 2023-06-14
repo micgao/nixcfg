@@ -20,8 +20,6 @@
     };
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    extraModulePackages = [
-    ];
     kernelParams = [
       "intel_iommu=on"
       "quiet"
@@ -40,9 +38,6 @@
       verbose = false;
       systemd = {
         dbus.enable = true;
-        network = {
-          wait-online.enable = false;
-        };
       };
     };
   };
@@ -53,6 +48,9 @@
   };
 
   systemd = {
+    network = {
+      wait-online.enable = false;
+    };
     services = {
       systemd-udev-settle.enable = false;
     };
@@ -251,12 +249,9 @@
       enable = true;
       wifi.backend = "iwd";
     };
-    dns = [
-      "45.90.28.0#ca38bb.dns.nextdns.io"
-      "2a07:a8c0::#ca38bb.dns.nextdns.io"
-      "45.90.30.0#ca38bb.dns.nextdns.io"
-      "2a07:a8c1::#ca38bb.dns.nextdns.io"
-    ];
+    resolvconf = {
+      enable = true;
+    };
     hostName = "X1E3";
   };
 
@@ -270,6 +265,18 @@
       settings = {
         PermitRootLogin = "no";
       };
+    };
+    resolved = {
+      enable = true;
+      fallbackDNS = [
+        "45.90.28.0#ca38bb.dns.nextdns.io"
+        "2a07:a8c0::#ca38bb.dns.nextdns.io"
+        "45.90.30.0#ca38bb.dns.nextdns.io"
+        "2a07:a8c1::#ca38bb.dns.nextdns.io"
+      ];
+      extraConfig = ''
+        DNSOverTLS=yes
+      '';
     };
     dbus = {
       enable = true;
