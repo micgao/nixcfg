@@ -10,13 +10,17 @@
     ./gpg.nix
     ./git.nix
     ./gtk.nix
+    ./go.nix
     ./neovim.nix
     ./nix-database-index.nix
+    ./nnn.nix
     ./reaper.nix
+    ./rtx.nix
+    ./packages.nix
     ./passwordstore.nix
+    ./rtx.nix
     # ./pfetch.nix
     ./vscodium.nix
-    ./qt.nix
     ./zsh.nix
     ./alacritty
     ./bottom
@@ -25,11 +29,13 @@
     ./hyprland
     ./mako
     ./media
+    ./starship
     ./swaylock
     ./waybar
     ./wezterm
     # ./wofi
     ./wlogout
+    ./qt
     ./zathura
   ];
 
@@ -66,38 +72,6 @@
     sessionPath = [
       "$HOME/.cargo/bin/"
     ];
-    packages = with pkgs; [
-      nix-init
-      rustup
-      nodejs
-      python3Minimal
-      clipboard-jh
-      circumflex
-      xplr
-      joshuto
-      rclone
-      keepassxc
-      pavucontrol
-      playerctl
-      megacmd
-      obsidian
-      # cryptomator
-      xdg-utils
-      (ripgrep.override {withPCRE2 = true;})
-      fd
-      imagemagick
-      zstd
-      sqlite
-      distrobox
-      virt-manager
-      wineWowPackages.wayland
-      feather-wallet
-      # picocrypt
-      qobuz-dl
-      timeshift
-      monero-gui
-      jetbrains-toolbox
-    ];
   };
 
   services = {
@@ -113,6 +87,7 @@
 
   xdg = {
     enable = true;
+    configHome = "${config.home.homeDirectory}/.config";
     userDirs = {
       enable = true;
       createDirectories = true;
@@ -128,11 +103,6 @@
   programs.pywal.enable = true;
 
   programs.newsboat.enable = true;
-
-  programs.nnn = {
-    enable = true;
-    package = pkgs.nnn.override ({ withNerdIcons = true; });
-  };
 
   programs.zoxide = {
     enable = true;

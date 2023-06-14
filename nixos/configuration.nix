@@ -22,7 +22,7 @@
       options nvidia-drm modeset=1
     '';
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_zen;
     extraModulePackages = [
     ];
     kernelParams = [
@@ -99,6 +99,7 @@
       zsh
       nushell
     ];
+    binsh = "${pkgs.dash}/bin/dash";
   };
 
   xdg = {

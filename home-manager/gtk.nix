@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   gtk = {
@@ -12,17 +12,21 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Sapphire-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "sapphire" ];
+        size = "compact";
+        tweaks = [ "rimless" ];
+        variant = "macchiato";
+      };
+    };
     font = {
       name = "Inter";
       package = pkgs.inter;
     };
-    theme = {
-      name = "Catppuccin-Mocha-Compact-Mauve-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["mauve"];
-        size = "compact";
-        variant = "mocha";
-      };
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
