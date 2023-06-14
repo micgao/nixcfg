@@ -99,6 +99,7 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
       ];
+      xdgOpenUsePortal = true;
     };
   };
 
@@ -110,6 +111,11 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    tpm2 = {
+      enable = true;
+      pkcs11.enable = true;
+      abrmd.enable = true;
+    };
   };
 
   nixpkgs = {
@@ -136,9 +142,6 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-      ];
     };
     nvidia = {
       powerManagement.enable = true;
@@ -233,8 +236,6 @@
     };
     libvirtd = {
       enable = true;
-      onBoot = "ignore";
-      onShutdown = "suspend";
       qemu.package = pkgs.qemu_kvm;
     };
     virtualbox.host = {
@@ -248,9 +249,14 @@
   networking = {
     networkmanager = {
       enable = true;
-      dns = "systemd-resolved";
       wifi.backend = "iwd";
     };
+    dns = [
+      "45.90.28.0#ca38bb.dns.nextdns.io"
+      "2a07:a8c0::#ca38bb.dns.nextdns.io"
+      "45.90.30.0#ca38bb.dns.nextdns.io"
+      "2a07:a8c1::#ca38bb.dns.nextdns.io"
+    ];
     hostName = "X1E3";
   };
 
@@ -268,17 +274,6 @@
     dbus = {
       enable = true;
       implementation = "broker";
-    };
-    resolved = {
-      enable = true;
-      extraConfig = ''
-        [Resolve]
-        DNS=45.90.28.0#ca38bb.dns.nextdns.io
-        DNS=2a07:a8c0::#ca38bb.dns.nextdns.io
-        DNS=45.90.30.0#ca38bb.dns.nextdns.io
-        DNS=2a07:a8c1::#ca38bb.dns.nextdns.io
-        DNSOverTLS=yes
-      '';
     };
     logind = {
       lidSwitch = "ignore";
