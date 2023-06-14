@@ -268,7 +268,7 @@
     };
     resolved = {
       enable = true;
-      fallbackDNS = [
+      fallbackDns = [
         "45.90.28.0#ca38bb.dns.nextdns.io"
         "2a07:a8c0::#ca38bb.dns.nextdns.io"
         "45.90.30.0#ca38bb.dns.nextdns.io"
