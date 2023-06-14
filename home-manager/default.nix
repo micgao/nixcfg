@@ -5,6 +5,7 @@
     ./direnv.nix
     ./emacs.nix
     # ./emulators.nix
+    ./feh.nix
     ./fonts.nix
     ./gaming.nix
     ./gpg.nix
@@ -12,16 +13,24 @@
     ./gtk.nix
     ./go.nix
     ./neovim.nix
+    ./newsboat.nix
+    ./pywal.nix
+    ./tealdeer.nix
+    ./playerctld.nix
+    ./zoxide.nix
     ./nix-database-index.nix
     ./nnn.nix
     ./reaper.nix
     ./rtx.nix
+    ./jq.nix
     ./packages.nix
     ./passwordstore.nix
     ./rtx.nix
     # ./pfetch.nix
     ./vscodium.nix
+    ./xsettingsd.nix
     ./zsh.nix
+    ./xdg.nix
     ./alacritty
     ./bottom
     ./fuzzel
@@ -70,44 +79,8 @@
       MOZ_ENABLE_WAYLAND = 1;
     };
     sessionPath = [
-      "$HOME/.cargo/bin/"
+      "${config.home.homeDirectory}/.cargo/bin"
     ];
-  };
-
-  services = {
-    xsettingsd = {
-      enable = true;
-      settings = {
-        "Net/IconThemeName" = "${config.gtk.iconTheme.name}";
-        "Net/ThemeName" = "${config.gtk.theme.name}";
-      };
-    };
-    playerctld.enable = true;
-  };
-
-  xdg = {
-    enable = true;
-    configHome = "${config.home.homeDirectory}/.config";
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
-  };
-
-  programs.feh.enable = true;
-
-  programs.jq.enable = true;
-
-  programs.tealdeer.enable = true;
-
-  programs.pywal.enable = true;
-
-  programs.newsboat.enable = true;
-
-  programs.zoxide = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
   };
 
   programs.home-manager.enable = true;

@@ -3,7 +3,7 @@
     enable = true;
   };
   xdg.configFile."zathura/zathurarc".source = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/dracula/zathura/master/zathurarc";
-    hash = "sha256-7qNQK104EW1/heux+DW3dUdfRcKdiUQEp+ktiVw60G4=";
+    url = "https://raw.githubusercontent.com/catppuccin/zathura/main/src/catppuccin-macchiato";
+    hash = "sha256-cuR2W/Iwd57XZ+rE/ldIhIPZOQcHZNLtQEl2rUpC4Ek=";
   };
 }
