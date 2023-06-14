@@ -249,9 +249,6 @@
       enable = true;
       wifi.backend = "iwd";
     };
-    resolvconf = {
-      enable = true;
-    };
     hostName = "X1E3";
   };
 
