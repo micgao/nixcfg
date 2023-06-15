@@ -147,7 +147,6 @@
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
     };
-    enableAllFirmware = true;
     enableRedistributableFirmware = true;
     wirelessRegulatoryDatabase = true;
   };
