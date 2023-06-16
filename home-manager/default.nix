@@ -64,13 +64,13 @@
     username = lib.mkDefault "micgao";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "22.11";
-    # pointerCursor = {
-    #   name = "Qogir";
-    #   package = pkgs.qogir-icon-theme;
-    #   size = 24;
-    #   x11.enable = true;
-    #   gtk.enable = true;
-    # };
+    pointerCursor = {
+      name = "Qogir";
+      package = pkgs.qogir-icon-theme;
+      size = 24;
+      x11.enable = true;
+      gtk.enable = true;
+    };
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
     };

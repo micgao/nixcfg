@@ -13,12 +13,12 @@
       package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "Catppuccin-Macchiato-Compact-Sapphire-Dark";
+      name = "Catppuccin-Mocha-Compact-Mauve-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "sapphire" ];
+        accents = [ "mauve" ];
         size = "compact";
         tweaks = [ "rimless" ];
-        variant = "macchiato";
+        variant = "mocha";
       };
     };
     font = {
