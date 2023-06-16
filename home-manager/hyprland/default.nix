@@ -26,7 +26,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
     systemdIntegration = true;
     disableAutoreload = true;
     xwayland = {
