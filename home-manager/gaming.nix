@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
+    dxvk
     protontricks
     (lutris.override {extraPkgs = p: [p.libnghttp2];})
     gamescope
@@ -12,6 +13,7 @@
     settings = {
       preset = 2;
       time = true;
+      media_player = true;
       gpu_temp = true;
       cpu_temp = true;
     };

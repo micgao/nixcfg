@@ -9,7 +9,7 @@
       size = 24;
     };
     iconTheme = {
-      name = "Papirus";
+      name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
     theme = {
