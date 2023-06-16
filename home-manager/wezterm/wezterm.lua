@@ -15,7 +15,6 @@ config.font = wezterm.font_with_fallback {
   {
     family = "Iosevka Term SS04 Extended",
     weight = "Regular",
-    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
   },
   {
     family = "Symbols Nerd Font",
