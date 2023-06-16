@@ -7,8 +7,8 @@
 
 window#waybar {
     background: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: white;
+    border-bottom: 2px solid rgba(100, 114, 125, 0.5);
+    color: @text;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -18,13 +18,13 @@ tooltip {
   border: 1px solid rgba(100, 114, 125, 0.5);
 }
 tooltip label {
-  color: white;
+  color: @text;
 }
 
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: white;
+    color: @text;
     border-bottom: 3px solid transparent;
 }
 
@@ -38,7 +38,7 @@ tooltip label {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: @base;
 }
 
 @keyframes blink {
