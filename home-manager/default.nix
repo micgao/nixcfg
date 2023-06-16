@@ -4,30 +4,33 @@
     ./browsers.nix
     ./direnv.nix
     ./emacs.nix
+    # ./emulators.nix
     ./feh.nix
     ./fonts.nix
     ./gaming.nix
-    ./git.nix
-    ./go.nix
     ./gpg.nix
+    ./git.nix
     ./gtk.nix
-    ./jq.nix
+    ./go.nix
     ./neovim.nix
     ./newsboat.nix
+    ./pywal.nix
+    ./tealdeer.nix
+    ./playerctld.nix
+    ./zoxide.nix
     ./nix-database-index.nix
     ./nnn.nix
-    ./packages.nix
-    ./passwordstore.nix
-    ./playerctld.nix
-    ./pywal.nix
     ./reaper.nix
     ./rtx.nix
-    ./tealdeer.nix
+    ./jq.nix
+    ./packages.nix
+    ./passwordstore.nix
+    ./rtx.nix
+    # ./pfetch.nix
     ./vscodium.nix
-    ./xdg.nix
     ./xsettingsd.nix
-    ./zoxide.nix
     ./zsh.nix
+    ./xdg.nix
     ./alacritty
     ./bottom
     ./fuzzel
@@ -35,12 +38,13 @@
     ./hyprland
     ./mako
     ./media
-    ./qt
     ./starship
     ./swaylock
     ./waybar
     ./wezterm
+    # ./wofi
     ./wlogout
+    ./qt
     ./zathura
   ];
 
