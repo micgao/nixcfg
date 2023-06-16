@@ -19,7 +19,7 @@
       cleanOnBoot = true;
     };
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [
       "intel_iommu=on"
       "quiet"
@@ -43,17 +43,7 @@
   };
 
   console = {
-    useXkbConfig = true;
     earlySetup = false;
-  };
-
-  systemd = {
-    network = {
-      wait-online.enable = false;
-    };
-    services = {
-      systemd-udev-settle.enable = false;
-    };
   };
 
   environment = {
@@ -109,11 +99,6 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    tpm2 = {
-      enable = true;
-      pkcs11.enable = true;
-      abrmd.enable = true;
-    };
   };
 
   nixpkgs = {
@@ -148,7 +133,6 @@
       nvidiaSettings = true;
     };
     enableRedistributableFirmware = true;
-    wirelessRegulatoryDatabase = true;
   };
 
   nix = {
@@ -235,12 +219,12 @@
       enable = true;
       qemu.package = pkgs.qemu_kvm;
     };
-    virtualbox.host = {
-       enable = true;
-    };
-    vmware.host = {
-      enable = true;
-    };
+    # virtualbox.host = {
+    #    enable = true;
+    # };
+    # vmware.host = {
+    #   enable = true;
+    # };
   };
 
   networking = {
@@ -294,7 +278,6 @@
     };
     xserver = {
       videoDrivers = [ "nvidia" ];
-      libinput.enable = true;
     };
     pipewire = {
       enable = true;
@@ -316,8 +299,6 @@
     roon-server.enable = true;
     btrfs.autoScrub.enable = true;
   };
-
-  sound.enable = false;
 
   users = {
     defaultUserShell = pkgs.zsh;
@@ -348,10 +329,6 @@
     };
     steam = {
       enable = true;
-      package = with pkgs; steam.override { extraPkgs = pkgs: [ attr ]; };
-      gamescopeSession = {
-        enable = true;
-      };
     };
     hyprland = {
       enable = true;
