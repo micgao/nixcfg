@@ -265,12 +265,13 @@
     };
     resolved = {
       enable = true;
+      fallbackDns = [
+        "45.90.28.0#ca38bb.dns.nextdns.io"
+        "2a07:a8c0::#ca38bb.dns.nextdns.io"
+        "45.90.30.0#ca38bb.dns.nextdns.io"
+        "2a07:a8c1::#ca38bb.dns.nextdns.io"
+      ];
       extraConfig = ''
-        [Resolve]
-        DNS=45.90.28.0#ca38bb.dns.nextdns.io
-        DNS=2a07:a8c0::#ca38bb.dns.nextdns.io
-        DNS=45.90.30.0#ca38bb.dns.nextdns.io
-        DNS=2a07:a8c1::#ca38bb.dns.nextdns.io
         DNSOverTLS=yes
       '';
     };
