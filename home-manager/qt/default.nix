@@ -2,5 +2,5 @@
   qt = {
     enable = true;
   };
-  xdg.configFile."qt5ct/colors/Catppuccin-Macchiato.conf".source = ./Catppuccin-Macchiato.conf;
+  xdg.configFile."qt5ct/colors/Catppuccin-Mocha.conf".source = ./Catppuccin-Mocha.conf;
 }

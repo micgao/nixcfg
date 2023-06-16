@@ -1,36 +1,5 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
-    ./bat.nix
-    ./browsers.nix
-    ./direnv.nix
-    ./emacs.nix
-    # ./emulators.nix
-    ./feh.nix
-    ./fonts.nix
-    ./gaming.nix
-    ./gpg.nix
-    ./git.nix
-    ./gtk.nix
-    ./go.nix
-    ./neovim.nix
-    ./newsboat.nix
-    ./pywal.nix
-    ./tealdeer.nix
-    ./playerctld.nix
-    ./zoxide.nix
-    ./nix-database-index.nix
-    ./nnn.nix
-    ./reaper.nix
-    ./rtx.nix
-    ./jq.nix
-    ./packages.nix
-    ./passwordstore.nix
-    ./rtx.nix
-    # ./pfetch.nix
-    ./vscodium.nix
-    ./xsettingsd.nix
-    ./zsh.nix
-    ./xdg.nix
     ./alacritty
     ./bottom
     ./fuzzel
@@ -38,14 +7,41 @@
     ./hyprland
     ./mako
     ./media
+    ./qt
     ./starship
     ./swaylock
     ./waybar
     ./wezterm
-    # ./wofi
     ./wlogout
-    ./qt
-    ./zathura
+    ./bat.nix
+    ./browsers.nix
+    ./direnv.nix
+    ./emacs.nix
+    ./feh.nix
+    ./fonts.nix
+    ./gaming.nix
+    ./git.nix
+    ./go.nix
+    ./gpg.nix
+    ./gtk.nix
+    ./jq.nix
+    ./neovim.nix
+    ./newsboat.nix
+    ./nix-database-index.nix
+    ./nnn.nix
+    ./packages.nix
+    ./passwordstore.nix
+    ./playerctld.nix
+    ./pywal.nix
+    ./reaper.nix
+    ./rtx.nix
+    ./tealdeer.nix
+    ./vscodium.nix
+    ./xdg.nix
+    ./xsettingsd.nix
+    ./zathura.nix
+    ./zoxide.nix
+    ./zsh.nix
   ];
 
   nixpkgs = {
