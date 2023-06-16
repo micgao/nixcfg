@@ -3,7 +3,7 @@
     enable = true;
   };
   xdg.configFile."zathura/zathurarc".source = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/catppuccin/zathura/main/src/catppuccin-mocha";
-    hash = "sha384-EK37b/iN3rKVZ5XigdicSCS/2woYiMeg7vx7rSed8on2RxkldoWi5iCPGUEdhql+";
+    url = "https://raw.githubusercontent.com/catppuccin/zathura/main/src/catppuccin-macchiato";
+    hash = "sha256-cuR2W/Iwd57XZ+rE/ldIhIPZOQcHZNLtQEl2rUpC4Ek=";
   };
 }
