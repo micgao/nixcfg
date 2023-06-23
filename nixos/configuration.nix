@@ -8,7 +8,6 @@
       inputs.hyprland.nixosModules.default
       inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme
       inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
-      inputs.nix-ld.nixosModules.nix-ld
   ];
 
   boot = {
@@ -53,6 +52,7 @@
     };
     services = {
       systemd-udev-settle.enable = false;
+      NetworkManager-wait-online.enable = lib.mkForce false;
     };
   };
 
@@ -67,9 +67,13 @@
       libva-utils
       vulkan-loader
       vulkan-validation-layers
+      vulkan-tools
       egl-wayland
     ];
     variables = {
+      GBM_BACKEND = "nvidia-drm";
+      LIBVA_DRIVER_NAME = "nvidia";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       EDITOR = "nvim";
       VISUAL = "nvim";
       NIXOS_OZONE_WL = "1";
@@ -140,14 +144,17 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+      ];
     };
     nvidia = {
+      open = true;
       powerManagement.enable = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
     };
-    enableAllFirmware = true;
     enableRedistributableFirmware = true;
     wirelessRegulatoryDatabase = true;
   };
@@ -204,7 +211,7 @@
       '';
       hinting = {
         enable = true;
-        style = "hintfull";
+        style = "full";
       };
       defaultFonts = {
         emoji = [
@@ -240,6 +247,9 @@
        enable = true;
     };
     vmware.host = {
+      enable = true;
+    };
+    lxd = {
       enable = true;
     };
   };
@@ -279,7 +289,6 @@
       implementation = "broker";
     };
     logind = {
-      lidSwitch = "ignore";
       lidSwitchExternalPower = "ignore";
       lidSwitchDocked = "ignore";
     };
@@ -316,6 +325,7 @@
     roon-bridge.enable = true;
     roon-server.enable = true;
     btrfs.autoScrub.enable = true;
+    throttled.enable = true;
   };
 
   sound.enable = false;
@@ -333,33 +343,24 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
-        "qemu-libvirtd"
         "networkmanager"
         "podman"
       ];
     };
-    extraGroups = {
-      vboxusers.members = [ "user-with-access-to-virtualbox" ];
-    };
   };
 
   programs = {
-    nix-ld = {
-      enable = true;
-    };
+    dconf.enable = true;
     steam = {
       enable = true;
-      package = with pkgs; steam.override { extraPkgs = pkgs: [ attr ]; };
       gamescopeSession = {
         enable = true;
       };
     };
     hyprland = {
       enable = true;
-      nvidiaPatches = true;
-      xwayland = {
-        enable = true;
-        hidpi = false;
+      package = inputs.hyprland.packages.${pkgs.system}.default.override {
+        nvidiaPatches = true;
       };
     };
     mtr.enable = true;

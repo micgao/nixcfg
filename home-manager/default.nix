@@ -2,9 +2,11 @@
   imports = [
     ./alacritty
     ./bottom
+    ./foot
     ./fuzzel
     ./helix
     ./hyprland
+    ./kitty
     ./mako
     ./media
     ./qt
@@ -13,6 +15,7 @@
     ./waybar
     ./wezterm
     ./wlogout
+    ./accounts.nix
     ./bat.nix
     ./browsers.nix
     ./direnv.nix
@@ -25,6 +28,7 @@
     ./gpg.nix
     ./gtk.nix
     ./jq.nix
+    ./neomutt.nix
     ./neovim.nix
     ./newsboat.nix
     ./nix-database-index.nix
@@ -73,6 +77,7 @@
     };
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
+      XCURSOR_SIZE = "24";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"

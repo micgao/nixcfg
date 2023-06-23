@@ -26,14 +26,10 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
-    systemdIntegration = true;
-    disableAutoreload = true;
-    xwayland = {
-      enable = true;
-      hidpi = false;
+    package = inputs.hyprland.packages.${pkgs.system}.default.override {
+      nvidiaPatches = true;
     };
-    nvidiaPatches = true;
+    systemdIntegration = true;
     recommendedEnvironment = true;
   };
   xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;

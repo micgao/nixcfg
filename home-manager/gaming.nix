@@ -13,7 +13,6 @@
     settings = {
       preset = 2;
       time = true;
-      media_player = true;
       gpu_temp = true;
       cpu_temp = true;
     };

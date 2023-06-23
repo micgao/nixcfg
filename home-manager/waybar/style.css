@@ -1,7 +1,7 @@
 @import "mocha.css";
 
 * {
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: FontAwesome, Noto Sans, Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
 
@@ -39,6 +39,7 @@ tooltip label {
 
 #clock {
     background-color: @base;
+    border-bottom: 3px solid white;
 }
 
 @keyframes blink {

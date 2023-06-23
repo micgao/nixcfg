@@ -15,11 +15,11 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-ld = {
-      url = "github:Mic92/nix-ld";
+    nix-ld-rs = {
+      url = "github:nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland?rev=d768226de9281828c6346d7acff3ddc10b3e657f";
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     joshuto.url = "github:kamiyaa/joshuto";
@@ -29,13 +29,11 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, nix-ld, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, nix-ld-rs, ... }@inputs:
 
   let
     inherit (self) outputs;
     forAllSystems = nixpkgs.lib.genAttrs [
-      "aarch64-linux"
-      "i686-linux"
       "x86_64-linux"
     ];
   in
