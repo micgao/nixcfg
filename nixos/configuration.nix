@@ -182,13 +182,14 @@
     fonts = with pkgs; [
       material-symbols
       font-awesome
-      roboto
+      montserrat
       noto-fonts
       inter
       hubot-sans
       mona-sans
       source-sans-pro
       source-serif-pro
+      intel-one-mono
       (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly"]; })
     ];
     fontDir = {
@@ -236,6 +237,7 @@
     podman = {
       enable = true;
       dockerCompat = true;
+      dockerSocket.enable = true;
       enableNvidia = true;
       defaultNetwork.settings.dns_enabled = true;
     };
@@ -343,10 +345,12 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
+        "qemu-libvirtd"
         "networkmanager"
         "podman"
       ];
     };
+    extraGroups.vboxusers.members = ["micgao"];
   };
 
   programs = {
@@ -356,6 +360,11 @@
       gamescopeSession = {
         enable = true;
       };
+    };
+    gamemode.enable = true;
+    gamescope = {
+      enable = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;

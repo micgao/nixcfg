@@ -4,8 +4,6 @@
     dxvk
     protontricks
     (lutris.override {extraPkgs = p: [p.libnghttp2];})
-    gamescope
-    gamemode
     winetricks
   ];
   programs.mangohud = {
