@@ -29,6 +29,8 @@
       joshuto
       rclone
       playerctl
+      procps
+      socat
       megacmd
       qobuz-dl
       git-credential-keepassxc
@@ -45,6 +47,7 @@
       pavucontrol
       obsidian
       jetbrains-toolbox
+      insomnia
       virt-manager
       protonmail-bridge
       # other things

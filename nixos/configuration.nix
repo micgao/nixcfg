@@ -18,7 +18,7 @@
       cleanOnBoot = true;
     };
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [
       "intel_iommu=on"
       "quiet"
@@ -47,11 +47,8 @@
   };
 
   systemd = {
-    network = {
-      wait-online.enable = false;
-    };
     services = {
-      systemd-udev-settle.enable = false;
+      systemd-udev-settle.enable = lib.mkForce false;
       NetworkManager-wait-online.enable = lib.mkForce false;
     };
   };
@@ -76,9 +73,6 @@
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       EDITOR = "nvim";
       VISUAL = "nvim";
-      NIXOS_OZONE_WL = "1";
-      LIBSEAT_BACKEND = "logind";
-      QT_QPA_PLATFORM = "wayland";
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -101,7 +95,6 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
       ];
-      xdgOpenUsePortal = true;
     };
   };
 
@@ -140,6 +133,7 @@
   };
 
   hardware = {
+    cpu.intel.updateMicrocode = true;
     opengl = {
       enable = true;
       driSupport = true;
@@ -149,7 +143,6 @@
       ];
     };
     nvidia = {
-      open = true;
       powerManagement.enable = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
@@ -184,9 +177,8 @@
       font-awesome
       montserrat
       noto-fonts
+      noto-fonts-emoji
       inter
-      hubot-sans
-      mona-sans
       source-sans-pro
       source-serif-pro
       intel-one-mono
@@ -306,7 +298,6 @@
     };
     xserver = {
       videoDrivers = [ "nvidia" ];
-      libinput.enable = true;
     };
     pipewire = {
       enable = true;

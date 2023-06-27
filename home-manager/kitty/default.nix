@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "Iosevka Term SS04 Extended Symbols";
+      name = "IntelOne Mono";
       size = 11.5;
     };
     settings = {
@@ -12,7 +12,6 @@
       disable_ligatures = "always";
       cursor_shape = "beam";
       copy_on_select = "clipboard";
-      tab_bar_min_tabs = 1;
       tab_bar_style = "separator";
     };
     shellIntegration = {

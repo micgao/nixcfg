@@ -34,7 +34,7 @@
     ./nix-database-index.nix
     ./nnn.nix
     ./packages.nix
-    ./passwordstore.nix
+    ./password.nix
     ./playerctld.nix
     ./pywal.nix
     ./reaper.nix
