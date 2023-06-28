@@ -17,6 +17,7 @@ tooltip {
   background: rgba(43, 48, 59, 0.5);
   border: 1px solid rgba(100, 114, 125, 0.5);
 }
+
 tooltip label {
   color: @text;
 }
@@ -35,11 +36,6 @@ tooltip label {
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber, #tray {
     padding: 0 10px;
-}
-
-#clock {
-    background-color: @base;
-    border-bottom: 3px solid white;
 }
 
 @keyframes blink {

@@ -1,7 +1,10 @@
-{ inputs, pkgs, config, ... }: {
+{ pkgs, inputs, ... }: {
+  nixpkgs.overlays = [
+    inputs.nixpkgs-wayland.overlay
+  ];
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar.overrideAttrs (oa: {
+    package = inputs.nixpkgs-wayland.packages.${pkgs.system}.waybar.overrideAttrs (oa: {
       mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
     });
     systemd = {

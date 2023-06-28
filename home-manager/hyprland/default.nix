@@ -16,6 +16,7 @@
     libsForQt5.breeze-qt5
     libsForQt5.qtstyleplugins
     libsForQt5.qt5.qtwayland
+    libsForQt5.polkit-kde-agent
     hyprpaper
     hyprpicker
     imv

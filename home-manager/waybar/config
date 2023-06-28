@@ -1,8 +1,12 @@
 {
     "layer": "top",
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["tray", "network", "battery", "cpu", "memory", "pulseaudio"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["tray", "network", "battery", "cpu", "memory", "pulseaudio", "clock"],
+    "hyprland/window": {
+        "max-length": 200,
+        "separate-outputs": true
+    },
     "battery": {
       "format": "Charge: {capacity}%"
     },
