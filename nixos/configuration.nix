@@ -6,8 +6,7 @@
       ./cachix.nix
       inputs.home-manager.nixosModules.home-manager
       inputs.hyprland.nixosModules.default
-      inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme
-      inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
+      inputs.nix-ld.nixosModules.nix-ld
   ];
 
   boot = {
@@ -18,7 +17,7 @@
       cleanOnBoot = true;
     };
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "intel_iommu=on"
       "quiet"
@@ -56,7 +55,6 @@
   environment = {
     systemPackages = with pkgs; [
       curl
-      wget
       glxinfo
       libva
       libglvnd
@@ -66,18 +64,20 @@
       vulkan-validation-layers
       vulkan-tools
       egl-wayland
+      dxvk
     ];
     variables = {
-      GBM_BACKEND = "nvidia-drm";
-      LIBVA_DRIVER_NAME = "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
     sessionVariables = {
+      GBM_BACKEND = "nvidia-drm";
+      LIBVA_DRIVER_NAME = "nvidia";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       NIXOS_OZONE_WL = "1";
       LIBSEAT_BACKEND = "logind";
       QT_QPA_PLATFORM = "wayland";
+      WLR_NO_HARDWARE_CURSORS = "1";
     };
     homeBinInPath = true;
     localBinInPath = true;
@@ -109,7 +109,6 @@
     tpm2 = {
       enable = true;
       pkcs11.enable = true;
-      abrmd.enable = true;
     };
   };
 
@@ -144,12 +143,12 @@
     };
     nvidia = {
       powerManagement.enable = true;
+      open = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
     };
-    enableRedistributableFirmware = true;
-    wirelessRegulatoryDatabase = true;
+    trackpoint.enable = true;
   };
 
   nix = {
@@ -229,7 +228,6 @@
     podman = {
       enable = true;
       dockerCompat = true;
-      dockerSocket.enable = true;
       enableNvidia = true;
       defaultNetwork.settings.dns_enabled = true;
     };
@@ -241,9 +239,6 @@
        enable = true;
     };
     vmware.host = {
-      enable = true;
-    };
-    lxd = {
       enable = true;
     };
   };
@@ -297,7 +292,7 @@
       };
     };
     xserver = {
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = lib.mkDefault [ "nvidia" ];
     };
     pipewire = {
       enable = true;
@@ -345,6 +340,7 @@
   };
 
   programs = {
+    nix-ld.dev.enable = true;
     dconf.enable = true;
     steam = {
       enable = true;

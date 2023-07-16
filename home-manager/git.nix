@@ -11,5 +11,6 @@
       };
     };
     gitui.enable = true;
+    git-credential-oauth.enable = true;
   };
 }

@@ -1,8 +1,7 @@
 @import "mocha.css";
 
 * {
-    font-family: FontAwesome, Noto Sans, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 window#waybar {
@@ -22,6 +21,21 @@ tooltip label {
   color: @text;
 }
 
+#tray {
+  margin: 4px 4px 4px 4px;
+  border-radius: 4px;
+  background-color: @surface1;
+}
+
+#tray * {
+  padding: 0 6px;
+  border-left: 1px solid @base;
+}
+
+#tray *:first-child {
+  border-left: none;
+}
+
 #workspaces button {
     padding: 0 5px;
     background: transparent;
@@ -34,8 +48,12 @@ tooltip label {
     border-bottom: 3px solid white;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber, #tray {
-    padding: 0 10px;
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber {
+    margin: 4px 2px;
+    background-color: @surface1;
+    border-radius: 4px;
+    min-width: 20px;
+    padding: 0 6px;
 }
 
 @keyframes blink {

@@ -1,35 +1,46 @@
 {
     "layer": "top",
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["tray", "network", "battery", "cpu", "memory", "pulseaudio", "clock"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "network", "battery", "cpu", "memory", "pulseaudio"],
     "hyprland/window": {
-        "max-length": 200,
+        "max-length": 50,
         "separate-outputs": true
     },
     "battery": {
       "format": "Charge: {capacity}%"
     },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
     "clock": {
-    	"format": "{:%R}",
-      "format-alt": "{:%Y-%m-%d}",
-      "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "calendar": {
-                    "mode"          : "year",
-                    "mode-mon-col"  : 3,
-                    "weeks-pos"     : "right",
-                    "on-scroll"     : 1,
-                    "on-click-right": "mode",
-                    "format": {
-                              "months":     "<span color='#ffead3'><b>{}</b></span>",
-                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-                              }
-                    },
+        "format": "{:%R}",
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "actions":  {
-                    "on-click-right": "mode",
                     "on-scroll-up": "shift_up",
                     "on-scroll-down": "shift_down"
                     }
@@ -46,15 +57,15 @@
         "format-source": "{volume}%  ",
         "format-source-muted": " ",
         "format-icons": {
-            "headphone": " ",
-            "phone": " ",
-            "portable": " ",
-            "default": [" ", " ", " "]
+            "headphone": "  ",
+            "phone": "  ",
+            "portable": "  ",
+            "default": ["  ", "  ", "  "]
         },
         "on-click": "pavucontrol"
     },
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-wifi": "{essid} ({signalStrength}%)   ",
         "format-ethernet": "{ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} (No IP)",
@@ -65,7 +76,7 @@
     	"format": "CPU: {usage}%"
     },
     "tray": {
-        "spacing": 10
+        "spacing": 0
     },
     "wlr/workspaces": {
     	"format": "{icon}",

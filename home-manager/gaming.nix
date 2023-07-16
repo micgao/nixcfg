@@ -1,12 +1,12 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
-    dxvk
     protontricks
     (lutris.override {extraPkgs = p: [p.libnghttp2];})
     winetricks
   ];
   programs.mangohud = {
+    enableSessionWide = false;
     enable = true;
     settings = {
       preset = 2;

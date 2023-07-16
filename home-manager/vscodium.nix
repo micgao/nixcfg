@@ -3,7 +3,10 @@
     enable = true;
     package = pkgs.vscodium-fhs;
     mutableExtensionsDir = true;
-    enableUpdateCheck = false;
-    enableExtensionUpdateCheck = true;
+    extensions = with pkgs; [];
+    userSettings = {
+      "update.mode" = "none";
+      "workbench.colorTheme" = "Catppuccin Mocha";
+    };
   };
 }

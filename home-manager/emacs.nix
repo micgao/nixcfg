@@ -10,6 +10,7 @@
   };
   services.emacs = {
     enable = true;
+    socketActivation.enable = true;
     package = with pkgs; ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]));
   };
 }

@@ -18,6 +18,7 @@
     ./accounts.nix
     ./bat.nix
     ./browsers.nix
+    ./dconf.nix
     ./direnv.nix
     ./emacs.nix
     ./feh.nix
@@ -28,6 +29,9 @@
     ./gpg.nix
     ./gtk.nix
     ./jq.nix
+    ./ledger.nix
+    ./mail.nix
+    ./megasync.nix
     ./neomutt.nix
     ./neovim.nix
     ./newsboat.nix
@@ -36,6 +40,7 @@
     ./packages.nix
     ./password.nix
     ./playerctld.nix
+    ./pueue.nix
     ./pywal.nix
     ./reaper.nix
     ./rtx.nix

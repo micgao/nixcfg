@@ -6,10 +6,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.set_environment_variables = {
-  TERMINFO_DIRS = "/home/micgao/.nix-profile/share/terminfo"
-}
-config.term = "wezterm"
 config.color_scheme = "Sequoia Moonlight"
 config.font = wezterm.font_with_fallback {
   {

@@ -1,7 +1,8 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, outputs, ... }: {
 
   nixpkgs.overlays = [
     inputs.nix-ld-rs.overlays.default
+    inputs.joshuto.overlays.default
   ];
 
   home = {
@@ -9,6 +10,7 @@
       # things supposedly required for doomemacs
       xdg-utils
       (ripgrep.override {withPCRE2 = true;})
+      graphviz
       fd
       imagemagick
       zstd
@@ -17,7 +19,8 @@
       # nix things
       nix-init
       nix-ld-rs
-      # escape hatches to make life easier
+      inputs.devenv.packages.${pkgs.system}.devenv
+      # things that make me impure
       rustup
       nodejs
       python3Minimal
@@ -47,7 +50,6 @@
       pavucontrol
       obsidian
       jetbrains-toolbox
-      insomnia
       virt-manager
       protonmail-bridge
       # other things

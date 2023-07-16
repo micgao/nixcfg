@@ -5,7 +5,7 @@
       main = {
         font = "Iosevka Fixed SS04:size=10";
         show-actions = "yes";
-        icon-theme = "Qogir";
+        icon-theme = "Qogir-dark";
         icons-enabled = "yes";
         terminal = "alacritty -e";
       };

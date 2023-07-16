@@ -6,9 +6,11 @@
   };
   programs.neovim = {
     enable = true;
+    withNodeJs = true;
     defaultEditor = true;
     package = pkgs.neovim-nightly;
     viAlias = true;
     vimAlias = true;
+    vimdiffAlias = true;
   };
 }
