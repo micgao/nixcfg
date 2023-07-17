@@ -106,10 +106,6 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    tpm2 = {
-      enable = true;
-      pkcs11.enable = true;
-    };
   };
 
   nixpkgs = {
@@ -142,11 +138,8 @@
       ];
     };
     nvidia = {
-      powerManagement.enable = true;
-      open = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
-      nvidiaSettings = true;
     };
     trackpoint.enable = true;
   };

@@ -31,7 +31,6 @@
     ./jq.nix
     ./ledger.nix
     ./mail.nix
-    ./megasync.nix
     ./neomutt.nix
     ./neovim.nix
     ./newsboat.nix
