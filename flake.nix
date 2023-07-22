@@ -34,7 +34,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, nix-ld-rs, devenv, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, nix-ld-rs, nix-ld, devenv, ... }@inputs:
 
   let
     inherit (self) outputs;

@@ -31,6 +31,28 @@
       { key = "J"; command = [ "select_item" "scroll_down" ]; }
       { key = "K"; command = [ "select_item" "scroll_up" ]; }
     ];
+    settings = {
+      ncmpcpp_directory = "~/.ncmpcpp";
+      lyrics_directory = "~/.ncmpcpp/lyrics";
+      mpd_music_directory = "~/Music";
+      autocenter_mode = "yes";
+      centered_cursor = "yes";
+      ignore_leader_the = "yes";
+      playlist_display_mode = "columns";
+      colors_enabled = "yes";
+      user_interface = "alternative";
+      volume_color = "white";
+      progressbar_look = "▂▂▂";
+      progressbar_color = "black";
+      progressbar_elapsed_color = "yellow";
+      default_place_to_search_in = "database";
+      follow_now_playing_lyrics = "yes";
+      display_bitrate = "yes";
+      cyclic_scrolling = "yes";
+      jump_to_now_playing_song_at_start = "yes";
+      system_encoding = "utf-8";
+      regular_expressions = "extended";
+    };
   };
   programs.mpv = {
     enable = true;

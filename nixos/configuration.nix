@@ -41,6 +41,24 @@
   };
 
   console = {
+    colors = [
+      "131317"
+      "f58ee0"
+      "8eb5f5"
+      "9898a6"
+      "c58fff"
+      "fdfdfe"
+      "ffbb88"
+      "868690"
+      "575861"
+      "f58ee0"
+      "8eb5f5"
+      "9898a6"
+      "c58fff"
+      "fdfdfe"
+      "ffbb88"
+      "868690"
+    ];
     useXkbConfig = true;
     earlySetup = false;
   };
@@ -55,14 +73,9 @@
   environment = {
     systemPackages = with pkgs; [
       curl
-      glxinfo
-      libva
       libglvnd
-      glmark2
-      libva-utils
       vulkan-loader
       vulkan-validation-layers
-      vulkan-tools
       egl-wayland
       dxvk
     ];
@@ -74,10 +87,15 @@
       GBM_BACKEND = "nvidia-drm";
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      NIXOS_OZONE_WL = "1";
       LIBSEAT_BACKEND = "logind";
-      QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORM = "wayland-egl";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
+      GDK_BACKEND = "wayland,x11";
+      TDESKTOP_DISABLE_GTK_INTEGRATION = "1";
+      BEMENU_BACKEND = "wayland";
+      NIXOS_OZONE_WL = "1";
     };
     homeBinInPath = true;
     localBinInPath = true;
@@ -95,6 +113,7 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
       ];
+      xdgOpenUsePortal = true;
     };
   };
 
@@ -133,9 +152,6 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-      ];
     };
     nvidia = {
       modesetting.enable = true;
@@ -348,9 +364,8 @@
     };
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.default.override {
-        nvidiaPatches = true;
-      };
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      nvidiaPatches = true;
     };
     mtr.enable = true;
     zsh.enable = true;

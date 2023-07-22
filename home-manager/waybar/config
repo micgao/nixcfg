@@ -1,14 +1,26 @@
 {
+    "name": "main-bar",
+    "id": "main-bar",
     "layer": "top",
+    "mode": "dock",
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["tray", "network", "battery", "cpu", "memory", "pulseaudio"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["tray", "network", "battery", "cpu", "memory", "pulseaudio", "clock"],
     "hyprland/window": {
-        "max-length": 50,
+        "max-length": 200,
         "separate-outputs": true
     },
     "battery": {
-      "format": "Charge: {capacity}%"
+      "format": "Charge: {capacity}%",
+      "interval": 60,
+      "full-at": 100,
+      "design-capacity": false,
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "tooltip": true
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -38,8 +50,9 @@
     },
     "clock": {
         "format": "{:%R}",
-        "format-alt": "{:%Y-%m-%d}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%a %b %d, %G}",
+        "interval": 60,
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
         "actions":  {
                     "on-scroll-up": "shift_up",
                     "on-scroll-down": "shift_down"
@@ -47,7 +60,7 @@
     },
     "memory": {
         "format": "Memory: {}%",
-        "interval": 5,
+        "interval": 5
     },
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
@@ -73,7 +86,8 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "cpu": {
-    	"format": "CPU: {usage}%"
+    	"format": "CPU: {usage}%",
+        "interval": 5
     },
     "tray": {
         "spacing": 0

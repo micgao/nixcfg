@@ -27,7 +27,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default.override {
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
       nvidiaPatches = true;
     };
     systemdIntegration = true;

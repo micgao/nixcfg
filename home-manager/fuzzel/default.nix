@@ -3,11 +3,12 @@
     enable = true;
     settings = {
       main = {
+        terminal = "${pkgs.wezterm}/bin/wezterm";
+        layer = "overlay";
         font = "Iosevka Fixed SS04:size=10";
         show-actions = "yes";
         icon-theme = "Qogir-dark";
         icons-enabled = "yes";
-        terminal = "alacritty -e";
       };
       colors.background = "282a36dd";
       colors.text = "f8f8f2ff";

@@ -11,7 +11,7 @@
     ./media
     ./qt
     ./starship
-    ./swaylock
+    # ./swaylock
     ./waybar
     ./wezterm
     ./wlogout
@@ -28,6 +28,7 @@
     ./go.nix
     ./gpg.nix
     ./gtk.nix
+    ./joshuto.nix
     ./jq.nix
     ./ledger.nix
     ./mail.nix
@@ -76,7 +77,6 @@
       name = "Qogir";
       package = pkgs.qogir-icon-theme;
       size = 24;
-      x11.enable = true;
       gtk.enable = true;
     };
     sessionVariables = {
@@ -86,6 +86,12 @@
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"
     ];
+  };
+
+  manual = {
+    html.enable = false;
+    json.enable = false;
+    manpages.enable = false;
   };
 
   programs.home-manager.enable = true;

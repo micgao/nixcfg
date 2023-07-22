@@ -2,7 +2,6 @@
 
   nixpkgs.overlays = [
     inputs.nix-ld-rs.overlays.default
-    inputs.joshuto.overlays.default
   ];
 
   home = {
@@ -29,7 +28,6 @@
       clipboard-jh
       circumflex
       xplr
-      joshuto
       rclone
       playerctl
       procps
@@ -49,6 +47,7 @@
       keepassxc
       pavucontrol
       obsidian
+      insomnia
       jetbrains-toolbox
       virt-manager
       protonmail-bridge
