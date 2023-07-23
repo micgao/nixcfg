@@ -5,9 +5,9 @@
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    border-bottom: 2px solid rgba(100, 114, 125, 0.5);
-    color: @text;
+    background: alpha(@theme_base_color, 0.8);
+    border-bottom: 1px solid @unfocused_border;
+    color: @theme_text_color;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -48,7 +48,7 @@ tooltip label {
     border-bottom: 3px solid white;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber {
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber, #window {
     margin: 4px 2px;
     background-color: @surface1;
     border-radius: 4px;

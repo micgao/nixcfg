@@ -36,6 +36,7 @@
       verbose = false;
       systemd = {
         dbus.enable = true;
+        network.wait-online.enable = false;
       };
     };
   };
@@ -65,36 +66,30 @@
 
   systemd = {
     services = {
-      systemd-udev-settle.enable = lib.mkForce false;
-      NetworkManager-wait-online.enable = lib.mkForce false;
+      systemd-udev-settle.enable = false;
     };
   };
 
   environment = {
     systemPackages = with pkgs; [
       curl
-      libglvnd
-      vulkan-loader
-      vulkan-validation-layers
       egl-wayland
-      dxvk
     ];
     variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
     sessionVariables = {
+      LIBSEAT_BACKEND = "logind";
       GBM_BACKEND = "nvidia-drm";
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      LIBSEAT_BACKEND = "logind";
-      QT_QPA_PLATFORM = "wayland-egl";
+      QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt5ct";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
-      GDK_BACKEND = "wayland,x11";
+      GDK_BACKEND = "wayland";
       TDESKTOP_DISABLE_GTK_INTEGRATION = "1";
-      BEMENU_BACKEND = "wayland";
       NIXOS_OZONE_WL = "1";
     };
     homeBinInPath = true;
@@ -113,13 +108,7 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
       ];
-      xdgOpenUsePortal = true;
     };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "qt5ct";
   };
 
   security = {
@@ -301,7 +290,7 @@
       };
     };
     xserver = {
-      videoDrivers = lib.mkDefault [ "nvidia" ];
+      videoDrivers = [ "nvidia" ];
     };
     pipewire = {
       enable = true;
@@ -312,17 +301,25 @@
       jack.enable = true;
       wireplumber.enable = true;
     };
-    resilio = {
-      enable = true;
-      deviceName = "X1E3";
-      enableWebUI = true;
-      httpListenAddr = "127.0.0.1";
-      httpListenPort = 9000;
-    };
+    # resilio = {
+    #   enable = true;
+    #   deviceName = "X1E3";
+    #   enableWebUI = true;
+    #   httpListenAddr = "127.0.0.1";
+    #   httpListenPort = 9000;
+    # };
     roon-bridge.enable = true;
     roon-server.enable = true;
     btrfs.autoScrub.enable = true;
     throttled.enable = true;
+  };
+
+  documentation = {
+    enable = true;
+    man = {
+      enable = true;
+      generateCaches = true;
+    };
   };
 
   sound.enable = false;
@@ -350,7 +347,6 @@
 
   programs = {
     nix-ld.dev.enable = true;
-    dconf.enable = true;
     steam = {
       enable = true;
       gamescopeSession = {

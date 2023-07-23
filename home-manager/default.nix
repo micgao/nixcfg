@@ -70,7 +70,7 @@
   };
 
   home = {
-    username = lib.mkDefault "micgao";
+    username = "micgao";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "22.11";
     pointerCursor = {
@@ -79,12 +79,8 @@
       size = 24;
       gtk.enable = true;
     };
-    sessionVariables = {
-      MOZ_ENABLE_WAYLAND = 1;
-      XCURSOR_SIZE = "24";
-    };
     sessionPath = [
-      "${config.home.homeDirectory}/.cargo/bin"
+      "/home/micgao/.cargo/bin"
     ];
   };
 

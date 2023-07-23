@@ -15,6 +15,7 @@
       zstd
       sqlite
       editorconfig-core-c
+      gnutls
       # nix things
       nix-init
       nix-ld-rs
@@ -31,6 +32,7 @@
       rclone
       playerctl
       procps
+      procs
       socat
       megacmd
       qobuz-dl
@@ -46,6 +48,7 @@
       # desktop things
       keepassxc
       pavucontrol
+      helvum
       obsidian
       insomnia
       jetbrains-toolbox
