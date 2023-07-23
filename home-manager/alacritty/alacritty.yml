@@ -1,26 +1,4 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
-
-# Import additional configuration files
-#
-# Imports are loaded in order, skipping all missing files, with the importing
-# file being loaded last. If a field is already present in a previous import, it
-# will be replaced.
-#
-# All imports must either be absolute paths starting with `/`, or paths relative
-# to the user's home directory starting with `~/`.
-#import:
-#  - /path/to/alacritty.yml
-
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty itself.
 env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
   TERM: alacritty
 
 window:
@@ -34,18 +12,6 @@ window:
     columns: 0
     lines: 0
 
-  # Window position (changes require restart)
-  #
-  # Specified in number of pixels.
-  # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
-
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 2
     y: 2
@@ -53,156 +19,55 @@ window:
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
 
-  # Window decorations
-  #
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  #
-  # Values for `decorations` (macOS only):
-  #     - transparent: Title bar, transparent background and title bar buttons
-  #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  decorations: full
 
-  # Background opacity
-  #
-  # Window opacity as a floating point number from `0.0` to `1.0`.
-  # The value `0.0` is completely transparent and `1.0` is opaque.
-  #opacity: 1.0
-
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
-  # startup_mode: Windowed
-
-  # Window title
-  #title: Alacritty
-
-  # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
-
-  # Window class (Linux/BSD only):
   class:
     # Application instance name
     instance: Alacritty
     # General application class
     general: Alacritty
 
-  # Decorations theme variant
-  #
-  # Override the variant of the System theme/GTK theme/Wayland client side
-  # decorations. Commonly supported values are `Dark`, `Light`, and `None` for
-  # auto pick-up. Set this to `None` to use the default theme variant.
   decorations_theme_variant: Dark
 
-  # Resize increments
-  #
-  # Prefer resizing window by discrete steps equal to cell dimensions.
-  resize_increments: false
-
-  # Make `Option` key behave as `Alt` (macOS only):
-  #   - OnlyLeft
-  #   - OnlyRight
-  #   - Both
-  #   - None (default)
-  #option_as_alt: None
-
 scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
   history: 9001
-
-  # Scrolling distance multiplier.
   multiplier: 3
 
-# Font configuration
 font:
-  # Normal (roman) font face
-  normal:
-    # Font family
-    #
-    # Default:
-    #   - (macOS) Menlo
-    #   - (Linux/BSD) monospace
-    #   - (Windows) Consolas
-    family: Iosevka Term SS04 Extended Symbols
 
-    # The `style` can be specified to pick a specific face.
+  normal:
+    family: Iosevka Term SS04 Extended Symbols
     style: Regular
 
-  # Bold font face
   bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: Iosevka Term SS04 Extended Symbols
-
-    # The `style` can be specified to pick a specific face.
     style: Bold
 
-  # Italic font face
   italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: Iosevka Term SS04 Extended Symbols
-
-    # The `style` can be specified to pick a specific face.
     style: Italic
 
-  # Bold italic font face
   bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: Iosevka Term SS04 Extended Symbols
-
-    # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
-  # Point size
   size: 11.0
 
-  # Offset is the extra space around each character. `offset.y` can be thought
-  # of as modifying the line spacing, and `offset.x` as modifying the letter
-  # spacing.
   offset:
     x: 0
     y: 0
 
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the
-  # right, increasing `y` moves the glyph upward.
   glyph_offset:
     x: 0
     y: 0
 
-  # Use built-in font for box drawing characters.
-  #
-  # If `true`, Alacritty will use a custom built-in font for box drawing
-  # characters (Unicode points 2500 - 259f).
-  #
-  builtin_box_drawing: false
-
-# If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
 colors:
-  # Default colors
   primary:
     background: '#2E3440'
     foreground: '#C8D0E0'
 
-  # Normal colors
   normal:
     black:   '#3B4252'
     red:     '#BF616A'
@@ -213,7 +78,6 @@ colors:
     cyan:    '#88C0D0'
     white:   '#E5E9F0'
 
-  # Bright colors
   bright:
     black:   '#4C566A'
     red:     '#BF616A'

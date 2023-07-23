@@ -16,6 +16,7 @@
       sqlite
       editorconfig-core-c
       gnutls
+      texlive.combined.scheme-medium
       # nix things
       nix-init
       nix-ld-rs
@@ -46,6 +47,7 @@
       feather-wallet
       monero-gui
       # desktop things
+      gimp-with-plugins
       keepassxc
       pavucontrol
       helvum

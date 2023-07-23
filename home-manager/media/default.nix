@@ -37,7 +37,7 @@
       mpd_music_directory = "~/Music";
       autocenter_mode = "yes";
       centered_cursor = "yes";
-      ignore_leader_the = "yes";
+      ignore_leading_the = "yes";
       playlist_display_mode = "columns";
       colors_enabled = "yes";
       user_interface = "alternative";
@@ -48,10 +48,12 @@
       default_place_to_search_in = "database";
       follow_now_playing_lyrics = "yes";
       display_bitrate = "yes";
+      display_remaining_time = "yes";
       cyclic_scrolling = "yes";
       jump_to_now_playing_song_at_start = "yes";
-      system_encoding = "utf-8";
       regular_expressions = "extended";
+      external_editor = "nvim";
+      use_console_editor = "yes";
     };
   };
   programs.mpv = {
@@ -59,6 +61,11 @@
   };
   programs.ncspot = {
     enable = true;
+    settings = {
+      initial_screen = "library";
+      use_nerdfont = true;
+      default_keybindings = true;
+    };
   };
   xdg.configFile."mpd/mpd.conf".source = ./mpd.conf;
   xdg.configFile."mpv/mpv.conf".source = ./mpv.conf;
