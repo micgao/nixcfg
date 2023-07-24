@@ -37,7 +37,6 @@
       mpd_music_directory = "~/Music";
       autocenter_mode = "yes";
       centered_cursor = "yes";
-      ignore_leading_the = "yes";
       playlist_display_mode = "columns";
       colors_enabled = "yes";
       user_interface = "alternative";
