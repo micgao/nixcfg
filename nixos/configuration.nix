@@ -17,9 +17,11 @@
       cleanOnBoot = true;
     };
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    blacklistedKernelModules = [
+      "nouveau"
+    ];
     kernelParams = [
-      "intel_iommu=on"
       "quiet"
     ];
     loader = {
@@ -73,7 +75,7 @@
   environment = {
     systemPackages = with pkgs; [
       curl
-      egl-wayland
+      wget
     ];
     variables = {
       EDITOR = "nvim";
@@ -144,7 +146,9 @@
     };
     nvidia = {
       modesetting.enable = true;
+      open = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
+      nvidiaSettings = true;
     };
     trackpoint.enable = true;
   };
@@ -300,6 +304,7 @@
       pulse.enable = true;
       jack.enable = true;
       wireplumber.enable = true;
+      socketActivation = true;
     };
     # resilio = {
     #   enable = true;

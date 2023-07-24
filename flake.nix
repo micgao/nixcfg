@@ -24,7 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv.url = "github:cachix/devenv/latest";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     joshuto.url = "github:kamiyaa/joshuto";

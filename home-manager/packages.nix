@@ -24,7 +24,7 @@
       # things that make me impure
       rustup
       nodejs
-      python3Minimal
+      python3Full
       distrobox
       # CLI things
       clipboard-jh
