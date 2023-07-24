@@ -9,6 +9,7 @@
     ./kitty
     ./mako
     ./media
+    ./nu
     ./qt
     ./starship
     # ./swaylock

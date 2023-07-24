@@ -34,7 +34,6 @@
     settings = {
       ncmpcpp_directory = "~/.ncmpcpp";
       lyrics_directory = "~/.ncmpcpp/lyrics";
-      mpd_music_directory = "~/Music";
       autocenter_mode = "yes";
       centered_cursor = "yes";
       playlist_display_mode = "columns";
