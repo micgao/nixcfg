@@ -47,5 +47,3 @@ let-env NU_PLUGIN_DIRS = [
 
 let-env PATH = ($env.PATH | split row (char esep) | prepend '/home/micgao/.cargo/bin')
 let-env OPENAI_API_KEY = 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
-
-(cat ~/.cache/wal/sequences)

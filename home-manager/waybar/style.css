@@ -56,6 +56,10 @@ tooltip label {
     padding: 0 6px;
 }
 
+#window.empty {
+  background-color: transparent;
+}
+
 @keyframes blink {
     to {
         background-color: #ffffff;
