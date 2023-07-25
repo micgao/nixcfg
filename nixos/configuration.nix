@@ -17,7 +17,7 @@
       cleanOnBoot = true;
     };
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     blacklistedKernelModules = [
       "nouveau"
     ];
@@ -141,8 +141,8 @@
     cpu.intel.updateMicrocode = true;
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      # driSupport = true;
+      # driSupport32Bit = true;
     };
     nvidia = {
       modesetting.enable = true;
@@ -354,11 +354,11 @@
     nix-ld.dev.enable = true;
     steam = {
       enable = true;
-      gamescopeSession = {
-        enable = true;
-      };
     };
-    gamemode.enable = true;
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+    };
     gamescope = {
       enable = true;
       capSysNice = true;

@@ -3,12 +3,11 @@
   home.packages = with pkgs; [
     protontricks
     winetricks
-    dxvk
     lutris
   ];
   programs.mangohud = {
-    enableSessionWide = false;
     enable = true;
+    enableSessionWide = false;
     settings = {
       preset = 2;
       time = true;
