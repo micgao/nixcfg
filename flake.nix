@@ -25,8 +25,7 @@
     };
     devenv.url = "github:cachix/devenv/latest";
     hyprland = {
-      url = "github:hyprwm/Hyprland?rev=76d4a50af3db7f2123d580eb7520f5b2956f261f";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/Hyprland";
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpaper.url = "github:hyprwm/hyprpaper";
