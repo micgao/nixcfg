@@ -9,7 +9,7 @@ end
 config.color_scheme = "Sequoia Moonlight"
 config.font = wezterm.font_with_fallback {
   {
-    family = "Iosevka Term SS04 Extended",
+    family = "Iosevka Fixed SS04 Extended",
     weight = "Regular",
   },
   {
@@ -31,10 +31,10 @@ config.max_fps = 145
 config.default_cursor_style = "SteadyBar"
 config.adjust_window_size_when_changing_font_size = false
 config.window_padding = {
-  left = 2,
-  right = 2,
-  top = 2,
-  bottom = 2,
+  left = 4,
+  right = 4,
+  top = 4,
+  bottom = 4,
 }
 
 return config

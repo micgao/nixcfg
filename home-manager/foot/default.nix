@@ -4,8 +4,7 @@
     settings = {
       main = {
         term = "foot";
-        font = "Iosevka Term SS04 Extended:size=11";
-        dpi-aware = "yes";
+        font = "Iosevka Fixed SS04 Extended:size=11";
         bold-text-in-bright = "yes";
       };
       cursor = {

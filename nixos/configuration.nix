@@ -36,10 +36,6 @@
     };
     initrd = {
       verbose = false;
-      systemd = {
-        dbus.enable = true;
-        network.wait-online.enable = false;
-      };
     };
   };
 
@@ -173,16 +169,19 @@
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       material-symbols
       font-awesome
       montserrat
       noto-fonts
       noto-fonts-emoji
+      roboto
+      roboto-mono
       inter
       source-sans-pro
       source-serif-pro
       intel-one-mono
+      recursive
       (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly"]; })
     ];
     fontDir = {
@@ -192,34 +191,38 @@
     fontconfig = {
       enable = true;
       antialias = true;
-      cache32Bit = true;
       includeUserConf = true;
       localConf = ''
         <alias>
-          <family>Iosevka Term SS04 Extended Symbols</family>
+          <family>Iosevka Fixed SS04 Extended Symbols</family>
           <prefer>
-              <family>Iosevka Term SS04 Extended</family>
+              <family>Iosevka Fixed SS04 Extended</family>
               <family>Symbols Nerd Font</family>
           </prefer>
         </alias>
       '';
       hinting = {
         enable = true;
-        style = "full";
+        style = "medium";
       };
+      subpixel.rgba = "rgb";
       defaultFonts = {
         emoji = [
           "Noto Color Emoji"
         ];
         monospace = [
           "Iosevka Fixed SS04 Extended Symbols"
+          "Iosevka SS04 Extended"
+          "Intel One Mono"
         ];
         sansSerif = [
           "Inter"
           "Source Sans Pro"
+          "Noto Sans"
         ];
         serif = [
           "Inter"
+          "Noto Serif Pro"
           "Source Serif Pro"
         ];
       };
@@ -253,7 +256,10 @@
     hostName = "X1E3";
   };
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    supportedLocales = [ "en_US.UTF-8/UTF-8" "en_CA.UTF-8/UTF-8" "fr_CA.UTF-8/UTF-8" ];
+    defaultLocale = "en_CA.UTF-8";
+  };
 
   time.timeZone = "America/Toronto";
 
@@ -316,7 +322,6 @@
     roon-bridge.enable = true;
     roon-server.enable = true;
     btrfs.autoScrub.enable = true;
-    throttled.enable = true;
   };
 
   documentation = {
@@ -361,7 +366,6 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
     };
     hyprland = {
       enable = true;

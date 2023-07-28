@@ -31,7 +31,9 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";
     joshuto.url = "github:kamiyaa/joshuto";
     hardware.url = "github:nixos/nixos-hardware/master";
-    helix.url = "github:helix-editor/helix";
+    helix = {
+      url = "github:helix-editor/helix?rev=6a431afc4e650efd2eca4afdf1122b3896e43ee3";
+    };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };

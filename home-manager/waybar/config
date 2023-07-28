@@ -2,7 +2,6 @@
     "name": "main-bar",
     "id": "main-bar",
     "layer": "top",
-    "mode": "dock",
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["tray", "network", "battery", "cpu", "memory", "pulseaudio", "clock"],
@@ -58,11 +57,7 @@
         "format": "{:%R}",
         "format-alt": "{:%a %b %d, %G}",
         "interval": 60,
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-        "actions":  {
-                    "on-scroll-up": "shift_up",
-                    "on-scroll-down": "shift_down"
-                    }
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "memory": {
         "format": "Memory: {}%",
@@ -71,8 +66,8 @@
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "  {format_source}",
         "format-source": "{volume}%  ",
         "format-source-muted": " ",
         "format-icons": {

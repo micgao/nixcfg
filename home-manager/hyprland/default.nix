@@ -21,8 +21,11 @@
     hyprpicker
     imv
     wlay
-    wl-clipboard
     wtype
+    wl-clipboard
+    wl-clipboard-x11
+    wlprop
+    ydotool
   ];
 
   wayland.windowManager.hyprland = {

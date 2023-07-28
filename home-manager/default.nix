@@ -9,7 +9,7 @@
     ./kitty
     ./mako
     ./media
-    ./nu
+    # ./nu
     ./qt
     ./starship
     # ./swaylock
@@ -84,6 +84,8 @@
       "/home/micgao/.cargo/bin"
     ];
   };
+
+  news.display = "show";
 
   manual = {
     html.enable = false;

@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "Iosevka Term SS04 Extended";
+      name = "Iosevka Fixed SS04 Extended";
       size = 11;
     };
     settings = {
@@ -17,6 +17,5 @@
     shellIntegration = {
       enableZshIntegration = true;
     };
-    theme = "Doom Vibrant";
   };
 }

@@ -11,7 +11,7 @@
       "workbench.colorTheme" = "Sinequanone Noir";
       "workbench.iconTheme" = "catppuccin-mocha";
       "workbench.startupEditor" = "none";
-      "editor.fontFamily" = "Iosevka Term SS04 Extended Symbols";
+      "editor.fontFamily" = "Iosevka Fixed SS04 Extended";
       "editor.cursorBlinking" = "solid";
       "editor.cursorSmoothCaretAnimation" = "on";
       "diffEditor.codeLens" = true;

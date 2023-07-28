@@ -6,17 +6,6 @@
 
   home = {
     packages = with pkgs; [
-      # things supposedly required for doomemacs
-      xdg-utils
-      (ripgrep.override {withPCRE2 = true;})
-      graphviz
-      fd
-      imagemagick
-      zstd
-      sqlite
-      editorconfig-core-c
-      gnutls
-      texlive.combined.scheme-medium
       # nix things
       nix-init
       nix-ld-rs
@@ -36,6 +25,7 @@
       procs
       socat
       megacmd
+      mpc-cli
       qobuz-dl
       git-credential-keepassxc
       gopass
@@ -57,7 +47,7 @@
       virt-manager
       protonmail-bridge
       # other things
-      wineWowPackages.wayland
+      # wineWowPackages.wayland
     ];
   };
 }
