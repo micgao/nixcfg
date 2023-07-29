@@ -33,6 +33,7 @@
       gopass-jsonapi
       gopass-summon-provider
       git-credential-gopass
+      protonmail-bridge
       # crypto things
       feather-wallet
       monero-gui
@@ -45,9 +46,8 @@
       insomnia
       jetbrains-toolbox
       virt-manager
-      protonmail-bridge
       # other things
-      # wineWowPackages.wayland
+      wineWowPackages.wayland
     ];
   };
 }

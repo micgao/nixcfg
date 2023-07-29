@@ -30,6 +30,13 @@
       { key = "k"; command = "scroll_up"; }
       { key = "J"; command = [ "select_item" "scroll_down" ]; }
       { key = "K"; command = [ "select_item" "scroll_up" ]; }
+      { key = "h"; command = "previous_column"; }
+      { key = "l"; command = "next_column"; }
+      { key = "L"; command = "show_lyrics"; }
+      { key = "down"; command = "volume_down"; }
+      { key = "up"; command = "volume_up"; }
+      { key = "space"; command = "pause"; }
+      { key = "space"; command = "play"; }
     ];
     settings = {
       ncmpcpp_directory = "~/.ncmpcpp";
@@ -37,6 +44,8 @@
       autocenter_mode = "yes";
       centered_cursor = "yes";
       playlist_display_mode = "columns";
+      startup_screen = "media_library";
+      media_library_primary_tag = "album_artist";
       colors_enabled = "yes";
       user_interface = "alternative";
       volume_color = "white";

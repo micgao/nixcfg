@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   programs = {
     mbsync.enable = true;
     mu.enable = true;

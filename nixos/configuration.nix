@@ -170,6 +170,7 @@
 
   fonts = {
     packages = with pkgs; [
+      emacs-all-the-icons-fonts
       material-symbols
       font-awesome
       montserrat

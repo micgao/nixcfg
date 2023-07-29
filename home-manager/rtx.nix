@@ -5,6 +5,7 @@
     settings = {
       settings = {
         experimental = true;
+        log_level = "error";
       };
       tools = {
         node = "latest";

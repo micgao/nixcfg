@@ -1,4 +1,5 @@
-{ inputs, pkgs, lib, ... }: {
+{ inputs, pkgs, lib, ... }: 
+{
   nixpkgs = {
     overlays = [
       inputs.emacs-overlay.overlay
@@ -6,7 +7,7 @@
   };
   home = {
     packages = with pkgs; [
-      emacs-all-the-icons-fonts
+      binutils
       xdg-utils
       (ripgrep.override {withPCRE2 = true;})
       graphviz
@@ -21,11 +22,11 @@
   };
   programs.emacs = {
     enable = true;
-    package = with pkgs; ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite ]));
+    package = with pkgs; ((emacsPackagesFor (emacs-pgtk.override { withTreeSitter = true; })).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite epkgs.emacsql ]));
   };
   services.emacs = {
     enable = true;
     socketActivation.enable = true;
-    package = with pkgs; ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite ]));
+    package = with pkgs; ((emacsPackagesFor (emacs-pgtk.override { withTreeSitter = true; })).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite epkgs.emacsql ]));
   };
 }

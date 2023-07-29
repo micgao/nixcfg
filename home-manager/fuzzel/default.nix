@@ -5,7 +5,7 @@
       main = {
         terminal = "${pkgs.wezterm}/bin/wezterm";
         layer = "overlay";
-        font = "Iosevka Fixed SS04 Extended:size=10";
+        font = "Iosevka Fixed SS04:size=10";
         show-actions = "yes";
         icon-theme = "Qogir-dark";
         icons-enabled = "yes";

@@ -21,12 +21,13 @@
       "vscode-neovim.neovimClean" = true;
       "vscode-neovim.useCtrlKeysForInsertMode" = false;
       "vscode-neovim.useCtrlKeysForNormalMode" = false;
-      "vscode-neovim.mouseSelectionStartVisualMode" = true;
       "github.gitProtocol" = "ssh";
       "codeium.enableSearch" = true;
       "js/ts.implicitProjectConfig.target" = "ESNext";
       "rust-analyzer.diagnostics.experimental.enable" = true;
       "rust-analyzer.restartServerOnConfigChange" = true;
+      "direnv.restart.automatic" = true;
+      "tabnine.experimentalAutoImports" = true;
       "tabnine.receiveBetaChannelUpdates" = true;
     };
   };
