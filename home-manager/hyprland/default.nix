@@ -37,7 +37,6 @@
     recommendedEnvironment = true;
     extraConfig = ''
       source=~/.config/hypr/mocha.conf
-
       monitor=,preferred,0x0,1,bitdepth,10
       monitor=DP-3,preferred,0x0,1,mirror,eDP-1
 
@@ -50,10 +49,10 @@
       env=GBM_BACKEND,nvidia-drm
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=WLR_NO_HARDWARE_CURSORS,1
-      env=QT_QPA_PLATFORM,wayland
+      env=QT_QPA_PLATFORM,wayland;xcb
       env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-      env=GDK_BACKEND,wayland
+      env=GDK_BACKEND,wayland,x11
 
       exec-once=/home/micgao/.nix-profile/libexec/polkit-kde-authentication-agent-1
       exec-once=wezterm start --always-new-process
@@ -110,17 +109,18 @@
           enabled=true
           bezier=easein,0.11, 0, 0.5, 0
           bezier=easeout,0.5, 1, 0.89, 1
-          bezier=easeinout,0.45, 0, 0.55, 1
-          animation=windowsIn,1,5,default,popin 0%
-          animation=windowsOut,1,5,default,popin
-          animation=windowsMove,1,5,default,slide
-          animation=fadeIn,1,8,default
-          animation=fadeOut,1,8,default
-          animation=fadeSwitch,1,8,default
-          animation=fadeShadow,1,8,default
-          animation=fadeDim,1,8,default
-          animation=border,1,10,default
-          animation=workspaces,1,5,default,slide
+          bezier=easeinback,0.36, 0, 0.66, -0.56
+          bezier=easeoutback,0.34, 1.56, 0.64, 1
+          animation=windowsIn,1,3,easeoutback,slide
+          animation=windowsOut,1,3,easeinback,slide
+          animation=windowsMove,1,3,easeoutback
+          animation=workspaces,1,2,easeoutback,slide
+          animation=fadeIn,1,3,easeout
+          animation=fadeOut,1,3,easein
+          animation=fadeSwitch,1,3,easeout
+          animation=fadeShadow,1,3,easeout
+          animation=fadeDim,1,3,easeout
+          animation=border,1,3,easeout
        }
 
       dwindle {
@@ -149,11 +149,6 @@
       misc {
           layers_hog_keyboard_focus = true
           animate_manual_resizes = false
-          mouse_move_enables_dpms = false
-          key_press_enables_dpms = false
-          no_direct_scanout = false
-          vfr = on
-          vrr = 2
           render_titles_in_groupbar = false
           groupbar_titles_font_size = 10
           groupbar_gradients = false

@@ -1,7 +1,7 @@
 { pkgs, lib, ... }: {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium.overrideAttrs(old: {
+    package = pkgs.vscodium-fhs.overrideAttrs(old: {
       libPath = lib.makeLibraryPath [pkgs.libglvnd];
     });
     mutableExtensionsDir = true;

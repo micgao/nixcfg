@@ -9,13 +9,13 @@
       # nix things
       nix-init
       nix-ld-rs
-      inputs.devenv.packages.${pkgs.system}.devenv
       # things that make me impure
       rustup
       nodejs
       python3Full
       distrobox
       # CLI things
+      httpie
       clipboard-jh
       circumflex
       xplr
@@ -39,6 +39,7 @@
       monero-gui
       # desktop things
       gimp-with-plugins
+      nyxt
       keepassxc
       pavucontrol
       helvum

@@ -23,6 +23,11 @@
     ];
     kernelParams = [
       "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "udev.log_level=3"
+      "rd.udev.log_level=3"
+      "vt.global_cursor_default=0"
     ];
     loader = {
       systemd-boot = {
@@ -35,6 +40,13 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
+      systemd.enable = true;
+      kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
       verbose = false;
     };
   };
@@ -82,13 +94,16 @@
       GBM_BACKEND = "nvidia-drm";
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORM = "wayland;xcb";
       QT_QPA_PLATFORMTHEME = "qt5ct";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
-      GDK_BACKEND = "wayland";
+      GDK_BACKEND = "wayland,x11";
       TDESKTOP_DISABLE_GTK_INTEGRATION = "1";
       NIXOS_OZONE_WL = "1";
+    };
+    profileRelativeSessionVariables = {
+      QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];
     };
     homeBinInPath = true;
     localBinInPath = true;
@@ -134,6 +149,8 @@
   };
 
   hardware = {
+    enableRedistributableFirmware = true;
+    pulseaudio.enable = false;
     cpu.intel.updateMicrocode = true;
     opengl = {
       enable = true;
@@ -158,6 +175,8 @@
       keep-outputs = true;
       max-jobs = "auto";
       warn-dirty = false;
+      flake-registry = "";
+      system-features = [ "kvm" "nixos-test" "big-parallel" ];
     };
     gc = {
       automatic = true;
@@ -165,10 +184,11 @@
       options = "--delete-older-than 2d";
     };
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
   };
 
   fonts = {
+    enableDefaultPackages = false;
     packages = with pkgs; [
       emacs-all-the-icons-fonts
       material-symbols
@@ -259,10 +279,13 @@
 
   i18n = {
     supportedLocales = [ "en_US.UTF-8/UTF-8" "en_CA.UTF-8/UTF-8" "fr_CA.UTF-8/UTF-8" ];
-    defaultLocale = "en_CA.UTF-8";
+    defaultLocale = lib.mkDefault "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_TIME = lib.mkDefault "en_CA.UTF-8";
+    };
   };
 
-  time.timeZone = "America/Toronto";
+  time.timeZone = lib.mkDefault "America/Toronto";
 
   services = {
     openssh = {
@@ -348,8 +371,8 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
-        "qemu-libvirtd"
         "networkmanager"
+        "network"
         "podman"
       ];
     };
@@ -357,9 +380,26 @@
   };
 
   programs = {
+    dconf.enable = true;
     nix-ld.dev.enable = true;
     steam = {
       enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: with pkgs; [
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          libgdiplus
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+        ];
+      };
+      gamescopeSession.enable = true;
     };
     gamemode = {
       enable = true;

@@ -83,6 +83,9 @@
     sessionPath = [
       "/home/micgao/.cargo/bin"
     ];
+    sessionVariables = {
+      TZ = "/etc/localtime";
+    };
   };
 
   news.display = "show";
