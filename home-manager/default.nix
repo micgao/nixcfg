@@ -81,7 +81,7 @@
       gtk.enable = true;
     };
     sessionPath = [
-      "/home/micgao/.cargo/bin"
+      "$HOME/.cargo/bin"
     ];
     sessionVariables = {
       TZ = "/etc/localtime";
