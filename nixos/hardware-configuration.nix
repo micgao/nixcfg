@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -19,42 +19,42 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DDF1-73DC";
+    { device = "/dev/disk/by-uuid/7FB5-5D91";
       fsType = "vfat";
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/73c8ac8c-db9b-426f-8c72-da7b9be815d8";
+    { device = "/dev/disk/by-uuid/3e194eb8-8749-4491-9694-7dfbb87766f6";
       fsType = "btrfs";
-      options = [ "subvol=nix" ];
+      options = [ "subvol=nix" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/etc" =
-    { device = "/dev/disk/by-uuid/73c8ac8c-db9b-426f-8c72-da7b9be815d8";
+    { device = "/dev/disk/by-uuid/3e194eb8-8749-4491-9694-7dfbb87766f6";
       fsType = "btrfs";
-      options = [ "subvol=etc" ];
+      options = [ "subvol=etc" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/73c8ac8c-db9b-426f-8c72-da7b9be815d8";
+    { device = "/dev/disk/by-uuid/3e194eb8-8749-4491-9694-7dfbb87766f6";
       fsType = "btrfs";
-      options = [ "subvol=log" ];
+      options = [ "subvol=log" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/root" =
-    { device = "/dev/disk/by-uuid/73c8ac8c-db9b-426f-8c72-da7b9be815d8";
+    { device = "/dev/disk/by-uuid/3e194eb8-8749-4491-9694-7dfbb87766f6";
       fsType = "btrfs";
-      options = [ "subvol=root" ];
+      options = [ "subvol=root" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/73c8ac8c-db9b-426f-8c72-da7b9be815d8";
+    { device = "/dev/disk/by-uuid/5649b32b-4b0c-40f6-b256-7a5723204fb9";
       fsType = "btrfs";
-      options = [ "subvol=home" ];
+      options = [ "subvol=home" "noatime" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/a3714e61-edd5-40cd-acf9-2232db12223d"; }
+    [ { device = "/dev/disk/by-uuid/01e6033f-0502-49ea-8211-e833414b4a78"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -62,8 +62,6 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp44s0u2u3.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp9s0u2u1u2.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

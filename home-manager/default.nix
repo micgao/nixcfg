@@ -73,7 +73,7 @@
   home = {
     username = "micgao";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "22.11";
+    stateVersion = lib.mkDefault "23.05";
     pointerCursor = {
       name = "Qogir";
       package = pkgs.qogir-icon-theme;

@@ -49,10 +49,10 @@
       env=GBM_BACKEND,nvidia-drm
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=WLR_NO_HARDWARE_CURSORS,1
-      env=QT_QPA_PLATFORM,wayland;xcb
+      env=QT_QPA_PLATFORM,wayland
       env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-      env=GDK_BACKEND,wayland,x11
+      env=GDK_BACKEND,wayland
 
       exec-once=/home/micgao/.nix-profile/libexec/polkit-kde-authentication-agent-1
       exec-once=wezterm start --always-new-process
@@ -63,7 +63,6 @@
       }
 
       input {
-          kb_layout = us
           follow_mouse = 2
           touchpad {
               natural_scroll = false
@@ -87,13 +86,15 @@
           rounding = 8
           multisample_edges = true
           active_opacity = 1.0
-          inactive_opacity = 0.9
+          inactive_opacity = 0.7
           fullscreen_opacity = 1.0
-          blur = true
-          blur_size = 3
-          blur_passes = 3
-          blur_new_optimizations = true
-          blur_xray = true
+	  blur {
+	      enabled = true
+	      size = 4
+	      passes = 4
+	      new_optimizations = true
+	      xray = true
+	  }
           drop_shadow = true
           shadow_range = 25
           shadow_render_power = 3
@@ -210,4 +211,5 @@
   };
   xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
   xdg.configFile."hypr/mocha.conf".source = ./mocha.conf;
+  xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
 }

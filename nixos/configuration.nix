@@ -6,7 +6,6 @@
       ./cachix.nix
       inputs.home-manager.nixosModules.home-manager
       inputs.hyprland.nixosModules.default
-      inputs.nix-ld.nixosModules.nix-ld
   ];
 
   boot = {
@@ -23,11 +22,6 @@
     ];
     kernelParams = [
       "quiet"
-      "loglevel=3"
-      "systemd.show_status=auto"
-      "udev.log_level=3"
-      "rd.udev.log_level=3"
-      "vt.global_cursor_default=0"
     ];
     loader = {
       systemd-boot = {
@@ -41,12 +35,6 @@
     };
     initrd = {
       systemd.enable = true;
-      kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
       verbose = false;
     };
   };
@@ -94,16 +82,13 @@
       GBM_BACKEND = "nvidia-drm";
       LIBVA_DRIVER_NAME = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      QT_QPA_PLATFORM = "wayland;xcb";
+      QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt5ct";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
-      GDK_BACKEND = "wayland,x11";
+      GDK_BACKEND = "wayland";
       TDESKTOP_DISABLE_GTK_INTEGRATION = "1";
       NIXOS_OZONE_WL = "1";
-    };
-    profileRelativeSessionVariables = {
-      QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];
     };
     homeBinInPath = true;
     localBinInPath = true;
@@ -154,13 +139,13 @@
     cpu.intel.updateMicrocode = true;
     opengl = {
       enable = true;
-      # driSupport = true;
-      # driSupport32Bit = true;
+      driSupport = true;
+      driSupport32Bit = true;
     };
     nvidia = {
       modesetting.enable = true;
       open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
@@ -188,7 +173,6 @@
   };
 
   fonts = {
-    enableDefaultPackages = false;
     packages = with pkgs; [
       emacs-all-the-icons-fonts
       material-symbols
@@ -215,25 +199,23 @@
       includeUserConf = true;
       localConf = ''
         <alias>
-          <family>Iosevka Fixed SS04 Extended Symbols</family>
+          <family>Iosevka Fixed Extended Symbols</family>
           <prefer>
-              <family>Iosevka Fixed SS04 Extended</family>
+              <family>Iosevka Fixed Extended</family>
               <family>Symbols Nerd Font</family>
           </prefer>
         </alias>
       '';
       hinting = {
         enable = true;
-        style = "medium";
       };
-      subpixel.rgba = "rgb";
       defaultFonts = {
         emoji = [
           "Noto Color Emoji"
         ];
         monospace = [
-          "Iosevka Fixed SS04 Extended Symbols"
-          "Iosevka SS04 Extended"
+          "Iosevka Fixed Extended Symbols"
+          "Iosevka Extended"
           "Intel One Mono"
         ];
         sansSerif = [
@@ -279,13 +261,13 @@
 
   i18n = {
     supportedLocales = [ "en_US.UTF-8/UTF-8" "en_CA.UTF-8/UTF-8" "fr_CA.UTF-8/UTF-8" ];
-    defaultLocale = lib.mkDefault "en_US.UTF-8";
+    defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_TIME = lib.mkDefault "en_CA.UTF-8";
+      LC_TIME = "en_CA.UTF-8";
     };
   };
 
-  time.timeZone = lib.mkDefault "America/Toronto";
+  time.timeZone = "America/Toronto";
 
   services = {
     openssh = {
@@ -336,13 +318,6 @@
       wireplumber.enable = true;
       socketActivation = true;
     };
-    # resilio = {
-    #   enable = true;
-    #   deviceName = "X1E3";
-    #   enableWebUI = true;
-    #   httpListenAddr = "127.0.0.1";
-    #   httpListenPort = 9000;
-    # };
     roon-bridge.enable = true;
     roon-server.enable = true;
     btrfs.autoScrub.enable = true;
@@ -371,8 +346,8 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
+	"qemu-libvirtd"
         "networkmanager"
-        "network"
         "podman"
       ];
     };
@@ -381,7 +356,6 @@
 
   programs = {
     dconf.enable = true;
-    nix-ld.dev.enable = true;
     steam = {
       enable = true;
       package = pkgs.steam.override {
@@ -420,6 +394,6 @@
     };
   };
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }
 

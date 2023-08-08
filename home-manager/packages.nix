@@ -1,14 +1,12 @@
 { pkgs, inputs, outputs, ... }: {
 
   nixpkgs.overlays = [
-    inputs.nix-ld-rs.overlays.default
   ];
 
   home = {
     packages = with pkgs; [
       # nix things
       nix-init
-      nix-ld-rs
       # things that make me impure
       rustup
       nodejs

@@ -2,11 +2,10 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "Iosevka Fixed SS04 Extended";
+      name = "Iosevka Fixed Extended";
       size = 11;
     };
     settings = {
-      background_opacity = "0.9";
       scrollback_lines = 9001;
       enable_audio_bell = false;
       update_check_interval = 0;
