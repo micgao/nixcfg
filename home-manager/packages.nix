@@ -7,37 +7,38 @@
     packages = with pkgs; [
       # nix things
       nix-init
-      # things that make me impure
+      # impurities
       rustup
       nodejs
-      python3Full
+      python3Minimal
       distrobox
       # CLI things
+      viddy
       httpie
+      curlie
       clipboard-jh
       circumflex
-      xplr
-      rclone
-      playerctl
-      procps
-      procs
-      socat
-      megacmd
-      mpc-cli
-      qobuz-dl
-      git-credential-keepassxc
+      fd
       gopass
       gopass-hibp
       gopass-jsonapi
       gopass-summon-provider
       git-credential-gopass
+      git-credential-keepassxc
+      xplr
+      rclone
+      playerctl
+      procs
+      socat
+      megacmd
+      mpc-cli
+      qobuz-dl
       protonmail-bridge
       # crypto things
       feather-wallet
       monero-gui
       # desktop things
       gimp-with-plugins
-      nyxt
       keepassxc
       pavucontrol
       helvum
@@ -45,7 +46,6 @@
       insomnia
       jetbrains-toolbox
       virt-manager
-      # other things
       wineWowPackages.wayland
     ];
   };

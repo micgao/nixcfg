@@ -9,8 +9,7 @@ end
 config.color_scheme = "Sequoia Moonlight"
 config.font = wezterm.font_with_fallback {
   {
-    family = "Iosevka Fixed Extended",
-    weight = "Regular",
+    family = "Iosevka Fixed SS04 Extended",
   },
   {
     family = "Symbols Nerd Font",

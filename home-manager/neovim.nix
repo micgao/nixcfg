@@ -15,6 +15,12 @@
       clang
       gnumake
       cmake
+      nil
+      nixd
+      lua-language-server
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+      nodePackages.yaml-language-server
     ];
     extraLuaPackages = luaPkgs: with luaPkgs; [
       luarocks

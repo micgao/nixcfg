@@ -24,7 +24,6 @@
   };
   programs.ncmpcpp = {
     enable = true;
-    package = pkgs.ncmpcpp.override { visualizerSupport = true; };
     bindings = [
       { key = "j"; command = "scroll_down"; }
       { key = "k"; command = "scroll_up"; }
@@ -33,6 +32,7 @@
       { key = "h"; command = "previous_column"; }
       { key = "l"; command = "next_column"; }
       { key = "L"; command = "show_lyrics"; }
+      { key = "f1"; command = "toggle_lyrics_fetcher"; }
       { key = "down"; command = "volume_down"; }
       { key = "up"; command = "volume_up"; }
       { key = "space"; command = "pause"; }

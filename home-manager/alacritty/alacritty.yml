@@ -36,19 +36,19 @@ scrolling:
 font:
 
   normal:
-    family: Iosevka Fixed Extended Symbols
+    family: Iosevka Fixed SS04 Extended Symbols
     style: Regular
 
   bold:
-    family: Iosevka Fixed Extended Symbols
+    family: Iosevka Fixed SS04 Extended Symbols
     style: Bold
 
   italic:
-    family: Iosevka Fixed Extended Symbols
+    family: Iosevka Fixed SS04 Extended Symbols
     style: Italic
 
   bold_italic:
-    family: Iosevka Fixed Extended Symbols
+    family: Iosevka Fixed SS04 Extended Symbols
     style: Bold Italic
 
   size: 11.0

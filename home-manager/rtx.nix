@@ -5,10 +5,13 @@
     settings = {
       settings = {
         experimental = true;
-        log_level = "error";
+        always_keep_download = false;
+        always_keep_install = false;
       };
       tools = {
         node = "latest";
+        go = "latest";
+        deno = "latest";
       };
     };
   };

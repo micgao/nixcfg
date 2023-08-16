@@ -15,7 +15,14 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland?rev=deeeb33c5f919ad5499a10526772b617f24d72ab";
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree/nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     joshuto.url = "github:kamiyaa/joshuto";
@@ -25,7 +32,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unfree, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, joshuto, ... }@inputs:
 
   let
     inherit (self) outputs;

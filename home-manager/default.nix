@@ -44,6 +44,7 @@
     ./pueue.nix
     ./pywal.nix
     ./reaper.nix
+    ./ripgrep.nix
     ./rtx.nix
     ./tealdeer.nix
     ./vscodium.nix
@@ -73,7 +74,7 @@
   home = {
     username = "micgao";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "23.05";
+    stateVersion = lib.mkDefault "23.11";
     pointerCursor = {
       name = "Qogir";
       package = pkgs.qogir-icon-theme;

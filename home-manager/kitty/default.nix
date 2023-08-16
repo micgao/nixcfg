@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "Iosevka Fixed Extended";
+      name = "Iosevka Fixed SS04 Extended";
       size = 11;
     };
     settings = {

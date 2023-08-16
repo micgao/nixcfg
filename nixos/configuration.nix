@@ -29,7 +29,6 @@
         editor = false;
         consoleMode = "auto";
         configurationLimit = 10;
-        netbootxyz.enable = true;
       };
       efi.canTouchEfiVariables = true;
     };
@@ -70,8 +69,11 @@
 
   environment = {
     systemPackages = with pkgs; [
-      curl
+      egl-wayland
+      libglvnd
+      curlWithGnuTls
       wget
+      cacert
     ];
     variables = {
       EDITOR = "nvim";
@@ -87,7 +89,6 @@
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
       GDK_BACKEND = "wayland";
-      TDESKTOP_DISABLE_GTK_INTEGRATION = "1";
       NIXOS_OZONE_WL = "1";
     };
     homeBinInPath = true;
@@ -145,8 +146,9 @@
     nvidia = {
       modesetting.enable = true;
       open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
+      powerManagement.enable = true;
     };
     trackpoint.enable = true;
   };
@@ -154,14 +156,11 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
-      auto-optimise-store = lib.mkDefault true;
       builders-use-substitutes = true;
       keep-derivations = true;
       keep-outputs = true;
-      max-jobs = "auto";
       warn-dirty = false;
       flake-registry = "";
-      system-features = [ "kvm" "nixos-test" "big-parallel" ];
     };
     gc = {
       automatic = true;
@@ -183,10 +182,14 @@
       roboto
       roboto-mono
       inter
+      source-code-pro
       source-sans-pro
       source-serif-pro
       intel-one-mono
       recursive
+      (iosevka.override {
+        set = "fixed-ss04";
+      })
       (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly"]; })
     ];
     fontDir = {
@@ -197,36 +200,39 @@
       enable = true;
       antialias = true;
       includeUserConf = true;
+      subpixel = {
+        lcdfilter = "light";
+        rgba = "rgb";
+      };
       localConf = ''
         <alias>
-          <family>Iosevka Fixed Extended Symbols</family>
+          <family>Iosevka Fixed SS04 Extended Symbols</family>
           <prefer>
-              <family>Iosevka Fixed Extended</family>
+              <family>Iosevka Fixed SS04 Extended</family>
               <family>Symbols Nerd Font</family>
           </prefer>
         </alias>
       '';
       hinting = {
         enable = true;
+        style = "medium";
       };
       defaultFonts = {
         emoji = [
           "Noto Color Emoji"
+          "Material Icons"
+          "FontAwesome"
         ];
         monospace = [
-          "Iosevka Fixed Extended Symbols"
-          "Iosevka Extended"
-          "Intel One Mono"
+          "Iosevka Fixed SS04 Extended Symbols"
+          "Iosevka Fixed SS04 Extended"
+          "Source Code Pro"
         ];
         sansSerif = [
-          "Inter"
-          "Source Sans Pro"
           "Noto Sans"
         ];
         serif = [
-          "Inter"
-          "Noto Serif Pro"
-          "Source Serif Pro"
+          "Noto Serif"
         ];
       };
     };
@@ -247,6 +253,13 @@
        enable = true;
     };
     vmware.host = {
+      enable = true;
+      extraConfig = ''
+        mks.gl.allowUnsupportedDrivers = "TRUE"
+        mks.vk.allowUnsupportedDevices = "TRUE"
+      '';
+    };
+    waydroid = {
       enable = true;
     };
   };
@@ -270,6 +283,7 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    fwupd.enable = true;
     openssh = {
       enable = true;
       settings = {
@@ -318,9 +332,16 @@
       wireplumber.enable = true;
       socketActivation = true;
     };
-    roon-bridge.enable = true;
-    roon-server.enable = true;
+    roon-bridge = {
+      enable = true;
+      openFirewall = true;
+    };
+    roon-server = {
+      enable = true;
+      openFirewall = true;
+    };
     btrfs.autoScrub.enable = true;
+    gnome.gnome-keyring.enable = true;
   };
 
   documentation = {
@@ -346,7 +367,7 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
-	"qemu-libvirtd"
+	      "qemu-libvirtd"
         "networkmanager"
         "podman"
       ];
@@ -381,10 +402,11 @@
     };
     gamescope = {
       enable = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;
-      nvidiaPatches = true;
+      enableNvidiaPatches = true;
     };
     mtr.enable = true;
     zsh.enable = true;
@@ -394,6 +416,6 @@
     };
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
 

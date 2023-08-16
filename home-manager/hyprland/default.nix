@@ -33,12 +33,12 @@
     package = null;
     systemdIntegration = true;
     disableAutoreload = true;
-    nvidiaPatches = true;
+    enableNvidiaPatches = true;
     recommendedEnvironment = true;
     extraConfig = ''
       source=~/.config/hypr/mocha.conf
-      monitor=,preferred,0x0,1,bitdepth,10
-      monitor=DP-3,preferred,0x0,1,mirror,eDP-1
+      monitor=DP-3,highrr,0x0,1,bitdepth,10
+      monitor=eDP-1,disable
 
       env=XCURSOR_SIZE,24
       env=XDG_SESSION_TYPE,wayland
@@ -88,13 +88,13 @@
           active_opacity = 1.0
           inactive_opacity = 0.7
           fullscreen_opacity = 1.0
-	  blur {
-	      enabled = true
-	      size = 4
-	      passes = 4
-	      new_optimizations = true
-	      xray = true
-	  }
+	        blur {
+	            enabled = true
+	            size = 4
+	            passes = 4
+	            new_optimizations = true
+	            xray = true
+	        }
           drop_shadow = true
           shadow_range = 25
           shadow_render_power = 3
@@ -161,7 +161,7 @@
       bind = $mainMod, return, exec, wezterm start --always-new-process
       bind = $mainMod, T, exec, alacritty
       bind = $mainMod, F, exec, alacritty -e joshuto
-      bind = $mainMod, E, exec, emacs
+      bind = $mainMod, E, exec, emacsclient --eval '(emacs-everywhere)'
       bind = $mainMod, C, exec, hyprpicker
       bind = $mainMod, Q, killactive,
       bind = $mainMod, M, exec, wlogout,

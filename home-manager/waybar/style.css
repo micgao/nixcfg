@@ -1,13 +1,13 @@
 @import "mocha.css";
 
 * {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Inter', 'Source Sans Pro', sans-serif;
+    font-size: 12px;
 }
 
 window#waybar {
-    background: alpha(@theme_base_color, 0.8);
-    border-bottom: 1px solid @unfocused_border;
-    color: @theme_text_color;
+    background: alpha(@base, 0.4);
+    color: @text;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -24,7 +24,7 @@ tooltip label {
 #tray {
   margin: 4px 4px 4px 4px;
   border-radius: 4px;
-  background-color: @surface1;
+  background-color: @surface0;
 }
 
 #tray * {
@@ -40,17 +40,17 @@ tooltip label {
     padding: 0 5px;
     background: transparent;
     color: @text;
-    border-bottom: 3px solid transparent;
+    border-bottom: 3px solid @sapphire;
 }
 
 #workspaces button.active {
-    background: #64727D;
-    border-bottom: 3px solid white;
+    background: @surface0;
+    border-bottom: 3px solid @mauve;
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber, #window {
     margin: 4px 2px;
-    background-color: @surface1;
+    background-color: @surface0;
     border-radius: 4px;
     min-width: 20px;
     padding: 0 6px;
