@@ -8,5 +8,5 @@
   };
   xdg.configFile."waybar/config".source = ./config;
   xdg.configFile."waybar/style.css".source = ./style.css;
-  xdg.configFile."waybar/mocha.css".source = ./colors.css;
+  xdg.configFile."waybar/colors.css".source = ./colors.css;
 }
