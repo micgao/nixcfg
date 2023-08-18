@@ -37,9 +37,10 @@
     recommendedEnvironment = true;
     extraConfig = ''
       source=~/.config/hypr/mocha.conf
-      monitor=DP-3,highrr,0x0,1,bitdepth,10
+      monitor=DP-3,1920x1080@144,0x0,1
       monitor=eDP-1,disable
 
+      env=GTK_THEME,Catppuccin-Mocha-Compact-Mauve-dark
       env=XCURSOR_SIZE,24
       env=XDG_SESSION_TYPE,wayland
       env=XDG_SESSION_DESKTOP,Hyprland
@@ -53,6 +54,8 @@
       env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=GDK_BACKEND,wayland
+      env=__GL_VRR_ALLOWED,0
+      env=__GL_GSYNC_ALLOWED,0
 
       exec-once=/home/micgao/.nix-profile/libexec/polkit-kde-authentication-agent-1
       exec-once=wezterm start --always-new-process
@@ -148,6 +151,7 @@
       }
 
       misc {
+          no_direct_scanout = true
           layers_hog_keyboard_focus = true
           animate_manual_resizes = false
           render_titles_in_groupbar = false

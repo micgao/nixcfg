@@ -5,14 +5,11 @@
 
   home = {
     packages = with pkgs; [
-      # nix things
       nix-init
-      # impurities
       rustup
       nodejs
       python3Minimal
       distrobox
-      # CLI things
       viddy
       httpie
       curlie
@@ -32,12 +29,7 @@
       socat
       megacmd
       mpc-cli
-      qobuz-dl
       protonmail-bridge
-      # crypto things
-      feather-wallet
-      monero-gui
-      # desktop things
       gimp-with-plugins
       keepassxc
       pavucontrol
@@ -47,6 +39,10 @@
       jetbrains-toolbox
       virt-manager
       wineWowPackages.wayland
+      bottles
+      qobuz-dl
+      feather-wallet
+      monero-gui
     ];
   };
 }

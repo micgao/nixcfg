@@ -1,13 +1,13 @@
-@import "mocha.css";
+@import "colors.css";
 
 * {
     font-family: 'Inter', 'Source Sans Pro', sans-serif;
-    font-size: 12px;
+    font-size: 12.5px;
 }
 
 window#waybar {
-    background: alpha(@base, 0.4);
-    color: @text;
+    background: @transparency;
+    color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -18,18 +18,18 @@ tooltip {
 }
 
 tooltip label {
-  color: @text;
+  color: @foreground;
 }
 
 #tray {
   margin: 4px 4px 4px 4px;
   border-radius: 4px;
-  background-color: @surface0;
+  background-color: @background;
 }
 
 #tray * {
   padding: 0 6px;
-  border-left: 1px solid @base;
+  border-left: 1px solid @transparency;
 }
 
 #tray *:first-child {
@@ -39,25 +39,25 @@ tooltip label {
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: @text;
-    border-bottom: 3px solid @sapphire;
+    color: @foreground;
+    border-bottom: 3px solid @blue;
 }
 
 #workspaces button.active {
-    background: @surface0;
-    border-bottom: 3px solid @mauve;
+    background: @transparency;
+    border-bottom: 3px solid @pink;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber, #window {
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber {
     margin: 4px 2px;
-    background-color: @surface0;
+    background-color: @background;
     border-radius: 4px;
     min-width: 20px;
     padding: 0 6px;
 }
 
-#window.empty {
-  background-color: transparent;
+#window {
+  background-color: @transparency;
 }
 
 @keyframes blink {

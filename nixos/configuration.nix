@@ -71,9 +71,8 @@
     systemPackages = with pkgs; [
       egl-wayland
       libglvnd
-      curlWithGnuTls
+      curl
       wget
-      cacert
     ];
     variables = {
       EDITOR = "nvim";
@@ -377,6 +376,7 @@
 
   programs = {
     dconf.enable = true;
+    xwayland.enable = true;
     steam = {
       enable = true;
       package = pkgs.steam.override {
@@ -402,11 +402,11 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
     };
     hyprland = {
       enable = true;
       enableNvidiaPatches = true;
+      xwayland.enable = true;
     };
     mtr.enable = true;
     zsh.enable = true;

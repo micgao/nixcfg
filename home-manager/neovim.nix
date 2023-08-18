@@ -6,7 +6,6 @@
   };
   programs.neovim = {
     enable = true;
-    withNodeJs = true;
     defaultEditor = true;
     package = pkgs.neovim-nightly;
     extraPackages = with pkgs; [
@@ -15,8 +14,8 @@
       clang
       gnumake
       cmake
+      marksman
       nil
-      nixd
       lua-language-server
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted

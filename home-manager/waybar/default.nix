@@ -1,7 +1,4 @@
-{ pkgs, inputs, ... }: {
-  nixpkgs.overlays = [
-    inputs.hyprland.overlays.default
-  ];
+{ pkgs, ... }: {
   programs.waybar = {
     enable = true;
     package = pkgs.waybar-hyprland;
@@ -11,5 +8,5 @@
   };
   xdg.configFile."waybar/config".source = ./config;
   xdg.configFile."waybar/style.css".source = ./style.css;
-  xdg.configFile."waybar/mocha.css".source = ./mocha.css;
+  xdg.configFile."waybar/mocha.css".source = ./colors.css;
 }

@@ -1,4 +1,11 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
+
+  home = {
+    packages = with pkgs; [
+      mpdscribble
+    ];
+  };
+  
   services.mpd = {
     enable = true;
     musicDirectory = "~/Music";

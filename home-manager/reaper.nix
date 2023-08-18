@@ -2,8 +2,8 @@
 {
   home.packages = with pkgs; [
     reaper
-    # yabridge
-    # yabridgectl
+    yabridge
+    yabridgectl
   ];
 }
 
