@@ -72,6 +72,8 @@
   };
   programs.mpv = {
     enable = true;
+    defaultProfiles = ["gpu-hq"];
+    scripts = with pkgs.mpvScripts; [mpris thumbnail sponsorblock];
   };
   programs.ncspot = {
     enable = true;

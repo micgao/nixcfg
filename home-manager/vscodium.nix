@@ -35,6 +35,9 @@
       "rust-analyzer.restartServerOnConfigChange" = true;
       "tabnine.experimentalAutoImports" = true;
       "tabnine.receiveBetaChannelUpdates" = true;
+      "customizeUI.activityBarHideSettings" = true;
+      "customizeUI.activityBar" = "bottom";
+      "customizeUI.statusBarPosition" = "under-panel";
     };
   };
 }

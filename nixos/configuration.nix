@@ -36,6 +36,10 @@
       systemd.enable = true;
       verbose = false;
     };
+    modprobeConfig.enable = true;
+    extraModprobeConfig = ''
+      options nvidia-drm modeset=1
+    '';
   };
 
   console = {
@@ -64,15 +68,19 @@
   systemd = {
     services = {
       systemd-udev-settle.enable = false;
+      NetworkManager-wait-online.enable = false;
     };
   };
 
   environment = {
     systemPackages = with pkgs; [
+      btrfs-progs
+      appimage-run
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-tools
       egl-wayland
       libglvnd
-      curl
-      wget
     ];
     variables = {
       EDITOR = "nvim";
@@ -80,15 +88,9 @@
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
-      GBM_BACKEND = "nvidia-drm";
-      LIBVA_DRIVER_NAME = "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      QT_QPA_PLATFORM = "wayland";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      WLR_NO_HARDWARE_CURSORS = "1";
-      GDK_BACKEND = "wayland";
-      NIXOS_OZONE_WL = "1";
+      TZ = "/etc/localtime";
+      POLKIT_AUTH_AGENT = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+      GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     };
     homeBinInPath = true;
     localBinInPath = true;
@@ -141,30 +143,43 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
     nvidia = {
-      modesetting.enable = true;
       open = true;
+      modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
       powerManagement.enable = true;
+      dynamicBoost.enable = true;
     };
     trackpoint.enable = true;
   };
 
   nix = {
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
     settings = {
+      auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
       builders-use-substitutes = true;
       keep-derivations = true;
+      keep-going = true;
       keep-outputs = true;
       warn-dirty = false;
-      flake-registry = "";
+      sandbox = true;
+      max-jobs = "auto";
+      log-lines = 20;
+      flake-registry = "/etc/nix/registry.json";
     };
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 2d";
+      options = "--delete-older-than 3d";
     };
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
@@ -186,9 +201,10 @@
       source-serif-pro
       intel-one-mono
       recursive
-      (iosevka.override {
-        set = "fixed-ss04";
-      })
+      iosevka-ss04
+      # (iosevka.override {
+      #   set = "fixed-ss04";
+      # })
       (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly"]; })
     ];
     fontDir = {
@@ -200,7 +216,6 @@
       antialias = true;
       includeUserConf = true;
       subpixel = {
-        lcdfilter = "light";
         rgba = "rgb";
       };
       localConf = ''
@@ -219,12 +234,9 @@
       defaultFonts = {
         emoji = [
           "Noto Color Emoji"
-          "Material Icons"
-          "FontAwesome"
         ];
         monospace = [
           "Iosevka Fixed SS04 Extended Symbols"
-          "Iosevka Fixed SS04 Extended"
           "Source Code Pro"
         ];
         sansSerif = [
@@ -304,6 +316,7 @@
       enable = true;
       implementation = "broker";
     };
+    gvfs.enable = true;
     logind = {
       lidSwitchExternalPower = "ignore";
       lidSwitchDocked = "ignore";
@@ -405,6 +418,7 @@
     };
     hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       enableNvidiaPatches = true;
       xwayland.enable = true;
     };
@@ -416,6 +430,9 @@
     };
   };
 
-  system.stateVersion = "23.11";
+  system = {
+    autoUpgrade.enable = false;
+    stateVersion = "23.11";
+  };
 }
 

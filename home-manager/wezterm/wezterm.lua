@@ -39,11 +39,6 @@ config.keys = {
     },
   },
   {
-    key = 'w',
-    mods = 'CTRL',
-    action = wezterm.action.CloseCurrentPane { confirm = true },
-  },
-  {
     key = 'P',
     mods = 'CTRL|SHIFT',
     action = wezterm.action.ShowLauncherArgs { flags = 'TABS|LAUNCH_MENU_ITEMS|DOMAINS|WORKSPACES' },

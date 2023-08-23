@@ -6,7 +6,7 @@
 }
 
 window#waybar {
-    background: @transparency;
+    background: transparent;
     color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
@@ -44,7 +44,7 @@ tooltip label {
 }
 
 #workspaces button.active {
-    background: @transparency;
+    background: transparent;
     border-bottom: 3px solid @pink;
 }
 
@@ -57,7 +57,7 @@ tooltip label {
 }
 
 #window {
-  background-color: @transparency;
+  background-color: transparent;
 }
 
 @keyframes blink {

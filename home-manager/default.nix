@@ -84,9 +84,6 @@
     sessionPath = [
       "$HOME/.cargo/bin"
     ];
-    sessionVariables = {
-      TZ = "/etc/localtime";
-    };
   };
 
   news.display = "show";

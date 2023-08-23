@@ -23,12 +23,12 @@
   };
   programs.emacs = {
     enable = true;
-    package = with pkgs; ((emacsPackagesFor (emacs-pgtk.override { withTreeSitter = true; })).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.djvu epkgs.emacsql ]));
+    package = with pkgs; ((emacsPackagesFor (emacs-pgtk.override { withTreeSitter = true; withSQLite3 = true; withWebP = true; withPgtk = true; withNativeCompilation = true; })).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.djvu epkgs.emacsql ]));
   };
   services.emacs = {
     enable = true;
     client.enable = true;
     socketActivation.enable = true;
-    package = with pkgs; ((emacsPackagesFor (emacs-pgtk.override { withTreeSitter = true; })).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.djvu epkgs.emacsql ]));
+    package = with pkgs; ((emacsPackagesFor (emacs-pgtk.override { withTreeSitter = true; withSQLite3 = true; withWebP = true; withPgtk = true; withNativeCompilation = true; })).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.djvu epkgs.emacsql ]));
   };
 }
