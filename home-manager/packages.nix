@@ -1,10 +1,8 @@
 { pkgs, inputs, outputs, ... }: {
 
-  nixpkgs.overlays = [
-  ];
-
   home = {
     packages = with pkgs; [
+      nixfmt
       nix-init
       rustup
       nodejs

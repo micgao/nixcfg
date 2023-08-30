@@ -31,6 +31,11 @@
   };
   programs.ncmpcpp = {
     enable = true;
+    package = pkgs.ncmpcpp.override {
+      visualizerSupport = true;
+      clockSupport = true;
+      taglibSupport = true;
+    };
     bindings = [
       { key = "j"; command = "scroll_down"; }
       { key = "k"; command = "scroll_up"; }

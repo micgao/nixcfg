@@ -103,33 +103,11 @@ config.keys = {
   },
 }
 
-config.launch_menu = {
-  {
-    args = { 'zsh' },
-  },
-  {
-    args = { 'nu' },
-  },
-  {
-    args = { 'btm' },
-  },
-  {
-    args = { 'procs' },
-  },
-  {
-    args = { 'ncmpcpp' },
-  },
-  {
-    args = { 'ncspot' },
-  },
-  {
-    args = { 'newsboat' },
-  },
-  {
-    args = { 'clx' },
-  },
+config.set_environment_variables = {
+  TERMINFO_DIRS = "/home/micgao/.nix-profile/share/terminfo"
 }
 
+config.term = "wezterm"
 config.color_scheme = "Sequoia Moonlight"
 config.colors = {
   tab_bar = {
@@ -146,10 +124,7 @@ config.colors = {
 }
 config.font = wezterm.font_with_fallback {
   {
-    family = "Iosevka Fixed SS04 Extended",
-  },
-  {
-    family = "Symbols Nerd Font",
+    family = "Iosevka Fixed SS04 Extended Symbols",
   },
 }
 config.font_size = 11.5

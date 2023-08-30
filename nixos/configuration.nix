@@ -155,7 +155,6 @@
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
       powerManagement.enable = true;
-      dynamicBoost.enable = true;
     };
     trackpoint.enable = true;
   };

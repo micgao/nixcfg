@@ -64,6 +64,7 @@ j ];
       exec-once=waybar
       exec-once=[workspace 1 silent] wezterm start --always-new-process
       exec-once=[workspace 2 silent] librewolf
+      exec-once=[workspace 3 silent] emacs
 
       xwayland {
         force_zero_scaling = true
@@ -82,10 +83,10 @@ j ];
           gaps_in = 2
           gaps_out = 2
           border_size = 2
-          col.active_border = rgb(44475a) rgb(bd93f9) 90deg
-          col.inactive_border = rgba(44475aaa)
-          col.group_border = rgba(282a36dd)
-          col.group_border_active = rgb(bd93f9) rgb(44475a) 90deg
+          col.active_border = rgb(ffbb88) rgb(f58ee0) 90deg
+          col.inactive_border = rgba(9898a6aa)
+          col.group_border = rgba(8eb6f5dd)
+          col.group_border_active = rgb(ffbb88) rgb(f58ee0) 90deg
           layout = dwindle
       }
 
@@ -147,7 +148,7 @@ j ];
 
       misc {
           vfr = true
-          vrr = 1
+          vrr = 2
           no_direct_scanout = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
@@ -157,19 +158,19 @@ j ];
           groupbar_text_color = true
       }
 
-      windowrulev2 = bordercolor rgb(ff5555),xwayland:1
+      windowrulev2 = bordercolor rgb(c58fff),xwayland:1
 
       $mainMod = SUPER
 
       bind = $mainMod, return, exec, wezterm start --always-new-process
+      bind = $mainMod, space, exec, fuzzel
       bind = $mainMod, F, exec, alacritty -e joshuto
       bind = $mainMod, E, exec, emacs
-      bind = $mainMod, C, exec, hyprpicker
+      bind = $mainMod, C, exec, gopass ls --flat | fuzzel --dmenu | xargs --no-run-if-empty gopass show -c
       bind = $mainMod, Q, killactive,
       bind = $mainMod, M, exec, wlogout,
       bind = $mainMod, V, togglefloating,
       bind = $mainMod, P, pseudo,
-      bind = $mainMod, space, exec, fuzzel
       bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
