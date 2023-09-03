@@ -18,7 +18,7 @@
         userName = "micgao1@gmail.com";
         flavor = "gmail.com";
         realName = "Michael G";
-        passwordCommand = "${pkgs.gopass}/bin/gopass gmail/mbsync/micgao1@gmail.com";
+        passwordCommand = "pass gmail/mbsync/micgao1@gmail.com";
       };
     };
   };

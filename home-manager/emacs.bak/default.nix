@@ -1,5 +1,8 @@
 { inputs, pkgs, config, lib, ... }: 
 {
+  imports = [
+    inputs.nix-doom-emacs.hmModule
+  ];
   nixpkgs.overlays = [
     inputs.emacs-overlay.overlay
   ];
@@ -19,13 +22,18 @@
       texlive.combined.scheme-medium
     ];
   };
-  programs.emacs = {
+  programs.doom-emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
-    extraPackages = epkgs: with epkgs; [
-      vterm
-    ];
+    doomPrivateDir = ./doom;
+    emacsPackage = pkgs.emacs-pgtk;
   };
+  # programs.emacs = {
+  #   enable = true;
+  #   package = with pkgs; emacs-pgtk.override { withTreeSitter = true; withSQLite3 = true; withWebP = true; withPgtk = true; withNativeCompilation = true; };
+  #   extraPackages = epkgs: with epkgs; [
+  #     vterm
+  #   ];
+  # };
   services.emacs = {
     enable = true;
   };

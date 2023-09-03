@@ -11,7 +11,6 @@
       vscode-extensions.asvetliakov.vscode-neovim
       vscode-extensions.github.copilot
       vscode-extensions.github.copilot-chat
-      vscode-extensions.genieai.chatgpt-vscode
       vscode-extensions.rust-lang.rust-analyzer
       vscode-extensions.asvetliakov.vscode-neovim
       vscode-extensions.tabnine.tabnine-vscode

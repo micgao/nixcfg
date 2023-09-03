@@ -128,7 +128,8 @@ config.font = wezterm.font_with_fallback {
   },
 }
 config.font_size = 11.5
-config.custom_block_glyphs = false
+config.custom_block_glyphs = true
+config.warn_about_missing_glyphs = false
 config.unicode_version = 14
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
@@ -144,19 +145,18 @@ config.show_new_tab_button_in_tab_bar = false
 config.tab_and_split_indices_are_zero_based = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
--- config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.window_decorations = "NONE"
 config.tiling_desktop_environments = {
   'X11 wlroots wm',
   'Wayland',
 }
 config.window_padding = {
-  left = 4,
-  right = 4,
-  top = 4,
-  bottom = 4,
+  left = 2,
+  right = 2,
+  top = 2,
+  bottom = 2,
 }
-config.max_fps = 145
 config.front_end = "WebGpu"
 config.enable_wayland = false
 config.check_for_updates = false

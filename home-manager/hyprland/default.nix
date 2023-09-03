@@ -148,7 +148,6 @@ j ];
 
       misc {
           vfr = true
-          vrr = 2
           no_direct_scanout = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
@@ -204,8 +203,6 @@ j ];
       bind = $mainMod CTRL, x, workspace, e+1
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
-
-      workspace = 4, gapsin:0, gapsout:0, bordersize:1, shadow:false, rounding:false, decorate:false
     '';
   };
   xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;

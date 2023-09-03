@@ -27,6 +27,7 @@
       socat
       megacmd
       mpc-cli
+      nb
       protonmail-bridge
       gimp-with-plugins
       keepassxc

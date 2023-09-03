@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ outputs, lib, config, pkgs, ... }: {
   imports = [
     ./alacritty
     ./bottom
@@ -9,10 +9,9 @@
     ./kitty
     ./mako
     ./media
-    # ./nu
+    # ./nix-colors
     ./qt
     ./starship
-    # ./swaylock
     ./waybar
     ./wezterm
     ./wlogout
@@ -97,5 +96,4 @@
   programs.home-manager.enable = true;
 
   systemd.user.startServices = "sd-switch";
-
 }

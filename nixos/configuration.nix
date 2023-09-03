@@ -2,27 +2,19 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
-      ./cachix.nix
-      inputs.home-manager.nixosModules.home-manager
-      inputs.hyprland.nixosModules.default
+    ./hardware-configuration.nix
+    ./cachix.nix
+    inputs.home-manager.nixosModules.home-manager
+    inputs.hyprland.nixosModules.default
   ];
 
   boot = {
-    bootspec = {
-      enableValidation = true;
-    };
-    tmp = {
-      cleanOnBoot = true;
-    };
+    bootspec = { enableValidation = true; };
+    tmp = { cleanOnBoot = true; };
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    blacklistedKernelModules = [
-      "nouveau"
-    ];
-    kernelParams = [
-      "quiet"
-    ];
+    blacklistedKernelModules = [ "nouveau" ];
+    kernelParams = [ "quiet" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -89,25 +81,22 @@
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
       TZ = "/etc/localtime";
-      POLKIT_AUTH_AGENT = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
-      GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+      POLKIT_AUTH_AGENT =
+        "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+      GSETTINGS_SCHEMA_DIR =
+        "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     };
     homeBinInPath = true;
     localBinInPath = true;
     enableAllTerminfo = true;
-    shells = with pkgs; [
-      zsh
-      nushell
-    ];
+    shells = with pkgs; [ zsh nushell ];
     binsh = "${pkgs.dash}/bin/dash";
   };
 
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-      ];
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
   };
 
@@ -130,9 +119,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      micgao = import ../home-manager;
-    };
+    users = { micgao = import ../home-manager; };
   };
 
   hardware = {
@@ -143,10 +130,7 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
+      extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
     nvidia = {
@@ -204,7 +188,10 @@
       # (iosevka.override {
       #   set = "fixed-ss04";
       # })
-      (nerdfonts.override { fonts = ["FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly"]; })
+      (nerdfonts.override {
+        fonts =
+          [ "FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly" ];
+      })
     ];
     fontDir = {
       enable = true;
@@ -214,9 +201,7 @@
       enable = true;
       antialias = true;
       includeUserConf = true;
-      subpixel = {
-        rgba = "rgb";
-      };
+      subpixel = { rgba = "rgb"; };
       localConf = ''
         <alias>
           <family>Iosevka Fixed SS04 Extended Symbols</family>
@@ -231,19 +216,10 @@
         style = "medium";
       };
       defaultFonts = {
-        emoji = [
-          "Noto Color Emoji"
-        ];
-        monospace = [
-          "Iosevka Fixed SS04 Extended Symbols"
-          "Source Code Pro"
-        ];
-        sansSerif = [
-          "Noto Sans"
-        ];
-        serif = [
-          "Noto Serif"
-        ];
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [ "Iosevka Fixed SS04 Extended Symbols" "Roboto Mono" ];
+        sansSerif = [ "Roboto" "Inter" ];
+        serif = [ "Noto Serif" ];
       };
     };
   };
@@ -259,9 +235,7 @@
       enable = true;
       qemu.package = pkgs.qemu_kvm;
     };
-    virtualbox.host = {
-       enable = true;
-    };
+    virtualbox.host = { enable = true; };
     vmware.host = {
       enable = true;
       extraConfig = ''
@@ -269,9 +243,7 @@
         mks.vk.allowUnsupportedDevices = "TRUE"
       '';
     };
-    waydroid = {
-      enable = true;
-    };
+    waydroid = { enable = true; };
   };
 
   networking = {
@@ -283,11 +255,10 @@
   };
 
   i18n = {
-    supportedLocales = [ "en_US.UTF-8/UTF-8" "en_CA.UTF-8/UTF-8" "fr_CA.UTF-8/UTF-8" ];
+    supportedLocales =
+      [ "en_US.UTF-8/UTF-8" "en_CA.UTF-8/UTF-8" "fr_CA.UTF-8/UTF-8" ];
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_TIME = "en_CA.UTF-8";
-    };
+    extraLocaleSettings = { LC_TIME = "en_CA.UTF-8"; };
   };
 
   time.timeZone = "America/Toronto";
@@ -296,9 +267,7 @@
     fwupd.enable = true;
     openssh = {
       enable = true;
-      settings = {
-        PermitRootLogin = "no";
-      };
+      settings = { PermitRootLogin = "no"; };
     };
     resolved = {
       enable = true;
@@ -326,13 +295,12 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          command =
+            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         };
       };
     };
-    xserver = {
-      videoDrivers = [ "nvidia" ];
-    };
+    xserver = { videoDrivers = [ "nvidia" ]; };
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -378,12 +346,12 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
-	      "qemu-libvirtd"
+        "qemu-libvirtd"
         "networkmanager"
         "podman"
       ];
     };
-    extraGroups.vboxusers.members = ["micgao"];
+    extraGroups.vboxusers.members = [ "micgao" ];
   };
 
   programs = {
@@ -392,19 +360,20 @@
     steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          libpng
-          libpulseaudio
-          libvorbis
-          libgdiplus
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-        ];
+        extraPkgs = pkgs:
+          with pkgs; [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            libgdiplus
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
+          ];
       };
       gamescopeSession.enable = true;
     };
@@ -412,9 +381,7 @@
       enable = true;
       enableRenice = true;
     };
-    gamescope = {
-      enable = true;
-    };
+    gamescope = { enable = true; };
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
