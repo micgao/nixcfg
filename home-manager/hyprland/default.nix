@@ -206,5 +206,5 @@ j ];
     '';
   };
   xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
-  xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
+  xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
 }

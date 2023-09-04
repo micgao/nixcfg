@@ -13,7 +13,6 @@
     tmp = { cleanOnBoot = true; };
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    blacklistedKernelModules = [ "nouveau" ];
     kernelParams = [ "quiet" ];
     loader = {
       systemd-boot = {
@@ -36,7 +35,7 @@
 
   console = {
     colors = [
-      "131317"
+      "0F1014"
       "f58ee0"
       "8eb5f5"
       "9898a6"
@@ -44,7 +43,7 @@
       "fdfdfe"
       "ffbb88"
       "868690"
-      "575861"
+      "131317"
       "f58ee0"
       "8eb5f5"
       "9898a6"
@@ -144,17 +143,13 @@
   };
 
   nix = {
-    daemonCPUSchedPolicy = "idle";
-    daemonIOSchedClass = "idle";
     settings = {
-      auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
       builders-use-substitutes = true;
       keep-derivations = true;
       keep-going = true;
       keep-outputs = true;
       warn-dirty = false;
-      sandbox = true;
       max-jobs = "auto";
       log-lines = 20;
       flake-registry = "/etc/nix/registry.json";
