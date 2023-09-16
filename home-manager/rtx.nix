@@ -11,7 +11,7 @@
       tools = {
         node = "latest";
         go = "latest";
-        deno = "latest";
+        bun = "latest";
       };
     };
   };

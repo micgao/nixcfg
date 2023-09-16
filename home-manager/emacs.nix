@@ -5,11 +5,11 @@
   ];
   home = {
     packages = with pkgs; [
-      xorg.xprop
-      xorg.xwininfo
-      xdotool
       binutils
       xdg-utils
+      unrar
+      zip
+      unzip
       graphviz
       imagemagick
       zstd

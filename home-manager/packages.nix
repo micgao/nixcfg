@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, ... }: {
+{ pkgs, lib, ... }: {
 
   home = {
     packages = with pkgs; [
@@ -18,6 +18,7 @@
       gopass-hibp
       gopass-jsonapi
       gopass-summon-provider
+      gpg-tui
       git-credential-gopass
       git-credential-keepassxc
       xplr
@@ -32,16 +33,15 @@
       gimp-with-plugins
       keepassxc
       pavucontrol
-      helvum
       obsidian
       insomnia
       jetbrains-toolbox
       virt-manager
       wineWowPackages.wayland
-      bottles
       qobuz-dl
       feather-wallet
       monero-gui
+      (tree-sitter.withPlugins (p: builtins.attrValues p))
     ];
   };
 }

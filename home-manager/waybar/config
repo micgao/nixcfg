@@ -21,12 +21,6 @@
       },
       "tooltip": true
     },
-    "wireplumber": {
-        "format": "{volume}% {icon}",
-        "format-muted": "",
-        "on-click": "hyprctl dispatch exec helvum",
-        "format-icons": ["", "", ""]
-    },
     "clock": {
         "format": "{:%R}",
         "format-alt": "{:%a %b %d, %G}",
@@ -49,8 +43,7 @@
             "phone": "  ",
             "portable": "  ",
             "default": ["  ", "  ", "  "]
-        },
-        "on-click": "hyprctl dispatch exec pavucontrol"
+        }
     },
     "network": {
         "format-wifi": "{essid} ({signalStrength}%)   ",
@@ -69,8 +62,6 @@
     },
     "hyprland/workspaces": {
     	  "format": "{id}",
-    	  "on-scroll-up": "hyprctl dispatch workspace e+1",
-    	  "on-scroll-down": "hyprctl dispatch workspace e-1",
         "on-click": "activate"
     }
 }

@@ -1,15 +1,14 @@
 { inputs, pkgs, ... }: {
   nixpkgs = {
     overlays = [
-      inputs.neovim-nightly-overlay.overlay
+      inputs.neovim.overlay
     ];
   };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
     extraPackages = with pkgs; [
-      unzip
       gcc
       clang
       gnumake

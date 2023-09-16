@@ -15,18 +15,15 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    neovim.url = "github:neovim/neovim?dir=contrib";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    joshuto.url = "github:kamiyaa/joshuto";
     helix.url = "github:helix-editor/helix";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpaper.url = "github:hyprwm/hyprpaper";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, nix-doom-emacs, hyprland, hyprpicker, hyprpaper, helix, joshuto, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, ... }@inputs:
 
   let
     inherit (self) outputs;

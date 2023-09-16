@@ -23,7 +23,6 @@ in {
     gsettings-desktop-schemas
     hyprpaper
     hyprpicker
-    imv
     wlay
     wtype
     wl-clipboard
@@ -31,7 +30,7 @@ in {
     wlprop
     wlr-randr
     ydotool
-j ];
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -43,32 +42,26 @@ j ];
     extraConfig = ''
       monitor=DP-3,1920x1080@144,0x0,1
       monitor=eDP-1,disable
-      env=GTK_THEME,Catppuccin-Mocha-Compact-Mauve-dark
       env=XCURSOR_SIZE,24
       env=XDG_SESSION_TYPE,wayland
       env=XDG_SESSION_DESKTOP,Hyprland
       env=XDG_CURRENT_DESKTOP,Hyprland
       env=LIBVA_DRIVER_NAME,nvidia
-      env=GBM_BACKEND,nvidia-drm
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=WLR_NO_HARDWARE_CURSORS,1
       env=QT_QPA_PLATFORM,wayland;xcb
       env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+      env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
-      env=VDPAU_DRIVER,nvidia
 
-      exec-once=/home/micgao/.nix-profile/libexec/polkit-kde-authentication-agent-1
-      exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
+      exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
-      exec-once=[workspace 1 silent] wezterm start --always-new-process
+      exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
+      exec-once=[workspace 1 silent] wezterm
       exec-once=[workspace 2 silent] librewolf
       exec-once=[workspace 3 silent] emacs
-
-      xwayland {
-        force_zero_scaling = true
-      }
 
       input {
           follow_mouse = 2
@@ -85,20 +78,18 @@ j ];
           border_size = 2
           col.active_border = rgb(ffbb88) rgb(f58ee0) 90deg
           col.inactive_border = rgba(9898a6aa)
-          col.group_border = rgba(8eb6f5dd)
-          col.group_border_active = rgb(ffbb88) rgb(f58ee0) 90deg
           layout = dwindle
+          no_cursor_warps = true
       }
 
       decoration {
           rounding = 8
           multisample_edges = true
           active_opacity = 1.0
-          inactive_opacity = 0.8
-          fullscreen_opacity = 1.0
+          inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 3
+	            size = 10
 	            passes = 3
 	            new_optimizations = true
 	            xray = true
@@ -106,7 +97,7 @@ j ];
 	            noise = 0.02
 	        }
           drop_shadow = false
-          shadow_range = 30
+          shadow_range = 20
           shadow_render_power = 3
           shadow_ignore_window = true
           col.shadow = rgba(1E202966)
@@ -148,28 +139,32 @@ j ];
 
       misc {
           vfr = true
-          no_direct_scanout = true
+          disable_autoreload = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
-          layers_hog_keyboard_focus = true
           animate_manual_resizes = false
-          groupbar_gradients = true
-          groupbar_text_color = true
       }
 
-      windowrulev2 = bordercolor rgb(c58fff),xwayland:1
+      xwayland {
+          force_zero_scaling = true
+      }
+
+      layerrule = blur, waybar
+
+      windowrulev2 = fullscreen, class:(dota2)
+      windowrulev2 = workspace 9 silent, class:(dota2)
 
       $mainMod = SUPER
 
-      bind = $mainMod, return, exec, wezterm start --always-new-process
+      bind = $mainMod, return, exec, wezterm
       bind = $mainMod, space, exec, fuzzel
-      bind = $mainMod, F, exec, alacritty -e joshuto
-      bind = $mainMod, E, exec, emacs
-      bind = $mainMod, C, exec, gopass ls --flat | fuzzel --dmenu | xargs --no-run-if-empty gopass show -c
+      bind = $mainMod, F, fullscreen,
+      bind = $mainMod, G, togglegroup,
+      bind = $mainMod, P, exec, gopass ls --flat | fuzzel --dmenu | xargs --no-run-if-empty gopass show -c
       bind = $mainMod, Q, killactive,
-      bind = $mainMod, M, exec, wlogout,
+      bind = $mainMod, M, exec, wlogout -p layer-shell
       bind = $mainMod, V, togglefloating,
-      bind = $mainMod, P, pseudo,
+      bind = $mainMod, S, pseudo,
       bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -177,30 +172,22 @@ j ];
       bind = $mainMod, L, movefocus, r
       bind = $mainMod, K, movefocus, u
       bind = $mainMod, J, movefocus, d
-      bind = $mainMod, 1, workspace, 1
-      bind = $mainMod, 2, workspace, 2
-      bind = $mainMod, 3, workspace, 3
-      bind = $mainMod, 4, workspace, 4
-      bind = $mainMod, 5, workspace, 5
-      bind = $mainMod, 6, workspace, 6
-      bind = $mainMod, 7, workspace, 7
-      bind = $mainMod, 8, workspace, 8
-      bind = $mainMod, 9, workspace, 9
-      bind = $mainMod, 0, workspace, 10
-      bind = $mainMod CTRL, 1, movetoworkspace, 1
-      bind = $mainMod CTRL, 2, movetoworkspace, 2
-      bind = $mainMod CTRL, 3, movetoworkspace, 3
-      bind = $mainMod CTRL, 4, movetoworkspace, 4
-      bind = $mainMod CTRL, 5, movetoworkspace, 5
-      bind = $mainMod CTRL, 6, movetoworkspace, 6
-      bind = $mainMod CTRL, 7, movetoworkspace, 7
-      bind = $mainMod CTRL, 8, movetoworkspace, 8
-      bind = $mainMod CTRL, 9, movetoworkspace, 9
-      bind = $mainMod CTRL, 0, movetoworkspace, 10
-      bind = $mainMod, mouse_down, workspace, e+1
-      bind = $mainMod, mouse_up, workspace, e-1
-      bind = $mainMod CTRL, z, workspace, e-1
-      bind = $mainMod CTRL, x, workspace, e+1
+      ${builtins.concatStringsSep "\n" (builtins.genList (
+        x: let
+          ws = let
+            c = (x + 1) / 10;
+          in
+            builtins.toString (x + 1 - (c * 10));
+        in ''
+          bind = $mainMod, ${ws}, workspace, ${toString (x + 1)}
+          bind = $mainMod CTRL, ${ws}, movetoworkspace, ${toString (x + 1)}
+        ''
+      )
+      10)}
+      bind = $mainMod, mouse_down, workspace, m+1
+      bind = $mainMod, mouse_up, workspace, m-1
+      bind = $mainMod CTRL, x, workspace, m+1
+      bind = $mainMod CTRL, z, workspace, m-1
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
     '';

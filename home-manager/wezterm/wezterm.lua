@@ -3,6 +3,8 @@ local act = wezterm.action
 
 local config = {}
 
+local gpus = wezterm.gui.enumerate_gpus()
+
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
@@ -134,7 +136,6 @@ config.unicode_version = 14
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
-config.webgpu_power_preference = "HighPerformance"
 config.prefer_egl = true
 config.audible_bell = "Disabled"
 config.bold_brightens_ansi_colors = "BrightAndBold"
@@ -158,7 +159,7 @@ config.window_padding = {
   bottom = 2,
 }
 config.front_end = "WebGpu"
-config.enable_wayland = false
+config.enable_wayland = true
 config.check_for_updates = false
 
 return config

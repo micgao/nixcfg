@@ -1,5 +1,4 @@
 { inputs, outputs, lib, config, pkgs, ... }:
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -9,8 +8,8 @@
   ];
 
   boot = {
-    bootspec = { enableValidation = true; };
-    tmp = { cleanOnBoot = true; };
+    bootspec.enableValidation = true;
+    tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "quiet" ];
@@ -24,14 +23,15 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
-      systemd.enable = true;
       verbose = false;
+      systemd = {
+        enable = true;
+      };
     };
     modprobeConfig.enable = true;
-    extraModprobeConfig = ''
-      options nvidia-drm modeset=1
-    '';
   };
+
+  systemd.network.wait-online.enable = false;
 
   console = {
     colors = [
@@ -56,13 +56,6 @@
     earlySetup = false;
   };
 
-  systemd = {
-    services = {
-      systemd-udev-settle.enable = false;
-      NetworkManager-wait-online.enable = false;
-    };
-  };
-
   environment = {
     systemPackages = with pkgs; [
       btrfs-progs
@@ -70,8 +63,9 @@
       vulkan-loader
       vulkan-validation-layers
       vulkan-tools
-      egl-wayland
       libglvnd
+      vkbasalt
+      vkbasalt-cli
     ];
     variables = {
       EDITOR = "nvim";
@@ -79,11 +73,7 @@
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
-      TZ = "/etc/localtime";
-      POLKIT_AUTH_AGENT =
-        "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
-      GSETTINGS_SCHEMA_DIR =
-        "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+      GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     };
     homeBinInPath = true;
     localBinInPath = true;
@@ -129,10 +119,13 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
     nvidia = {
+      prime = {
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+        sync.enable = true;
+      };
       open = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
@@ -150,14 +143,12 @@
       keep-going = true;
       keep-outputs = true;
       warn-dirty = false;
-      max-jobs = "auto";
       log-lines = 20;
-      flake-registry = "/etc/nix/registry.json";
     };
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 3d";
+      options = "--delete-older-than +3";
     };
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
@@ -165,10 +156,8 @@
 
   fonts = {
     packages = with pkgs; [
-      emacs-all-the-icons-fonts
       material-symbols
       font-awesome
-      montserrat
       noto-fonts
       noto-fonts-emoji
       roboto
@@ -180,9 +169,6 @@
       intel-one-mono
       recursive
       iosevka-ss04
-      # (iosevka.override {
-      #   set = "fixed-ss04";
-      # })
       (nerdfonts.override {
         fonts =
           [ "FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly" ];
@@ -231,14 +217,9 @@
       qemu.package = pkgs.qemu_kvm;
     };
     virtualbox.host = { enable = true; };
-    vmware.host = {
-      enable = true;
-      extraConfig = ''
-        mks.gl.allowUnsupportedDrivers = "TRUE"
-        mks.vk.allowUnsupportedDevices = "TRUE"
-      '';
-    };
-    waydroid = { enable = true; };
+    # vmware.host = {
+    #   enable = true;
+    # };
   };
 
   networking = {
@@ -253,7 +234,6 @@
     supportedLocales =
       [ "en_US.UTF-8/UTF-8" "en_CA.UTF-8/UTF-8" "fr_CA.UTF-8/UTF-8" ];
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = { LC_TIME = "en_CA.UTF-8"; };
   };
 
   time.timeZone = "America/Toronto";
@@ -278,8 +258,8 @@
     dbus = {
       enable = true;
       implementation = "broker";
+      packages = [ pkgs.gcr ];
     };
-    gvfs.enable = true;
     logind = {
       lidSwitchExternalPower = "ignore";
       lidSwitchDocked = "ignore";
@@ -295,7 +275,7 @@
         };
       };
     };
-    xserver = { videoDrivers = [ "nvidia" ]; };
+    xserver.videoDrivers = ["nvidia"];
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -341,7 +321,6 @@
         "gamemode"
         "vboxusers"
         "libvirtd"
-        "qemu-libvirtd"
         "networkmanager"
         "podman"
       ];
@@ -350,40 +329,42 @@
   };
 
   programs = {
+    less.enable = true;
     dconf.enable = true;
-    xwayland.enable = true;
     steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            libgdiplus
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-          ];
+        extraPkgs = pkgs: with pkgs; [
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+        ];
       };
-      gamescopeSession.enable = true;
     };
     gamemode = {
       enable = true;
       enableRenice = true;
+      settings = {
+        general = {
+          softrealtime = "auto";
+          renice = 15;
+        };
+      };
     };
-    gamescope = { enable = true; };
+    gamescope = {
+      enable = true;
+    };
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       enableNvidiaPatches = true;
-      xwayland.enable = true;
     };
-    mtr.enable = true;
     zsh.enable = true;
     gnupg.agent = {
       enable = true;
@@ -392,7 +373,6 @@
   };
 
   system = {
-    autoUpgrade.enable = false;
     stateVersion = "23.11";
   };
 }
