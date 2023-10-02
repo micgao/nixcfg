@@ -140,8 +140,6 @@
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
-      powerManagement.enable = true;
-      nvidiaPersistenced = true;
     };
     trackpoint.enable = true;
   };
@@ -203,7 +201,7 @@
       '';
       hinting = {
         enable = true;
-        style = "medium";
+        style = "full";
       };
       defaultFonts = {
         monospace = [ "Iosevka Fixed SS04 Extended Symbols" ];
@@ -365,7 +363,6 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
     };
     hyprland = {
       enable = true;

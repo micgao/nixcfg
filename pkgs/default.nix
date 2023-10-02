@@ -3,4 +3,5 @@
   picocrypt = pkgs.callPackage ./picocrypt { };
   qobuz-dl = pkgs.callPackage ./qobuz-dl { };
   iosevka-ss04 = pkgs.callPackage ./iosevka { };
+  wezterm = pkgs.callPackage ./wezterm { };
 }
