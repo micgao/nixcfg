@@ -34,7 +34,7 @@ rustPlatform.buildRustPackage rec {
     owner = "wez";
     repo = pname;
     rev = version;
-    hash = "sha256-B3ZsF9IDrZzB573NcpWHPM+Ss5YjV8LDRLjce8RZJd0=";
+    hash = "sha256-D0QNwI7gfxzFiclYzM/hKXWLpp0p5s8zPtl5Du6gE6E=";
     fetchSubmodules = true;
   };
 
@@ -84,7 +84,6 @@ rustPlatform.buildRustPackage rec {
   env = {
     OPENSSL_NO_VENDOR = true;
     ZSTD_SYS_USE_PKG_CONFIG = true;
-    NIX_LDFLAGS = lib.optionalString stdenv.isDarwin "-framework System";
   };
 
   postInstall = ''
@@ -109,13 +108,6 @@ rustPlatform.buildRustPackage rec {
       --add-needed "${libGL}/lib/libEGL.so.1" \
       --add-needed "${vulkan-loader}/lib/libvulkan.so.1" \
       $out/bin/wezterm-gui
-  '' + lib.optionalString stdenv.isDarwin ''
-    mkdir -p "$out/Applications"
-    OUT_APP="$out/Applications/WezTerm.app"
-    cp -r assets/macos/WezTerm.app "$OUT_APP"
-    rm $OUT_APP/*.dylib
-    cp -r assets/shell-integration/* "$OUT_APP"
-    ln -s $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} "$OUT_APP"
   '';
 
   passthru = {
