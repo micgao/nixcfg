@@ -11,7 +11,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ "quiet" ];
     loader = {
       systemd-boot = {
@@ -66,6 +66,9 @@
       libglvnd
       vkbasalt
       vkbasalt-cli
+      libva
+      libva-utils
+      glxinfo
     ];
     variables = {
       EDITOR = "nvim";
@@ -119,11 +122,18 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        vaapiIntel
+        nvidia-vaapi-driver
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
     };
     nvidia = {
       prime = {
-        intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
       open = true;
@@ -131,6 +141,7 @@
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
       powerManagement.enable = true;
+      nvidiaPersistenced = true;
     };
     trackpoint.enable = true;
   };
@@ -138,8 +149,6 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
-      builders-use-substitutes = true;
-      keep-derivations = true;
       keep-going = true;
       keep-outputs = true;
       warn-dirty = false;
@@ -197,10 +206,9 @@
         style = "medium";
       };
       defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        monospace = [ "Iosevka Fixed SS04 Extended Symbols" "Roboto Mono" ];
-        sansSerif = [ "Roboto" "Inter" ];
-        serif = [ "Noto Serif" ];
+        monospace = [ "Iosevka Fixed SS04 Extended Symbols" ];
+        sansSerif = [ "Inter" ];
+        serif = [ "Inter" ];
       };
     };
   };
@@ -275,7 +283,7 @@
         };
       };
     };
-    xserver.videoDrivers = ["nvidia"];
+    xserver.videoDrivers = lib.mkForce ["nvidia"];
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -333,18 +341,15 @@
     dconf.enable = true;
     steam = {
       enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
+      gamescopeSession = {
+        enable = true;
+        args = [
+          "--hdr-enabled"
+          "--hdr-itm-enable"
+          "--output-width 1920"
+          "--output-height 1080"
+          "--nested-refresh 144"
+          "--xwayland-count 2"
         ];
       };
     };
@@ -360,6 +365,7 @@
     };
     gamescope = {
       enable = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;
@@ -369,6 +375,8 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+      enableBrowserSocket = true;
+      enableExtraSocket = true;
     };
   };
 

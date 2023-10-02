@@ -40,8 +40,9 @@ in {
     enableNvidiaPatches = true;
     recommendedEnvironment = true;
     extraConfig = ''
-      monitor=DP-3,1920x1080@144,0x0,1
+      monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
+      env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
       env=XCURSOR_SIZE,24
       env=XDG_SESSION_TYPE,wayland
       env=XDG_SESSION_DESKTOP,Hyprland
@@ -49,12 +50,12 @@ in {
       env=LIBVA_DRIVER_NAME,nvidia
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=WLR_NO_HARDWARE_CURSORS,1
-      env=QT_QPA_PLATFORM,wayland;xcb
+      env=GTK_THEME,Catppuccin-Mocha-Compact-Flamingo-Dark
+      env=QT_QPA_PLATFORM,wayland
       env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
-
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
@@ -84,7 +85,6 @@ in {
 
       decoration {
           rounding = 8
-          multisample_edges = true
           active_opacity = 1.0
           inactive_opacity = 0.9
 	        blur {
@@ -139,6 +139,7 @@ in {
 
       misc {
           vfr = true
+          vrr = 2
           disable_autoreload = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
@@ -193,5 +194,5 @@ in {
     '';
   };
   xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
-  xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
+  xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
 }

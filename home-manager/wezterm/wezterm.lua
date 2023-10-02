@@ -159,7 +159,7 @@ config.window_padding = {
   bottom = 2,
 }
 config.front_end = "WebGpu"
-config.enable_wayland = true
+config.enable_wayland = false
 config.check_for_updates = false
 
 return config

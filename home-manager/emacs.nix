@@ -24,6 +24,7 @@
     package = pkgs.emacs-pgtk;
     extraPackages = epkgs: with epkgs; [
       vterm
+      mu4e
     ];
   };
   # services.emacs = {

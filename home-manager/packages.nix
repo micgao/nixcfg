@@ -4,6 +4,7 @@
     packages = with pkgs; [
       nixfmt
       nix-init
+      nix-melt
       rustup
       nodejs
       python3Minimal
@@ -37,11 +38,11 @@
       insomnia
       jetbrains-toolbox
       virt-manager
+      thunderbird
       wineWowPackages.wayland
       qobuz-dl
       feather-wallet
       monero-gui
-      (tree-sitter.withPlugins (p: builtins.attrValues p))
     ];
   };
 }

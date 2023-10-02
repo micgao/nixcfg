@@ -6,7 +6,7 @@
       gmail = {
         neomutt.enable = true;
         mu.enable = true;
-        msmtp.enable = true;
+        # msmtp.enable = true;
         mbsync = {
           enable = true;
           create = "both";

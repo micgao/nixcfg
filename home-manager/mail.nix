@@ -2,7 +2,7 @@
   programs = {
     mbsync.enable = true;
     mu.enable = true;
-    msmtp.enable = true;
+    # msmtp.enable = true;
   };
   services = {
     mbsync = {

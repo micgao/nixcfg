@@ -1,3 +1,0 @@
-{
-  dconf.enable = true;
-}

@@ -19,6 +19,7 @@
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
+      (tree-sitter.withPlugins (p: builtins.attrValues p))
     ];
     extraLuaPackages = luaPkgs: with luaPkgs; [
       luarocks
