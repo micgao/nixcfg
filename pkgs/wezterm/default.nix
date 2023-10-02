@@ -28,7 +28,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "wezterm";
-  version = "main";
+  version = "385c874514331e67ae02b62137a25b6010140a50";
 
   src = fetchFromGitHub {
     owner = "wez";
