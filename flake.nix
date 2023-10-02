@@ -38,7 +38,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, hyprland, hyprpicker, hyprpaper, helix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
 
   let
     inherit (self) outputs;
