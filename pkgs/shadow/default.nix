@@ -2,7 +2,7 @@
   name = "shadow";
   src = fetchurl {
     url = "https://update.shadow.tech/launcher/preprod/linux/ubuntu_18.04/ShadowPCBeta.AppImage";
-    sha256 = "6161A8587298913AD4C9C7BCE70BFB8DC2556CD73A6004D8F6BB8D8BE3311028";
+    sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
   };
   extraPkgs = pkgs: with pkgs; [
     xorg.libX11
