@@ -43,7 +43,6 @@
       qobuz-dl
       feather-wallet
       monero-gui
-      shadow
     ];
   };
 }
