@@ -6,9 +6,7 @@
   };
   extraPkgs = pkgs: with pkgs; [
     xorg.libX11
-    libva
     libva1
     libdrm
-    vaapiVdpau
   ];
 }
