@@ -5,7 +5,7 @@
     ./cachix.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
-    inputs.nix-ld.nixModules.nix-ld
+    inputs.nix-ld.nixosModules.nix-ld
   ];
 
   boot = {
