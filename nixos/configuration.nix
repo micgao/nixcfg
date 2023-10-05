@@ -5,6 +5,7 @@
     ./cachix.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
+    inputs.nix-ld.nixModules.nix-ld
   ];
 
   boot = {
@@ -218,9 +219,15 @@
       enableNvidia = true;
       defaultNetwork.settings.dns_enabled = true;
     };
+    kvmgt = {
+      enable = true;
+    };
     libvirtd = {
       enable = true;
-      qemu.package = pkgs.qemu_kvm;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+      };
     };
     virtualbox.host = { enable = true; };
     # vmware.host = {
@@ -329,12 +336,14 @@
         "libvirtd"
         "networkmanager"
         "podman"
+        "kvm"
       ];
     };
     extraGroups.vboxusers.members = [ "micgao" ];
   };
 
   programs = {
+    nix-ld.dev.enable = true;
     less.enable = true;
     dconf.enable = true;
     steam = {
