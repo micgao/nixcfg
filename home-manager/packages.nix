@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{ pkgs, inputs, ... }: {
+
+  nixpkgs.overlays = [
+    inputs.nix-ld-rs.overlays.default
+  ];
 
   home = {
     packages = with pkgs; [
