@@ -56,6 +56,7 @@ in {
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
+      env=WLR_DRM_NO_ATOMIC,1
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
@@ -81,6 +82,7 @@ in {
           col.inactive_border = rgba(9898a6aa)
           layout = dwindle
           no_cursor_warps = true
+          allow_tearing = true
       }
 
       decoration {
@@ -139,11 +141,11 @@ in {
 
       misc {
           vfr = true
-          vrr = 2
           disable_autoreload = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
           animate_manual_resizes = false
+          no_direct_scannout = true
       }
 
       xwayland {
@@ -153,6 +155,7 @@ in {
       layerrule = blur, waybar
 
       windowrulev2 = fullscreen, class:(dota2)
+      windowrulev2 = immediate, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
 
       $mainMod = SUPER

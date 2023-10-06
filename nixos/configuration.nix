@@ -13,7 +13,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [ "quiet" ];
+    kernelParams = [ "quiet" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -137,8 +137,9 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       modesetting.enable = true;
+      powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
     };
@@ -345,16 +346,6 @@
   programs = {
     nix-ld.dev = {
       enable = true;
-      libraries = with pkgs; [
-        stdenv.cc.cc
-        zlib
-        fuse3
-        icu
-        nss
-        openssl
-        curl
-        expat
-      ];
     };
     less.enable = true;
     dconf.enable = true;
@@ -384,6 +375,7 @@
     };
     gamescope = {
       enable = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;

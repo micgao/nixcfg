@@ -9,6 +9,7 @@
     ./kitty
     ./mako
     ./media
+    ./nix-colors
     ./qt
     ./starship
     ./waybar

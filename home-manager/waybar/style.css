@@ -45,7 +45,7 @@ tooltip label {
 
 #workspaces button.active {
     background: transparent;
-    border-bottom: 3px solid @pink;
+    border-bottom: 3px solid @orange;
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #wireplumber {
@@ -57,7 +57,7 @@ tooltip label {
 }
 
 #window {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 @keyframes blink {
