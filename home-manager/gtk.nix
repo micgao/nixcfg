@@ -1,6 +1,7 @@
-{ pkgs, config, ... }:
-
-{
+{ pkgs, config, inputs, ... }:
+let
+  nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
+in {
   gtk = {
     enable = true;
     cursorTheme = {
@@ -13,17 +14,22 @@
       package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "Catppuccin-Mocha-Compact-Flamingo-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "flamingo" ];
-        size = "compact";
-        tweaks = [ "rimless" ];
-        variant = "mocha";
+      package = nix-colors-lib.gtkThemeFromScheme {
+        scheme = config.colorScheme;
       };
+      name = "Sequoia";
+      # name = "Catppuccin-Mocha-Compact-Flamingo-Dark";
+      # package = pkgs.catppuccin-gtk.override {
+      #   accents = [ "flamingo" ];
+      #   size = "compact";
+      #   tweaks = [ "rimless" ];
+      #   variant = "mocha";
+      # };
     };
     font = {
-      name = "Inter";
-      package = pkgs.inter;
+      name = "Roboto";
+      package = pkgs.roboto;
+      size = "10.5";
     };
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";

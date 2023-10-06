@@ -5,6 +5,8 @@
   ];
 
   colorScheme = {
+    slug = "sequoia";
+    name = "Sequoia";
     colors = {
       base00 = "#0F1014";
       base01 = "#131317";

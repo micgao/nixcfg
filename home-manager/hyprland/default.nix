@@ -50,7 +50,7 @@ in {
       env=LIBVA_DRIVER_NAME,nvidia
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=WLR_NO_HARDWARE_CURSORS,1
-      env=GTK_THEME,Catppuccin-Mocha-Compact-Flamingo-Dark
+      env=GTK_THEME,Sequoia
       env=QT_QPA_PLATFORM,wayland
       env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
