@@ -124,7 +124,6 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        intel-media-driver
         vaapiIntel
         nvidia-vaapi-driver
         vaapiVdpau
@@ -137,7 +136,7 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = false;
+      open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
