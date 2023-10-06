@@ -350,6 +350,7 @@
     dconf.enable = true;
     steam = {
       enable = true;
+      remotePlay.openFirewall = true;
       gamescopeSession = {
         enable = true;
         args = [
@@ -374,7 +375,6 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
     };
     hyprland = {
       enable = true;
