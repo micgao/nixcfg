@@ -33,7 +33,7 @@ in
     vimdiffAlias = true;
   };
   xdg.configFile = {
-    "nvim/lua/init.lua".text = ''
+    "nvim/init.lua".text = ''
       vim.opt.runtimepath:append("${nvim-treesitter}")
       vim.opt.runtimepath:append("${treesitter-parsers-deps}")
       require("config.options")
