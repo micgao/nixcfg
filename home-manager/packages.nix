@@ -48,7 +48,6 @@
       qobuz-dl
       feather-wallet
       monero-gui
-      bisq-desktop
     ];
   };
 }
