@@ -44,7 +44,6 @@
       jetbrains-toolbox
       virt-manager
       thunderbird
-      wineWowPackages.wayland
       qobuz-dl
       feather-wallet
       monero-gui
