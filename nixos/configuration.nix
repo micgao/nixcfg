@@ -12,7 +12,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ "quiet" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     loader = {
       systemd-boot = {
@@ -252,7 +252,10 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    fwupd.enable = true;
+    fwupd = {
+      enable = true;
+      extraRemotes = ["lvfs-testing"];
+    };
     openssh = {
       enable = true;
       settings = { PermitRootLogin = "no"; };
