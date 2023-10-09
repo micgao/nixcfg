@@ -12,7 +12,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "quiet" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     loader = {
       systemd-boot = {
