@@ -229,9 +229,9 @@
       };
     };
     virtualbox.host = { enable = true; };
-    vmware.host = {
-      enable = true;
-    };
+    # vmware.host = {
+    #   enable = true;
+    # };
     waydroid.enable = true;
   };
 
