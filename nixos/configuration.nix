@@ -61,15 +61,6 @@
     systemPackages = with pkgs; [
       btrfs-progs
       appimage-run
-      vulkan-loader
-      vulkan-validation-layers
-      vulkan-tools
-      libglvnd
-      vkbasalt
-      vkbasalt-cli
-      libva
-      libva-utils
-      glxinfo
     ];
     variables = {
       EDITOR = "nvim";
@@ -124,6 +115,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
+        libva
         vaapiIntel
         nvidia-vaapi-driver
         vaapiVdpau
@@ -139,6 +131,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
+      forceFullCompositionPipeline = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
     };
@@ -221,6 +214,12 @@
     };
     kvmgt = {
       enable = true;
+      device = "0000:00:02.0";
+      vgpus = {
+        "i915-GVTg_V5_4" = {
+          uuid = ["f8bcf958-667e-11ee-9014-972c93a54fcc"];
+        };
+      };
     };
     libvirtd = {
       enable = true;
@@ -230,9 +229,10 @@
       };
     };
     virtualbox.host = { enable = true; };
-    # vmware.host = {
-    #   enable = true;
-    # };
+    vmware.host = {
+      enable = true;
+    };
+    waydroid.enable = true;
   };
 
   networking = {
