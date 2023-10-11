@@ -252,6 +252,7 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    hardware.bolt.enable = true;
     fwupd = {
       enable = true;
       extraRemotes = ["lvfs-testing"];
