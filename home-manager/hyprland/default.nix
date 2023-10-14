@@ -43,6 +43,8 @@ in {
       monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+      env=WLR_RENDERER_ALLOW_SOFTWARE,1
+      env=WLR_RENDERER,vulkan
       env=XCURSOR_SIZE,24
       env=XDG_SESSION_TYPE,wayland
       env=XDG_SESSION_DESKTOP,Hyprland
@@ -56,7 +58,6 @@ in {
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
-      env=WLR_DRM_NO_ATOMIC,1
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
@@ -82,7 +83,6 @@ in {
           col.inactive_border = rgba(9898a6aa)
           layout = dwindle
           no_cursor_warps = true
-          allow_tearing = true
       }
 
       decoration {
@@ -154,7 +154,6 @@ in {
       layerrule = blur, waybar
 
       windowrulev2 = fullscreen, class:(dota2)
-      windowrulev2 = immediate, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
 
       $mainMod = SUPER

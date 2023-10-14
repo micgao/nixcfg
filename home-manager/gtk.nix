@@ -18,27 +18,33 @@ in {
         scheme = config.colorScheme;
       };
       name = "sequoia";
-      # name = "Catppuccin-Mocha-Compact-Flamingo-Dark";
-      # package = pkgs.catppuccin-gtk.override {
-      #   accents = [ "flamingo" ];
-      #   size = "compact";
-      #   tweaks = [ "rimless" ];
-      #   variant = "mocha";
-      # };
     };
-    # font = {
-    #   name = "Roboto";
-    #   package = pkgs.roboto;
-    #   size = 9.75;
-    # };
+    font = {
+      name = "Inter";
+      package = pkgs.inter;
+    };
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      extraConfig = ''
+        gtk-xft-antialias=1
+        gtk-xft-hinting=1
+        gtk-xft-hintstyle="hintmedium"
+        gtk-xft-rgba="rgb"
+      '';
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
+      gtk-xft-antialias = 1;
+      gtk-xft-hinting = 1;
+      gtk-xft-hintstyle = "hintmedium";
+      gtk-xft-rgba = "rgb";
     };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
+      gtk-xft-antialias = 1;
+      gtk-xft-hinting = 1;
+      gtk-xft-hintstyle = "hintmedium";
+      gtk-xft-rgba = "rgb";
     };
   };
 }

@@ -13,7 +13,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [ "quiet" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+    kernelParams = [ "quiet" "splash" "nvidia-drm.modeset=1"  ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -97,7 +97,6 @@
     ];
     config = {
       allowUnfree = true;
-      allowUnfreePredicate = (_: true);
     };
   };
 
@@ -115,7 +114,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        libva
+        intel-media-driver
         vaapiIntel
         nvidia-vaapi-driver
         vaapiVdpau
@@ -140,6 +139,7 @@
 
   nix = {
     settings = {
+      auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
       keep-going = true;
       keep-outputs = true;
@@ -195,7 +195,7 @@
       '';
       hinting = {
         enable = true;
-        style = "full";
+        style = "medium";
       };
       defaultFonts = {
         monospace = [ "Iosevka Fixed SS04 Extended Symbols" ];
@@ -233,6 +233,7 @@
     #   enable = true;
     # };
     waydroid.enable = true;
+    lxd.enable = true;
   };
 
   networking = {
@@ -253,6 +254,19 @@
 
   services = {
     hardware.bolt.enable = true;
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+        };
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
+      };
+    };
     fwupd = {
       enable = true;
       extraRemotes = ["lvfs-testing"];
@@ -292,7 +306,7 @@
         };
       };
     };
-    xserver.videoDrivers = lib.mkForce ["nvidia"];
+    xserver.videoDrivers = ["nvidia"];
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -341,6 +355,7 @@
         "networkmanager"
         "podman"
         "kvm"
+        "lxd"
       ];
     };
     extraGroups.vboxusers.members = [ "micgao" ];
