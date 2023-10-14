@@ -32,7 +32,16 @@
     modprobeConfig.enable = true;
   };
 
-  systemd.network.wait-online.enable = false;
+  systemd = {
+    network = {
+      enable = true;
+      wait-online = {
+        enable = false;
+        anyInterface = true;
+        extraArgs = ["--ipv4"];
+      };
+    };
+  };
 
   console = {
     colors = [
@@ -65,6 +74,7 @@
     variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
+      FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
@@ -114,6 +124,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
+        gamescope
         intel-media-driver
         vaapiIntel
         nvidia-vaapi-driver
@@ -225,7 +236,8 @@
       enable = true;
       qemu = {
         package = pkgs.qemu_kvm;
-        runAsRoot = true;
+        onBoot = "ignore";
+        runAsRoot = false;
       };
     };
     virtualbox.host = { enable = true; };
@@ -289,7 +301,7 @@
     dbus = {
       enable = true;
       implementation = "broker";
-      packages = [ pkgs.gcr ];
+      packages = with pkgs; [ gcr dconf ];
     };
     logind = {
       lidSwitchExternalPower = "ignore";
@@ -356,6 +368,7 @@
         "podman"
         "kvm"
         "lxd"
+        "rtkit"
       ];
     };
     extraGroups.vboxusers.members = [ "micgao" ];
@@ -371,11 +384,6 @@
         enable = true;
         args = [
           "--hdr-enabled"
-          "--hdr-itm-enable"
-          "--output-width 1920"
-          "--output-height 1080"
-          "--nested-refresh 144"
-          "--xwayland-count 2"
         ];
       };
     };
@@ -391,6 +399,7 @@
     };
     gamescope = {
       enable = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;

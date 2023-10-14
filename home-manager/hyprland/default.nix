@@ -17,6 +17,8 @@ in {
     qt6.qmake
     libsForQt5.qt5ct
     libsForQt5.breeze-qt5
+    libsForQt5.breeze-gtk
+    libsForQt5.breeze-icons
     libsForQt5.qtstyleplugins
     libsForQt5.qt5.qtwayland
     libsForQt5.polkit-kde-agent
@@ -42,6 +44,8 @@ in {
     extraConfig = ''
       monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
+      env=EGL_PLATFORM,wayland
+      env=WLR_DRM_NO_ATOMIC,1
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
       env=WLR_RENDERER_ALLOW_SOFTWARE,1
       env=WLR_RENDERER,vulkan
@@ -58,6 +62,7 @@ in {
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
+      env=MOZ_DISABLE_RDD_SANDBOX,1
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar

@@ -4,6 +4,8 @@
     protontricks
     winetricks
     lutris
+    protonup-ng
+    vkbasalt
   ];
   programs.mangohud = {
     enable = true;

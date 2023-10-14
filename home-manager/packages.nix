@@ -43,6 +43,7 @@
       insomnia
       jetbrains-toolbox
       virt-manager
+      virt-viewer
       thunderbird
       wineWowPackages.wayland
       qobuz-dl
