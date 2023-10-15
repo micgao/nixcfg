@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
 
   home = {
     packages = with pkgs; [
@@ -8,8 +8,31 @@
   
   services.mpd = {
     enable = true;
-    musicDirectory = "~/Music";
+    musicDirectory = "${config.home.homeDirectory}/Music";
+    dataDir = "${config.home.homeDirectory}/.mpd";
+    playlistDirectory = "${config.home.homeDirectory}/.mpd/playlists";
     network.startWhenNeeded = true;
+    extraConfig = ''
+      auto_update "yes"
+      follow_outside_symlinks "yes"
+      follow_inside_symlinks "yes"
+      input {
+        plugin "simple"
+      }
+      input_cache {
+        size "1 GB"
+      }
+      audio_output {
+        type "pipewire"
+        name "pipewire"
+      }
+      audio_output {
+        type "fifo"
+        name "fifo_visualizer"
+        path "/tmp/mpd.fifo"
+        format "44100:16:2"
+      }
+    '';
   };
   programs.ncmpcpp = {
     enable = true;
@@ -33,6 +56,12 @@
       { key = "space"; command = "play"; }
     ];
     settings = {
+      visualizer_data_source = "/tmp/mpd.fifo";
+      visualizer_output_name = "fifo_visualizer";
+      visualizer_in_stereo = "yes";
+      visualizer_type = "spectrum";
+      visualizer_look = "+|";
+      mpd_crossfade_time = "0";
       ncmpcpp_directory = "~/.ncmpcpp";
       lyrics_directory = "~/.ncmpcpp/lyrics";
       autocenter_mode = "yes";
@@ -61,6 +90,10 @@
     enable = true;
     defaultProfiles = ["gpu-hq"];
     scripts = with pkgs.mpvScripts; [sponsorblock];
+    config = {
+      profile = "gpu-hq";
+      user-agent = "Mozilla/5.0";
+    };
   };
   programs.ncspot = {
     enable = true;
@@ -70,6 +103,5 @@
       default_keybindings = true;
     };
   };
-  xdg.configFile."mpd/mpd.conf".source = ./mpd.conf;
-  xdg.configFile."mpv/mpv.conf".source = ./mpv.conf;
+  xdg.configFile."mpdscribble/mpdscribble.conf".source = ./mpdscribble.conf;
 }

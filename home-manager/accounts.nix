@@ -1,6 +1,5 @@
 { pkgs, config, ... }: {
   accounts.email = {
-    certificatesFile = "/etc/ssl/certs/ca-certificates.crt";
     maildirBasePath = "${config.home.homeDirectory}/.mail";
     accounts = {
       gmail = {
@@ -18,7 +17,7 @@
         userName = "micgao1@gmail.com";
         flavor = "gmail.com";
         realName = "Michael G";
-        passwordCommand = "pass gmail/mbsync/micgao1@gmail.com";
+        passwordCommand = "gopass gmail/mbsync/micgao1@gmail.com";
       };
     };
   };

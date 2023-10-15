@@ -14,6 +14,7 @@
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ "quiet" "splash" "nvidia-drm.modeset=1"  ];
+    blacklistedKernelModules = [ "nouveau" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -24,6 +25,7 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
+      kernelModules = [ "nvidia" ];
       verbose = false;
       systemd = {
         enable = true;
@@ -140,9 +142,9 @@
       };
       open = true;
       modesetting.enable = true;
-      powerManagement.enable = true;
+      powerManagement.enable = false;
       forceFullCompositionPipeline = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
