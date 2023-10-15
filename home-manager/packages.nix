@@ -40,7 +40,6 @@
       keepassxc
       pavucontrol
       obsidian
-      insomnia
       jetbrains-toolbox
       virt-manager
       virt-viewer
