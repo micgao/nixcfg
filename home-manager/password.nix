@@ -10,9 +10,9 @@
     };
   };
   services = {
-    pass-secret-service ={
+    gnome-keyring ={
       enable = true;
-      storePath = "${config.home.homeDirectory}/.password-store";
+      components = [ "pkcs11" "secrets" "ssh" ];
     };
   };
 }

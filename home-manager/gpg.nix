@@ -14,6 +14,5 @@
       allow-emacs-pinentry
       allow-loopback-pinentry
     '';
-    pinentryFlavor = "gnome3";
   };
 }
