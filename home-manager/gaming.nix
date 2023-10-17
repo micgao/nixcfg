@@ -6,7 +6,7 @@
     lutris
     protonup-ng
     vkbasalt
-    zenity
+    gnome.zenity
   ];
   programs.mangohud = {
     enable = true;
