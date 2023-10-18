@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ pkgs, config, ... }: {
   accounts.email = {
     maildirBasePath = "${config.home.homeDirectory}/.mail";
     accounts = {
@@ -17,7 +17,7 @@
         userName = "micgao1@gmail.com";
         flavor = "gmail.com";
         realName = "Michael G";
-        passwordCommand = "gopass gmail/mbsync/micgao1@gmail.com | head -n1";
+        passwordCommand = "${pkgs.pass}/bin/pass gmail/mbsync/micgao1@gmail.com";
       };
     };
   };

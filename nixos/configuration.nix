@@ -13,7 +13,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [ "quiet" "splash" "nvidia-drm.modeset=1"  ];
+    kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1"  ];
     blacklistedKernelModules = [ "nouveau" ];
     loader = {
       systemd-boot = {
@@ -126,7 +126,6 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        gamescope
         intel-media-driver
         vaapiIntel
         nvidia-vaapi-driver
@@ -142,8 +141,7 @@
       };
       open = true;
       modesetting.enable = true;
-      powerManagement.enable = false;
-      forceFullCompositionPipeline = true;
+      powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };

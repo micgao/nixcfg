@@ -45,6 +45,7 @@ in {
       monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+      env=WLR_DRM_NO_ATOMIC,1
       env=XDG_SESSION_DESKTOP,Hyprland
       env=XDG_CURRENT_DESKTOP,Hyprland
       env=XDG_SESSION_TYPE,wayland
@@ -56,8 +57,10 @@ in {
       env=XCURSOR_SIZE,24
       env=LIBVA_DRIVER_NAME,nvidia
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+      env=GBM_BACKEND,nvidia-drm
       env=GTK_THEME,sequoia
-      env=QT_QPA_PLATFORM,wayland
+      env=QT_AUTO_SCREEN_SCALE_FACTOR,1
+      env=QT_QPA_PLATFORM,wayland;xcb
       env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
@@ -88,6 +91,7 @@ in {
           col.inactive_border = rgba(9898a6aa)
           layout = dwindle
           no_cursor_warps = true
+          allow_tearing = true
       }
 
       decoration {
@@ -160,6 +164,7 @@ in {
 
       windowrulev2 = fullscreen, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
+      windowrulev2 = immediate, class:^(dota2)$
 
       $mainMod = SUPER
 
