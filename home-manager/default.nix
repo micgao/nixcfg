@@ -35,6 +35,7 @@
     ./neovim.nix
     ./newsboat.nix
     ./nix-database-index.nix
+    ./nix-your-shell.nix
     ./nnn.nix
     ./packages.nix
     ./password.nix
