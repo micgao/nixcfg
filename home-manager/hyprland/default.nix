@@ -57,6 +57,8 @@ in {
       env=XCURSOR_SIZE,24
       env=LIBVA_DRIVER_NAME,nvidia
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+      env=__GL_VRR_ALLOWED,1
+      # env=GBM_BACKEND,nvidia-drm
       env=GTK_THEME,sequoia
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
