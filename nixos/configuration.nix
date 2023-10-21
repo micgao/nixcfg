@@ -142,7 +142,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
