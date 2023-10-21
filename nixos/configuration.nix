@@ -142,7 +142,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
@@ -209,7 +209,7 @@
         style = "medium";
       };
       defaultFonts = {
-        monospace = [ "Iosevka Fixed SS04 Extended Symbols" ];
+        monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
         serif = [ "Inter" ];
       };
@@ -399,7 +399,6 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
     };
     hyprland = {
       enable = true;
