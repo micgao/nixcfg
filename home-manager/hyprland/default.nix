@@ -36,7 +36,6 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
     systemdIntegration = true;
     disableAutoreload = true;
     enableNvidiaPatches = true;
@@ -57,8 +56,6 @@ in {
       env=XCURSOR_SIZE,24
       env=LIBVA_DRIVER_NAME,nvidia
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-      env=__GL_VRR_ALLOWED,1
-      # env=GBM_BACKEND,nvidia-drm
       env=GTK_THEME,sequoia
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
@@ -74,6 +71,7 @@ in {
       exec-once=[workspace 1 silent] wezterm
       exec-once=[workspace 2 silent] librewolf
       exec-once=[workspace 3 silent] emacs
+      exec-once=[workspace 4 silent] steam
 
       input {
           follow_mouse = 2
@@ -151,9 +149,9 @@ in {
 
       misc {
           vfr = true
+          vrr = true
           disable_autoreload = true
           disable_splash_rendering = true
-          disable_hyprland_logo = true
           animate_manual_resizes = false
       }
 

@@ -12,9 +12,8 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_lqx;
     kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1"  ];
-    blacklistedKernelModules = [ "nouveau" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -126,6 +125,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
+        vulkan-validation-layers
         intel-media-driver
         vaapiIntel
         nvidia-vaapi-driver
@@ -142,7 +142,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
