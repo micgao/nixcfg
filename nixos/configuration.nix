@@ -12,8 +12,8 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
-    kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1"  ];
+    kernelPackages = pkgs.linuxPackages_zen;
+    kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -177,7 +177,6 @@
       inter
       source-code-pro
       source-sans-pro
-      source-serif-pro
       intel-one-mono
       recursive
       iosevka-ss04
@@ -241,9 +240,9 @@
       };
     };
     virtualbox.host = { enable = true; };
-    # vmware.host = {
-    #   enable = true;
-    # };
+    vmware.host = {
+      enable = true;
+    };
     waydroid.enable = true;
     lxd.enable = true;
   };
@@ -399,6 +398,7 @@
     };
     gamescope = {
       enable = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;
