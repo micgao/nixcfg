@@ -2,7 +2,7 @@
   description = "NixOs config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?rev=e24d43a18c99138b782fea2d00337e34539e360b";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -10,10 +10,6 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixpkgs-unfree = {
-      url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
