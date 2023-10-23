@@ -9,7 +9,6 @@
   services.gpg-agent = {
     enable = true;
     enableExtraSocket = true;
-    enableSshSupport = true;
     extraConfig = ''
       allow-emacs-pinentry
       allow-loopback-pinentry
