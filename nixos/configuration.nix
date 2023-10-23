@@ -71,6 +71,7 @@
     systemPackages = with pkgs; [
       btrfs-progs
       appimage-run
+      egl-wayland
     ];
     variables = {
       EDITOR = "nvim";
@@ -144,6 +145,7 @@
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
+      nvidiaPersistenced = true;
     };
     trackpoint.enable = true;
   };
@@ -209,8 +211,8 @@
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter" ];
-        serif = [ "Inter" ];
+        sansSerif = [ "Inter" "Noto Color Emoji" ];
+        serif = [ "Roboto Serif" "Noto Color Emoji" ];
       };
     };
   };
