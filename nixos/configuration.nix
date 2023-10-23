@@ -12,7 +12,11 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    # kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = let
+      nixpkgs-unfree = inputs.nixpkgs-unfree.legacyPackages.${pkgs.system};
+    in
+      lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
     kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {

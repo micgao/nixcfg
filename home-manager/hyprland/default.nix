@@ -64,6 +64,7 @@ in {
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
       env=MOZ_DISABLE_RDD_SANDBOX,1
+      env=NVD_BACKEND,direct
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
