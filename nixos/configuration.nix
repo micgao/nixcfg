@@ -12,7 +12,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
@@ -242,9 +242,9 @@
       };
     };
     virtualbox.host = { enable = true; };
-    vmware.host = {
-      enable = true;
-    };
+    # vmware.host = {
+    #   enable = true;
+    # };
     waydroid.enable = true;
     lxd.enable = true;
   };
