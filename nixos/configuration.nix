@@ -385,6 +385,10 @@
           "--steam"
           "--rt"
           "--hdr-enabled"
+          "--prefer-vk-device"
+          "--fullscreen"
+          "-W 1929"
+          "-H 1080"
         ];
       };
     };
