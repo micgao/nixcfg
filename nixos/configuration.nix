@@ -24,7 +24,6 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
-      kernelModules = [ "nvidia" ];
       verbose = false;
       systemd = {
         enable = true;
@@ -71,7 +70,6 @@
     systemPackages = with pkgs; [
       btrfs-progs
       appimage-run
-      egl-wayland
     ];
     variables = {
       EDITOR = "nvim";
@@ -142,10 +140,10 @@
       };
       open = true;
       modesetting.enable = true;
-      powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       nvidiaSettings = true;
       nvidiaPersistenced = true;
+      powerManagement.enable = true;
     };
     trackpoint.enable = true;
   };
@@ -242,9 +240,9 @@
       };
     };
     virtualbox.host = { enable = true; };
-    # vmware.host = {
-    #   enable = true;
-    # };
+    vmware.host = {
+      enable = true;
+    };
     waydroid.enable = true;
     lxd.enable = true;
   };
@@ -384,6 +382,8 @@
       gamescopeSession = {
         enable = true;
         args = [
+          "--steam"
+          "--rt"
           "--hdr-enabled"
         ];
       };
@@ -409,7 +409,6 @@
     zsh.enable = true;
     gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
       enableBrowserSocket = true;
       enableExtraSocket = true;
     };

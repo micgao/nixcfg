@@ -41,6 +41,7 @@ in {
     enableNvidiaPatches = true;
     recommendedEnvironment = true;
     extraConfig = ''
+      # monitor=,preferred,auto,auto
       monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
@@ -56,6 +57,7 @@ in {
       env=XCURSOR_SIZE,24
       env=LIBVA_DRIVER_NAME,nvidia
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+      env=GBM_BACKEND,nvidia-drm
       env=GTK_THEME,sequoia
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
@@ -150,7 +152,6 @@ in {
 
       misc {
           vfr = true
-          vrr = true
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false
@@ -172,11 +173,11 @@ in {
       bind = $mainMod, space, exec, fuzzel
       bind = $mainMod, F, fullscreen,
       bind = $mainMod, G, togglegroup,
-      bind = $mainMod, P, exec, gopass ls --flat | fuzzel --dmenu | xargs --no-run-if-empty gopass show -c
       bind = $mainMod, Q, killactive,
       bind = $mainMod, M, exec, wlogout -p layer-shell
       bind = $mainMod, V, togglefloating,
-      bind = $mainMod, S, pseudo,
+      bind = $mainMod, X, togglesplit,
+      bind = $mainMod, P, pseudo,
       bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -184,18 +185,28 @@ in {
       bind = $mainMod, L, movefocus, r
       bind = $mainMod, K, movefocus, u
       bind = $mainMod, J, movefocus, d
-      ${builtins.concatStringsSep "\n" (builtins.genList (
-        x: let
-          ws = let
-            c = (x + 1) / 10;
-          in
-            builtins.toString (x + 1 - (c * 10));
-        in ''
-          bind = $mainMod, ${ws}, workspace, ${toString (x + 1)}
-          bind = $mainMod CTRL, ${ws}, movetoworkspace, ${toString (x + 1)}
-        ''
-      )
-      10)}
+      bind = $mainMod, 1, workspace, 1
+      bind = $mainMod, 2, workspace, 2
+      bind = $mainMod, 3, workspace, 3
+      bind = $mainMod, 4, workspace, 4
+      bind = $mainMod, 5, workspace, 5
+      bind = $mainMod, 6, workspace, 6
+      bind = $mainMod, 7, workspace, 7
+      bind = $mainMod, 8, workspace, 8
+      bind = $mainMod, 9, workspace, 9
+      bind = $mainMod, 0, workspace, 10
+      bind = $mainMod CTRL, 1, movetoworkspace, 1
+      bind = $mainMod CTRL, 2, movetoworkspace, 2
+      bind = $mainMod CTRL, 3, movetoworkspace, 3
+      bind = $mainMod CTRL, 4, movetoworkspace, 4
+      bind = $mainMod CTRL, 5, movetoworkspace, 5
+      bind = $mainMod CTRL, 6, movetoworkspace, 6
+      bind = $mainMod CTRL, 7, movetoworkspace, 7
+      bind = $mainMod CTRL, 8, movetoworkspace, 8
+      bind = $mainMod CTRL, 9, movetoworkspace, 9
+      bind = $mainMod CTRL, 0, movetoworkspace, 10
+      bind = $mainMod, S, togglespecialworkspace, magic
+      bind = $mainMod SHIFT, S, movetoworkspace, special:magic
       bind = $mainMod, mouse_down, workspace, m+1
       bind = $mainMod, mouse_up, workspace, m-1
       bind = $mainMod CTRL, x, workspace, m+1
