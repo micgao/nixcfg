@@ -13,7 +13,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" ];
+    kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     loader = {
       systemd-boot = {
         enable = true;
