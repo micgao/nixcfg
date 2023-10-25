@@ -57,7 +57,7 @@ in {
       env=XCURSOR_SIZE,24
       env=LIBVA_DRIVER_NAME,nvidia
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-      env=GBM_BACKEND,nvidia-drm
+      # env=GBM_BACKEND,nvidia-drm
       env=GTK_THEME,sequoia
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
@@ -81,7 +81,7 @@ in {
           touchpad {
               natural_scroll = false
           }
-          sensitivity = -0.3
+          sensitivity = -0.2
           accel_profile = flat
       }
 
@@ -97,12 +97,12 @@ in {
       }
 
       decoration {
-          rounding = 8
+          rounding = 6
           active_opacity = 1.0
           inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 10
+	            size = 5
 	            passes = 3
 	            new_optimizations = true
 	            xray = true
