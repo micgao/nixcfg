@@ -10,6 +10,7 @@
       nix-init
       nix-melt
       nix-ld-rs
+      nix-update
       rustup
       nodejs
       python3Minimal
