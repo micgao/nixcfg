@@ -127,7 +127,6 @@
         vulkan-validation-layers
         intel-media-driver
         vaapiIntel
-        nvidia-vaapi-driver
         vaapiVdpau
         libvdpau-va-gl
       ];
