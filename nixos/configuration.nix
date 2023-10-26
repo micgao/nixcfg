@@ -9,7 +9,7 @@
   ];
 
   boot = {
-    bootspec.enableValidation = true;
+    # bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
