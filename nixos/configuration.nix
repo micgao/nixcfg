@@ -9,7 +9,7 @@
   ];
 
   boot = {
-    bootspec.enableValidation = false;
+    bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
@@ -149,7 +149,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      experimental-features = [ "nix-command" "flakes" ];
       keep-going = true;
       keep-outputs = true;
       warn-dirty = false;
