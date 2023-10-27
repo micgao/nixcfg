@@ -41,5 +41,9 @@
     qrencode
     zbar
     zeromq
+    zxing
+
+    graphviz-nox
+    doxygen
   ];
 }
