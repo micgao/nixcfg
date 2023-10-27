@@ -1,4 +1,45 @@
-{ pkgs, ... }: pkgs.appimageTools.wrapType2 {
-  name = "feather-wallet";
-  src = ./feather-2.5.2;
+{ pkgs, ... }: pkgs.stdenv.mkDerivation rec {
+  pname = "feather-wallet";
+  version = "2.5.2";
+
+  src = pkgs.fetchgit {
+    url = "https://github.com/feather-wallet/feather";
+    rev = version;
+    sha256 = "";
+    fetchSubmodules = true;
+  };
+  nativeBuildInputs = with pkgs; [
+    pkg-config
+    qt6Packages.wrapQtAppsHook
+  ];
+
+  buildInputs = with pkgs; [
+    cmake
+    openssl
+
+    unbound
+    boost
+    expat
+    gnupg
+    hidapi
+
+    qt6Packages.qtbase
+    qt6Packages.qtsvg
+    qt6Packages.qtwebsockets
+    qt6Packages.qtmultimedia
+    qt6Packages.qtwayland
+
+    libgcrypt
+    libsodium
+    libudev0-shim
+    libunwind
+    libusb1
+    libzip
+    hidapi
+
+    protobuf
+    qrencode
+    zbar
+    zeromq
+  ];
 }
