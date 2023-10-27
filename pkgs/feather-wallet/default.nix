@@ -5,7 +5,7 @@
   src = pkgs.fetchgit {
     url = "https://github.com/feather-wallet/feather";
     rev = version;
-    sha256 = "";
+    sha256 = "sha256-OSBG2W35GYlViwz5eXokpScrMTtPSaWAgEUNw2urm6w=";
     fetchSubmodules = true;
   };
   nativeBuildInputs = with pkgs; [
