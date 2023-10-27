@@ -34,7 +34,7 @@
     ./neomutt.nix
     ./neovim.nix
     ./newsboat.nix
-    ./nix-database-index.nix
+    ./nix-index-database.nix
     ./nix-your-shell.nix
     ./nnn.nix
     ./packages.nix

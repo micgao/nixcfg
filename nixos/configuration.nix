@@ -6,6 +6,7 @@
     ./nix-ld.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
+    inputs.nix-index-database.nixosModules.nix-index
   ];
 
   boot = {
@@ -372,6 +373,7 @@
   };
 
   programs = {
+    nix-index-database.comma.enable = true;
     less.enable = true;
     dconf.enable = true;
     steam = {
