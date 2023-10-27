@@ -373,6 +373,7 @@
   };
 
   programs = {
+    command-not-found.enable = false;
     nix-index-database.comma.enable = true;
     less.enable = true;
     dconf.enable = true;
