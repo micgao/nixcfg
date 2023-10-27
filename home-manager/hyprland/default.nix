@@ -59,6 +59,7 @@ in {
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       # env=GBM_BACKEND,nvidia-drm
       env=GTK_THEME,sequoia
+      env=GTK_THEME_VARIANT,dark
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
       env=QT_QPA_PLATFORMTHEME,qt5ct
