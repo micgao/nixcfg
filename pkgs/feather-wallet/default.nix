@@ -11,6 +11,9 @@
   nativeBuildInputs = with pkgs; [
     pkg-config
     qt6Packages.wrapQtAppsHook
+    zxing
+    graphviz-nox
+    doxygen
   ];
 
   buildInputs = with pkgs; [
@@ -41,9 +44,5 @@
     qrencode
     zbar
     zeromq
-    zxing
-
-    graphviz-nox
-    doxygen
   ];
 }
