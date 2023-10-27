@@ -117,7 +117,6 @@
   };
 
   hardware = {
-    enableRedistributableFirmware = true;
     pulseaudio.enable = false;
     cpu.intel.updateMicrocode = true;
     opengl = {
@@ -126,10 +125,6 @@
       driSupport32Bit = true;
       extraPackages = with pkgs; [
         vulkan-validation-layers
-        intel-media-driver
-        vaapiIntel
-        vaapiVdpau
-        libvdpau-va-gl
       ];
     };
     nvidia = {
