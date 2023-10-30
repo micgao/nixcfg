@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-staging.url = "github:nixos/nixpkgs/staging";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,11 +29,10 @@
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # neovim = {
-    #   url = "github:neovim/neovim?dir=contrib";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim = {
+      url = "github:neovim/neovim?dir=contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

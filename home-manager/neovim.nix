@@ -9,13 +9,15 @@ in
 {
   nixpkgs = {
     overlays = [
-      inputs.neovim-nightly-overlay.overlay
+      inputs.neovim.overlay
     ];
   };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim.override {
+      libvterm-neovim = inputs.nixpkgs-staging.legacyPackages.x86_64-linux.libvterm-neovim;
+    };
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter
     ];
