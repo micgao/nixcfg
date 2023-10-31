@@ -125,6 +125,7 @@
       driSupport32Bit = true;
       extraPackages = with pkgs; [
         vulkan-validation-layers
+        intel-compute-runtime
       ];
     };
     nvidia = {
