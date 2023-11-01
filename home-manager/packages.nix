@@ -11,6 +11,7 @@
       nix-melt
       nix-ld-rs
       nix-update
+      nix-index
       rustup
       nodejs
       python3Minimal
