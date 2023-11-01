@@ -2,7 +2,7 @@
   description = "NixOs config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     nixpkgs-staging.url = "github:nixos/nixpkgs/staging";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -38,6 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helix.url = "github:helix-editor/helix";
+    yazi.url = "github:sxyazi/yazi";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
