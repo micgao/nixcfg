@@ -39,7 +39,7 @@
       "customizeUI.activityBar" = "bottom";
       "customizeUI.statusBarPosition" = "under-panel";
       "extensions.exprimental.affinity" = {
-        "asveliakov.vscode-neovim" = "1";
+        "asveliakov.vscode-neovim" = 1;
       };
     };
   };

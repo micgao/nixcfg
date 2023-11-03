@@ -42,10 +42,9 @@ in {
     recommendedEnvironment = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
-      monitor=HDMI-A-1,1920x1080@144,0x0,1
+      monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-      env=WLR_DRM_NO_ATOMIC,1
       env=XDG_SESSION_DESKTOP,Hyprland
       env=XDG_CURRENT_DESKTOP,Hyprland
       env=XDG_SESSION_TYPE,wayland
@@ -56,8 +55,6 @@ in {
       env=NIXOS_OZONE_WL,1
       env=XCURSOR_SIZE,24
       env=LIBVA_DRIVER_NAME,nvidia
-      env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-      # env=GBM_BACKEND,nvidia-drm
       env=GTK_THEME,sequoia
       env=GTK_THEME_VARIANT,dark
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
@@ -68,6 +65,15 @@ in {
       env=GDK_BACKEND,wayland,x11
       env=MOZ_DISABLE_RDD_SANDBOX,1
       env=NVD_BACKEND,direct
+      env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+      env=__GL_ALLOW_UNOFFICIAL_PROTOCOL,1
+      env=__GL_SHADER_DISK_CACHE,1
+      env=__GL_IGNORE_GLSL_EXT_REQS,1
+      env=__GL_GSYNC_ALLOWED,1
+      env=__GL_VRR_ALLOWED,1
+      env=__GL_SYNC_TO_VBLANK,0
+      env=VDPAU_DRIVER,nvidia
+      # env=GBM_BACKEND,nvidia-drm
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
@@ -75,7 +81,6 @@ in {
       exec-once=[workspace 1 silent] wezterm
       exec-once=[workspace 2 silent] librewolf
       exec-once=[workspace 3 silent] emacs
-      exec-once=[workspace 4 silent] steam
 
       input {
           follow_mouse = 2
@@ -84,6 +89,10 @@ in {
           }
           sensitivity = -0.2
           accel_profile = flat
+          scroll_method = on_button_down
+          scroll_button = 274
+          float_switch_override_focus = 2
+          kb_options = ctrl:nocaps
       }
 
       general {
@@ -94,7 +103,6 @@ in {
           col.inactive_border = rgba(9898a6aa)
           layout = dwindle
           no_cursor_warps = true
-          allow_tearing = true
       }
 
       decoration {
@@ -103,8 +111,8 @@ in {
           inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 5
-	            passes = 3
+	            size = 6
+	            passes = 1
 	            new_optimizations = true
 	            xray = true
 	            brightness = 1.0
@@ -153,9 +161,11 @@ in {
 
       misc {
           vfr = true
+          vrr = 2
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false
+          no_direct_scanout = false
       }
 
       xwayland {
@@ -166,7 +176,9 @@ in {
 
       windowrulev2 = fullscreen, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
-      windowrulev2 = immediate, class:^(dota2)$
+
+      workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
+      workspace = special:scratchpad, on-created-empty:wezterm
 
       $mainMod = SUPER
 

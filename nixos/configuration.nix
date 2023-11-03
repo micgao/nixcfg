@@ -14,23 +14,32 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+    kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
         enable = true;
         editor = false;
-        consoleMode = "auto";
+        consoleMode = "max";
         configurationLimit = 10;
       };
       efi.canTouchEfiVariables = true;
     };
     initrd = {
+      enable = true;
       verbose = false;
       systemd = {
         enable = true;
       };
     };
     modprobeConfig.enable = true;
+    extraModprobeConfig = ''
+      options nvidia-drm modeset=1 
+      options nvidia NVreg_UsePageAttributeTable=1
+      options nvidia NVreg_RegistryDwords="OverrideMaxPerf=0x1"
+    '';
+    extraModulePackages = [
+      config.boot.kernelPackages.nvidia_x11
+    ];
   };
 
   systemd = {
@@ -136,7 +145,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
