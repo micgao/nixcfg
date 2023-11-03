@@ -7,6 +7,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
+    inputs.chaotic.nixosModules.default
   ];
 
   boot = {
