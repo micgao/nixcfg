@@ -112,7 +112,7 @@ in {
 	        blur {
 	            enabled = true
 	            size = 6
-	            passes = 1
+	            passes = 3
 	            new_optimizations = true
 	            xray = true
 	            brightness = 1.0
