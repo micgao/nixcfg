@@ -89,10 +89,7 @@ in {
           }
           sensitivity = -0.2
           accel_profile = flat
-          scroll_method = on_button_down
-          scroll_button = 274
           float_switch_override_focus = 2
-          kb_options = ctrl:nocaps
       }
 
       general {
@@ -156,7 +153,7 @@ in {
           allow_workspace_cycles = true
           workspace_back_and_forth = true
           scroll_event_delay = 300
-          pass_mouse_when_bound = false
+          pass_mouse_when_bound = true
       }
 
       misc {
