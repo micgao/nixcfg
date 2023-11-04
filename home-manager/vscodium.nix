@@ -38,7 +38,7 @@
       "customizeUI.activityBarHideSettings" = true;
       "customizeUI.activityBar" = "bottom";
       "customizeUI.statusBarPosition" = "under-panel";
-      "extensions.exprimental.affinity" = {
+      "extensions.experimental.affinity" = {
         "asveliakov.vscode-neovim" = 1;
       };
     };

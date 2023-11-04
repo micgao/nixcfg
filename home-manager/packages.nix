@@ -42,6 +42,7 @@
       pavucontrol
       obsidian
       jetbrains-toolbox
+      virt-manager
       virt-viewer
       thunderbird
       wineWowPackages.wayland
