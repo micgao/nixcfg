@@ -158,11 +158,9 @@ in {
 
       misc {
           vfr = true
-          vrr = 2
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false
-          no_direct_scanout = false
       }
 
       xwayland {
