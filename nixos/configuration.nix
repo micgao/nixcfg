@@ -13,7 +13,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
