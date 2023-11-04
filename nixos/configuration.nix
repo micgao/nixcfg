@@ -184,6 +184,7 @@
       intel-one-mono
       recursive
       iosevka-ss04
+      geist
       (nerdfonts.override {
         fonts =
           [ "FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly" ];
