@@ -16,7 +16,7 @@
       python3Minimal
       distrobox
       viddy
-      httpie
+      bruno
       curlie
       clipboard-jh
       circumflex
@@ -42,7 +42,6 @@
       pavucontrol
       obsidian
       jetbrains-toolbox
-      virt-manager
       virt-viewer
       thunderbird
       wineWowPackages.wayland

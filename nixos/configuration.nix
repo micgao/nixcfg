@@ -380,6 +380,7 @@
   programs = {
     command-not-found.enable = false;
     nix-index-database.comma.enable = true;
+    virt-manager.enable = true;
     less.enable = true;
     dconf.enable = true;
     steam = {
