@@ -80,6 +80,9 @@
     systemPackages = with pkgs; [
       btrfs-progs
       appimage-run
+      nixgl.auto.nixGLDefault
+      nixgl.auto.nixGLNvidia
+      nixgl.auto.nixVulkanNvidia
     ];
     variables = {
       EDITOR = "nvim";
@@ -107,6 +110,11 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    pam.services.greetd = {
+      allowNullPassword = true;
+      startSession = true;
+      enableGnomeKeyring = true;
+    };
   };
 
   nixpkgs = {
@@ -114,6 +122,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       inputs.nixpkgs-wayland.overlay
+      inputs.nixgl.overlay
     ];
     config = {
       allowUnfree = true;
