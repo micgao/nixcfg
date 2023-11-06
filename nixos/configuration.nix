@@ -80,6 +80,8 @@
     systemPackages = with pkgs; [
       btrfs-progs
       appimage-run
+      nixgl.auto.nixGLDefault
+      nixgl.auto.nixVulkanNvidia
     ];
     variables = {
       EDITOR = "nvim";
