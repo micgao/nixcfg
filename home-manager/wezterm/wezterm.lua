@@ -110,6 +110,7 @@ config.set_environment_variables = {
 }
 
 config.term = "wezterm"
+config.enable_kitty_keyboard = true
 config.color_scheme = "Sequoia Moonlight"
 config.colors = {
   tab_bar = {
@@ -130,8 +131,10 @@ config.font = wezterm.font_with_fallback {
   },
 }
 config.font_size = 11.5
-config.freetype_load_flags = "NO_HINTING"
+config.freetype_interpreter_version = 40
+config.freetype_load_target = "HorizontalLcd"
 config.custom_block_glyphs = true
+config.use_cap_height_to_scale_fallback_fonts = true
 config.warn_about_missing_glyphs = false
 config.unicode_version = 14
 config.cursor_thickness = 2
