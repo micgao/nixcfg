@@ -126,7 +126,7 @@ config.colors = {
 }
 config.font = wezterm.font_with_fallback {
   {
-    family = "Iosevka Fixed SS04 Extended Symbols",
+    family = "Iosevka Fixed SS04 Extended",
   },
 }
 config.font_size = 11.5
@@ -136,7 +136,6 @@ config.unicode_version = 14
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
-config.prefer_egl = true
 config.audible_bell = "Disabled"
 config.bold_brightens_ansi_colors = "BrightAndBold"
 config.scrollback_lines = 9001
