@@ -119,7 +119,6 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       inputs.nixpkgs-wayland.overlay
-      inputs.nixgl.overlay
     ];
     config = {
       allowUnfree = true;
