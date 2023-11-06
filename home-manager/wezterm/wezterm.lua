@@ -130,6 +130,7 @@ config.font = wezterm.font_with_fallback {
   },
 }
 config.font_size = 11.5
+config.freetype_load_flags = "NO_HINTING"
 config.custom_block_glyphs = true
 config.warn_about_missing_glyphs = false
 config.unicode_version = 14
