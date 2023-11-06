@@ -6,7 +6,7 @@ stdenvNoCC.mkDerivation {
   pname = "geist";
   version = "0.0.1";
 
-  src = ./ttc;
+  src = ./ttf;
 
   installPhase = ''
     runHook preInstall
