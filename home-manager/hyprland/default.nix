@@ -68,10 +68,6 @@ in {
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=__GL_ALLOW_UNOFFICIAL_PROTOCOL,1
       env=__GL_SHADER_DISK_CACHE,1
-      env=__GL_IGNORE_GLSL_EXT_REQS,1
-      env=__GL_GSYNC_ALLOWED,1
-      env=__GL_VRR_ALLOWED,1
-      env=__GL_SYNC_TO_VBLANK,0
       env=VDPAU_DRIVER,nvidia
       # env=GBM_BACKEND,nvidia-drm
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1

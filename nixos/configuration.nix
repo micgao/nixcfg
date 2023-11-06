@@ -79,7 +79,6 @@
   environment = {
     systemPackages = with pkgs; [
       btrfs-progs
-      appimage-run
     ];
     variables = {
       EDITOR = "nvim";
@@ -229,6 +228,7 @@
     podman = {
       enable = true;
       dockerCompat = true;
+      dockerSocket.enable = true;
       enableNvidia = true;
       defaultNetwork.settings.dns_enabled = true;
     };
@@ -253,8 +253,6 @@
     vmware.host = {
       enable = true;
     };
-    waydroid.enable = true;
-    lxd.enable = true;
   };
 
   networking = {
