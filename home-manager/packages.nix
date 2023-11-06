@@ -48,6 +48,7 @@
       wineWowPackages.wayland
       qobuz-dl
       feather-wallet
+      firefox-devedition
       monero-gui
     ];
   };
