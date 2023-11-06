@@ -80,8 +80,6 @@
     systemPackages = with pkgs; [
       btrfs-progs
       appimage-run
-      nixgl.auto.nixGLDefault
-      nixgl.auto.nixVulkanNvidia
     ];
     variables = {
       EDITOR = "nvim";
@@ -221,9 +219,9 @@
         style = "medium";
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" "Geist Mono" ];
+        monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Geist" ];
-        serif = [ "Roboto Serif" ];
+        serif = [ "Inter" ];
       };
     };
   };
@@ -340,10 +338,6 @@
       jack.enable = true;
       wireplumber.enable = true;
       socketActivation = true;
-    };
-    roon-bridge = {
-      enable = true;
-      openFirewall = true;
     };
     roon-server = {
       enable = true;
