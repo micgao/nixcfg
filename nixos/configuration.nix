@@ -151,8 +151,9 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
+      powerManagement.enable = true;
     };
     trackpoint.enable = true;
   };
@@ -218,9 +219,9 @@
         style = "medium";
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter" "Noto Color Emoji" ];
-        serif = [ "Roboto Serif" "Noto Color Emoji" ];
+        monospace = [ "Iosevka SS04" "Geist Mono" ];
+        sansSerif = [ "Geist" ];
+        serif = [ "Roboto Serif" ];
       };
     };
   };
@@ -390,6 +391,21 @@
     dconf.enable = true;
     steam = {
       enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: with pkgs; [
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+          openssl
+        ];
+      };
       remotePlay.openFirewall = true;
       gamescopeSession = {
         enable = true;
@@ -416,7 +432,7 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
+      capSysNice = false;
     };
     hyprland = {
       enable = true;
