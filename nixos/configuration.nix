@@ -21,6 +21,12 @@
         editor = false;
         consoleMode = "auto";
         configurationLimit = 10;
+        extraEntries = {
+          "linux_firmware_updater.conf" = ''
+            title Linux Firmware Updater
+            efi /efi/nixos/fwupdx64.efi
+          '';
+        };
       };
       efi.canTouchEfiVariables = true;
     };
