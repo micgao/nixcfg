@@ -131,7 +131,13 @@
 
   hardware = {
     pulseaudio.enable = false;
-    cpu.intel.updateMicrocode = true;
+    cpu = {
+      intel = {
+        updateMicrocode = true;
+        sgx.provision.enable = true;
+      };
+      x86.msr.enable = true;
+    };
     opengl = {
       enable = true;
       driSupport = true;
@@ -273,19 +279,6 @@
 
   services = {
     hardware.bolt.enable = true;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "performance";
-          turbo = "auto";
-        };
-      };
-    };
     fwupd = {
       enable = true;
       extraRemotes = ["lvfs-testing"];
@@ -341,6 +334,7 @@
       openFirewall = true;
     };
     btrfs.autoScrub.enable = true;
+    throttled.enabled = true;
     gnome.gnome-keyring.enable = true;
   };
 
@@ -370,7 +364,6 @@
         "networkmanager"
         "podman"
         "kvm"
-        "lxd"
         "rtkit"
       ];
     };

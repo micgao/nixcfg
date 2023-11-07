@@ -15,6 +15,7 @@
       nodejs
       python3Minimal
       distrobox
+      bottles
       viddy
       bruno
       curlie
