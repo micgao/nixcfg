@@ -340,7 +340,7 @@
       openFirewall = true;
     };
     btrfs.autoScrub.enable = true;
-    throttled.enabled = true;
+    throttled.enable = true;
     gnome.gnome-keyring.enable = true;
   };
 
