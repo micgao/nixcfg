@@ -26,7 +26,6 @@
       "editor.cursorSmoothCaretAnimation" = "on";
       "diffEditor.codeLens" = true;
       "diffEditor.diffAlgorithm" = "advanced";
-      "diffEditor.experimental.useVersion2" = true;
       "vscode-neovim.logLevel" = "none";
       "vscode-neovim.neovimClean" = true;
       "vscode-neovim.useCtrlKeysForInsertMode" = false;
@@ -35,9 +34,6 @@
       "rust-analyzer.restartServerOnConfigChange" = true;
       "tabnine.experimentalAutoImports" = true;
       "tabnine.receiveBetaChannelUpdates" = true;
-      "customizeUI.activityBarHideSettings" = true;
-      "customizeUI.activityBar" = "bottom";
-      "customizeUI.statusBarPosition" = "under-panel";
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };

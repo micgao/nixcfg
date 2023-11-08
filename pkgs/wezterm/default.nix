@@ -28,13 +28,13 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "wezterm";
-  version = "d2a18dbbd3d838355947ef19c7f4750a09873949";
+  version = "f0e3eecba6faec0aa963a6f0067577afc99e11db";
 
   src = fetchFromGitHub {
     owner = "wez";
     repo = pname;
     rev = version;
-    hash = "sha256-CWLb/v1dflTzUncThZ+70B9v/1mbspfCJHtSjoswZ+w=";
+    hash = "";
     fetchSubmodules = true;
   };
 
