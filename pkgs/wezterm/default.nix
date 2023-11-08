@@ -34,7 +34,7 @@ rustPlatform.buildRustPackage rec {
     owner = "wez";
     repo = pname;
     rev = version;
-    hash = "";
+    hash = "sha256-VxN3qv+uRuS1Yo51zWkooZdJkodEbZ4F50iYRihCQIU=";
     fetchSubmodules = true;
   };
 
