@@ -4,6 +4,7 @@
 , nixosTests
 
 , cmake
+, scdoc
 , installShellFiles
 , makeWrapper
 , ncurses
@@ -52,6 +53,7 @@ rustPlatform.buildRustPackage rec {
   };
 
   nativeBuildInputs = [
+    scdoc
     cmake
     installShellFiles
     makeWrapper
@@ -77,9 +79,6 @@ rustPlatform.buildRustPackage rec {
       install -D extra/linux/org.alacritty.Alacritty.appdata.xml -t $out/share/appdata/
       install -D extra/logo/compat/alacritty-term.svg $out/share/icons/hicolor/scalable/apps/Alacritty.svg
 
-      # patchelf generates an ELF that binutils' "strip" doesn't like:
-      #    strip: not enough room for program headers, try linking with -N
-      # As a workaround, strip manually before running patchelf.
       $STRIP -S $out/bin/alacritty
 
       patchelf --add-rpath "${lib.makeLibraryPath rpathLibs}" $out/bin/alacritty
@@ -91,10 +90,11 @@ rustPlatform.buildRustPackage rec {
     installShellCompletion --fish extra/completions/alacritty.fish
 
     install -dm 755 "$out/share/man/man1"
-    gzip -c extra/alacritty.man > "$out/share/man/man1/alacritty.1.gz"
-    gzip -c extra/alacritty-msg.man > "$out/share/man/man1/alacritty-msg.1.gz"
-
-    install -Dm 644 alacritty.yml $out/share/doc/alacritty.yml
+    install -dm 755 "$out/share/man/man5"
+    scdoc < extra/man/alacritty.1.scd | gzip -c | sudo tee /usr/local/share/man/man1/alacritty.1.gz
+    scdoc < extra/man/alacritty-msg.1.scd | gzip -c | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz
+    scdoc < extra/man/alacritty.5.scd | gzip -c | sudo tee /usr/local/share/man/man5/alacritty.5.gz
+    scdoc < extra/man/alacritty-bindings.5.scd | gzip -c | sudo tee /usr/local/share/man/man5/alacritty-bindings.5.gz
 
     install -dm 755 "$terminfo/share/terminfo/a/"
     tic -xe alacritty,alacritty-direct -o "$terminfo/share/terminfo" extra/alacritty.info
