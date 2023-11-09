@@ -85,7 +85,7 @@ in {
           }
           sensitivity = -0.2
           accel_profile = flat
-          float_switch_override_focus = 2
+          float_switch_override_focus = 0
       }
 
       general {
@@ -104,14 +104,19 @@ in {
           inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 6
+	            size = 9
 	            passes = 3
+	            ignore_opacity = true
+	            vibrancy = 0.1696
+	            vibrancy_darkness = 0.1696
 	            new_optimizations = true
 	            xray = true
-	            brightness = 1.0
+	            brightness = 0.8172
+	            contrast = 0.8916
 	            noise = 0.02
+	            special = false
 	        }
-          drop_shadow = false
+          drop_shadow = true
           shadow_range = 20
           shadow_render_power = 3
           shadow_ignore_window = true
@@ -169,7 +174,7 @@ in {
       windowrulev2 = workspace 9 silent, class:(dota2)
 
       workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
-      workspace = special:scratchpad, on-created-empty:wezterm
+      workspace = special:scratchpad
 
       $mainMod = SUPER
 
