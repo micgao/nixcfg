@@ -6,4 +6,5 @@
   iosevka-ss04 = pkgs.callPackage ./iosevka { };
   wezterm = pkgs.callPackage ./wezterm { };
   geist = pkgs.callPackage ./geist { };
+  inter = pkgs.callPackage ./inter { };
 }

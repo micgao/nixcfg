@@ -4,9 +4,9 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "iosevka-ss04";
-  version = "0.0.1";
+  version = "27.3.4";
 
-  src = ./ttc;
+  src = ./fonts;
 
   installPhase = ''
     runHook preInstall

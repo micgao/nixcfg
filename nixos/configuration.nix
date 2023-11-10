@@ -89,7 +89,7 @@
     variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+      FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 truetype:interpreter-version=38";
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
@@ -189,12 +189,12 @@
   fonts = {
     packages = with pkgs; [
       material-symbols
-      font-awesome
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-monochrome-emoji
       roboto
       roboto-mono
       inter
+      pretendard
       source-code-pro
       source-sans-pro
       intel-one-mono
@@ -213,8 +213,12 @@
     fontconfig = {
       enable = true;
       antialias = true;
+      cache32Bit = true;
       includeUserConf = true;
-      subpixel = { rgba = "rgb"; };
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
+      };
       localConf = ''
         <alias>
           <family>Iosevka Fixed SS04 Extended Symbols</family>
@@ -226,17 +230,19 @@
       '';
       hinting = {
         enable = true;
-        style = "medium";
+        style = "slight";
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Geist" ];
-        serif = [ "Inter" ];
+        sansSerif = [ "Inter Variable" ];
+        serif = [ "Inter Variable" ];
+        emoji = [ "Noto Emoji" ];
       };
     };
   };
 
   virtualisation = {
+    graphics = true;
     podman = {
       enable = true;
       dockerCompat = true;
@@ -257,7 +263,6 @@
       enable = true;
       onBoot = "ignore";
       qemu = {
-        package = pkgs.qemu_kvm;
         runAsRoot = false;
       };
     };

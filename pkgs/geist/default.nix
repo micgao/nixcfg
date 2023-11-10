@@ -4,9 +4,9 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "geist";
-  version = "0.0.1";
+  version = "1.0.1";
 
-  src = ./ttf;
+  src = ./fonts;
 
   installPhase = ''
     runHook preInstall
