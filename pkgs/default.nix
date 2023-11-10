@@ -3,8 +3,9 @@
   feather-wallet = pkgs.callPackage ./feather-wallet { };
   picocrypt = pkgs.callPackage ./picocrypt { };
   qobuz-dl = pkgs.callPackage ./qobuz-dl { };
-  iosevka-ss04 = pkgs.callPackage ./iosevka { };
   wezterm = pkgs.callPackage ./wezterm { };
+  iosevka-ss04 = pkgs.callPackage ./iosevka { };
   geist = pkgs.callPackage ./geist { };
   inter = pkgs.callPackage ./inter { };
+  monaspace = pkgs.callPackage ./monaspace { };
 }
