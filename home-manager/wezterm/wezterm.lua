@@ -9,7 +9,7 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-wezterm.on('update-right-status', function(window, pane)
+wezterm.on('update-status', function(window, pane)
   window:set_right_status(window:active_workspace())
 end)
 
