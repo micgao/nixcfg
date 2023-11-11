@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }: {
   programs.firefox = {
     enable = true;
-    package = inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin;
+    package = pkgs.firefox-devedition;
   };
   programs.librewolf = {
     enable = true;

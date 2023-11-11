@@ -40,7 +40,6 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    firefox.url = "github:nix-community/flake-firefox-nightly";
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
     hyprland.url = "github:hyprwm/Hyprland";

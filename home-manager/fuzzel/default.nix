@@ -10,13 +10,13 @@
         icon-theme = "Qogir-dark";
         icons-enabled = "yes";
       };
-      colors.background = "282a36dd";
-      colors.text = "f8f8f2ff";
-      colors.match = "8be9fdff";
-      colors.selection-match = "8be9fdff";
-      colors.selection = "44475add";
-      colors.selection-text = "f8f8f2ff";
-      colors.border = "bd93f9ff";
+      colors.background = "131317dd";
+      colors.text = "868690ff";
+      colors.match = "8eb6f5ff";
+      colors.selection-match = "8eb6f5ff";
+      colors.selection = "1F1F24dd";
+      colors.selection-text = "868690ff";
+      colors.border = "ffbb88ff";
     };
   };
 }

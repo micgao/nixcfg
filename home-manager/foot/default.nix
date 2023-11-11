@@ -1,12 +1,14 @@
 {
   programs.foot = {
     enable = true;
+    server.enable = true;
     settings = {
       main = {
         term = "foot";
         login-shell = "yes";
         font = "Iosevka Fixed SS04 Extended:size=11";
         bold-text-in-bright = "yes";
+        dpi-aware = "yes";
       };
       cursor = {
         style = "beam";
