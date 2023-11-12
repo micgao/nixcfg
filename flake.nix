@@ -53,22 +53,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-    ];
+    systems = [ "x86_64-linux" ];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
   in
   {
     packages = forAllSystems (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-      in import ./pkgs { inherit pkgs; }
+      import ./pkgs nixpkgs.legacyPackages.${system}
     );
-    devShells = forAllSystems (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-      in import ./shell.nix { inherit pkgs; }
+    formatter = forAllSystems (system:
+      nixpkgs.legacyPackages.${system}.alejandra
     );
     overlays = import ./overlays { inherit inputs; };
     nixosConfigurations = {

@@ -83,8 +83,13 @@
   };
 
   environment = {
+    etc = lib.mapAttrs'
+    (name: value: {
+      name = "nix/path/${name}";
+      value.source = value.flake;
+    })
+    config.nix.registry;
     systemPackages = with pkgs; [
-      btrfs-progs
     ];
     variables = {
       EDITOR = "nvim";
@@ -182,8 +187,8 @@
       dates = "weekly";
       options = "--delete-older-than +3";
     };
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
+    registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+    nixPath = [ "/etc/nix/path" ];
   };
 
   fonts = {
@@ -294,10 +299,6 @@
       enable = true;
       extraRemotes = ["lvfs-testing"];
     };
-    openssh = {
-      enable = true;
-      settings = { PermitRootLogin = "no"; };
-    };
     resolved = {
       enable = true;
       extraConfig = ''
@@ -364,6 +365,9 @@
     users.micgao = {
       shell = pkgs.nushell;
       isNormalUser = true;
+      packages = [
+        inputs.home-manager.packages.${pkgs.system}.default
+      ];
       extraGroups = [
         "wheel"
         "video"
