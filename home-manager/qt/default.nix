@@ -1,9 +1,11 @@
+{ pkgs, ... }:
 {
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    platformTheme = "gtk";
     style = {
-      name = "breeze";
+      name = "gtk2";
+      package = pkgs.qt6Packages.qt6gtk2;
     };
   };
   xdg.configFile."qt5ct/colors/Catppuccin-Mocha.conf".source = ./Catppuccin-Mocha.conf;
