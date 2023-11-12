@@ -10,6 +10,7 @@
       unrar
       zip
       unzip
+      p7zip
       graphviz
       imagemagick
       zstd

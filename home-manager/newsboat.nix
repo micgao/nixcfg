@@ -1,3 +1,0 @@
-{
-  programs.newsboat.enable = true;
-}

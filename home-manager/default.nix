@@ -27,13 +27,11 @@
     ./go.nix
     ./gpg.nix
     ./gtk.nix
-    ./joshuto.nix
     ./jq.nix
     ./ledger.nix
     ./mail.nix
     ./neomutt.nix
     ./neovim.nix
-    ./newsboat.nix
     ./nix-index-database.nix
     ./nix-your-shell.nix
     ./nnn.nix

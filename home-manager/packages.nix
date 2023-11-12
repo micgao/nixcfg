@@ -8,7 +8,6 @@
     packages = with pkgs; [
       nixfmt
       nix-init
-      nix-melt
       nix-ld-rs
       nix-update
       rustup
@@ -29,14 +28,11 @@
       gpg-tui
       git-credential-gopass
       git-credential-keepassxc
-      xplr
       rclone
       playerctl
       procs
-      socat
       megacmd
       mpc-cli
-      nb
       protonmail-bridge
       gimp-with-plugins
       keepassxc
