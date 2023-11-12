@@ -83,7 +83,7 @@ in {
           touchpad {
               natural_scroll = false
           }
-          sensitivity = -0.2
+          sensitivity = -0.1
           accel_profile = flat
           float_switch_override_focus = 0
       }
@@ -114,7 +114,7 @@ in {
 	            brightness = 0.8172
 	            contrast = 0.8916
 	            noise = 0.02
-	            special = false
+	            special = true
 	        }
           drop_shadow = true
           shadow_range = 20
@@ -169,6 +169,7 @@ in {
       }
 
       layerrule = blur, waybar
+      layerrule = blur, launcher
 
       windowrulev2 = fullscreen, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
