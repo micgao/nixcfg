@@ -60,19 +60,25 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
     systems = [ "x86_64-linux" ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    });
   in
   {
-    packages = forAllSystems (system:
-      import ./pkgs nixpkgs.legacyPackages.${system}
+    inherit lib;
+    packages = forEachSystem (pkgs:
+      import ./pkgs { inherit pkgs; }
     );
-    formatter = forAllSystems (system:
-      nixpkgs.legacyPackages.${system}.alejandra
+    formatter = forEachSystem (pkgs:
+      pkgs.nixpkgs-fmt
     );
     overlays = import ./overlays { inherit inputs; };
     nixosConfigurations = {
-      X1E3 = nixpkgs.lib.nixosSystem {
+      X1E3 = lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [ ./nixos/configuration.nix ];
       };
