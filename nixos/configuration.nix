@@ -124,10 +124,26 @@
     };
     rtkit.enable = true;
     polkit.enable = true;
-    pam.services.greetd = {
-      allowNullPassword = true;
-      startSession = true;
-      enableGnomeKeyring = true;
+    pam = {
+      loginLimits = [
+        {
+          domain = "@audio";
+          type = "-";
+          item = "rtprio";
+          value = "95";
+        }
+        {
+          domain = "@audio";
+          type = "-";
+          item = "memlock";
+          value = "unlimited";
+        }
+      ];
+      services.greetd = {
+        allowNullPassword = true;
+        startSession = true;
+        enableGnomeKeyring = true;
+      };
     };
   };
 
@@ -182,7 +198,6 @@
 
   nix = {
     settings = {
-      auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
       keep-going = true;
       keep-outputs = true;
