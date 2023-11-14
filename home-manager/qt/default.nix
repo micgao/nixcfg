@@ -2,7 +2,7 @@
 {
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme = "qtct";
     style = {
       name = "gtk2";
       package = pkgs.qt6Packages.qt6gtk2;
