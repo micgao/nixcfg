@@ -35,6 +35,7 @@
       verbose = false;
       systemd = {
         enable = true;
+        dbus.enable = true;
       };
     };
     modprobeConfig.enable = true;
@@ -115,6 +116,12 @@
   };
 
   security = {
+    tpm2 = {
+      enable = true;
+      pkcs11.enable = true;
+      abrmd.enable = true;
+      tctiEnvironment.enable = true;
+    };
     rtkit.enable = true;
     polkit.enable = true;
     pam.services.greetd = {
@@ -346,7 +353,9 @@
       openFirewall = true;
     };
     btrfs.autoScrub.enable = true;
-    throttled.enable = true;
+    throttled = {
+      enable = true;
+    };
     gnome.gnome-keyring.enable = true;
   };
 
