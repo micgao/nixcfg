@@ -39,7 +39,7 @@ let
 in
 rustPlatform.buildRustPackage rec {
   pname = "alacritty";
-  version = "3ffd6c8f26f9788466b9ba95659b8de970a10f08";
+  version = "d83d5af2b571e5dc2c5c622277096a91c04ca7eb";
 
   src = fetchFromGitHub {
     owner = "alacritty";
