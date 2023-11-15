@@ -45,7 +45,7 @@ rustPlatform.buildRustPackage rec {
     owner = "alacritty";
     repo = pname;
     rev = version;
-    hash = "sha256-u5rQ4Hvglsjhd0OCLFUUVoWs03ymXdSdPhjqh9UjNvk=";
+    cargoHash = "sha256-u5rQ4Hvglsjhd0OCLFUUVoWs03ymXdSdPhjqh9UjNvk=";
   };
 
   cargoLock = {
