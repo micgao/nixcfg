@@ -90,12 +90,10 @@
       value.source = value.flake;
     })
     config.nix.registry;
-    systemPackages = with pkgs; [
-    ];
+    systemPackages = with pkgs; [];
     variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 truetype:interpreter-version=38";
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
@@ -179,6 +177,15 @@
       extraPackages = with pkgs; [
         vulkan-validation-layers
         intel-compute-runtime
+        vaapiIntel
+        libvdpau-va-gl
+        vaapiVdpau
+        intel-ocl
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [
+        vaapiIntel
+        libvdpau-va-gl
+        vaapiVdpau
       ];
     };
     nvidia = {
@@ -347,8 +354,7 @@
       enable = true;
       settings = {
         default_session = {
-          command =
-            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         };
       };
     };
