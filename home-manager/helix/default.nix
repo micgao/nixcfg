@@ -2,6 +2,10 @@
   programs.helix = {
     enable = true;
     package = inputs.helix.packages.${pkgs.hostPlatform.system}.default;
+    extraPackages = with pkgs; [
+      marksman
+      nodePackages.typescript-language-server
+    ];
     languages = {
       language-server.typescript-language-server = with pkgs.nodePackages; {
         command = "${typescript-language-server}/bin/typescript-language-server";
@@ -13,6 +17,12 @@
       }];
     };
     settings = {
+      keys.normal = {
+        space.space = "file_picker";
+      };
+      keys.insert = {
+        j.j = "normal_mode";
+      };
       theme = "base16_transparent";
       editor = {
         shell = ["nu" "-c"];
