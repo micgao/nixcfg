@@ -1,4 +1,6 @@
-{ lib
+{ stdenv
+, rustPlatform
+, lib
 , fetchFromGitHub
 , ncurses
 , pkg-config
@@ -7,6 +9,8 @@
 , installShellFiles
 , openssl
 , libGL
+, libX11
+, libxcb
 , libxkbcommon
 , xcbutil
 , xcbutilimage
@@ -17,28 +21,29 @@
 , nixosTests
 , runCommand
 , vulkan-loader
-, rustPlatform
-, cairo
-, libgit2
-, sqlite
-, zstd
-, stdenv
-, xorg
+, doCheck ? true
 }:
 
+
+let
+  doCheck_ = doCheck;
+  owner = "wez";
+in
 rustPlatform.buildRustPackage rec {
   pname = "wezterm";
-  version = "f0e3eecba6faec0aa963a6f0067577afc99e11db";
+  version = "unstable-2023-11-13";
+  rev = "721fbdf5dc39aaeacc0517e0422d06f0cf81561b";
 
   src = fetchFromGitHub {
-    owner = "wez";
+    owner = owner;
     repo = pname;
-    rev = version;
-    hash = "sha256-VxN3qv+uRuS1Yo51zWkooZdJkodEbZ4F50iYRihCQIU=";
+    rev = rev;
     fetchSubmodules = true;
+    sha256 = "sha256-S8i3EXUEChlf2Il3AAhfjIkqZO6PoB2PfLizOeubNnU=";
   };
 
   postPatch = ''
+    echo ${version} > .tag
     rm -r wezterm-ssh/tests
   '';
 
@@ -53,26 +58,19 @@ rustPlatform.buildRustPackage rec {
   nativeBuildInputs = [
     installShellFiles
     ncurses
-    python3
     pkg-config
+    python3
   ];
 
   buildInputs = [
-    cairo
-    libgit2
-    libxkbcommon
-    openssl
-    sqlite
-    vulkan-loader
-    zlib
-    zstd
     fontconfig
+    zlib
   ] ++ lib.optionals stdenv.isLinux [
-    wayland
-    xorg.libX11
-    xorg.libxcb
+    libX11
+    libxcb
     libxkbcommon
     openssl
+    wayland
     xcbutil
     xcbutilimage
     xcbutilkeysyms
@@ -83,7 +81,6 @@ rustPlatform.buildRustPackage rec {
 
   env = {
     OPENSSL_NO_VENDOR = true;
-    ZSTD_SYS_USE_PKG_CONFIG = true;
   };
 
   postInstall = ''
@@ -102,6 +99,8 @@ rustPlatform.buildRustPackage rec {
 
     install -Dm644 assets/wezterm-nautilus.py -t $out/share/nautilus-python/extensions
   '';
+
+  doCheck = doCheck_;
 
   preFixup = lib.optionalString stdenv.isLinux ''
     patchelf \
@@ -125,10 +124,9 @@ rustPlatform.buildRustPackage rec {
   };
 
   meta = with lib; {
-    description = "A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust";
-    homepage = "https://github.com/wez/wezterm";
+    description = "GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust";
+    homepage = "https://wezfurlong.org/wezterm";
     license = licenses.mit;
-    maintainers = with maintainers; [ me ];
-    mainProgram = "wezterm";
+    maintainers = with maintainers; [ SuperSandro2000 ];
   };
 }
