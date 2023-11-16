@@ -261,9 +261,9 @@
         style = "slight";
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter Variable" ];
-        serif = [ "Inter Variable" ];
+        monospace = [ "Iosevka SS04" "Noto Emoji" ];
+        sansSerif = [ "Inter Variable" "Noto Emoji" ];
+        serif = [ "Noto Serif" "Noto Emoji" ];
         emoji = [ "Noto Emoji" ];
       };
     };

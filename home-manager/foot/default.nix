@@ -1,3 +1,7 @@
+{ config, ... }: 
+let
+  inherit (config.colorscheme) colors;
+in
 {
   programs.foot = {
     enable = true;
@@ -13,27 +17,34 @@
       cursor = {
         style = "beam";
         beam-thickness = "2";
+        blink = "no";
+      };
+      mouse = {
+        hide-when-typing = "yes";
+      };
+      scrollback = {
+        lines = 9001;
       };
       colors = {
         alpha = "1.0";
-        background = "0F1014";
-        foreground = "868690";
-        regular0 = "868690";
-        regular1 = "ffbb88";
-        regular2 = "fdfdfe";
-        regular3 = "c58fff";
-        regular4 = "9898a6";
-        regular5 = "8eb5f5";
-        regular6 = "f58ee0";
-        regular7 = "131317";
-        bright0 = "868690";
-        bright1 = "ffbb88";
-        bright2 = "fdfdfe";
-        bright3 = "c58fff";
-        bright4 = "9898a6";
-        bright5 = "8eb5f5";
-        bright6 = "f58ee0";
-        bright7 = "575861";
+        background = "#${colors.base00}";
+        foreground = "#${colors.base06}";
+        regular0 = "#${colors.base00}";
+        regular1 = "#${colors.base01}";
+        regular2 = "#${colors.base02}";
+        regular3 = "#${colors.base03}";
+        regular4 = "#${colors.base04}";
+        regular5 = "#${colors.base05}";
+        regular6 = "#${colors.base06}";
+        regular7 = "#${colors.base07}";
+        bright0 = "#${colors.base08}";
+        bright1 = "#${colors.base09}";
+        bright2 = "#${colors.base0A}";
+        bright3 = "#${colors.base0B}";
+        bright4 = "#${colors.base0C}";
+        bright5 = "#${colors.base0D}";
+        bright6 = "#${colors.base0E}";
+        bright7 = "#${colors.base0F}";
       };
     };
   };

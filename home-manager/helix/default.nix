@@ -1,15 +1,31 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, lib, ... }: {
   programs.helix = {
     enable = true;
     package = inputs.helix.packages.${pkgs.hostPlatform.system}.default;
     extraPackages = with pkgs; [
       marksman
-      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+      nodePackages.vscode-css-languageserver-bin
+      nil
     ];
     languages = {
-      language-server.typescript-language-server = with pkgs.nodePackages; {
-        command = "${typescript-language-server}/bin/typescript-language-server";
-        args = ["--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib"];
+      language-server = {
+        typescript-language-server = with pkgs.nodePackages; {
+          command = "${typescript-language-server}/bin/typescript-language-server";
+          args = ["--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib"];
+        };
+        nil = {
+          command = lib.getExe pkgs.nil;
+          config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
+        };
+        vscode-css-language-server = {
+          command = "${pkgs.nodePackages.vscode-css-languageserver-bin}/bin/css-languageserver";
+          args = ["--stdio"];
+          config = {
+            provideFormatter = true;
+            css.validate.enable = true;
+          };
+        };
       };
       language = [{
         name = "rust";
@@ -38,7 +54,9 @@
         };
         indent-guides = {
           render = true;
+          rainbow-option = "dim";
         };
+        rainbow-brackets = true;
         statusline.center = ["position-percentage"];
         file-picker = {
           hidden = false;
