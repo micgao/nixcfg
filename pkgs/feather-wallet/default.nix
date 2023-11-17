@@ -11,7 +11,6 @@
   nativeBuildInputs = with pkgs; [
     pkg-config
     qt6Packages.wrapQtAppsHook
-    zxing-cpp
     graphviz-nox
     doxygen
   ];
@@ -19,6 +18,7 @@
   buildInputs = with pkgs; [
     cmake
     openssl
+    tor
 
     unbound
     boost
@@ -43,6 +43,7 @@
     protobuf
     qrencode
     zbar
+    zxing-cpp
     zeromq
   ];
 }
