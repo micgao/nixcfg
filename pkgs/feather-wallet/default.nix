@@ -1,4 +1,8 @@
 { stdenv, fetchgit, pkgs, ... }: 
+let
+  tor_version = pkgs.tor { inherit (pkgs.tor) version; };
+in
+
 stdenv.mkDerivation rec {
   pname = "feather-wallet";
   version = "2.5.2";
@@ -20,6 +24,7 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     "-DDONATE_BEG=OFF"
     "-DTOR_DIR=${pkgs.tor}/bin"
+    "-DTOR_VERSION=${tor_version}"
   ];
 
   buildInputs = with pkgs; [
