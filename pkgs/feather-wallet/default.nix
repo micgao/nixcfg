@@ -1,24 +1,30 @@
-{ pkgs, ... }: pkgs.stdenv.mkDerivation rec {
+{ stdenv, fetchgit, pkgs, ... }: 
+stdenv.mkDerivation rec {
   pname = "feather-wallet";
   version = "2.5.2";
 
-  src = pkgs.fetchgit {
+  src = fetchgit {
     url = "https://github.com/feather-wallet/feather";
     rev = version;
-    sha256 = "sha256-OSBG2W35GYlViwz5eXokpScrMTtPSaWAgEUNw2urm6w=";
+    hash = "sha256-OSBG2W35GYlViwz5eXokpScrMTtPSaWAgEUNw2urm6w=";
     fetchSubmodules = true;
   };
   nativeBuildInputs = with pkgs; [
     pkg-config
+    cmake
     qt6Packages.wrapQtAppsHook
     graphviz-nox
     doxygen
   ];
 
+  cmakeFlags = [
+    "-DDONATE_BEG=OFF"
+    "-DTOR_DIR=${pkgs.tor}/bin"
+  ];
+
   buildInputs = with pkgs; [
     cmake
     openssl
-    tor
 
     unbound
     boost
