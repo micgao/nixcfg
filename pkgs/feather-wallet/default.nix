@@ -1,6 +1,6 @@
 { stdenv, fetchgit, pkgs, ... }: 
 let
-  tor_version = pkgs.tor { inherit (pkgs.tor) version; };
+  tor_version = pkgs.tor.version;
 in
 
 stdenv.mkDerivation rec {
