@@ -24,7 +24,7 @@ in {
     libsForQt5.polkit-kde-agent
     gsettings-desktop-schemas
     hyprpaper
-    hyprpicker
+    # hyprpicker
     wlay
     wtype
     wl-clipboard
