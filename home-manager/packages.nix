@@ -15,7 +15,7 @@
       python3Minimal
       distrobox
       bottles
-      ollama
+      # ollama
       viddy
       bruno
       curlie
@@ -29,6 +29,9 @@
       rclone
       playerctl
       procs
+      zip
+      unzip
+      p7zip
       megacmd
       mpc-cli
       protonmail-bridge

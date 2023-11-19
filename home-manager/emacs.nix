@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }: 
+{ inputs, pkgs, ... }: 
 {
   nixpkgs.overlays = [
     inputs.emacs-overlay.overlay
@@ -8,9 +8,6 @@
       binutils
       xdg-utils
       unrar
-      zip
-      unzip
-      p7zip
       graphviz
       imagemagick
       zstd
@@ -24,12 +21,9 @@
     enable = true;
     package = pkgs.emacs-pgtk;
     extraPackages = epkgs: with epkgs; [
-      emacsql
+      # emacsql
       vterm
       mu4e
     ];
   };
-  # services.emacs = {
-  #   enable = true;
-  # };
 }

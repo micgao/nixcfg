@@ -17,9 +17,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:nix-community/nixGL";
-    };
     nix-ld = {
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,19 +35,19 @@
     };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
     hyprland.url = "github:hyprwm/Hyprland";
-    # hyprpicker = {
-    #   url = "github:hyprwm/hyprpicker";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # hyprpaper = {
-    #   url = "github:hyprwm/hyprpaper";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
