@@ -232,10 +232,8 @@
       source-code-pro
       source-sans-pro
       intel-one-mono
-      monaspace
       recursive
       iosevka-ss04
-      geist
       (nerdfonts.override {
         fonts =
           [ "FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly" ];
