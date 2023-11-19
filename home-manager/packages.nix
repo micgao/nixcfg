@@ -15,6 +15,7 @@
       python3Minimal
       distrobox
       bottles
+      ollama
       viddy
       bruno
       curlie
@@ -22,9 +23,6 @@
       circumflex
       fd
       gopass
-      gopass-hibp
-      gopass-jsonapi
-      gopass-summon-provider
       gpg-tui
       git-credential-gopass
       git-credential-keepassxc
