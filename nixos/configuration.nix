@@ -175,7 +175,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        vulkan-validation-layers
+        # vulkan-validation-layers
         intel-compute-runtime
         vaapiIntel
         libvdpau-va-gl
