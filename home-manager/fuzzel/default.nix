@@ -7,7 +7,7 @@
         layer = "overlay";
         font = "Iosevka Fixed SS04:size=14";
         show-actions = "yes";
-        icon-theme = "Papirus Dark";
+        icon-theme = "Qogir-dark";
         icons-enabled = "yes";
       };
       colors.background = "131317dd";

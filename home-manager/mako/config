@@ -25,25 +25,25 @@ max-visible=5
 layer=overlay
 anchor=top-right
 
-background-color=#20262C
-text-color=#f1fcf9
-border-color=#B4A1DB
-progress-color=over #B4A1DB
+background-color=#0F1014
+text-color=#868690
+border-color=#8eb6f5
+progress-color=over #8eb6f5
 
 [urgency=low]
-border-color=#B4A1DB
+border-color=#8eb6f5
 default-timeout=2000
 
 [urgency=normal]
-border-color=#B4A1DB
+border-color=#c58fff
 default-timeout=5000
 
 [urgency=high]
-border-color=#D04E9D
-text-color=#D04E9D
+border-color=#f58ee0
+text-color=#f58ee0
 default-timeout=0
 
 [category=mpd]
-border-color=#E49186
+border-color=#ffbb88
 default-timeout=2000
 group-by=category
