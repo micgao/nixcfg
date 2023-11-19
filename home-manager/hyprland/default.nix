@@ -7,7 +7,7 @@ in {
 
   nixpkgs.overlays = [
     inputs.nixpkgs-wayland.overlay
-    inputs.hyprpaper.overlays.default
+    # inputs.hyprpaper.overlays.default
     inputs.hyprpicker.overlays.default
   ];
 
