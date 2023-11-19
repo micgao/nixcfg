@@ -43,10 +43,10 @@
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
     hyprland.url = "github:hyprwm/Hyprland";
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprpicker = {
+    #   url = "github:hyprwm/hyprpicker";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # hyprpaper = {
     #   url = "github:hyprwm/hyprpaper";
     #   inputs.nixpkgs.follows = "nixpkgs";
