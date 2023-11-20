@@ -15,6 +15,7 @@
       python3Minimal
       distrobox
       bottles
+      ollama
       viddy
       bruno
       curlie
