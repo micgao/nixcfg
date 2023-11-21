@@ -16,7 +16,6 @@
       distrobox
       bottles
       ollama
-      viddy
       bruno
       curlie
       hurl
