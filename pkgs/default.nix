@@ -6,4 +6,5 @@
   wezterm = pkgs.callPackage ./wezterm { };
   iosevka-ss04 = pkgs.callPackage ./iosevka { };
   inter = pkgs.callPackage ./inter { };
+  distrobox = pkgs.callPackage ./distrobox { };
 }

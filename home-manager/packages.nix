@@ -19,6 +19,7 @@
       viddy
       bruno
       curlie
+      hurl
       clipboard-jh
       circumflex
       fd
