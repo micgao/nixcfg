@@ -21,7 +21,7 @@
     enable = true;
     package = pkgs.emacs-pgtk;
     extraPackages = epkgs: with epkgs; [
-      # emacsql
+      emacsql
       vterm
       mu4e
     ];

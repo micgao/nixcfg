@@ -178,7 +178,8 @@ in {
       $mainMod = SUPER
 
       bind = $mainMod, return, exec, wezterm
-      bind = $mainMod, space, exec, fuzzel
+      # bind = $mainMod, space, exec, fuzzel
+      bind = $mainMod, space, exec, anyrun
       bind = $mainMod, F, fullscreen,
       bind = $mainMod, G, togglegroup,
       bind = $mainMod, Q, killactive,
