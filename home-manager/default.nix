@@ -1,6 +1,7 @@
 { outputs, lib, config, pkgs, ... }: {
   imports = [
     ./alacritty
+    ./anyrun
     ./bottom
     ./foot
     ./fuzzel
@@ -16,7 +17,6 @@
     ./wezterm
     ./wlogout
     ./accounts.nix
-    ./anyrun.nix
     ./bat.nix
     ./browsers.nix
     ./direnv.nix
