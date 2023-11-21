@@ -11,11 +11,8 @@
         applications
         kidex
         randr
-        rink
         shell
         stdin
-        symbols
-        websearch
       ];
     };
     extraCss = builtins.readFile ./style.css;

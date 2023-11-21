@@ -171,6 +171,7 @@ in {
 
       windowrulev2 = fullscreen, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
+      windowrulev2 = float,center,stayfocused,title:(sunbeam)
 
       workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
       workspace = special:scratchpad
@@ -178,8 +179,9 @@ in {
       $mainMod = SUPER
 
       bind = $mainMod, return, exec, wezterm
-      # bind = $mainMod, space, exec, fuzzel
-      bind = $mainMod, space, exec, anyrun
+      bind = $mainMod, space, exec, fuzzel
+      # bind = $mainMod, space, exec, anyrun
+      # bind = $mainMod, space, exec, wezterm -e sunbeam
       bind = $mainMod, F, fullscreen,
       bind = $mainMod, G, togglegroup,
       bind = $mainMod, Q, killactive,
