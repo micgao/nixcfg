@@ -18,6 +18,6 @@
         websearch
       ];
     };
-    extraCss = builtins.readFile "./style.css";
+    extraCss = builtins.readFile ./style.css;
   };
 }
