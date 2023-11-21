@@ -1,4 +1,4 @@
-{ pkgs, inputs, self, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     inputs.anyrun.homeManagerModules.default
@@ -18,6 +18,6 @@
         websearch
       ];
     };
-    extraCss = builtins.readFile "${self}/home-manager/anyrun/style.css";
+    extraCss = builtins.readFile "./style.css";
   };
 }
