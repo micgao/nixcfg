@@ -56,7 +56,6 @@
           render = true;
           rainbow-option = "dim";
         };
-        rainbow-brackets = true;
         statusline.center = ["position-percentage"];
         file-picker = {
           hidden = false;

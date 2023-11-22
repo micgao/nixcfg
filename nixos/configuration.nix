@@ -229,6 +229,7 @@
       roboto-mono
       inter
       pretendard
+      cascadia-code
       source-code-pro
       source-sans-pro
       intel-one-mono
