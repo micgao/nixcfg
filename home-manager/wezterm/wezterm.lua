@@ -124,6 +124,7 @@ config.colors = {
       fg_color = '#9898A6',
     },
   },
+  compose_cursor = '#FFBB88',
 }
 config.font = wezterm.font_with_fallback {
   {
@@ -133,7 +134,8 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 11.5
 config.freetype_interpreter_version = 40
 config.freetype_load_target = "Light"
-config.custom_block_glyphs = true
+config.allow_square_glyphs_to_overflow_width = "Never"
+config.custom_block_glyphs = false
 config.use_cap_height_to_scale_fallback_fonts = true
 config.warn_about_missing_glyphs = false
 config.unicode_version = 14
