@@ -4,7 +4,7 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "iosevka-ss04";
-  version = "27.3.4";
+  version = "28.0.0-alpha.1";
 
   src = ./fonts;
 
