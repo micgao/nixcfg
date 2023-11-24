@@ -13,7 +13,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = inputs.nixpkgs-personal.linuxPackages_zen;
     kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
@@ -21,12 +21,12 @@
         editor = false;
         consoleMode = "auto";
         configurationLimit = 10;
-        extraEntries = {
-          "linux_firmware_updater.conf" = ''
-            title Linux Firmware Updater
-            efi /efi/nixos/fwupdx64.efi
-          '';
-        };
+        # extraEntries = {
+        #   "linux_firmware_updater.conf" = ''
+        #     title Linux Firmware Updater
+        #     efi /efi/nixos/fwupdx64.efi
+        #   '';
+        # };
       };
       efi.canTouchEfiVariables = true;
     };
@@ -153,6 +153,7 @@
     ];
     config = {
       allowUnfree = true;
+      nvidia.acceptLicense = true;
     };
   };
 
@@ -175,7 +176,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        # vulkan-validation-layers
+        vulkan-validation-layers
         intel-compute-runtime
         vaapiIntel
         libvdpau-va-gl
@@ -196,7 +197,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
