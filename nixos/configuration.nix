@@ -14,19 +14,13 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" ];
+    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" ];
     loader = {
       systemd-boot = {
         enable = true;
         editor = false;
         consoleMode = "auto";
         configurationLimit = 10;
-        extraEntries = {
-          "linux_firmware_updater.conf" = ''
-            title Linux Firmware Updater
-            efi /efi/nixos/fwupdx64.efi
-          '';
-        };
       };
       efi.canTouchEfiVariables = true;
     };
@@ -40,9 +34,9 @@
     };
     modprobeConfig.enable = true;
     extraModprobeConfig = ''
-      options nvidia-drm modeset=1 
+      options nvidia-drm modeset=1 fbdev=1
       options nvidia NVreg_UsePageAttributeTable=1
-      options nvidia NVreg_RegistryDwords="OverrideMaxPerf=0x1"
+      options nvidia NVreg_RegistryDwords="OverrideMaxPerf=0x1
     '';
     extraModulePackages = [
       config.boot.kernelPackages.nvidia_x11
@@ -199,7 +193,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
