@@ -105,16 +105,12 @@ in {
 	        blur {
 	            enabled = true
 	            size = 9
-	            passes = 3
+	            passes = 1
 	            ignore_opacity = true
 	            vibrancy = 0.1696
-	            vibrancy_darkness = 0.1696
 	            new_optimizations = true
 	            xray = true
-	            brightness = 0.8172
-	            contrast = 0.8916
-	            noise = 0.02
-	            special = true
+	            special = false
 	        }
           drop_shadow = true
           shadow_range = 20
