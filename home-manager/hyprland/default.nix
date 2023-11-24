@@ -158,7 +158,6 @@ in {
       }
 
       misc {
-          vfr = true
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false
