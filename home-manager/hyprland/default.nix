@@ -104,7 +104,7 @@ in {
           inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 9
+	            size = 3
 	            passes = 1
 	            ignore_opacity = true
 	            vibrancy = 0.1696
@@ -168,6 +168,7 @@ in {
 
       windowrulev2 = fullscreen, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
+      windowrulev2 = nomaximizerequest, class:.*
 
       workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
       workspace = special:scratchpad
