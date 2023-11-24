@@ -43,7 +43,6 @@ in {
       monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-      env=WLR_DRM_NO_ATOMIC,1
       env=XDG_SESSION_DESKTOP,Hyprland
       env=XDG_CURRENT_DESKTOP,Hyprland
       env=XDG_SESSION_TYPE,wayland
@@ -82,7 +81,7 @@ in {
           touchpad {
               natural_scroll = false
           }
-          sensitivity = -0.1
+          sensitivity = 0
           accel_profile = flat
           float_switch_override_focus = 0
       }
@@ -172,7 +171,6 @@ in {
 
       windowrulev2 = fullscreen, class:(dota2)
       windowrulev2 = workspace 9 silent, class:(dota2)
-      windowrulev2 = float,center,stayfocused,title:(sunbeam)
 
       workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
       workspace = special:scratchpad
@@ -181,8 +179,6 @@ in {
 
       bind = $mainMod, return, exec, wezterm
       bind = $mainMod, space, exec, fuzzel
-      # bind = $mainMod, space, exec, anyrun
-      # bind = $mainMod, space, exec, wezterm -e sunbeam
       bind = $mainMod, F, fullscreen,
       bind = $mainMod, G, togglegroup,
       bind = $mainMod, Q, killactive,

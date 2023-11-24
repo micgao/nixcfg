@@ -13,8 +13,8 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" ];
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_UsePageAttributeTable=1" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -104,7 +104,6 @@
     portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-      xdgOpenUsePortal = true;
       config.common.default = "*";
     };
   };
