@@ -36,7 +36,7 @@
     extraModprobeConfig = ''
       options nvidia-drm modeset=1
       options nvidia NVreg_UsePageAttributeTable=1
-      options nvidia NVreg_RegistryDwords="OverrideMaxPerf=0x1
+      options nvidia NVreg_RegistryDwords="OverrideMaxPerf=0x1"
     '';
     extraModulePackages = [
       config.boot.kernelPackages.nvidia_x11
@@ -193,7 +193,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };

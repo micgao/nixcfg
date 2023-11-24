@@ -40,7 +40,7 @@ in {
     recommendedEnvironment = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
-      monitor=HDMI-A-1,1920x1080@144,0x0,1
+      monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
       env=WLR_DRM_NO_ATOMIC,1
@@ -68,7 +68,7 @@ in {
       env=__GL_ALLOW_UNOFFICIAL_PROTOCOL,1
       env=__GL_SHADER_DISK_CACHE,1
       env=VDPAU_DRIVER,nvidia
-      env=GBM_BACKEND,nvidia-drm
+      # env=GBM_BACKEND,nvidia-drm
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
