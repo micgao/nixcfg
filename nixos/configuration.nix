@@ -14,7 +14,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" ];
+    kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -34,7 +34,7 @@
     };
     modprobeConfig.enable = true;
     extraModprobeConfig = ''
-      options nvidia-drm modeset=1 fbdev=1
+      options nvidia-drm modeset=1
       options nvidia NVreg_UsePageAttributeTable=1
       options nvidia NVreg_RegistryDwords="OverrideMaxPerf=0x1
     '';
@@ -172,7 +172,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        # vulkan-validation-layers
+        vulkan-validation-layers
         intel-compute-runtime
         vaapiIntel
         libvdpau-va-gl
@@ -193,7 +193,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
