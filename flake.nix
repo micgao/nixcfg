@@ -43,7 +43,10 @@
     };
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland/aedcade68dd0615fd919a7249633a554d0accd81";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
   };
 

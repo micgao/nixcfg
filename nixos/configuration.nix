@@ -13,8 +13,8 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia.NVreg_UsePageAttributeTable=1" ];
+    kernelPackages = pkgs.linuxPackages_zen;
+    kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -34,9 +34,6 @@
     };
     modprobeConfig.enable = true;
     extraModprobeConfig = ''
-      options nvidia-drm modeset=1
-      options nvidia NVreg_UsePageAttributeTable=1
-      options nvidia NVreg_RegistryDwords="OverrideMaxPerf=0x1"
     '';
     extraModulePackages = [
       config.boot.kernelPackages.nvidia_x11
@@ -148,7 +145,6 @@
     ];
     config = {
       allowUnfree = true;
-      nvidia.acceptLicense = true;
     };
   };
 
@@ -171,7 +167,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        vulkan-validation-layers
+        libva
         intel-compute-runtime
         vaapiIntel
         libvdpau-va-gl
@@ -296,9 +292,9 @@
       };
     };
     virtualbox.host = { enable = true; };
-    vmware.host = {
-      enable = true;
-    };
+    # vmware.host = {
+    #   enable = true;
+    # };
   };
 
   networking = {
@@ -321,7 +317,6 @@
     hardware.bolt.enable = true;
     fwupd = {
       enable = true;
-      extraRemotes = ["lvfs-testing"];
     };
     resolved = {
       enable = true;
