@@ -72,17 +72,14 @@
 
   home = {
     username = "micgao";
-    homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "23.11";
+    homeDirectory = "/home/${config.home.username}";
+    stateVersion = "23.11";
     pointerCursor = {
       name = "Qogir";
       package = pkgs.qogir-icon-theme;
       size = 24;
       gtk.enable = true;
     };
-    sessionPath = [
-      "$HOME/.cargo/bin"
-    ];
   };
 
   news.display = "show";

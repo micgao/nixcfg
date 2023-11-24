@@ -35,9 +35,6 @@
     modprobeConfig.enable = true;
     extraModprobeConfig = ''
     '';
-    extraModulePackages = [
-      config.boot.kernelPackages.nvidia_x11
-    ];
   };
 
   systemd = {
