@@ -68,7 +68,7 @@ in {
       env=__GL_ALLOW_UNOFFICIAL_PROTOCOL,1
       env=__GL_SHADER_DISK_CACHE,1
       env=VDPAU_DRIVER,nvidia
-      # env=GBM_BACKEND,nvidia-drm
+      env=GBM_BACKEND,nvidia-drm
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
