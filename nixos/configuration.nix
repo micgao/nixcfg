@@ -33,8 +33,6 @@
       };
     };
     modprobeConfig.enable = true;
-    extraModprobeConfig = ''
-    '';
   };
 
   systemd = {

@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     protontricks
     winetricks
-    lutris
+    (lutris.override { extraPkgs = p: [p.wine]; })
     protonup-ng
     vkbasalt
     gnome.zenity
