@@ -58,17 +58,14 @@ in {
       env=GTK_THEME_VARIANT,dark
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
-      env=QT_QPA_PLATFORMTHEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
       env=MOZ_DISABLE_RDD_SANDBOX,1
       env=NVD_BACKEND,direct
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-      env=__GL_ALLOW_UNOFFICIAL_PROTOCOL,1
-      env=__GL_SHADER_DISK_CACHE,1
       env=VDPAU_DRIVER,nvidia
-      env=GBM_BACKEND,nvidia-drm
+      # env=GBM_BACKEND,nvidia-drm
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
@@ -103,8 +100,8 @@ in {
           inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 6
-	            passes = 2
+	            size = 9
+	            passes = 3
 	            ignore_opacity = true
 	            new_optimizations = true
 	            xray = true

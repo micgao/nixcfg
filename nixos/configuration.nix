@@ -14,7 +14,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" ];
+    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -124,10 +124,6 @@
           value = "unlimited";
         }
       ];
-      services.greetd = {
-        startSession = true;
-        enableGnomeKeyring = true;
-      };
     };
   };
 
@@ -161,6 +157,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
+        vulkan-validation-layers
         libva
         intel-compute-runtime
         vaapiIntel
