@@ -44,7 +44,6 @@ in {
       monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-      env=WLR_DRM_NO_ATOMIC,1
       env=XDG_SESSION_DESKTOP,Hyprland
       env=XDG_CURRENT_DESKTOP,Hyprland
       env=XDG_SESSION_TYPE,wayland
@@ -83,7 +82,7 @@ in {
           touchpad {
               natural_scroll = false
           }
-          sensitivity = 0
+          sensitivity = -0.1
           accel_profile = flat
           float_switch_override_focus = 0
       }
@@ -104,13 +103,12 @@ in {
           inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 3
-	            passes = 1
+	            size = 6
+	            passes = 2
 	            ignore_opacity = true
-	            vibrancy = 0.1696
 	            new_optimizations = true
 	            xray = true
-	            special = false
+	            special = true
 	        }
           drop_shadow = true
           shadow_range = 20
@@ -154,6 +152,7 @@ in {
       }
 
       misc {
+          vfr = true
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false

@@ -127,7 +127,6 @@
         }
       ];
       services.greetd = {
-        allowNullPassword = true;
         startSession = true;
         enableGnomeKeyring = true;
       };
@@ -183,11 +182,11 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
-      powerManagement.enable = true;
+      # powerManagement.enable = true;
     };
     trackpoint.enable = true;
   };
@@ -289,9 +288,9 @@
       };
     };
     virtualbox.host = { enable = true; };
-    # vmware.host = {
-    #   enable = true;
-    # };
+    vmware.host = {
+      enable = true;
+    };
   };
 
   networking = {
@@ -431,7 +430,6 @@
           "--steam"
           "--rt"
           "--hdr-enabled"
-          "--prefer-vk-device"
           "--fullscreen"
           "-W 1929"
           "-H 1080"
