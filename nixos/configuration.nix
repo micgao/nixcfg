@@ -14,7 +14,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" ];
+    kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -179,7 +179,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
