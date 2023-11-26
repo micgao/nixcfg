@@ -447,7 +447,6 @@
     };
     hyprland = {
       enable = true;
-      enableNvidiaPatches = true;
     };
     zsh.enable = true;
     gnupg.agent = {

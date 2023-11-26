@@ -37,7 +37,6 @@ in {
     enable = true;
     systemdIntegration = true;
     disableAutoreload = true;
-    enableNvidiaPatches = true;
     recommendedEnvironment = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
