@@ -40,7 +40,7 @@ in {
     recommendedEnvironment = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
-      monitor=HDMI-A-1,1920x1080@144,0x0,1
+      monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
       env=XDG_SESSION_DESKTOP,Hyprland

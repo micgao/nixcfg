@@ -179,7 +179,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
