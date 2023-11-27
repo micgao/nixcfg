@@ -151,6 +151,7 @@ in {
 
       misc {
           vfr = true
+          no_direct_scanout = true
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false
@@ -163,9 +164,9 @@ in {
       layerrule = blur, waybar
       layerrule = blur, launcher
 
-      windowrulev2 = fullscreen, class:(dota2)
+      windowrulev2 = fullscreen, class:^(dota2)$
       windowrulev2 = immediate, class:^(dota2)$
-      windowrulev2 = workspace 9 silent, class:(dota2)
+      windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = nomaximizerequest, class:.*
 
       workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
