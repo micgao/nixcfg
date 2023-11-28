@@ -130,6 +130,9 @@ config.font = wezterm.font_with_fallback {
   {
     family = "Iosevka Fixed SS04 Extended",
   },
+  {
+    family = "Symbols Nerd Font Mono",
+  },
 }
 config.font_size = 11.5
 config.freetype_interpreter_version = 40
