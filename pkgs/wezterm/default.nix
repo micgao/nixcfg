@@ -3,6 +3,7 @@
 , lib
 , fetchFromGitHub
 , ncurses
+, perl
 , pkg-config
 , python3
 , fontconfig
@@ -18,6 +19,11 @@
 , xcbutilwm
 , wayland
 , zlib
+, CoreGraphics
+, Cocoa
+, Foundation
+, libiconv
+, UserNotifications
 , nixosTests
 , runCommand
 , vulkan-loader
@@ -31,19 +37,21 @@ let
 in
 rustPlatform.buildRustPackage rec {
   pname = "wezterm";
-  version = "unstable-2023-11-13";
-  rev = "721fbdf5dc39aaeacc0517e0422d06f0cf81561b";
+  version = "unstable-2023-11-25";
+  rev = "f07cc837166dc5f29df56afb42af3d6887ec6a33";
 
   src = fetchFromGitHub {
     owner = owner;
     repo = pname;
     rev = rev;
     fetchSubmodules = true;
-    sha256 = "sha256-S8i3EXUEChlf2Il3AAhfjIkqZO6PoB2PfLizOeubNnU=";
+    sha256 = "sha256-Sk+tmAT3wuJPGLsiMAk75IuxfQmNgxTEYyqlcERxNVk=";
   };
 
   postPatch = ''
     echo ${version} > .tag
+
+    # tests are failing with: Unable to exchange encryption keys
     rm -r wezterm-ssh/tests
   '';
 
@@ -57,10 +65,10 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [
     installShellFiles
-    ncurses
+    ncurses # tic for terminfo
     pkg-config
     python3
-  ];
+  ] ++ lib.optional stdenv.isDarwin perl;
 
   buildInputs = [
     fontconfig
@@ -74,14 +82,16 @@ rustPlatform.buildRustPackage rec {
     xcbutil
     xcbutilimage
     xcbutilkeysyms
-    xcbutilwm
+    xcbutilwm # contains xcb-ewmh among others
+  ] ++ lib.optionals stdenv.isDarwin [
+    Cocoa
+    CoreGraphics
+    Foundation
+    libiconv
+    UserNotifications
   ];
 
   buildFeatures = [ "distro-defaults" ];
-
-  env = {
-    OPENSSL_NO_VENDOR = true;
-  };
 
   postInstall = ''
     mkdir -p $out/nix-support
@@ -107,6 +117,13 @@ rustPlatform.buildRustPackage rec {
       --add-needed "${libGL}/lib/libEGL.so.1" \
       --add-needed "${vulkan-loader}/lib/libvulkan.so.1" \
       $out/bin/wezterm-gui
+  '' + lib.optionalString stdenv.isDarwin ''
+    mkdir -p "$out/Applications"
+    OUT_APP="$out/Applications/WezTerm.app"
+    cp -r assets/macos/WezTerm.app "$OUT_APP"
+    rm $OUT_APP/*.dylib
+    cp -r assets/shell-integration/* "$OUT_APP"
+    ln -s $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} "$OUT_APP"
   '';
 
   passthru = {
