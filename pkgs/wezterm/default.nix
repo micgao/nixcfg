@@ -19,11 +19,6 @@
 , xcbutilwm
 , wayland
 , zlib
-, CoreGraphics
-, Cocoa
-, Foundation
-, libiconv
-, UserNotifications
 , nixosTests
 , runCommand
 , vulkan-loader
@@ -82,13 +77,7 @@ rustPlatform.buildRustPackage rec {
     xcbutil
     xcbutilimage
     xcbutilkeysyms
-    xcbutilwm # contains xcb-ewmh among others
-  ] ++ lib.optionals stdenv.isDarwin [
-    Cocoa
-    CoreGraphics
-    Foundation
-    libiconv
-    UserNotifications
+    xcbutilwm
   ];
 
   buildFeatures = [ "distro-defaults" ];
