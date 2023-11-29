@@ -10,7 +10,7 @@ in
       main = {
         term = "foot";
         login-shell = "yes";
-        font = "Iosevka Fixed SS04 Extended:size=11";
+        font = "Iosevka SS04 Extended:size=11";
         bold-text-in-bright = "yes";
         dpi-aware = "yes";
       };

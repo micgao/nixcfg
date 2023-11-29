@@ -6,7 +6,7 @@ in
   programs.kitty = {
     enable = true;
     font = {
-      name = "Iosevka Fixed SS04 Extended";
+      name = "Iosevka SS04";
       size = 11;
     };
     settings = {

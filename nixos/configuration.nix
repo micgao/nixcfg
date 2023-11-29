@@ -238,10 +238,10 @@
       };
       localConf = ''
         <alias>
-          <family>Iosevka Fixed SS04 Extended Symbols</family>
+          <family>Iosevka SS04 Extended Symbols</family>
           <prefer>
-              <family>Iosevka Fixed SS04 Extended</family>
-              <family>Symbols Nerd Font</family>
+              <family>Iosevka SS04 Extended</family>
+              <family>Symbols Nerd Font Mono</family>
           </prefer>
         </alias>
       '';
@@ -250,9 +250,9 @@
         style = "slight";
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" "Noto Emoji" ];
-        sansSerif = [ "Inter Variable" "Noto Emoji" ];
-        serif = [ "Noto Serif" "Noto Emoji" ];
+        monospace = [ "Iosevka SS04" ];
+        sansSerif = [ "Inter Variable" ];
+        serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" ];
       };
     };
