@@ -24,6 +24,7 @@
     ./feh.nix
     ./fonts.nix
     ./gaming.nix
+    ./gh.nix
     ./git.nix
     ./go.nix
     ./gpg.nix
