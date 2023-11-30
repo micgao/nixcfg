@@ -13,10 +13,12 @@ wezterm.on('update-status', function(window, pane)
   window:set_right_status(window:active_workspace())
 end)
 
+config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+
 config.keys = {
   {
-    key = 'N',
-    mods = 'CTRL|SHIFT',
+    key = 'n',
+    mods = 'CTRL|LEADER',
     action = wezterm.action.PromptInputLine {
       description = wezterm.format {
         { Text = 'Workspace name' },
@@ -34,73 +36,66 @@ config.keys = {
     },
   },
   {
-    key = 'E',
-    mods = 'CTRL|SHIFT',
-    action = wezterm.action.ShowLauncherArgs {
-      flags = 'FUZZY|WORKSPACES',
-    },
-  },
-  {
-    key = 'P',
-    mods = 'CTRL|SHIFT',
+    key = 'p',
+    mods = 'CTRL|LEADER',
     action = wezterm.action.ShowLauncherArgs { flags = 'TABS|LAUNCH_MENU_ITEMS|DOMAINS|WORKSPACES' },
   },
   {
-    key = 'T',
-    mods = 'CTRL|SHIFT',
+    key = 'e',
+    mods = 'CTRL|LEADER',
     action = wezterm.action.ShowTabNavigator
   },
   {
     key = 't',
-    mods = 'CTRL',
+    mods = 'CTRL|LEADER',
     action = wezterm.action.SpawnTab 'CurrentPaneDomain',
   },
   {
     key = 'H',
-    mods = 'CTRL|SHIFT',
+    mods = 'CTRL|SHIFT|LEADER',
     action = wezterm.action.SplitPane {
       direction = 'Left',
     },
   },
   {
     key = 'J',
-    mods = 'CTRL|SHIFT',
+    mods = 'CTRL|SHIFT|LEADER',
     action = wezterm.action.SplitPane {
       direction = 'Down',
     },
   },
   {
     key = 'K',
-    mods = 'CTRL|SHIFT',
+    mods = 'CTRL|SHIFT|LEADER',
     action = wezterm.action.SplitPane {
       direction = 'Up',
     },
   },
   {
     key = 'L',
-    mods = 'CTRL|SHIFT',
+    mods = 'CTRL|SHIFT|LEADER',
     action = wezterm.action.SplitPane {
       direction = 'Right',
     },
   },
   {
     key = 'h',
-    mods = 'CTRL',
+    mods = 'CTRL|LEADER',
     action = act.ActivatePaneDirection 'Left',
   },
   {
     key = 'j',
-    mods = 'CTRL',
+    mods = 'CTRL|LEADER',
     action = act.ActivatePaneDirection 'Down',
   },
   {
     key = 'k',
-    mods = 'CTRL',
+    mods = 'CTRL|LEADER',
     action = act.ActivatePaneDirection 'Up',
   },
   {
     key = 'l',
-    mods = 'CTRL',
+    mods = 'CTRL|LEADER',
     action = act.ActivatePaneDirection 'Right',
   },
 }
