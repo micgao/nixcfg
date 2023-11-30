@@ -13,6 +13,7 @@
       gcc
       clang
       gnumake
+      nodejs
     ];
     viAlias = true;
     vimAlias = true;
