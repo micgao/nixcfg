@@ -1,7 +1,6 @@
 { outputs, lib, config, pkgs, ... }: {
   imports = [
     ./alacritty
-    ./anyrun
     ./bottom
     ./foot
     ./fuzzel

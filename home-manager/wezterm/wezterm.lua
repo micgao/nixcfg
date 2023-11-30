@@ -128,10 +128,10 @@ config.colors = {
 }
 config.font = wezterm.font_with_fallback {
   {
-    family = "Iosevka Term SS04 Extended",
+    family = "Iosevka SS04 Extended",
   },
   {
-    family = "Symbols Nerd Font Mono",
+    family = "Symbols Nerd Font",
   },
 }
 config.font_size = 11.5

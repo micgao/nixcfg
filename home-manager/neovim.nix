@@ -8,9 +8,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.neovim.override {
-      libvterm-neovim = inputs.nixpkgs-staging.legacyPackages.x86_64-linux.libvterm-neovim;
-    };
+    package = pkgs.neovim;
     extraPackages = with pkgs; [
       gcc
       clang

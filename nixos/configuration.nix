@@ -157,7 +157,6 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        vulkan-validation-layers
         libva
         intel-compute-runtime
         vaapiIntel
@@ -241,7 +240,7 @@
           <family>Iosevka SS04 Extended Symbols</family>
           <prefer>
               <family>Iosevka SS04 Extended</family>
-              <family>Symbols Nerd Font Mono</family>
+              <family>Symbols Nerd Font</family>
           </prefer>
         </alias>
       '';
@@ -251,7 +250,7 @@
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter Variable" ];
+        sansSerif = [ "Inter" ];
         serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" ];
       };
@@ -384,7 +383,6 @@
         "video"
         "audio"
         "input"
-        "gamemode"
         "vboxusers"
         "libvirtd"
         "networkmanager"
@@ -403,43 +401,6 @@
     dconf.enable = true;
     steam = {
       enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-          dconf
-        ];
-      };
-      remotePlay.openFirewall = true;
-      gamescopeSession = {
-        enable = true;
-        args = [
-          "--steam"
-          "--rt"
-          "--hdr-enabled"
-          "--fullscreen"
-          "-W 1929"
-          "-H 1080"
-        ];
-      };
-    };
-    gamemode = {
-      enable = true;
-      enableRenice = true;
-      settings = {
-        general = {
-          softrealtime = "auto";
-          renice = 15;
-        };
-      };
     };
     gamescope = {
       enable = true;

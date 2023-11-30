@@ -11,8 +11,6 @@
       nix-ld-rs
       nix-update
       rustup
-      nodejs
-      python3Minimal
       distrobox
       bottles
       ollama

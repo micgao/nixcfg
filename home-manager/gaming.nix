@@ -3,10 +3,9 @@
   home.packages = with pkgs; [
     protontricks
     winetricks
-    (lutris.override { extraPkgs = p: [p.wine]; })
+    lutris
     protonup-ng
     vkbasalt
-    gnome.zenity
   ];
   programs.mangohud = {
     enable = true;
