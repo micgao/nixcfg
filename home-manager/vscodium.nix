@@ -28,8 +28,6 @@
       "diffEditor.diffAlgorithm" = "advanced";
       "vscode-neovim.logLevel" = "none";
       "vscode-neovim.neovimClean" = true;
-      "vscode-neovim.ctrlKeysForInsertMode" = false;
-      "vscode-neovim.ctrlKeysForNormalMode" = false;
       "rust-analyzer.diagnostics.experimental.enable" = true;
       "rust-analyzer.restartServerOnConfigChange" = true;
       "tabnine.experimentalAutoImports" = true;
