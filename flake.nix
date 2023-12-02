@@ -37,7 +37,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helix.url = "github:helix-editor/helix";
-    yazi.url = "github:sxyazi/yazi/47af821f480328edf9cbfd9d4091c93bff84dbd7";
+    yazi.url = "github:sxyazi/yazi";
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
