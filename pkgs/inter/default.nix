@@ -4,7 +4,7 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "inter";
-  version = "4.0.beta9h";
+  version = "4.0";
 
   src = ./fonts;
 
