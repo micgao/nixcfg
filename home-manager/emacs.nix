@@ -19,7 +19,10 @@
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
+    package = pkgs.emacs-pgtk.override {
+      withNativeCompilation = true;
+      withTreeSitter = true;
+    };
     extraPackages = epkgs: with epkgs; [
       emacsql
       vterm
