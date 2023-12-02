@@ -24,6 +24,7 @@
       emacsql
       vterm
       mu4e
+      lsp-mode
     ];
   };
 }
