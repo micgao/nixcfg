@@ -20,6 +20,7 @@
       "update.mode" = "none";
       "workbench.colorTheme" = "Sinequanone Noir";
       "workbench.startupEditor" = "none";
+      "workbench.activityBar.location" = "hidden";
       "window.titleBarStyle" = "custom";
       "editor.fontFamily" = "Iosevka SS04 Extended";
       "editor.cursorBlinking" = "solid";
