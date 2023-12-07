@@ -20,6 +20,7 @@
       clipboard-jh
       circumflex
       fd
+      polkit
       gopass
       gpg-tui
       git-credential-gopass
