@@ -37,7 +37,7 @@
       gimp-with-plugins
       keepassxc
       pavucontrol
-      obsidian
+      # obsidian
       jetbrains-toolbox
       virt-manager
       virt-viewer
