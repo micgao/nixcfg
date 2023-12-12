@@ -3,36 +3,6 @@
 , fetchFromGitHub
 , remarshal
 , ttfautohint-nox
-  # Custom font set options.
-  # See https://typeof.net/Iosevka/customizer
-  # Can be a raw TOML string, or a Nix attrset.
-
-  # Ex:
-  # privateBuildPlan = ''
-  #   [buildPlans.iosevka-custom]
-  #   family = "Iosevka Custom"
-  #   spacing = "normal"
-  #   serifs = "sans"
-  #
-  #   [buildPlans.iosevka-custom.variants.design]
-  #   capital-j = "serifless"
-  #
-  #   [buildPlans.iosevka-custom.variants.italic]
-  #   i = "tailed"
-  # '';
-
-  # Or:
-  # privateBuildPlan = {
-  #   family = "Iosevka Custom";
-  #   spacing = "normal";
-  #   serifs = "sans";
-  #
-  #   variants = {
-  #     design.capital-j = "serifless";
-  #     italic.i = "tailed";
-  #   };
-  # }
-, privateBuildPlan ? null
   # Extra parameters. Can be used for ligature mapping.
   # It must be a raw TOML string.
 
@@ -54,7 +24,7 @@ buildNpmPackage rec {
     owner = "be5invis";
     repo = "iosevka";
     rev = "5327eaa9358fc38c106c6577d7c44da8c97867a4";
-    hash = "";
+    hash = "sha256-B7Kzd2IzrUL8Wp/KBbbKRI8sF7NXVrN73n6dpzh9PcA=";
   };
 
   npmDepsHash = "sha256-ui8IE9fxNoCUm1NPVIgN1DDzQS5lKwYup3Owg7zKPIs=";
