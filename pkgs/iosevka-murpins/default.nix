@@ -3,17 +3,6 @@
 , fetchFromGitHub
 , remarshal
 , ttfautohint-nox
-  # Extra parameters. Can be used for ligature mapping.
-  # It must be a raw TOML string.
-
-  # Ex:
-  # extraParameters = ''
-  #   [[iosevka.compLig]]
-  #   unicode = 57808 # 0xe1d0
-  #   featureTag = 'XHS0'
-  #   sequence = "+>"
-  # '';
-, extraParameters ? null
 }:
 
 buildNpmPackage rec {
@@ -36,18 +25,9 @@ buildNpmPackage rec {
 
   privateBuildPlan = ./private-build-plans.toml;
 
-  buildPlan =
-    if builtins.isAttrs privateBuildPlan then
-      builtins.toJSON { buildPlans.${pname} = privateBuildPlan; }
-    else
-      privateBuildPlan;
+  buildPlan = privateBuildPlan;
 
-  inherit extraParameters;
-  passAsFile = [ "extraParameters" ] ++ lib.optionals
-    (
-      !(builtins.isString privateBuildPlan
-        && lib.hasPrefix builtins.storeDir privateBuildPlan)
-    ) [ "buildPlan" ];
+  passAsFile = [ "buildPlan" ];
 
   configurePhase = ''
     runHook preConfigure
@@ -62,21 +42,16 @@ buildNpmPackage rec {
       && (lib.hasPrefix builtins.storeDir privateBuildPlan)) ''
         cp "$buildPlan" private-build-plans.toml
       ''}
-    ${lib.optionalString (extraParameters != null) ''
-      echo -e "\n" >> params/parameters.toml
-      cat "$extraParametersPath" >> params/parameters.toml
-    ''}
+    ${lib.optionalString (builtins.isPath privateBuildPlan) ''
+        cp "$buildPlan" private-build-plans.toml
+      ''}
     runHook postConfigure
   '';
 
   buildPhase = ''
     export HOME=$TMPDIR
     runHook preBuild
-    npm run build --no-update-notifier -- --jCmd=$NIX_BUILD_CORES --verbose=9 super-ttc::IosevkaPippin
-    npm run build --no-update-notifier -- --jCmd=$NIX_BUILD_CORES --verbose=9 super-ttc::IosevkaMerry
-    npm run build --no-update-notifier -- --jCmd=$NIX_BUILD_CORES --verbose=9 super-ttc::IosevkaHatahata
-    npm run build --no-update-notifier -- --jCmd=$NIX_BUILD_CORES --verbose=9 super-ttc::IosevkaCoco
-    npm run build --no-update-notifier -- --jCmd=$NIX_BUILD_CORES --verbose=9 super-ttc::IosevkaWhiskeyKazumi
+    npm run build --no-update-notifier -- --jCmd=$NIX_BUILD_CORES --verbose=9 super-ttc::IosevkaMurpins
     runHook postBuild
   '';
 
