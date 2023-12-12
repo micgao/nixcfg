@@ -4,6 +4,6 @@
   qobuz-dl = pkgs.callPackage ./qobuz-dl { };
   wezterm = pkgs.callPackage ./wezterm { };
   iosevka-ss04 = pkgs.callPackage ./iosevka { };
-  iosevka-murpins = pkgs.callPackage ./iosevka-murpins { };
+  # iosevka-murpins = pkgs.callPackage ./iosevka-murpins { };
   inter = pkgs.callPackage ./inter { };
 }
