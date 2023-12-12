@@ -481,3 +481,18 @@ css = "semi-expanded"
 shape = 720
 menu = 7
 css = "expanded"
+
+[collectPlans.IosevkaPippin]
+from = ["IosevkaPippin"]
+
+[collectPlans.IosevkaMerry]
+from = ["IosevkaMerry"]
+
+[collectPlans.IosevkaHatahata]
+from = ["IosevkaHatahata"]
+
+[collectPlans.IosevkaCoco]
+from = ["IosevkaCoco"]
+
+[collectPlans.IosevkaWhiskeyKazumi]
+from = ["IosevkaWhiskeyKazumi"]
