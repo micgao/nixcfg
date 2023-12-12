@@ -4,6 +4,7 @@ spacing = "normal"
 serifs = "sans"
 exportGlyphNames = true
 noLigation = true
+buildTextureFeature = true
 
 [buildPlans.IosevkaPippin.variants]
 inherits = "ss04"
@@ -89,6 +90,7 @@ spacing = "term"
 serifs = "sans"
 exportGlyphNames = true
 noLigation = true
+buildTextureFeature = true
 
 [buildPlans.IosevkaMerry.variants]
 inherits = "ss04"
@@ -174,6 +176,7 @@ spacing = "fontconfig-mono"
 serifs = "sans"
 exportGlyphNames = true
 noLigation = true
+buildTextureFeature = true
 
 [buildPlans.IosevkaHatahata.variants]
 inherits = "ss04"
@@ -258,6 +261,7 @@ family = "Iosevka Coco"
 spacing = "quasi-proportional"
 serifs = "sans"
 exportGlyphNames = true
+buildTextureFeature = true
 
 [buildPlans.IosevkaCoco.variants.design]
 capital-i = "serifless"
@@ -376,6 +380,7 @@ family = "Iosevka Whiskey Kazumi"
 spacing = "quasi-proportional"
 serifs = "slab"
 exportGlyphNames = true
+buildTextureFeature = true
 
 [buildPlans.IosevkaWhiskyKazumi.variants.design]
 capital-m = "flat-bottom-serifed"
@@ -476,28 +481,3 @@ css = "semi-expanded"
 shape = 720
 menu = 7
 css = "expanded"
-
-[collectPlans.IosevkaPippin]
-from = [
-  "IosevkaPippin"
-]
-
-[collectPlans.IosevkaMerry]
-from = [
-  "IosevkaMerry"
-]
-
-[collectPlans.IosevkaHatahata]
-from = [
-  "IosevkaHatahata"
-]
-
-[collectPlans.IosevkaCoco]
-from = [
-  "IosevkaCoco"
-]
-
-[collectPlans.IosevkaWhiskeyKazumi]
-from = [
-  "IosevkaWhiskeyKazumi"
-]
