@@ -2,8 +2,8 @@
 family = "Iosevka Pippin"
 spacing = "normal"
 serifs = "sans"
+exportGlyphNames = true
 noLigation = true
-buildTextureFeature = true
 
 [buildPlans.IosevkaPippin.variants]
 inherits = "ss04"
@@ -87,8 +87,8 @@ css = "expanded"
 family = "Iosevka Merry"
 spacing = "term"
 serifs = "sans"
+exportGlyphNames = true
 noLigation = true
-buildTextureFeature = true
 
 [buildPlans.IosevkaMerry.variants]
 inherits = "ss04"
@@ -172,8 +172,8 @@ css = "expanded"
 family = "Iosevka Hatahata"
 spacing = "fontconfig-mono"
 serifs = "sans"
+exportGlyphNames = true
 noLigation = true
-buildTextureFeature = true
 
 [buildPlans.IosevkaHatahata.variants]
 inherits = "ss04"
@@ -257,7 +257,7 @@ css = "expanded"
 family = "Iosevka Coco"
 spacing = "quasi-proportional"
 serifs = "sans"
-buildTextureFeature = true
+exportGlyphNames = true
 
 [buildPlans.IosevkaCoco.variants.design]
 capital-i = "serifless"
@@ -375,7 +375,7 @@ css = "expanded"
 family = "Iosevka Whiskey Kazumi"
 spacing = "quasi-proportional"
 serifs = "slab"
-buildTextureFeature = true
+exportGlyphNames = true
 
 [buildPlans.IosevkaWhiskyKazumi.variants.design]
 capital-m = "flat-bottom-serifed"
