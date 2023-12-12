@@ -214,12 +214,12 @@
       cascadia-code
       source-code-pro
       source-sans-pro
-      intel-one-mono
       recursive
       iosevka-ss04
+      iosevka-murpins
       (nerdfonts.override {
         fonts =
-          [ "FiraCode" "JetBrainsMono" "SourceCodePro" "NerdFontsSymbolsOnly" ];
+          [ "SourceCodePro" "NerdFontsSymbolsOnly" ];
       })
     ];
     fontDir = {
@@ -246,11 +246,10 @@
       '';
       hinting = {
         enable = true;
-        style = "slight";
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter" ];
+        monospace = [ "Iosevka SS04 Fixed" ];
+        sansSerif = [ "Source Sans Pro" ];
         serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" ];
       };
