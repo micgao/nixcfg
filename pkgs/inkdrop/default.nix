@@ -1,4 +1,4 @@
-{ stdenv, dpkg, glibc, fetchurl, gcc-unwrapped, autoPatchelfHook }:
+{ stdenv, dpkg, glibc, fetchurl, gcc-unwrapped, autoPatchelfHook, lib }:
 let
 
   src = fetchurl {
@@ -25,10 +25,9 @@ in stdenv.mkDerivation {
 
   unpackPhase = "true";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Inkdrop";
     license = licenses.proprietary;
-    maintainers = with stdenv.lib.maintainers; [ ];
     platforms = [ "x86_64-linux" ];
   };
 }
