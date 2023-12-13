@@ -1,4 +1,4 @@
-{ stdenv, dpkg, glibc, fetchurl, gcc-unwrapped, autoPatchelfHook, lib }:
+{ stdenv, dpkg, glibc, fetchurl, gcc-unwrapped, autoPatchelfHook, lib, licenses }:
 let
 
   src = fetchurl {
