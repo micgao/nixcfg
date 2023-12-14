@@ -10,6 +10,7 @@
       nix-init
       nix-ld-rs
       nix-update
+      firefix-devedition
       rustup
       distrobox
       bottles
