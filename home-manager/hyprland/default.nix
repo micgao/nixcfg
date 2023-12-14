@@ -36,9 +36,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
-    disableAutoreload = true;
-    recommendedEnvironment = true;
+    systemd.enable = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
       monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
@@ -71,7 +69,7 @@ in {
       exec-once=hyprpaper
       exec-once=waybar
       exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
-      exec-once=[workspace 1 silent] wezterm
+      exec-once=[workspace 1 silent] wezterm start
       exec-once=[workspace 2 silent] librewolf
       exec-once=[workspace 3 silent] emacs
 
