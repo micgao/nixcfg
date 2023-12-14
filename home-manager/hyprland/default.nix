@@ -1,5 +1,6 @@
 { inputs, config, pkgs, ... }: 
-let pointer = config.home.pointerCursor;
+let
+  pointer = config.home.pointerCursor;
 in {
   imports = [
     inputs.hyprland.homeManagerModules.default
