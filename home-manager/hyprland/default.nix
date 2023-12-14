@@ -5,10 +5,6 @@ in {
     inputs.hyprland.homeManagerModules.default
   ];
 
-  nixpkgs.overlays = [
-    inputs.nixpkgs-wayland.overlay
-  ];
-
   home.packages = with pkgs; [
     qt6.qtwayland
     qt6.qt5compat
