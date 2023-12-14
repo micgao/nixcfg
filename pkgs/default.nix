@@ -6,5 +6,4 @@
   iosevka-ss04 = pkgs.callPackage ./iosevka { };
   # iosevka-murpins = pkgs.callPackage ./iosevka-murpins { };
   inter = pkgs.callPackage ./inter { };
-  # inkdrop = pkgs.callPackage ./inkdrop { };
 }
