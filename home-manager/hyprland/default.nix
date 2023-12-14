@@ -36,8 +36,6 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemdIntegration = true;
-    disableAutoreload = true;
-    recommendedEnvironment = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
       monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
