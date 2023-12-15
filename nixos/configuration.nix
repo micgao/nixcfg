@@ -131,7 +131,6 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      inputs.nixpkgs-wayland.overlay
     ];
     config = {
       allowUnfree = true;
