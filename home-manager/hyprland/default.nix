@@ -12,7 +12,6 @@ in {
   home.packages = with pkgs; [
     qt6.qtwayland
     qt6.qt5compat
-    qt6.qmake
     libsForQt5.qt5ct
     libsForQt5.breeze-qt5
     libsForQt5.breeze-gtk

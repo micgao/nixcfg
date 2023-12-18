@@ -40,6 +40,7 @@
     yazi.url = "github:sxyazi/yazi";
     hyprland = {
       url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
   };
