@@ -248,7 +248,7 @@
         enable = true;
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04 Fixed" ];
+        monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Source Sans Pro" ];
         serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" ];
