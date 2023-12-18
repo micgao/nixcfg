@@ -131,6 +131,7 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+      inputs.nixpkgs-wayland.overlay
     ];
     config = {
       allowUnfree = true;
@@ -215,7 +216,6 @@
       source-sans-pro
       recursive
       iosevka-ss04
-      # iosevka-murpins
       (nerdfonts.override {
         fonts =
           [ "SourceCodePro" "NerdFontsSymbolsOnly" ];

@@ -28,7 +28,6 @@ in {
     wtype
     wl-clipboard
     wl-clipboard-x11
-    wlprop
     wlr-randr
     ydotool
   ];
