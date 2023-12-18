@@ -216,6 +216,7 @@
       source-sans-pro
       recursive
       iosevka-ss04
+      # iosevka-murpins
       (nerdfonts.override {
         fonts =
           [ "SourceCodePro" "NerdFontsSymbolsOnly" ];

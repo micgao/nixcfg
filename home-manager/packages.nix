@@ -2,6 +2,7 @@
 
   nixpkgs.overlays = [
     inputs.nix-ld-rs.overlays.default
+    inputs.nixpkgs-wayland.overlay
   ];
 
   home = {
