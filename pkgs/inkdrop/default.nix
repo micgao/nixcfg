@@ -11,14 +11,16 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ dpkg makeWrapper ];
 
-  unpackPhase = "dpkg-deb -x $src .";
+  unpackPhase = ''\
+    ar x $src
+    tar --no-same-owner --no-same-permissions -xf data.tar.xz
+    chmod 0755 usr/lib/inkdrop/chrome-sandbox
+    chmod -s usr/lib/inkdrop/chrome-sandbox
+  '';
 
   installPhase = ''
     mkdir -p $out
     mv usr/* $out/
-
-    chmod 0755 $out/bin/inkdrop/chrome-sandbox
-    chmod -s $out/bin/inkdrop/chrome-sandbox
 
     wrapProgram $out/bin/inkdrop \
       --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc ]}" \
