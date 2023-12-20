@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://api.inkdrop.app/download/linux/deb";
-    hash = "";
+    hash = "sha256-S68h4FM2+Npz4ihQR06GauMiX3PC1rNLaLq/DdmvL6g=";
   };
 
   nativeBuildInputs = [ dpkg makeWrapper ];
