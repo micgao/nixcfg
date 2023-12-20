@@ -17,8 +17,13 @@ stdenv.mkDerivation rec {
     mkdir -p $out
     mv usr/* $out/
 
+    chmod 0755 $out/bin/inkdrop/chrome-sandbox
+    chmod -s $out/bin/inkdrop/chrome-sandbox
+
     wrapProgram $out/bin/inkdrop \
-      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc ]}"
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc ]}" \
+      --set ELECTRON_RUN_AS_NODE 1 \
+      --set ELECTRON_NO_SAND_BOX 1
   '';
   #
   # preFixup = let
