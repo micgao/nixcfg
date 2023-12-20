@@ -16,6 +16,7 @@
     ./wezterm
     ./wlogout
     ./accounts.nix
+    ./bacon.nix
     ./bat.nix
     ./browsers.nix
     ./direnv.nix
