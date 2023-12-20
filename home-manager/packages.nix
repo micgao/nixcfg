@@ -7,6 +7,7 @@
 
   home = {
     packages = with pkgs; [
+      inkdrop
       nixfmt
       nix-init
       nix-ld-rs
