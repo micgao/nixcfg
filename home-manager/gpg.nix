@@ -9,6 +9,7 @@
   services.gpg-agent = {
     enable = true;
     enableExtraSocket = true;
+    pinentryFlavor = "gnome3";
     extraConfig = ''
       allow-emacs-pinentry
       allow-loopback-pinentry
