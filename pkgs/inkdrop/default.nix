@@ -1,4 +1,4 @@
-{ stdenv, dpkg, fetchurl, makeWrapper, lib, ... }:
+{ stdenv, dpkg, fetchurl, makeWrapper, lib, autoPatchelfHook, pkgs, makeFontsConf, ... }:
 
 stdenv.mkDerivation rec {
   pname = "inkdrop";
@@ -9,7 +9,37 @@ stdenv.mkDerivation rec {
     hash = "sha256-S68h4FM2+Npz4ihQR06GauMiX3PC1rNLaLq/DdmvL6g=";
   };
 
-  nativeBuildInputs = [ dpkg makeWrapper ];
+  nativeBuildInputs = [ dpkg makeWrapper autoPatchelfHook ];
+
+  buildInputs = with pkgs; [
+    stdenv.cc.cc
+    glib
+    libsecret
+    libdrm
+    musl
+    cups
+    gtk3
+    cairo
+    pango
+    at-spi2-atk
+    nss
+    nspr
+    alsa-lib
+    expat
+    libdrm
+    xorg.libXcomposite
+    xorg.libXdamage
+    xorg.libXrandr
+    xorg.libxcb
+    xorg.libX11
+    xorg.libXext
+    xorg.libxkbfile
+    xorg.libXfixes
+    libxkbcommon
+    mesa
+  ];
+
+  sourceRoot = ".";
 
   unpackPhase = ''\
     ar x $src
@@ -19,23 +49,13 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    mkdir -p $out
+    runHook preInstall
+    mkdir -p $out/bin
     mv usr/* $out/
-
-    wrapProgram $out/bin/inkdrop \
-      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc ]}" \
-      --set ELECTRON_RUN_AS_NODE 1 \
-      --set ELECTRON_NO_SAND_BOX 1
+    runHook postInstall
   '';
-  #
-  # preFixup = let
-  #   libPath = lib.makeLibraryPath [];
-  # in ''
-  #   patchelf \
-  #     --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
-  #     --set-rpath "${libPath}" \
-  #     $out/bin/inkdrop
-  # '';
+
+  FONTCONFIG_FILE = makeFontsConf { fontDirectories = [ ]; };
 
   meta = with lib; {
     description = "The note-taking app for Markdown lovers";
