@@ -18,6 +18,7 @@ stdenv.mkDerivation rec {
     libdrm
     musl
     cups
+    dbus
     gtk3
     cairo
     pango
