@@ -6,7 +6,6 @@
     ./nix-ld.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
-    inputs.nix-index-database.nixosModules.nix-index
   ];
 
   boot = {
@@ -101,6 +100,7 @@
   };
 
   security = {
+    sudo-rs.enable = true;
     tpm2 = {
       enable = true;
       pkcs11.enable = true;
@@ -394,8 +394,9 @@
   };
 
   programs = {
+    virt-manager.enable = true;
     command-not-found.enable = false;
-    nix-index-database.comma.enable = true;
+    darling.enable = true;
     less.enable = true;
     dconf.enable = true;
     steam = {
@@ -403,7 +404,6 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = false;
     };
     hyprland = {
       enable = true;

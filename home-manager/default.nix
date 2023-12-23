@@ -12,7 +12,7 @@
     ./nix-colors
     ./qt
     ./starship
-    # ./waybar
+    ./waybar
     ./wezterm
     ./wlogout
     ./accounts.nix
@@ -33,7 +33,7 @@
     ./mail.nix
     ./neomutt.nix
     ./neovim.nix
-    ./nix-index-database.nix
+    ./nix-index.nix
     ./nix-your-shell.nix
     ./nnn.nix
     ./packages.nix
