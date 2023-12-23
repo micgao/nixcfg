@@ -393,11 +393,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703355189,
-        "narHash": "sha256-fflRwsyW+R3u0kScApX6uP7oSln9ToFoFy9/5LOKTK0=",
+        "lastModified": 1703368619,
+        "narHash": "sha256-ZGPMYL7FMA6enhuwby961bBANmoFX14EA86m2/Jw5Jo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "de9134144b456104953c2533debb27a02787891f",
+        "rev": "a2523ea0343b056ba240abbac90ab5f116a7aa7b",
         "type": "github"
       },
       "original": {
@@ -416,11 +416,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1703344286,
-        "narHash": "sha256-0w7EuJQSU/e2DoFAnKxDJljHLVH5TLJTsrOOkxLPDO8=",
+        "lastModified": 1703367702,
+        "narHash": "sha256-w+p9YpnWrsRcpXgYzs/FNBv/bSsY6228Mb56K1eAVq0=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "b9c1414f25bfe6972d1996b79566f63c215ec78a",
+        "rev": "f013acc6eec60bb2db499aeb009176f932ea3624",
         "type": "github"
       },
       "original": {
@@ -593,26 +593,6 @@
         "type": "github"
       }
     },
-    "nix-index-database": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1702864432,
-        "narHash": "sha256-xR5Igg2hnm979W3YgMDrSjErHFhHo4rbMboF6DC0mbc=",
-        "owner": "nix-community",
-        "repo": "nix-index-database",
-        "rev": "4605ccd764fac78b9e4b5b058698cb9f04430b91",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nix-index-database",
-        "type": "github"
-      }
-    },
     "nix-ld": {
       "inputs": {
         "nixpkgs": [
@@ -765,11 +745,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703269123,
-        "narHash": "sha256-GWIDaBkJXN3i+LZL5rN1lKib3Ie4RZDQnTgz0zwh/Wk=",
+        "lastModified": 1703365979,
+        "narHash": "sha256-zptfq92bkH1qza97WPun1lhC67UN9nphbuEvbXfkvYw=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "465aa369972263f144d72e42b254e3299eb9fdea",
+        "rev": "47599acd6506015d8bd711dfa39e4aa8fe45a27c",
         "type": "github"
       },
       "original": {
@@ -899,7 +879,6 @@
         "hyprland": "hyprland",
         "neovim": "neovim",
         "nix-colors": "nix-colors",
-        "nix-index-database": "nix-index-database",
         "nix-ld": "nix-ld",
         "nix-ld-rs": "nix-ld-rs",
         "nix-your-shell": "nix-your-shell",
