@@ -14,6 +14,7 @@
       clang
       gnumake
       nodejs
+      lua-language-server
     ];
     viAlias = true;
     vimAlias = true;

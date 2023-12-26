@@ -28,6 +28,7 @@ stdenv.mkDerivation rec {
     alsa-lib
     expat
     libdrm
+    gdk-pixbuf
     xorg.libXcomposite
     xorg.libXdamage
     xorg.libXrandr
@@ -42,17 +43,14 @@ stdenv.mkDerivation rec {
 
   sourceRoot = ".";
 
-  unpackPhase = ''\
-    ar x $src
-    tar --no-same-owner --no-same-permissions -xf data.tar.xz
-    chmod 0755 usr/lib/inkdrop/chrome-sandbox
-    chmod -s usr/lib/inkdrop/chrome-sandbox
+  unpackPhase = ''
+    dpkg --fsys-tarfile $src | tar -x --no-same-permissions --no-same-owner
   '';
 
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin
-    mv usr/* $out/
+    cp -R * $out/
     runHook postInstall
   '';
 
