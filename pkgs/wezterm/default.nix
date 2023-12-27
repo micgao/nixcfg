@@ -32,21 +32,19 @@ let
 in
 rustPlatform.buildRustPackage rec {
   pname = "wezterm";
-  version = "unstable-2023-11-25";
-  rev = "f07cc837166dc5f29df56afb42af3d6887ec6a33";
+  version = "unstable-2023-12-22";
+  rev = "84ae00c868e711cf97b2bfe885892428f1131a1d";
 
   src = fetchFromGitHub {
     owner = owner;
     repo = pname;
     rev = rev;
     fetchSubmodules = true;
-    sha256 = "sha256-Sk+tmAT3wuJPGLsiMAk75IuxfQmNgxTEYyqlcERxNVk=";
+    sha256 = "sha256-Sx5NtapMe+CtSlW9mfxUHhzF+n9tV2j/St6pku26Rj0=";
   };
 
   postPatch = ''
     echo ${version} > .tag
-
-    # tests are failing with: Unable to exchange encryption keys
     rm -r wezterm-ssh/tests
   '';
 
@@ -60,7 +58,7 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [
     installShellFiles
-    ncurses # tic for terminfo
+    ncurses
     pkg-config
     python3
   ] ++ lib.optional stdenv.isDarwin perl;
