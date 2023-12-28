@@ -15,6 +15,7 @@
       rustup
       distrobox
       bottles
+      spacedrive
       ollama
       bruno
       curlie
@@ -40,7 +41,6 @@
       keepassxc
       pavucontrol
       # obsidian
-      inkdrop
       jetbrains-toolbox
       virt-viewer
       thunderbird
