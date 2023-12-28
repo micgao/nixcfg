@@ -30,6 +30,7 @@ stdenv.mkDerivation rec {
   buildInputs = with pkgs; [
     cmake
     openssl
+    bc-ur
 
     unbound
     boost
