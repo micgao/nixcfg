@@ -303,10 +303,9 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    guix.enable = true;
     hardware.bolt.enable = true;
-    fwupd = {
-      enable = true;
-    };
+    fwupd.enable = true;
     resolved = {
       enable = true;
       extraConfig = ''
@@ -353,9 +352,7 @@
       openFirewall = true;
     };
     btrfs.autoScrub.enable = true;
-    throttled = {
-      enable = true;
-    };
+    throttled.enable = true;
     gnome.gnome-keyring.enable = true;
   };
 
