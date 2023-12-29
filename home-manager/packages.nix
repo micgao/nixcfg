@@ -14,6 +14,7 @@
       firefox-devedition
       rustup
       distrobox
+      vagrant
       bottles
       spacedrive
       ollama
