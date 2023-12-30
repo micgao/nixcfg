@@ -7,10 +7,7 @@
 
   home = {
     packages = with pkgs; [
-      nixfmt
-      nix-init
       nix-ld-rs
-      nix-update
       firefox-devedition
       rustup
       distrobox
@@ -41,7 +38,7 @@
       gimp-with-plugins
       keepassxc
       pavucontrol
-      # obsidian
+      obsidian
       inkdrop
       jetbrains-toolbox
       virt-viewer

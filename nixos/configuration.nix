@@ -303,7 +303,6 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    guix.enable = true;
     hardware.bolt.enable = true;
     fwupd.enable = true;
     resolved = {
