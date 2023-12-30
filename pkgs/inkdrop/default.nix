@@ -33,7 +33,6 @@
 }:
 
 let
-  version = "5.6.2";
   deps = [
     libxkbcommon
     libuuid
@@ -80,7 +79,7 @@ in
 
 stdenv.mkDerivation rec {
   pname = "inkdrop";
-  version = version;
+  version = "5.6.2";
 
   src = fetchurl {
     url = "https://d3ip0rje8grhnl.cloudfront.net/v${version}/inkdrop_${version}_amd64.deb";
