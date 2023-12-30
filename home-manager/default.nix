@@ -12,6 +12,7 @@
     ./nix-colors
     ./qt
     ./starship
+    ./waybar
     ./wezterm
     ./wlogout
     ./accounts.nix
