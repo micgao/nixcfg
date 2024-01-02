@@ -75,7 +75,6 @@
       value.source = value.flake;
     })
     config.nix.registry;
-    systemPackages = with pkgs; [];
     variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
