@@ -11,6 +11,7 @@
       firefox-devedition
       rustup
       distrobox
+      comma
       vagrant
       bottles
       spacedrive
