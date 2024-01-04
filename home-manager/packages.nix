@@ -5,6 +5,13 @@
     inputs.nixpkgs-wayland.overlay
   ];
 
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = pkgs.lib.optional (pkgs.obsidian.version == "1.5.3") "electron-25.9.0";
+    };
+  };
+
   home = {
     packages = with pkgs; [
       nix-ld-rs
@@ -39,7 +46,7 @@
       gimp-with-plugins
       keepassxc
       pavucontrol
-      # obsidian
+      obsidian
       inkdrop
       jetbrains-toolbox
       virt-viewer
