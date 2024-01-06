@@ -103,6 +103,7 @@ in {
 	            new_optimizations = true
 	            xray = true
 	            special = true
+              popups = true
 	        }
           drop_shadow = true
           shadow_range = 20
@@ -112,6 +113,7 @@ in {
           shadow_offset = 0 2
           shadow_scale = 1.0
           dim_inactive = true
+          dim_strength = 0.2
       }
 
        animations {
