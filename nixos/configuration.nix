@@ -397,9 +397,9 @@
     steam = {
       enable = true;
     };
-    gamescope = {
-      enable = true;
-    };
+    # gamescope = {
+    #   enable = true;
+    # };
     hyprland = {
       enable = true;
     };
