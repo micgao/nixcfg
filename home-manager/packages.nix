@@ -20,7 +20,7 @@
       distrobox
       comma
       vagrant
-      bottles
+      # bottles
       spacedrive
       ollama
       bruno

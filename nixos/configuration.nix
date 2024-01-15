@@ -177,9 +177,9 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       nvidiaSettings = true;
-      powerManagement.enable = true;
+      # powerManagement.enable = true;
     };
     trackpoint.enable = true;
   };
@@ -397,9 +397,9 @@
     steam = {
       enable = true;
     };
-    # gamescope = {
-    #   enable = true;
-    # };
+    gamescope = {
+      enable = true;
+    };
     hyprland = {
       enable = true;
     };
