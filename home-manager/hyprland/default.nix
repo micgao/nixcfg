@@ -44,7 +44,7 @@ in {
       env=XDG_SESSION_TYPE,wayland
       env=WLR_RENDERER_ALLOW_SOFTWARE,1
       env=WLR_RENDERER,vulkan
-      env=WLR_DRM_NO_ATOMIC,1
+      # env=WLR_DRM_NO_ATOMIC,1
       env=WLR_NO_HARDWARE_CURSORS,1
       env=EGL_PLATFORM,wayland
       env=NIXOS_OZONE_WL,1
@@ -57,7 +57,6 @@ in {
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
-      env=MOZ_DISABLE_RDD_SANDBOX,1
       env=NVD_BACKEND,direct
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=VDPAU_DRIVER,nvidia
@@ -75,13 +74,13 @@ in {
           touchpad {
               natural_scroll = false
           }
-          sensitivity = -0.1
+          sensitivity = 0
           accel_profile = flat
           float_switch_override_focus = 0
       }
 
       general {
-          allow_tearing = true
+          # allow_tearing = true
           gaps_in = 2
           gaps_out = 2
           border_size = 2
@@ -148,8 +147,8 @@ in {
       }
 
       misc {
-          vfr = true
-          no_direct_scanout = true
+          # vfr = true
+          # no_direct_scanout = true
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false
@@ -163,7 +162,7 @@ in {
       layerrule = blur, launcher
 
       windowrulev2 = fullscreen, class:^(dota2)$
-      windowrulev2 = immediate, class:^(dota2)$
+      # windowrulev2 = immediate, class:^(dota2)$
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = nomaximizerequest, class:.*
 
@@ -210,8 +209,6 @@ in {
       bind = $mainMod CTRL, 0, movetoworkspace, 10
       bind = $mainMod, S, togglespecialworkspace, magic
       bind = $mainMod SHIFT, S, movetoworkspace, special:magic
-      bind = $mainMod, mouse_down, workspace, m+1
-      bind = $mainMod, mouse_up, workspace, m-1
       bind = $mainMod CTRL, x, workspace, m+1
       bind = $mainMod CTRL, z, workspace, m-1
       bindm = $mainMod, mouse:272, movewindow

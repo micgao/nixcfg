@@ -177,9 +177,9 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
-      # powerManagement.enable = true;
+      powerManagement.enable = true;
     };
     trackpoint.enable = true;
   };
