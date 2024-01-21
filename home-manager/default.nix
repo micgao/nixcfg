@@ -31,6 +31,7 @@
     ./jq.nix
     ./ledger.nix
     ./mail.nix
+    ./mise.nix
     ./neomutt.nix
     ./neovim.nix
     ./nix-index.nix
@@ -43,7 +44,6 @@
     ./pywal.nix
     ./reaper.nix
     ./ripgrep.nix
-    ./rtx.nix
     ./tealdeer.nix
     ./vscodium.nix
     ./xdg.nix

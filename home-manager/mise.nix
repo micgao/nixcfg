@@ -1,5 +1,5 @@
 {
-  programs.rtx = {
+  programs.mise = {
     enable = true;
     enableZshIntegration = true;
     settings = {
