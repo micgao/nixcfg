@@ -44,7 +44,7 @@ in {
       env=XDG_SESSION_TYPE,wayland
       env=WLR_RENDERER_ALLOW_SOFTWARE,1
       env=WLR_RENDERER,vulkan
-      # env=WLR_DRM_NO_ATOMIC,1
+      env=WLR_DRM_NO_ATOMIC,1
       env=WLR_NO_HARDWARE_CURSORS,1
       env=EGL_PLATFORM,wayland
       env=NIXOS_OZONE_WL,1
@@ -63,7 +63,7 @@ in {
       # env=GBM_BACKEND,nvidia-drm
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
-      exec-once=waybar
+      # exec-once=waybar
       exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
       exec-once=[workspace 1 silent] wezterm
       exec-once=[workspace 2 silent] librewolf
@@ -80,7 +80,7 @@ in {
       }
 
       general {
-          # allow_tearing = true
+          allow_tearing = true
           gaps_in = 2
           gaps_out = 2
           border_size = 2
@@ -147,8 +147,8 @@ in {
       }
 
       misc {
-          # vfr = true
-          # no_direct_scanout = true
+          vfr = true
+          no_direct_scanout = true
           disable_autoreload = true
           disable_splash_rendering = true
           animate_manual_resizes = false
@@ -162,7 +162,7 @@ in {
       layerrule = blur, launcher
 
       windowrulev2 = fullscreen, class:^(dota2)$
-      # windowrulev2 = immediate, class:^(dota2)$
+      windowrulev2 = immediate, class:^(dota2)$
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = nomaximizerequest, class:.*
 
