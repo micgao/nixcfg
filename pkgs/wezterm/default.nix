@@ -3,7 +3,6 @@
 , lib
 , fetchFromGitHub
 , ncurses
-, perl
 , pkg-config
 , python3
 , fontconfig
@@ -32,15 +31,15 @@ let
 in
 rustPlatform.buildRustPackage rec {
   pname = "wezterm";
-  version = "unstable-2023-12-22";
-  rev = "84ae00c868e711cf97b2bfe885892428f1131a1d";
+  version = "unstable-2024-01-23";
+  rev = "12a6b8df84c84261f54b701e442efef453652f96";
 
   src = fetchFromGitHub {
     owner = owner;
     repo = pname;
     rev = rev;
     fetchSubmodules = true;
-    sha256 = "sha256-Sx5NtapMe+CtSlW9mfxUHhzF+n9tV2j/St6pku26Rj0=";
+    sha256 = "sha256-dvhBScbvl17Ua+YPf99Fv4aolp21nQqKctatERdIUiA=";
   };
 
   postPatch = ''
@@ -61,7 +60,7 @@ rustPlatform.buildRustPackage rec {
     ncurses
     pkg-config
     python3
-  ] ++ lib.optional stdenv.isDarwin perl;
+  ];
 
   buildInputs = [
     fontconfig
@@ -104,13 +103,6 @@ rustPlatform.buildRustPackage rec {
       --add-needed "${libGL}/lib/libEGL.so.1" \
       --add-needed "${vulkan-loader}/lib/libvulkan.so.1" \
       $out/bin/wezterm-gui
-  '' + lib.optionalString stdenv.isDarwin ''
-    mkdir -p "$out/Applications"
-    OUT_APP="$out/Applications/WezTerm.app"
-    cp -r assets/macos/WezTerm.app "$OUT_APP"
-    rm $OUT_APP/*.dylib
-    cp -r assets/shell-integration/* "$OUT_APP"
-    ln -s $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} "$OUT_APP"
   '';
 
   passthru = {
@@ -131,6 +123,5 @@ rustPlatform.buildRustPackage rec {
     description = "GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust";
     homepage = "https://wezfurlong.org/wezterm";
     license = licenses.mit;
-    maintainers = with maintainers; [ SuperSandro2000 ];
   };
 }
