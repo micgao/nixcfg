@@ -20,7 +20,7 @@
       distrobox
       comma
       vagrant
-      # bottles
+      bottles
       spacedrive
       ollama
       bruno
@@ -47,7 +47,6 @@
       keepassxc
       pavucontrol
       obsidian
-      inkdrop
       jetbrains-toolbox
       virt-viewer
       thunderbird
