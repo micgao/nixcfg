@@ -10,7 +10,6 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-ld = {
       url = "github:Mic92/nix-ld";
@@ -29,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay = {
-      url = "github:nix-community/emacs-overlay/9893e2a61442d7bbe8a46755c62385ff0bcd9cd5";
+      url = "github:nix-community/emacs-overlay";
     };
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
