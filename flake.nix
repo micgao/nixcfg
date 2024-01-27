@@ -8,9 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    nixpkgs-wayland = {
-      url = "github:nix-community/nixpkgs-wayland";
-    };
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix-ld = {
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,18 +21,10 @@
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = {
-      url = "github:neovim/neovim?dir=contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-    };
-    helix.url = "github:helix-editor/helix";
+    neovim.url = "github:neovim/neovim?dir=contrib";
+    emacs-overlay.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
   };
 
