@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }: 
 {
   nixpkgs.overlays = [
-    inputs.emacs-overlay.overlay
+    inputs.emacs-overlay.overlays
   ];
   home = {
     packages = with pkgs; [
