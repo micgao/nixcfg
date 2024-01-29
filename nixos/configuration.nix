@@ -77,7 +77,6 @@
     config.nix.registry;
     variables = {
       EDITOR = "nvim";
-      VISUAL = "nvim";
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
