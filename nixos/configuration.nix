@@ -174,9 +174,9 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = false;
+      open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
