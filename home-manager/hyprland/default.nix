@@ -36,7 +36,7 @@ in {
     systemd.enable = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
-      monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
+      monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
       env=XDG_SESSION_DESKTOP,Hyprland
@@ -44,7 +44,7 @@ in {
       env=XDG_SESSION_TYPE,wayland
       env=WLR_RENDERER_ALLOW_SOFTWARE,1
       env=WLR_RENDERER,vulkan
-      env=WLR_DRM_NO_ATOMIC,1
+      # env=WLR_DRM_NO_ATOMIC,1
       env=WLR_NO_HARDWARE_CURSORS,1
       env=EGL_PLATFORM,wayland
       env=NIXOS_OZONE_WL,1
@@ -60,7 +60,7 @@ in {
       env=NVD_BACKEND,direct
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=VDPAU_DRIVER,nvidia
-      env=GBM_BACKEND,nvidia-drm
+      # env=GBM_BACKEND,nvidia-drm
       exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
@@ -80,7 +80,7 @@ in {
       }
 
       general {
-          allow_tearing = true
+          # allow_tearing = true
           gaps_in = 2
           gaps_out = 2
           border_size = 2
@@ -163,7 +163,7 @@ in {
       layerrule = blur, launcher
 
       windowrulev2 = fullscreen, class:^(dota2)$
-      windowrulev2 = immediate, class:^(dota2)$
+      # windowrulev2 = immediate, class:^(dota2)$
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = nomaximizerequest, class:.*
 
