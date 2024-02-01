@@ -44,7 +44,7 @@ in {
       env=XDG_SESSION_TYPE,wayland
       env=WLR_RENDERER_ALLOW_SOFTWARE,1
       env=WLR_RENDERER,vulkan
-      env=WLR_DRM_NO_ATOMIC,1
+      # env=WLR_DRM_NO_ATOMIC,1
       env=WLR_NO_HARDWARE_CURSORS,1
       env=EGL_PLATFORM,wayland
       env=NIXOS_OZONE_WL,1
@@ -80,7 +80,7 @@ in {
       }
 
       general {
-          allow_tearing = true
+          # allow_tearing = true
           gaps_in = 2
           gaps_out = 2
           border_size = 2
@@ -143,15 +143,15 @@ in {
           allow_workspace_cycles = true
           workspace_back_and_forth = true
           scroll_event_delay = 300
-          pass_mouse_when_bound = true
+          pass_mouse_when_bound = false
       }
 
       misc {
           vfr = true
-          vrr = 2
           no_direct_scanout = true
           disable_autoreload = true
           disable_splash_rendering = true
+          disable_hyprland_logo = true
           animate_manual_resizes = false
       }
 
@@ -163,7 +163,7 @@ in {
       layerrule = blur, launcher
 
       windowrulev2 = fullscreen, class:^(dota2)$
-      windowrulev2 = immediate, class:^(dota2)$
+      # windowrulev2 = immediate, class:^(dota2)$
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = nomaximizerequest, class:.*
 

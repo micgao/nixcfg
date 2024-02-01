@@ -173,9 +173,9 @@
         sync.enable = true;
       };
       nvidiaPersistenced = true;
-      open = false;
+      open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
@@ -395,9 +395,9 @@
     steam = {
       enable = true;
     };
-    gamescope = {
-      enable = true;
-    };
+    # gamescope = {
+    #   enable = true;
+    # };
     hyprland = {
       enable = true;
     };

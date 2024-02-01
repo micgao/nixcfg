@@ -47,6 +47,7 @@
     ./tealdeer.nix
     ./vscodium.nix
     ./xdg.nix
+    ./xsettingsd.nix
     ./yazi.nix
     ./zathura.nix
     ./zoxide.nix
