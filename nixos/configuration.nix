@@ -154,7 +154,6 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        libva
         intel-compute-runtime
         vaapiIntel
         libvdpau-va-gl
@@ -173,6 +172,7 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
+      nvidiaPersistenced = true;
       open = false;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
@@ -213,7 +213,6 @@
       source-sans-pro
       recursive
       iosevka-ss04
-      # iosevka-murpins
       (nerdfonts.override {
         fonts =
           [ "SourceCodePro" "NerdFontsSymbolsOnly" ];
@@ -301,6 +300,7 @@
 
   services = {
     hardware.bolt.enable = true;
+    thinkfan.enable = true;
     fwupd.enable = true;
     resolved = {
       enable = true;
@@ -395,9 +395,9 @@
     steam = {
       enable = true;
     };
-    # gamescope = {
-    #   enable = true;
-    # };
+    gamescope = {
+      enable = true;
+    };
     hyprland = {
       enable = true;
     };
