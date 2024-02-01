@@ -7,7 +7,7 @@
   colorScheme = {
     slug = "sequoia";
     name = "Sequoia";
-    colors = {
+    palette = {
       base00 = "#0F1014";
       base01 = "#131317";
       base02 = "#1F1F24";
