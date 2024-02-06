@@ -142,6 +142,7 @@
   };
 
   hardware = {
+    bluetooth.enable = true;
     pulseaudio.enable = false;
     cpu = {
       intel = {
@@ -172,12 +173,10 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      nvidiaPersistenced = true;
       open = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
-      powerManagement.enable = true;
     };
     trackpoint.enable = true;
   };
