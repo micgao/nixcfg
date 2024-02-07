@@ -29,6 +29,7 @@
     yazi.url = "github:sxyazi/yazi";
     hyprland.url = "github:hyprwm/Hyprland";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+    wezterm.url = "github:wez/wezterm/?dir=nix";
   };
 
   outputs = {
