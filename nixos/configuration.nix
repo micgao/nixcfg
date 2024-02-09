@@ -12,7 +12,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "quiet" "splash" ];
     loader = {
       systemd-boot = {
@@ -172,7 +172,7 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
