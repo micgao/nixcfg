@@ -101,7 +101,6 @@
     sudo-rs.enable = true;
     tpm2 = {
       enable = true;
-      pkcs11.enable = true;
       abrmd.enable = true;
       tctiEnvironment.enable = true;
     };
