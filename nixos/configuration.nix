@@ -296,6 +296,8 @@
 
   time.timeZone = "America/Toronto";
 
+  location.provider = "geoclue2";
+
   services = {
     hardware.bolt.enable = true;
     thinkfan.enable = true;
