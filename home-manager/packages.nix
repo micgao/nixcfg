@@ -47,6 +47,7 @@
       keepassxc
       pavucontrol
       obsidian
+      anytype
       jetbrains-toolbox
       virt-viewer
       thunderbird

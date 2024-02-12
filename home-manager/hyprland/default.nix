@@ -160,7 +160,6 @@ in {
       }
 
       layerrule = blur, waybar
-      layerrule = ignorezero, waybar
       layerrule = blur, launcher
       layerrule = ignorezero, launcher
 
