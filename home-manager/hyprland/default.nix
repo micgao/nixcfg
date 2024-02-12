@@ -96,7 +96,7 @@ in {
           inactive_opacity = 0.9
 	        blur {
 	            enabled = true
-	            size = 6
+	            size = 9
 	            passes = 3
 	            ignore_opacity = true
 	            new_optimizations = true
@@ -117,16 +117,10 @@ in {
 
        animations {
           enabled = true
-          animation = windowsIn,1,3,easeoutback,slide
-          animation = windowsOut,1,3,easeinback,slide
-          animation = windowsMove,1,3,easeoutback
-          animation = workspaces,1,2,easeoutback,slide
-          animation = fadeIn,1,3,easeout
-          animation = fadeOut,1,3,easein
-          animation = fadeSwitch,1,3,easeout
-          animation = fadeShadow,1,3,easeout
-          animation = fadeDim,1,3,easeout
-          animation = border,1,3,easeout
+          animation = border, 1, 2, default
+          animation = fade, 1, 4, default
+          animation = windows, 1, 3, default, popin 80%
+          animation = workspaces, 1, 2, default, slide
        }
 
       dwindle {
