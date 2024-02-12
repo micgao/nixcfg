@@ -23,7 +23,7 @@
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim.url = "github:neovim/neovim/35a147fa77f28e3e9b5eaa217b5b383b59b6c9d2?dir=contrib";
+    neovim.url = "github:neovim/neovim/?dir=contrib";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
