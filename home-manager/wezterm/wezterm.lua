@@ -1,5 +1,4 @@
 local wezterm = require "wezterm"
-local act = wezterm.action
 
 local config = {}
 
@@ -81,22 +80,22 @@ config.keys = {
   {
     key = 'h',
     mods = 'CTRL|LEADER',
-    action = act.ActivatePaneDirection 'Left',
+    action = wezterm.action.ActivatePaneDirection 'Left',
   },
   {
     key = 'j',
     mods = 'CTRL|LEADER',
-    action = act.ActivatePaneDirection 'Down',
+    action = wezterm.action.ActivatePaneDirection 'Down',
   },
   {
     key = 'k',
     mods = 'CTRL|LEADER',
-    action = act.ActivatePaneDirection 'Up',
+    action = wezterm.action.ActivatePaneDirection 'Up',
   },
   {
     key = 'l',
     mods = 'CTRL|LEADER',
-    action = act.ActivatePaneDirection 'Right',
+    action = wezterm.action.ActivatePaneDirection 'Right',
   },
 }
 
@@ -129,13 +128,12 @@ config.font = wezterm.font_with_fallback {
     family = "Symbols Nerd Font",
   },
 }
-config.font_size = 11.5
+config.font_size = 11
 config.freetype_interpreter_version = 40
-config.freetype_load_target = "Light"
+config.freetype_load_target = "HorizontalLcd"
+config.freetype_render_target = "Light"
+config.freetype_load_flags = "NO_HINTING"
 config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
-config.custom_block_glyphs = false
-config.use_cap_height_to_scale_fallback_fonts = true
-config.warn_about_missing_glyphs = false
 config.unicode_version = 14
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
@@ -151,10 +149,6 @@ config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.enable_tab_bar = true
 config.window_decorations = "NONE"
-config.tiling_desktop_environments = {
-  'X11 wlroots wm',
-  'Wayland',
-}
 config.window_padding = {
   left = 2,
   right = 2,
