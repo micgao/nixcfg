@@ -21,6 +21,7 @@
       comma
       vagrant
       # bottles
+      devbox
       spacedrive
       ollama
       bruno
