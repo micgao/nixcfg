@@ -1,4 +1,9 @@
-{ inputs, pkgs, lib, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.helix = {
     enable = true;
     package = inputs.helix.packages.${pkgs.hostPlatform.system}.default;
@@ -7,16 +12,24 @@
       nodePackages.vscode-langservers-extracted
       nodePackages.vscode-css-languageserver-bin
       nil
+      lua-language-server
+      nixpkgs-fmt
     ];
     languages = {
       language-server = {
+        rust-analyzer = {
+          config = {
+            check = {
+              command = "clippy";
+            };
+          };
+        };
         typescript-language-server = with pkgs.nodePackages; {
           command = "${typescript-language-server}/bin/typescript-language-server";
           args = ["--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib"];
         };
         nil = {
           command = lib.getExe pkgs.nil;
-          config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
         };
         vscode-css-language-server = {
           command = "${pkgs.nodePackages.vscode-css-languageserver-bin}/bin/css-languageserver";
@@ -27,10 +40,18 @@
           };
         };
       };
-      language = [{
-        name = "rust";
-        auto-format = false;
-      }];
+      language = [
+        {
+          name = "rust";
+          auto-format = false;
+        }
+        {
+          name = "nix";
+          formatter = {
+            command = lib.getExe pkgs.nixpkgs-fmt;
+          };
+        }
+      ];
     };
     settings = {
       keys.normal = {
@@ -45,6 +66,7 @@
         mouse = false;
         line-number = "relative";
         true-color = true;
+        undercurl = true;
         color-modes = true;
         cursorline = true;
         cursor-shape = {
@@ -56,12 +78,25 @@
           render = true;
           rainbow-option = "dim";
         };
-        statusline.center = ["position-percentage"];
+        statusline = {
+          left = ["mode" "spinner" "file-name" "read-only-indicator" "file-modification-indicator"];
+          center = ["position-percentage"];
+          right = ["diagnostics" "selections" "register" "position" "file-encoding" "mode"];
+          mode = {
+            normal = " ";
+            insert = " ";
+            select = " ";
+          };
+        };
         file-picker = {
           hidden = false;
         };
         auto-format = false;
         bufferline = "always";
+        lsp = {
+          display-messages = true;
+          display-inlay-hints = true;
+        };
       };
     };
   };
