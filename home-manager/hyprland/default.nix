@@ -166,7 +166,6 @@ in {
       windowrulev2 = fullscreen, class:^(dota2)$
       # windowrulev2 = immediate, class:^(dota2)$
       windowrulev2 = workspace 9 silent, class:^(dota2)$
-      windowrulev2 = nomaximizerequest, class:.*
       windowrulev2 = stayfocused, title:^()$,class:^(steam)$
       windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
 
