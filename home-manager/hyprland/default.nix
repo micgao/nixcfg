@@ -12,6 +12,7 @@ in {
   home.packages = with pkgs; [
     qt6.qtwayland
     qt6.qt5compat
+    qt6Packages.qt6ct
     libsForQt5.qt5ct
     libsForQt5.breeze-qt5
     libsForQt5.breeze-gtk
@@ -54,6 +55,7 @@ in {
       env=GTK_THEME_VARIANT,dark
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
+      # env=QT_QPA_PLATFORM_THEME,qt5ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11

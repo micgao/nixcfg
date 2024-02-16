@@ -1,6 +1,6 @@
 { config, ... }: 
 let
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 {
   programs.kitty = {
@@ -31,40 +31,40 @@ in
       tab_bar_min_tabs = 1;
       tab_title_max_length = 16;
       tab_title_template = "{index}:{title}{activity_symbol}";
-      inactive_tab_background = "#${colors.base01}";
-      inactive_tab_foreground = "#${colors.base05}";
-      active_tab_background = "#${colors.base00}";
-      active_tab_foreground = "#${colors.base06}";
-      tab_bar_background = "#${colors.base01}";
-      foreground = "#${colors.base06}";
-      background = "#${colors.base00}";
+      inactive_tab_background = "#${palette.base01}";
+      inactive_tab_foreground = "#${palette.base05}";
+      active_tab_background = "#${palette.base00}";
+      active_tab_foreground = "#${palette.base06}";
+      tab_bar_background = "#${palette.base01}";
+      foreground = "#${palette.base06}";
+      background = "#${palette.base00}";
       selection_foreground = "none";
       selection_background = "none";
       draw_minimal_borders = "yes";
       strip_trailing_spaces = "smart";
       linux_display_server = "wayland";
-      color0 = "#${colors.base00}";
-      color1 = "#${colors.base08}";
-      color2 = "#${colors.base0B}";
-      color3 = "#${colors.base0A}";
-      color4 = "#${colors.base0D}";
-      color5 = "#${colors.base0E}";
-      color6 = "#${colors.base0C}";
-      color7 = "#${colors.base05}";
-      color8 = "#${colors.base03}";
-      color9 = "#${colors.base08}";
-      color10 = "#${colors.base0B}";
-      color11 = "#${colors.base0A}";
-      color12 = "#${colors.base0D}";
-      color13 = "#${colors.base0E}";
-      color14 = "#${colors.base0C}";
-      color15 = "#${colors.base07}";
-      color16 = "#${colors.base09}";
-      color17 = "#${colors.base0F}";
-      color18 = "#${colors.base01}";
-      color19 = "#${colors.base02}";
-      color20 = "#${colors.base04}";
-      color21 = "#${colors.base06}";
+      color0 = "#${palette.base00}";
+      color1 = "#${palette.base08}";
+      color2 = "#${palette.base0B}";
+      color3 = "#${palette.base0A}";
+      color4 = "#${palette.base0D}";
+      color5 = "#${palette.base0E}";
+      color6 = "#${palette.base0C}";
+      color7 = "#${palette.base05}";
+      color8 = "#${palette.base03}";
+      color9 = "#${palette.base08}";
+      color10 = "#${palette.base0B}";
+      color11 = "#${palette.base0A}";
+      color12 = "#${palette.base0D}";
+      color13 = "#${palette.base0E}";
+      color14 = "#${palette.base0C}";
+      color15 = "#${palette.base07}";
+      color16 = "#${palette.base09}";
+      color17 = "#${palette.base0F}";
+      color18 = "#${palette.base01}";
+      color19 = "#${palette.base02}";
+      color20 = "#${palette.base04}";
+      color21 = "#${palette.base06}";
     };
     shellIntegration = {
       enableZshIntegration = true;

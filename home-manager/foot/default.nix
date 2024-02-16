@@ -1,6 +1,6 @@
 { config, ... }: 
 let
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 {
   programs.foot = {
@@ -27,24 +27,24 @@ in
       };
       colors = {
         alpha = "1.0";
-        background = "${colors.base00}";
-        foreground = "${colors.base06}";
-        regular0 = "${colors.base00}";
-        regular1 = "${colors.base01}";
-        regular2 = "${colors.base02}";
-        regular3 = "${colors.base03}";
-        regular4 = "${colors.base04}";
-        regular5 = "${colors.base05}";
-        regular6 = "${colors.base06}";
-        regular7 = "${colors.base07}";
-        bright0 = "${colors.base08}";
-        bright1 = "${colors.base09}";
-        bright2 = "${colors.base0A}";
-        bright3 = "${colors.base0B}";
-        bright4 = "${colors.base0C}";
-        bright5 = "${colors.base0D}";
-        bright6 = "${colors.base0E}";
-        bright7 = "${colors.base0F}";
+        background = "${palette.base00}";
+        foreground = "${palette.base06}";
+        regular0 = "${palette.base00}";
+        regular1 = "${palette.base01}";
+        regular2 = "${palette.base02}";
+        regular3 = "${palette.base03}";
+        regular4 = "${palette.base04}";
+        regular5 = "${palette.base05}";
+        regular6 = "${palette.base06}";
+        regular7 = "${palette.base07}";
+        bright0 = "${palette.base08}";
+        bright1 = "${palette.base09}";
+        bright2 = "${palette.base0A}";
+        bright3 = "${palette.base0B}";
+        bright4 = "${palette.base0C}";
+        bright5 = "${palette.base0D}";
+        bright6 = "${palette.base0E}";
+        bright7 = "${palette.base0F}";
       };
     };
   };

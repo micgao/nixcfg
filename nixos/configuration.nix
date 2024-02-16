@@ -394,9 +394,9 @@
     steam = {
       enable = true;
     };
-    # gamescope = {
-    #   enable = true;
-    # };
+    gamescope = {
+      enable = true;
+    };
     hyprland = {
       enable = true;
     };
@@ -410,7 +410,6 @@
 
   qt = {
     enable = true;
-    platformTheme = "qt5ct";
   };
 
   system = {
