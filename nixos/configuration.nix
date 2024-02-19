@@ -13,7 +13,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+    kernelParams = [ "quiet" "splash" "fbdev=1" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -25,6 +25,7 @@
     };
     initrd = {
       enable = true;
+      includeDefaultModules = true;
       verbose = false;
       systemd = {
         enable = true;
@@ -174,7 +175,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;

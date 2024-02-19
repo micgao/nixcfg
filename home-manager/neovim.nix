@@ -15,6 +15,8 @@
       gnumake
       nodejs
       lua-language-server
+      codeium
+      luajitPackages.luarocks
     ];
     viAlias = true;
     vimAlias = true;
