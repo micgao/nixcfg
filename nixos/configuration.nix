@@ -173,6 +173,7 @@
         sync.enable = true;
       };
       open = true;
+      nvidiaPersistenced = true;
       modesetting.enable = true;
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
