@@ -13,7 +13,7 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" "fbdev=1" ];
+    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" "nvidia-modeset.hdmi_deepcolor=1" ];
     loader = {
       systemd-boot = {
         enable = true;
