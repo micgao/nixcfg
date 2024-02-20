@@ -14,6 +14,10 @@
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" "nvidia-modeset.hdmi_deepcolor=1" ];
+    extraModprobeConfig = ''
+      options nvidia-drm modeset=1 fbdev=1
+      options nvidia-modeset hdmi_deepcolor=1
+    '';
     loader = {
       systemd-boot = {
         enable = true;
@@ -172,7 +176,7 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       nvidiaPersistenced = true;
       modesetting.enable = true;
       powerManagement.enable = true;
