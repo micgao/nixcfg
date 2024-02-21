@@ -37,7 +37,7 @@ in {
     systemd.enable = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
-      monitor=HDMI-A-1,1920x1080@144,0x0,1
+      monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
       env=XDG_SESSION_DESKTOP,Hyprland
@@ -55,7 +55,7 @@ in {
       env=GTK_THEME_VARIANT,dark
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
-      # env=QT_QPA_PLATFORM_THEME,qt5ct
+      env=QT_QPA_PLATFORM_THEME,qt6ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
@@ -150,15 +150,24 @@ in {
 
       misc {
           vfr = true
-          no_direct_scanout = true
+          vrr = 2
+          no_direct_scanout = false
           disable_autoreload = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
           animate_manual_resizes = false
+          mouse_move_enables_dpms = true
+          key_press_enables_dpms = true
+          close_special_on_empty = false
+          background_color = rgb(0f1014)
       }
 
       xwayland {
           force_zero_scaling = true
+      }
+
+      opengl {
+          nvidia_anti_flicker = true
       }
 
       layerrule = blur, waybar
