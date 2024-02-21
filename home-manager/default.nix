@@ -18,7 +18,7 @@
     ./accounts.nix
     ./bat.nix
     ./browsers.nix
-    ./cava.
+    ./cava.nix
     ./direnv.nix
     ./emacs.nix
     ./feh.nix
