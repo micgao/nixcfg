@@ -43,15 +43,12 @@
       procs
       zip
       unzip
-      p7zip
       megacmd
-      mpc-cli
       protonmail-bridge
       gimp-with-plugins
       keepassxc
       pavucontrol
       obsidian
-      anytype
       jetbrains-toolbox
       virt-viewer
       thunderbird

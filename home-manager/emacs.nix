@@ -12,7 +12,6 @@
       imagemagick
       zstd
       sqlite
-      editorconfig-core-c
       gnutls
       texlive.combined.scheme-medium
     ];

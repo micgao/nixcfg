@@ -176,7 +176,7 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       nvidiaPersistenced = true;
       modesetting.enable = true;
       powerManagement.enable = true;

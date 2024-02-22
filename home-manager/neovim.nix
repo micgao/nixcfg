@@ -15,8 +15,8 @@
       gnumake
       nodejs
       lua-language-server
-      codeium
       luajitPackages.luarocks
+      sqlite
     ];
     viAlias = true;
     vimAlias = true;
