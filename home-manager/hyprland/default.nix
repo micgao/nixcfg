@@ -160,6 +160,7 @@ in {
           key_press_enables_dpms = true
           close_special_on_empty = false
           background_color = rgb(0f1014)
+          focus_on_activate = true
       }
 
       xwayland {
