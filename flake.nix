@@ -29,6 +29,8 @@
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprlock.url = "github:hyprwm/hyprlock";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
   };

@@ -322,7 +322,6 @@
     dbus = {
       enable = true;
       implementation = "broker";
-      packages = with pkgs; [ gcr dconf ];
     };
     logind = {
       lidSwitchExternalPower = "ignore";
@@ -355,7 +354,6 @@
     };
     btrfs.autoScrub.enable = true;
     throttled.enable = true;
-    gnome.gnome-keyring.enable = true;
   };
 
   documentation = {
@@ -389,13 +387,11 @@
         "rtkit"
       ];
     };
-    extraGroups.vboxusers.members = [ "micgao" ];
   };
 
   programs = {
     virt-manager.enable = true;
     command-not-found.enable = false;
-    darling.enable = true;
     less.enable = true;
     dconf.enable = true;
     steam = {
@@ -408,15 +404,20 @@
       enable = true;
     };
     zsh.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableBrowserSocket = true;
-      enableExtraSocket = true;
+    gnupg = {
+      dirmngr.enable = true;
+      agent = {
+        enable = true;
+        enableBrowserSocket = true;
+        enableExtraSocket = true;
+        enableSSHSupport = true;
+      };
     };
   };
 
   qt = {
     enable = true;
+    platformTheme = "qt5ct";
   };
 
   system = {

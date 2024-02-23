@@ -14,7 +14,6 @@
     ./starship
     ./waybar
     ./wezterm
-    ./wlogout
     ./accounts.nix
     ./bat.nix
     ./browsers.nix

@@ -9,10 +9,7 @@
       };
     };
   };
-  services = {
-    gnome-keyring ={
-      enable = true;
-      components = [ "pkcs11" "secrets" "ssh" ];
-    };
+  services.pass-secret-service = {
+    enable = true;
   };
 }

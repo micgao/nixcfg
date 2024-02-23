@@ -3,6 +3,7 @@ let pointer = config.home.pointerCursor;
 in {
   imports = [
     inputs.hyprland.homeManagerModules.default
+    inputs.hyprlock.homeManagerModules.default
   ];
 
   nixpkgs.overlays = [
@@ -12,25 +13,23 @@ in {
   home.packages = with pkgs; [
     qt6.qtwayland
     qt6.qt5compat
-    qt6Packages.qt6ct
-    libsForQt5.qt5ct
     libsForQt5.breeze-qt5
     libsForQt5.breeze-gtk
     libsForQt5.breeze-icons
     libsForQt5.qtstyleplugins
     libsForQt5.qt5.qtwayland
-    libsForQt5.polkit-kde-agent
     gsettings-desktop-schemas
     egl-wayland
     hyprpaper
-    hyprpicker
     wlay
     wtype
     wl-clipboard
     wl-clipboard-x11
     wlr-randr
     ydotool
+    inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.default
   ];
+
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -55,7 +54,6 @@ in {
       env=GTK_THEME_VARIANT,dark
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
-      env=QT_QPA_PLATFORM_THEME,qt6ct
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
@@ -63,7 +61,6 @@ in {
       env=__GLX_VENDOR_LIBRARY_NAME,nvidia
       env=VDPAU_DRIVER,nvidia
       env=GBM_BACKEND,nvidia-drm
-      exec-once=${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1
       exec-once=hyprpaper
       exec-once=waybar
       exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
@@ -180,6 +177,7 @@ in {
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = stayfocused, title:^()$,class:^(steam)$
       windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
+      windowrulev2 = suppressevent maximize, class:.*
 
       workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
       workspace = special:scratchpad
@@ -191,7 +189,6 @@ in {
       bind = $mainMod, F, fullscreen,
       bind = $mainMod, G, togglegroup,
       bind = $mainMod, Q, killactive,
-      bind = $mainMod, M, exec, wlogout -p layer-shell
       bind = $mainMod, V, togglefloating,
       bind = $mainMod, X, togglesplit,
       bind = $mainMod, P, pseudo,
@@ -230,6 +227,29 @@ in {
       bindm = $mainMod, mouse:273, resizewindow
     '';
   };
+
+  programs.hyprlock = {
+    enable = true;
+    general = {
+      hide_cursor = false;
+    };
+    input-fields = [
+      {
+        monitor = "";
+        fade_on_empty = false;
+        hide_input = true;
+      }
+    ];
+    labels = [
+      {
+        monitor = "";
+        text = "$TIME";
+        valign = "center";
+        halign = "center";
+      }
+    ];
+  };
+
   xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
   xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
 }
