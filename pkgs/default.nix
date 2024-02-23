@@ -4,4 +4,5 @@
   iosevka-ss04 = pkgs.callPackage ./iosevka { };
   # iosevka-murpins = pkgs.callPackage ./iosevka-murpins { };
   inter = pkgs.callPackage ./inter { };
+  warp-terminal-linux = pkgs.callPackage ./warp { };
 }
