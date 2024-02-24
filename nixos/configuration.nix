@@ -265,7 +265,6 @@
       enable = true;
       dockerCompat = true;
       dockerSocket.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
     };
     kvmgt = {
       enable = true;
@@ -283,9 +282,15 @@
         runAsRoot = false;
       };
     };
-    virtualbox.host = { enable = true; };
+    virtualbox.host = {
+      enable = true;
+    };
     vmware.host = {
       enable = true;
+      extraConfig = ''
+        mks.gl.allowUnsupportedDrivers = "TRUE"
+        mks.vk.allowUnsupportedDevices = "TRUE"
+      '';
     };
   };
 
@@ -357,6 +362,8 @@
     };
     btrfs.autoScrub.enable = true;
     throttled.enable = true;
+    udisks2.enable = true;
+    geoclue2.enable = true;
   };
 
   documentation = {
