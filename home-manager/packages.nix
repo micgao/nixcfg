@@ -17,6 +17,7 @@
 
   home = {
     packages = with pkgs; [
+      warp-terminal
       nix-ld-rs
       firefox-devedition
       rustup
