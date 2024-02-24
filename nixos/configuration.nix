@@ -257,11 +257,14 @@
   };
 
   virtualisation = {
+    containers = {
+      enable = true;
+      cdi.dynamic.nvidia.enable = true;
+    };
     podman = {
       enable = true;
       dockerCompat = true;
       dockerSocket.enable = true;
-      enableNvidia = true;
       defaultNetwork.settings.dns_enabled = true;
     };
     kvmgt = {
