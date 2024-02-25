@@ -12,7 +12,7 @@
     ./nix-colors
     ./qt
     ./starship
-    ./waybar
+    # ./waybar
     ./wezterm
     ./accounts.nix
     ./bat.nix
