@@ -147,7 +147,16 @@
   };
 
   hardware = {
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      hsphfpd.enable = true;
+      settings = {
+        General = {
+          Experimental = "true";
+        };
+      };
+    };
     pulseaudio.enable = false;
     cpu = {
       intel = {
