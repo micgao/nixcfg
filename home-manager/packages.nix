@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }: {
 
   nixpkgs.overlays = [
-    inputs.nix-ld-rs.overlays.default
     inputs.nixpkgs-wayland.overlay
   ];
 
@@ -17,7 +16,6 @@
 
   home = {
     packages = with pkgs; [
-      nix-ld-rs
       firefox-devedition
       rustup
       distrobox
