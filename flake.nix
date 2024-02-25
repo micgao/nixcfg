@@ -20,6 +20,10 @@
       url = "github:nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    envfs = {
+      url = "github:Mic92/envfs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-your-shell = {
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";

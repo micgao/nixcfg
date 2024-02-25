@@ -6,6 +6,7 @@
     ./nix-ld.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
+    inputs.envfs.nixosModules.envfs
   ];
 
   boot = {
@@ -313,6 +314,7 @@
   location.provider = "geoclue2";
 
   services = {
+    envfs.enable = true;
     hardware.bolt.enable = true;
     thinkfan.enable = true;
     fwupd.enable = true;
