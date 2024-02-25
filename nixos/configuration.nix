@@ -339,6 +339,7 @@
     };
     dbus = {
       enable = true;
+      packages = [ pkgs.gcr ];
       implementation = "broker";
     };
     logind = {
@@ -431,7 +432,7 @@
         enableBrowserSocket = true;
         enableExtraSocket = true;
         enableSSHSupport = true;
-        pinentryFlavor = "gtk2";
+        pinentryFlavor = "gnome3";
       };
     };
   };
