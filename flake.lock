@@ -93,6 +93,28 @@
         "type": "github"
       }
     },
+    "envfs": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1707174494,
+        "narHash": "sha256-pyWTyLSknMnsDxKXMbSiVZ74pcZqA2ZLH9AQ9PbNcL0=",
+        "owner": "Mic92",
+        "repo": "envfs",
+        "rev": "eb54a95cee550ae29ae45b18f9733306dee0b62b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "envfs",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -201,6 +223,27 @@
       }
     },
     "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "envfs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1698882062,
+        "narHash": "sha256-HkhafUayIqxXyHH1X8d9RDl1M2CkFgZLjKD3MzabiEo=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "8c9fa2545007b49a5db5f650ae91f227672c3877",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": [
           "nixpkgs-wayland",
@@ -702,10 +745,10 @@
     },
     "nix-eval-jobs": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "nix-github-actions": "nix-github-actions",
         "nixpkgs": "nixpkgs_10",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
         "lastModified": 1705242886,
@@ -1087,6 +1130,7 @@
     "root": {
       "inputs": {
         "emacs-overlay": "emacs-overlay",
+        "envfs": "envfs",
         "firefox-nightly": "firefox-nightly",
         "helix": "helix",
         "home-manager": "home-manager",
@@ -1347,6 +1391,27 @@
       }
     },
     "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "envfs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1699786194,
+        "narHash": "sha256-3h3EH1FXQkIeAuzaWB+nK0XK54uSD46pp+dMD3gAcB4=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "e82f32aa7f06bbbd56d7b12186d555223dc399d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs-wayland",
