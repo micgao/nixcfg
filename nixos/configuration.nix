@@ -421,6 +421,7 @@
         enableBrowserSocket = true;
         enableExtraSocket = true;
         enableSSHSupport = true;
+        pinentryFlavor = "gtk2";
       };
     };
   };

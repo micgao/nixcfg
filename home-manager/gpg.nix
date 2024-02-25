@@ -9,6 +9,6 @@
   services.gpg-agent = {
     enable = true;
     enableExtraSocket = true;
-    pinentryFlavor = "gnome3";
+    pinentryFlavor = "gtk2";
   };
 }
