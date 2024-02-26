@@ -31,7 +31,7 @@
     neovim.url = "github:neovim/neovim/?dir=contrib";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     helix.url = "github:helix-editor/helix";
-    yazi.url = "github:sxyazi/yazi";
+    yazi.url = "github:sxyazi/yazi/8ea75566258062fbb7e33c13f8eb1b46a1736bf5";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprpicker.url = "github:hyprwm/hyprpicker";

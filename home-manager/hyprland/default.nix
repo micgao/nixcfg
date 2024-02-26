@@ -6,9 +6,9 @@ in {
     inputs.hyprlock.homeManagerModules.default
   ];
 
-  nixpkgs.overlays = [
-    inputs.nixpkgs-wayland.overlay
-  ];
+  # nixpkgs.overlays = [
+  #   inputs.nixpkgs-wayland.overlay
+  # ];
 
   home.packages = with pkgs; [
     qt6.qtwayland

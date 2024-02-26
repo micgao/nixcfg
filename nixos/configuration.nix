@@ -418,9 +418,10 @@
     steam = {
       enable = true;
     };
-    # gamescope = {
-    #   enable = true;
-    # };
+    gamescope = {
+      enable = true;
+      package = pkgs.gamescope.override { wlroots = pkgs.wlroots_0_17; };
+    };
     hyprland = {
       enable = true;
     };

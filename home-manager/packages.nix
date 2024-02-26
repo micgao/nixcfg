@@ -1,8 +1,4 @@
-{ pkgs, inputs, ... }: {
-
-  nixpkgs.overlays = [
-    inputs.nixpkgs-wayland.overlay
-  ];
+{ pkgs, ... }: {
 
   nixpkgs = {
     config = {
@@ -14,14 +10,19 @@
     };
   };
 
+  # nixpkgs.overlays = [
+  #   inputs.nixpkgs-wayland.overlay
+  # ];
+
   home = {
     packages = with pkgs; [
       firefox-devedition
+      mullvad-browser
       rustup
       distrobox
       comma
       vagrant
-      # bottles
+      bottles
       devbox
       spacedrive
       ollama
