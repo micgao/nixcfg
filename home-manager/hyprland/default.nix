@@ -46,7 +46,6 @@ in {
       env=WLR_RENDERER,vulkan
       # env=WLR_DRM_NO_ATOMIC,1
       env=WLR_NO_HARDWARE_CURSORS,1
-      env=EGL_PLATFORM,wayland
       env=NIXOS_OZONE_WL,1
       env=XCURSOR_SIZE,24
       env=LIBVA_DRIVER_NAME,nvidia

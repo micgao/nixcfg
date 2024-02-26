@@ -1,9 +1,4 @@
-{ inputs, pkgs, config, ... }: {
-  nixpkgs = {
-    overlays = [
-      inputs.nixpkgs-wayland.overlay
-    ];
-  };
+{ config, ... }: {
   services.mako = {
     enable = true;
     iconPath = "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark";

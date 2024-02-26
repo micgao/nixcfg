@@ -134,7 +134,7 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      inputs.nixpkgs-wayland.overlay
+      # inputs.nixpkgs-wayland.overlay
     ];
     config = {
       allowUnfree = true;
@@ -420,7 +420,6 @@
     };
     gamescope = {
       enable = true;
-      package = pkgs.gamescope.override { wlroots = pkgs.wlroots_0_17; };
     };
     hyprland = {
       enable = true;
