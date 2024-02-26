@@ -62,7 +62,7 @@ in {
       env=VDPAU_DRIVER,nvidia
       env=GBM_BACKEND,nvidia-drm
       exec-once=hyprpaper
-      # exec-once=waybar
+      exec-once=waybar
       exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
       exec-once=[workspace 1 silent] wezterm
       exec-once=[workspace 2 silent] librewolf
@@ -168,7 +168,7 @@ in {
           nvidia_anti_flicker = true
       }
 
-      # layerrule = blur, waybar
+      layerrule = blur, waybar
       layerrule = blur, launcher
       layerrule = ignorezero, launcher
 
