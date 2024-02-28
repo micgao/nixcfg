@@ -185,11 +185,11 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = false;
+      open = true;
       nvidiaPersistenced = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
