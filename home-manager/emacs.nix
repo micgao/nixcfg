@@ -11,7 +11,6 @@
       graphviz
       imagemagick
       zstd
-      sqlite
       gnutls
       texlive.combined.scheme-medium
     ];
