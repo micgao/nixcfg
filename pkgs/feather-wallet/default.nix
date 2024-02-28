@@ -5,12 +5,12 @@ in
 
 stdenv.mkDerivation rec {
   pname = "feather-wallet";
-  version = "2.6.1";
+  version = "2.6.3";
 
   src = fetchgit {
     url = "https://github.com/feather-wallet/feather";
     rev = version;
-    hash = "sha256-szMNSqkocf/aVs1aF+TLV1qu0MDHTNDiO4V1j4ySBvQ=";
+    hash = "sha256-pQnaJbKznK1i8wn7t8ZnxLVu1LV/D47krxZZ0j6Mw6g=";
     fetchSubmodules = true;
   };
   nativeBuildInputs = with pkgs; [
