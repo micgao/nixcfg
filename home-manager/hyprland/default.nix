@@ -66,7 +66,7 @@ in {
       exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
       exec-once=[workspace 1 silent] wezterm
       exec-once=[workspace 2 silent] librewolf
-      # exec-once=[workspace 3 silent] emacs
+      exec-once=[workspace 3 silent] emacs
 
       input {
           follow_mouse = 2
@@ -147,8 +147,6 @@ in {
 
       misc {
           vfr = true
-          vrr = 2
-          no_direct_scanout = false
           disable_autoreload = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
@@ -172,14 +170,12 @@ in {
       layerrule = blur, launcher
       layerrule = ignorezero, launcher
 
-      windowrulev2 = fullscreen, class:^(dota2)$
       # windowrulev2 = immediate, class:^(dota2)$
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = stayfocused, title:^()$,class:^(steam)$
       windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
       windowrulev2 = suppressevent maximize, class:.*
 
-      workspace = 9, gapsin:0, gapsout:0, bordersize:0, border:false, shadow:false, rounding:false, decorate:false
       workspace = special:scratchpad
 
       $mainMod = SUPER

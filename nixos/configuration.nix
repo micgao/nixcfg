@@ -13,7 +13,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_lqx;
     kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" "nvidia-modeset.hdmi_deepcolor=1" ];
     extraModprobeConfig = ''
       options nvidia-drm modeset=1 fbdev=1
@@ -112,22 +112,6 @@
     };
     rtkit.enable = true;
     polkit.enable = true;
-    pam = {
-      loginLimits = [
-        {
-          domain = "@audio";
-          type = "-";
-          item = "rtprio";
-          value = "95";
-        }
-        {
-          domain = "@audio";
-          type = "-";
-          item = "memlock";
-          value = "unlimited";
-        }
-      ];
-    };
   };
 
   nixpkgs = {
@@ -185,11 +169,11 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       nvidiaPersistenced = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
