@@ -36,7 +36,7 @@ in {
     systemd.enable = true;
     extraConfig = ''
       # monitor=,preferred,auto,auto
-      monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
+      monitor=HDMI-A-1,1920x1080@144,0x0,1
       monitor=eDP-1,disable
       env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
       env=XDG_SESSION_DESKTOP,Hyprland
@@ -171,6 +171,7 @@ in {
       layerrule = ignorezero, launcher
 
       # windowrulev2 = immediate, class:^(dota2)$
+      windowrulev2 = fullscreen, class:^(dota2)$
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = stayfocused, title:^()$,class:^(steam)$
       windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
@@ -180,7 +181,7 @@ in {
 
       $mainMod = SUPER
 
-      bind = $mainMod, return, exec, wezterm start
+      bind = $mainMod, return, exec, wezterm
       bind = $mainMod, space, exec, fuzzel
       bind = $mainMod, F, fullscreen,
       bind = $mainMod, G, togglegroup,

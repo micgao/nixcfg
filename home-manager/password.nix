@@ -9,7 +9,7 @@
       };
     };
   };
-  services.pass-secret-service = {
+  services.gnome-keyring = {
     enable = true;
   };
 }

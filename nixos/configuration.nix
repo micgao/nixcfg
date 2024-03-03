@@ -13,7 +13,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" "nvidia-modeset.hdmi_deepcolor=1" ];
     extraModprobeConfig = ''
       options nvidia-drm modeset=1 fbdev=1
@@ -169,11 +169,11 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = false;
+      open = true;
       nvidiaPersistenced = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
@@ -323,7 +323,7 @@
     };
     dbus = {
       enable = true;
-      packages = [ pkgs.gcr ];
+      packages = [ pkgs.gcr_4 ];
       implementation = "broker";
     };
     logind = {
