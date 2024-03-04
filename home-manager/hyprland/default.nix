@@ -55,6 +55,7 @@ in {
       env=QT_AUTO_SCREEN_SCALE_FACTOR,1
       env=QT_QPA_PLATFORM,wayland;xcb
       env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+      env=QT_QPA_PLATFORMTHEME,qt5ct
       env=_JAVA_AWT_WM_NONREPARENTING,1
       env=GDK_BACKEND,wayland,x11
       env=NVD_BACKEND,direct
