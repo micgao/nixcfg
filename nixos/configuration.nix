@@ -14,10 +14,9 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" "nvidia-modeset.hdmi_deepcolor=1" ];
+    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" ];
     extraModprobeConfig = ''
       options nvidia-drm modeset=1 fbdev=1
-      options nvidia-modeset hdmi_deepcolor=1
     '';
     loader = {
       systemd-boot = {
@@ -208,7 +207,6 @@
       cascadia-code
       source-code-pro
       source-sans-pro
-      recursive
       iosevka-ss04
       (nerdfonts.override {
         fonts =
@@ -242,8 +240,8 @@
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Source Sans Pro" ];
-        serif = [ "Noto Serif" ];
+        sansSerif = [ "Inter" ];
+        serif = [ "Inter" ];
         emoji = [ "Noto Emoji" ];
       };
     };
