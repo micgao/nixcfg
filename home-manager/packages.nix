@@ -18,6 +18,7 @@
     packages = with pkgs; [
       firefox-devedition
       mullvad-browser
+      warp-terminal
       rustup
       distrobox
       comma
