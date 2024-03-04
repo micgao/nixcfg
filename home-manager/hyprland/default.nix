@@ -176,7 +176,6 @@ in {
       windowrulev2 = workspace 9 silent, class:^(dota2)$
       windowrulev2 = stayfocused, title:^()$,class:^(steam)$
       windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
-      windowrulev2 = suppressevent maximize, class:.*
 
       workspace = special:scratchpad
 

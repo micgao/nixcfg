@@ -29,11 +29,8 @@
       bruno
       curlie
       hurl
-      clipboard-jh
       circumflex
       fd
-      polkit
-      gopass
       gpg-tui
       git-credential-gopass
       git-credential-keepassxc
@@ -48,6 +45,7 @@
       keepassxc
       pavucontrol
       obsidian
+      appflowy
       jetbrains-toolbox
       virt-viewer
       thunderbird
