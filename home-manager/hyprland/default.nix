@@ -148,6 +148,8 @@ in {
 
       misc {
           vfr = true
+          vrr = 2
+          no_direct_scanout = false
           disable_autoreload = true
           disable_splash_rendering = true
           disable_hyprland_logo = true
