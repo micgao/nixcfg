@@ -24,10 +24,9 @@
       comma
       vagrant
       bottles
-      devbox
       spacedrive
       ollama
-      bruno
+      hoppscotch
       curlie
       hurl
       circumflex
@@ -46,7 +45,6 @@
       keepassxc
       pavucontrol
       obsidian
-      appflowy
       jetbrains-toolbox
       virt-viewer
       thunderbird
