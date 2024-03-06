@@ -16,6 +16,7 @@
 
   home = {
     packages = with pkgs; [
+      adobe-reader
       firefox-devedition
       mullvad-browser
       warp-terminal
