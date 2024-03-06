@@ -6,6 +6,7 @@
       permittedInsecurePackages = [
         pkgs.lib.optional (pkgs.obsidian.version == "1.5.3") "electron-25.9.0"
         pkgs.lib.optional (pkgs.megacmd.version == "1.6.3") "freeimage-unstable-2021-11-01"
+        pkgs.lib.optional (pkgs.adobe-reader.version == "9.5.5")
       ];
     };
   };
