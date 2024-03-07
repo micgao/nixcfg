@@ -15,8 +15,8 @@
 
   home = {
     packages = with pkgs; [
-      inputs.bloop-ai.packages.${pkgs.hostPlatform.system}.default
-      inputs.bloop-ai.packages.${pkgs.hostPlatform.system}.frontend
+      inputs.bloop-ai.packages.default
+      inputs.bloop-ai.packages.frontend
       firefox-devedition
       mullvad-browser
       warp-terminal
