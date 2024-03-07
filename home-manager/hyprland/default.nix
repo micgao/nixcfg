@@ -183,6 +183,11 @@ in {
 
       $mainMod = SUPER
 
+      bind = $mainMod,K,submap,clean
+      submap = clean
+      bind = $mainMod,K,submap,reset
+      submap = reset
+
       bind = $mainMod, return, exec, wezterm
       bind = $mainMod, space, exec, fuzzel
       bind = $mainMod, F, fullscreen,
