@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
 
   nixpkgs = {
     config = {
@@ -15,8 +15,6 @@
 
   home = {
     packages = with pkgs; [
-      inputs.bloop-ai.packages.${pkgs.system}.default
-      inputs.bloop-ai.packages.${pkgs.system}.frontend
       firefox-devedition
       mullvad-browser
       warp-terminal
