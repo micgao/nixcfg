@@ -202,11 +202,19 @@
       roboto
       roboto-mono
       inter
-      pretendard
       cascadia-code
       source-code-pro
       source-sans-pro
       iosevka-ss04
+      (iosevka.override {
+        set = "etoile";
+      })
+      (iosevka.override {
+        set = "aile";
+      })
+      (iosevka.override {
+        set = "curly";
+      })
       (nerdfonts.override {
         fonts =
           [ "SourceCodePro" "NerdFontsSymbolsOnly" ];
