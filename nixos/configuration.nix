@@ -168,7 +168,7 @@
         intelBusId = "PCI:0:2:0";
         sync.enable = true;
       };
-      open = false;
+      open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
@@ -207,9 +207,13 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
-      iosevka-aile
-      iosevka-etoile
-      iosevka-curly
+      (iosevka.override {
+        set = [
+          "aile"
+          "etoile"
+          "curly"
+        ];
+      })
       (nerdfonts.override {
         fonts =
           [ "SourceCodePro" "NerdFontsSymbolsOnly" ];
