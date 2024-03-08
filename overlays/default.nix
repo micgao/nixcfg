@@ -1,10 +1,11 @@
+{ inputs, ... }:
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
   modifications = final: prev: {
-    nushell-dataframe = prev.nushell.overrideAttrs (oldAttrs: {
+    nushell-dataframe = prev.nushell.overrideAttrs {
       buildFeatures = [
 	      "dataframe"
       ];
-    });
+    };
   };
 }
