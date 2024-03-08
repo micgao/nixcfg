@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     ./cachix.nix
     ./nix-ld.nix
-    # ../modules/nixos/portmaster.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
     inputs.envfs.nixosModules.envfs
@@ -308,7 +307,6 @@
     hardware.bolt.enable = true;
     thinkfan.enable = true;
     fwupd.enable = true;
-    # portmaster.enable = true;
     resolved = {
       enable = true;
       extraConfig = ''
