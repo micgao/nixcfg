@@ -371,7 +371,11 @@
   users = {
     defaultUserShell = pkgs.zsh;
     users.micgao = {
-      shell = pkgs.nushell-dataframe;
+      shell = pkgs.nushell.override {
+        buildFeatures = [
+          "dataframe"
+        ];
+      };
       isNormalUser = true;
       packages = [
         inputs.home-manager.packages.${pkgs.system}.default
