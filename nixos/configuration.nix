@@ -207,6 +207,9 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
+      iosevka-aile
+      iosevka-etoile
+      iosevka-curly
       (nerdfonts.override {
         fonts =
           [ "SourceCodePro" "NerdFontsSymbolsOnly" ];
