@@ -3,9 +3,7 @@
   modifications = final: prev: {
     nushell = prev.nushell.overrideAttrs (oldAttrs: {
       buildFeatures = (p: p) [
-      	"extra"
 	      "dataframe"
-	      "plugin"
       ];
     });
   };
