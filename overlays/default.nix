@@ -2,9 +2,7 @@
   additions = final: _prev: import ../pkgs { pkgs = final; };
   modifications = final: prev: {
     nushell = prev.nushell.overrideAttrs (oldAttrs: {
-      cargoBuildFeatures = [
-	      "dataframe"
-      ];
+      cargoBuildFeatures = (oldAttrs.cargoBuildFeatures or [ ]) ++ [ "dataframe" ];
     });
   };
 }
