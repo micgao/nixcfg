@@ -63,7 +63,6 @@
       pkgs.nixpkgs-fmt
     );
     overlays = import ./overlays { inherit inputs; };
-    nixosModules = import ./modules/nixos;
     nixosConfigurations = {
       X1E3 = lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
