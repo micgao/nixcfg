@@ -40,7 +40,7 @@
       unzip
       megacmd
       protonmail-bridge
-      gimp-with-plugins
+      gimp
       keepassxc
       pavucontrol
       obsidian
