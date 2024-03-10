@@ -282,6 +282,7 @@
     };
     virtualbox.host = {
       enable = true;
+      enableKvm = true;
     };
     vmware.host = {
       enable = true;
