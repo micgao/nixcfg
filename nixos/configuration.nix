@@ -421,7 +421,6 @@
         enableBrowserSocket = true;
         enableExtraSocket = true;
         enableSSHSupport = true;
-        pinentryFlavor = "gnome3";
       };
     };
   };
