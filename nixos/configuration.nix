@@ -207,13 +207,13 @@
       source-sans-pro
       iosevka-ss04
       (iosevka.override {
-        set = "etoile";
+        set = "Etoile";
       })
       (iosevka.override {
-        set = "aile";
+        set = "Aile";
       })
       (iosevka.override {
-        set = "curly";
+        set = "Curly";
       })
       (nerdfonts.override {
         fonts =
