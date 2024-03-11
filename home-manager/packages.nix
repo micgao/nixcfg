@@ -3,9 +3,6 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [
-        pkgs.lib.optional (pkgs.megacmd.version == "1.6.3") "freeimage-unstable-2021-11-01"
-      ];
     };
   };
 
@@ -17,7 +14,7 @@
     packages = with pkgs; [
       firefox-devedition
       mullvad-browser
-      # warp-terminal
+      warp-terminal
       rustup
       distrobox
       comma
@@ -33,11 +30,8 @@
       gpg-tui
       git-credential-gopass
       git-credential-keepassxc
-      rclone
       playerctl
       procs
-      zip
-      unzip
       megacmd
       protonmail-bridge
       gimp

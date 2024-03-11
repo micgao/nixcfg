@@ -13,7 +13,7 @@
     bootspec.enableValidation = true;
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" ];
     extraModprobeConfig = ''
       options nvidia-drm modeset=1 fbdev=1
