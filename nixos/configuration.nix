@@ -282,9 +282,12 @@
     };
     virtualbox.host = {
       enable = true;
-      enableKvm = true;
-      enableHardening = false;
-      addNetworkInterface = false;
+      package = pkgs.virtualbox.override {
+        javaBindings = false;
+      };
+      # enableKvm = true;
+      # enableHardening = false;
+      # addNetworkInterface = false;
     };
     vmware.host = {
       enable = true;
