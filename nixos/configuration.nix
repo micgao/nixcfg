@@ -171,6 +171,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
+      nvidiaPersistenced = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };
