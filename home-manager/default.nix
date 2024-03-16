@@ -31,7 +31,6 @@
     ./jq.nix
     ./ledger.nix
     ./mail.nix
-    # ./mise.nix
     ./neomutt.nix
     ./neovim.nix
     ./nix-index.nix
@@ -63,7 +62,6 @@
   };
 
   nix = {
-    package = lib.mkDefault pkgs.nix;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;

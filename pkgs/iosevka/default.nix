@@ -4,7 +4,7 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "iosevka-ss04";
-  version = "29.0.0-alpha.1";
+  version = "29.0.2";
 
   src = ./fonts;
 
@@ -16,7 +16,7 @@ stdenvNoCC.mkDerivation {
   '';
 
   meta = with lib; {
-    description = " ";
+    description = "";
     platforms = platforms.all;
   };
 }
