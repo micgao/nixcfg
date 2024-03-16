@@ -41,9 +41,9 @@
       jetbrains-toolbox
       virt-viewer
       thunderbird
+      feather
       (wine.override { wineBuild = "wineWow"; wineRelease = "staging"; fontconfigSupport = true; alsaSupport = true; gtkSupport = true; openglSupport = true; dbusSupport = true; openclSupport = true; cursesSupport = true; vaSupport = true; pulseaudioSupport = true; udevSupport = true; vulkanSupport = true; sdlSupport = true; usbSupport = true; waylandSupport = true; embedInstallers = true; })
       qobuz-dl
-      feather-wallet
       monero-gui
       monero-cli
     ];
