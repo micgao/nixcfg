@@ -203,6 +203,12 @@
       roboto
       roboto-mono
       inter
+      commit-mono
+      hack-font
+      corefonts
+      paratype-pt-serif
+      paratype-pt-sans
+      paratype-pt-mono
       cascadia-code
       source-code-pro
       source-sans-pro
