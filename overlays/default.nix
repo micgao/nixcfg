@@ -9,11 +9,5 @@
 	      "plugin"
       ];
     });
-    ripgrep = prev.ripgrep.overrideAttrs (oldAttrs: {
-      cargoBuildFeatures = (oldAttrs.cargoBuildFeatures or [ ]) ++ [
-        "simd-accel"
-        "avx-accel"
-      ];
-    });
   };
 }
