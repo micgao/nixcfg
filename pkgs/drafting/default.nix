@@ -3,15 +3,15 @@
   stdenvNoCC,
 }:
 stdenvNoCC.mkDerivation {
-  pname = "inter";
-  version = "4.0";
+  pname = "drafting";
+  version = "1.1";
 
   src = ./fonts;
 
   installPhase = ''
     runHook preInstall
     mkdir -p $out/share/fonts/truetype
-    cp *.ttc $out/share/fonts/truetype
+    cp *.ttf $out/share/fonts/truetype
 
     runHook postInstall
   '';

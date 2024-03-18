@@ -204,6 +204,7 @@
       roboto-mono
       inter
       commit-mono
+      drafting
       hack-font
       corefonts
       paratype-pt-serif
@@ -224,7 +225,7 @@
       })
       (nerdfonts.override {
         fonts =
-          [ "SourceCodePro" "NerdFontsSymbolsOnly" ];
+          [ "NerdFontsSymbolsOnly" ];
       })
     ];
     fontDir = {
@@ -240,20 +241,11 @@
         rgba = "rgb";
         lcdfilter = "default";
       };
-      localConf = ''
-        <alias>
-          <family>Iosevka SS04 Extended Symbols</family>
-          <prefer>
-              <family>Iosevka SS04 Extended</family>
-              <family>Symbols Nerd Font</family>
-          </prefer>
-        </alias>
-      '';
       hinting = {
         enable = true;
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" ];
+        monospace = [ "Iosevka SS04 Extended" ];
         sansSerif = [ "Inter" ];
         serif = [ "Inter" ];
         emoji = [ "Noto Emoji" ];
