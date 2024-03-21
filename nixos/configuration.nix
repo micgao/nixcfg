@@ -316,7 +316,7 @@
   location.provider = "geoclue2";
 
   services = {
-    envfs.enable = true;
+    envfs.enable = lib.mkDefault true;
     hardware.bolt.enable = true;
     thinkfan.enable = true;
     fwupd.enable = true;
