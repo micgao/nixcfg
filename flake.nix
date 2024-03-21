@@ -39,35 +39,36 @@
     wezterm.url = "github:wez/wezterm/?dir=nix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
-    systems = [ "x86_64-linux" ];
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    });
-  in
-  {
-    inherit lib;
-    packages = forEachSystem (pkgs:
-      import ./pkgs { inherit pkgs; }
-    );
-    formatter = forEachSystem (pkgs:
-      pkgs.nixpkgs-fmt
-    );
-    overlays = import ./overlays { inherit inputs; };
-    nixosConfigurations = {
-      X1E3 = lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
-        modules = [ ./nixos/configuration.nix ];
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , ...
+    } @ inputs:
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [ "x86_64-linux" ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
+    in
+    {
+      inherit lib;
+      packages = forEachSystem (pkgs:
+        import ./pkgs { inherit pkgs; }
+      );
+      formatter = forEachSystem (pkgs:
+        pkgs.nixpkgs-fmt
+      );
+      overlays = import ./overlays { inherit inputs; };
+      nixosConfigurations = {
+        X1E3 = lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/configuration.nix ];
+        };
       };
     };
-  };
 }

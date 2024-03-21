@@ -1,6 +1,6 @@
-{
-  lib,
-  stdenvNoCC,
+{ lib
+, stdenvNoCC
+,
 }:
 stdenvNoCC.mkDerivation {
   pname = "iosevka-ss04";

@@ -5,7 +5,7 @@
       mpdscribble
     ];
   };
-  
+
   services.mpd = {
     enable = true;
     musicDirectory = "${config.home.homeDirectory}/Music";
@@ -88,8 +88,8 @@
   };
   programs.mpv = {
     enable = true;
-    defaultProfiles = ["gpu-hq"];
-    scripts = with pkgs.mpvScripts; [sponsorblock];
+    defaultProfiles = [ "gpu-hq" ];
+    scripts = with pkgs.mpvScripts; [ sponsorblock ];
     config = {
       profile = "gpu-hq";
       user-agent = "Mozilla/5.0";

@@ -1,8 +1,7 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  ...
+{ inputs
+, pkgs
+, lib
+, ...
 }: {
   programs.helix = {
     enable = true;
@@ -26,14 +25,14 @@
         };
         typescript-language-server = with pkgs.nodePackages; {
           command = "${typescript-language-server}/bin/typescript-language-server";
-          args = ["--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib"];
+          args = [ "--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib" ];
         };
         nil = {
           command = lib.getExe pkgs.nil;
         };
         vscode-css-language-server = {
           command = "${pkgs.nodePackages.vscode-css-languageserver-bin}/bin/css-languageserver";
-          args = ["--stdio"];
+          args = [ "--stdio" ];
           config = {
             provideFormatter = true;
             css.validate.enable = true;
@@ -62,7 +61,7 @@
       };
       theme = "base16_transparent";
       editor = {
-        shell = ["nu" "-c"];
+        shell = [ "nu" "-c" ];
         mouse = false;
         line-number = "relative";
         true-color = true;
@@ -79,9 +78,9 @@
           rainbow-option = "dim";
         };
         statusline = {
-          left = ["mode" "spinner" "file-name" "read-only-indicator" "file-modification-indicator"];
-          center = ["position-percentage"];
-          right = ["diagnostics" "selections" "register" "position" "file-encoding" "mode"];
+          left = [ "mode" "spinner" "file-name" "read-only-indicator" "file-modification-indicator" ];
+          center = [ "position-percentage" ];
+          right = [ "diagnostics" "selections" "register" "position" "file-encoding" "mode" ];
           mode = {
             normal = " ";
             insert = " ";

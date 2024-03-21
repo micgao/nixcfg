@@ -1,7 +1,8 @@
 { pkgs, config, inputs, ... }:
 let
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
-in {
+in
+{
   gtk = {
     enable = true;
     cursorTheme = {

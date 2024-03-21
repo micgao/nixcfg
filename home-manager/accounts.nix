@@ -10,7 +10,7 @@
           enable = true;
           create = "both";
           expunge = "both";
-          patterns = ["*" "[Gmail]*"];
+          patterns = [ "*" "[Gmail]*" ];
         };
         primary = true;
         address = "micgao1@gmail.com";

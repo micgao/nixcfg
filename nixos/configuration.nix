@@ -39,17 +39,6 @@
     modprobeConfig.enable = true;
   };
 
-  systemd = {
-    network = {
-      enable = true;
-      wait-online = {
-        enable = false;
-        anyInterface = true;
-        extraArgs = ["--ipv4"];
-      };
-    };
-  };
-
   console = {
     colors = [
       "0F1014"
@@ -75,11 +64,11 @@
 
   environment = {
     etc = lib.mapAttrs'
-    (name: value: {
-      name = "nix/path/${name}";
-      value.source = value.flake;
-    })
-    config.nix.registry;
+      (name: value: {
+        name = "nix/path/${name}";
+        value.source = value.flake;
+      })
+      config.nix.registry;
     variables = {
       EDITOR = "nvim";
     };
@@ -191,7 +180,7 @@
       dates = "weekly";
       options = "--delete-older-than +3";
     };
-    registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+    registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
     nixPath = [ "/etc/nix/path" ];
   };
 
@@ -268,7 +257,7 @@
       device = "0000:00:02.0";
       vgpus = {
         "i915-GVTg_V5_4" = {
-          uuid = ["f8bcf958-667e-11ee-9014-972c93a54fcc"];
+          uuid = [ "f8bcf958-667e-11ee-9014-972c93a54fcc" ];
         };
       };
     };
@@ -350,7 +339,7 @@
         };
       };
     };
-    xserver.videoDrivers = ["nvidia"];
+    xserver.videoDrivers = [ "nvidia" ];
     pipewire = {
       enable = true;
       audio.enable = true;
