@@ -78,9 +78,7 @@
     };
     homeBinInPath = true;
     localBinInPath = true;
-    enableAllTerminfo = true;
     shells = with pkgs; [ zsh nushell ];
-    binsh = "${pkgs.dash}/bin/dash";
   };
 
   xdg = {
