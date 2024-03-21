@@ -172,7 +172,7 @@
       modesetting.enable = true;
       powerManagement.enable = true;
       nvidiaPersistenced = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;
