@@ -122,7 +122,7 @@ config.colors = {
 }
 config.font = wezterm.font_with_fallback {
   {
-    family = "Iosevka SS04 Extended",
+    family = "Iosevka SS04",
   },
   {
     family = "Symbols Nerd Font",
@@ -135,6 +135,7 @@ config.freetype_render_target = "Light"
 config.freetype_load_flags = "NO_HINTING"
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.unicode_version = 14
+config.use_cap_height_to_scale_fallback_fonts = true
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
