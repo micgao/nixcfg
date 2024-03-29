@@ -201,15 +201,6 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
-      (iosevka.override {
-        set = "Etoile";
-      })
-      (iosevka.override {
-        set = "Aile";
-      })
-      (iosevka.override {
-        set = "Curly";
-      })
       (nerdfonts.override {
         fonts =
           [ "NerdFontsSymbolsOnly" ];
