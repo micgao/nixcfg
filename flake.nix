@@ -29,7 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim.url = "github:neovim/neovim/?dir=contrib";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
     hyprland.url = "github:hyprwm/Hyprland";
