@@ -27,7 +27,6 @@
       hurl
       circumflex
       fd
-      inlyne
       gpg-tui
       git-credential-gopass
       git-credential-keepassxc

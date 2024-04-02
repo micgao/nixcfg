@@ -11,6 +11,8 @@ in {
   # ];
 
   home.packages = with pkgs; [
+    libaio
+    pcsclite
     qt6.qtwayland
     qt6.qt5compat
     libsForQt5.breeze-qt5
