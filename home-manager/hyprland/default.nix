@@ -117,6 +117,7 @@ in {
 
              animations {
                 enabled = true
+                first_launch_animation = true
                 animation = border, 1, 2, default
                 animation = fade, 1, 4, default
                 animation = windows, 1, 3, default, popin 80%
@@ -149,7 +150,7 @@ in {
             misc {
                 vfr = true
                 vrr = 2
-                no_direct_scanout = false
+                no_direct_scanout = true
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true
@@ -159,6 +160,8 @@ in {
                 close_special_on_empty = false
                 background_color = rgb(0f1014)
                 focus_on_activate = true
+                hide_cursor_on_key_press = true
+                enable_hyprcursor = true
             }
 
             xwayland {
