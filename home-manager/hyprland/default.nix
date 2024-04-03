@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, lib, ... }:
 let pointer = config.home.pointerCursor;
 in {
   imports = [
@@ -11,8 +11,6 @@ in {
   # ];
 
   home.packages = with pkgs; [
-    libaio
-    pcsclite
     qt6.qtwayland
     qt6.qt5compat
     libsForQt5.breeze-qt5
@@ -67,6 +65,7 @@ in {
             exec-once=hyprpaper
             exec-once=waybar
             exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
+            exec-once=${lib.getExe pkgs.polkit_gnome}
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] librewolf
             exec-once=[workspace 3 silent] emacs
@@ -151,8 +150,7 @@ in {
 
             misc {
                 vfr = true
-                vrr = 2
-                no_direct_scanout = true
+                no_direct_scanout = false
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true
@@ -162,7 +160,6 @@ in {
                 close_special_on_empty = false
                 background_color = rgb(0f1014)
                 focus_on_activate = true
-                hide_cursor_on_key_press = true
                 enable_hyprcursor = true
             }
 
