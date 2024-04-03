@@ -192,7 +192,6 @@
       inter
       commit-mono
       drafting
-      hack-font
       corefonts
       paratype-pt-serif
       paratype-pt-sans
@@ -223,7 +222,7 @@
         enable = true;
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04 Extended" ];
+        monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
         serif = [ "Inter" ];
         emoji = [ "Noto Emoji" ];
