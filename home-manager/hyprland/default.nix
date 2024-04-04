@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }:
+{ inputs, config, pkgs, ... }:
 let pointer = config.home.pointerCursor;
 in {
   imports = [
@@ -33,7 +33,15 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;
+    xwayland.enable = true;
+    systemd = {
+      variables = ["--all"];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+      enable = true;
+    };
     extraConfig = ''
             # monitor=,preferred,auto,auto
             monitor=HDMI-A-1,1920x1080@144,0x0,1
@@ -44,10 +52,8 @@ in {
             env=XDG_SESSION_TYPE,wayland
             env=WLR_RENDERER_ALLOW_SOFTWARE,1
             env=WLR_RENDERER,vulkan
-            # env=WLR_DRM_NO_ATOMIC,1
             env=WLR_NO_HARDWARE_CURSORS,1
             env=EGL_PLATFORM,wayland
-            env=NIXOS_OZONE_WL,1
             env=XCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
@@ -55,7 +61,6 @@ in {
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=QT_QPA_PLATFORM,wayland;xcb
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-            env=QT_QPA_PLATFORMTHEME,qt5ct
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11
             env=NVD_BACKEND,direct
@@ -65,7 +70,6 @@ in {
             exec-once=hyprpaper
             exec-once=waybar
             exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
-            exec-once=${lib.getExe pkgs.polkit_gnome}
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] librewolf
             exec-once=[workspace 3 silent] emacs

@@ -4,7 +4,6 @@
   modifications = final: prev: {
     nushell = prev.nushell.overrideAttrs (oldAttrs: {
       cargoBuildFeatures = (oldAttrs.cargoBuildFeatures or [ ]) ++ [
-        "extra"
         "dataframe"
         "plugin"
       ];

@@ -71,6 +71,7 @@
       config.nix.registry;
     variables = {
       EDITOR = "nvim";
+      NIXOS_OZONE_WL = "1";
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
@@ -84,8 +85,12 @@
   xdg = {
     portal = {
       enable = true;
+      xdgOpenUsePortal = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-      config.common.default = "*";
+      config = {
+        common.default = ["gtk"];
+        hyprland.default = ["gtk" "hyprland"];
+      };
     };
   };
 
@@ -310,9 +315,11 @@
     };
     dbus = {
       enable = true;
-      packages = [ pkgs.gcr_4 ];
+      packages = with pkgs; [ gcr gnome.gnome-settings-daemon ];
       implementation = "broker";
     };
+    gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
     logind = {
       lidSwitchExternalPower = "ignore";
       lidSwitchDocked = "ignore";
@@ -386,6 +393,8 @@
     command-not-found.enable = false;
     less.enable = true;
     dconf.enable = true;
+    kdeconnect.enable = true;
+    seahorse.enable = true;
     steam = {
       enable = true;
     };
@@ -409,7 +418,8 @@
 
   qt = {
     enable = true;
-    platformTheme = "qt5ct";
+    platformTheme = "gtk2";
+    style = "gtk2";
   };
 
   system = {
