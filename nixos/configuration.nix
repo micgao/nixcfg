@@ -40,6 +40,7 @@
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.user.services.telephony_client.enable = false;
 
   console = {
     colors = [
@@ -128,6 +129,7 @@
   hardware = {
     bluetooth = {
       enable = true;
+      package = pkgs.bluez5-experimental;
       powerOnBoot = true;
       settings = {
         General = {
