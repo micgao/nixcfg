@@ -39,6 +39,8 @@
     modprobeConfig.enable = true;
   };
 
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+
   console = {
     colors = [
       "0F1014"
@@ -63,6 +65,7 @@
   };
 
   environment = {
+    systemPackages = [pkgs.git];
     etc = lib.mapAttrs'
       (name: value: {
         name = "nix/path/${name}";
@@ -95,6 +98,7 @@
   };
 
   security = {
+    pam.services.greetd.enableGnomeKeyring = true;
     sudo-rs.enable = true;
     tpm2 = {
       enable = true;
@@ -173,8 +177,11 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+      flake-registry = "/etc/nix/registry.json";
       keep-going = true;
       keep-outputs = true;
+      keep-derivations = true;
       warn-dirty = false;
       log-lines = 20;
     };
@@ -183,8 +190,8 @@
       dates = "weekly";
       options = "--delete-older-than +3";
     };
-    registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-    nixPath = [ "/etc/nix/path" ];
+    registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
+    nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
   };
 
   fonts = {
@@ -283,6 +290,7 @@
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
+      dns = "systemd-resolved";
     };
     hostName = "X1E3";
   };
@@ -330,7 +338,12 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          command = "${lib.getExe config.programs.hyprland.package}";
+          user = "micgao";
+        };
+        initial_session = {
+          command = "${lib.getExe config.programs.hyprland.package}";
+          user = "micgao";
         };
       };
     };

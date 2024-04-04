@@ -23,7 +23,6 @@ in
     font = {
       name = "Inter";
       package = pkgs.google-fonts.override {fonts = ["Inter"];};
-      size = 9;
     };
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
