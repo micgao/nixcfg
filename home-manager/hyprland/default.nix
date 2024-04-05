@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ lib, inputs, config, pkgs, ... }:
 let pointer = config.home.pointerCursor;
 in {
   imports = [
@@ -36,7 +36,7 @@ in {
     xwayland.enable = true;
     systemd = {
       variables = ["--all"];
-      extraCommands = [
+      extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
       ];
@@ -67,6 +67,7 @@ in {
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
+            exec-once=${lib.getExe' pkgs.polkit_gnome "polkit-gnome-authentication-agent-1"}
             exec-once=hyprpaper
             exec-once=waybar
             exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}

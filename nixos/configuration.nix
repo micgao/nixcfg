@@ -343,10 +343,6 @@
           command = "${lib.getExe config.programs.hyprland.package}";
           user = "micgao";
         };
-        initial_session = {
-          command = "${lib.getExe config.programs.hyprland.package}";
-          user = "micgao";
-        };
       };
     };
     xserver.videoDrivers = [ "nvidia" ];
