@@ -155,7 +155,7 @@ in {
 
             misc {
                 vfr = true
-                no_direct_scanout = false
+                vrr = 2
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true
