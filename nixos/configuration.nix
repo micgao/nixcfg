@@ -170,7 +170,7 @@
       modesetting.enable = true;
       powerManagement.enable = true;
       nvidiaPersistenced = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };
     trackpoint.enable = true;

@@ -82,11 +82,9 @@ in {
                 }
                 sensitivity = 0
                 accel_profile = flat
-                float_switch_override_focus = 0
             }
 
             general {
-                # allow_tearing = true
                 gaps_in = 2
                 gaps_out = 2
                 border_size = 2
@@ -155,7 +153,7 @@ in {
 
             misc {
                 vfr = true
-                vrr = 2
+                no_direct_scanout = false
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true

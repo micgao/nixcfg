@@ -27,6 +27,7 @@
       hurl
       circumflex
       fd
+      skate
       gpg-tui
       git-credential-gopass
       git-credential-keepassxc
