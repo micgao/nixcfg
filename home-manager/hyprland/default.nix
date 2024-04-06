@@ -96,8 +96,8 @@ in {
                 }
                 sensitivity = 0
                 accel_profile = flat
-                repeat_rate = 50
-                repeat_delay = 200
+                repeat_rate = 40
+                repeat_delay = 350
             }
 
             general {
