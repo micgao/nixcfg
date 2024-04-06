@@ -409,6 +409,7 @@
     };
     hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.default;
     };
     zsh.enable = true;
     gnupg = {
