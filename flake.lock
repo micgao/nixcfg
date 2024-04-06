@@ -119,11 +119,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1711262477,
-        "narHash": "sha256-fK1OsvjJwQlTeGJHcngxM2iWICCJ/vnG1qJq6U3H7UQ=",
+        "lastModified": 1712392005,
+        "narHash": "sha256-s65xHq2wm5eVeDAj6g7UulZxdSQrQ0vUcZJwE+Ndc/Y=",
         "owner": "Mic92",
         "repo": "envfs",
-        "rev": "4aa4816dd9b5c38db4005ca18a42d8070242eec5",
+        "rev": "9d55f18778f9ee675bf2bceb17cbc8a1a19545ea",
         "type": "github"
       },
       "original": {
@@ -429,11 +429,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1712369842,
-        "narHash": "sha256-lxKsj47zAiY7fKPHd7OYzbQhqUYVzGv9xfxlweTR0J0=",
+        "lastModified": 1712389754,
+        "narHash": "sha256-VQI36VVt6d5U0QHW3ZjFmlkyxsomrgqlF7Q1X26ElsY=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "d3bfa3e063b7862e691bff099c61a7fe5cb48181",
+        "rev": "97afd67fca0b505600e5fbba7ca59f06a4eec3ff",
         "type": "github"
       },
       "original": {
@@ -724,11 +724,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1712376264,
-        "narHash": "sha256-SNMVXm1f8t2bgiO3ximYQIcrTVTZaQbZOMU1PDFB990=",
+        "lastModified": 1712387953,
+        "narHash": "sha256-xHqdC5HUBvTCuqCSrE1g+r/o8pRciM6Zi/VZtnf9r5g=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "f4df49a9598151343af3fc4a30b8a42608c52bb6",
+        "rev": "406ff528245145b386d1cbe08d59243a94d120de",
         "type": "github"
       },
       "original": {

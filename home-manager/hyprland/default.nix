@@ -6,6 +6,24 @@ in {
     inputs.hyprlock.homeManagerModules.default
   ];
 
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    Unit.Description = "polkit-gnome-authentication-agent-1";
+
+    Install = {
+      WantedBy = ["graphical-session.target"];
+      Wants = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+
   # nixpkgs.overlays = [
   #   inputs.nixpkgs-wayland.overlay
   # ];
@@ -16,10 +34,7 @@ in {
     libsForQt5.breeze-qt5
     libsForQt5.breeze-gtk
     libsForQt5.breeze-icons
-    libsForQt5.qtstyleplugins
     libsForQt5.qt5.qtwayland
-    gsettings-desktop-schemas
-    egl-wayland
     hyprpaper
     wlay
     wtype
@@ -46,7 +61,6 @@ in {
             # monitor=,preferred,auto,auto
             monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
-            env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
@@ -63,11 +77,11 @@ in {
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11
+            env=GDK_SCALE,2
             env=NVD_BACKEND,direct
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
-            exec-once=${lib.getExe' pkgs.polkit_gnome "polkit-gnome-authentication-agent-1"}
             exec-once=hyprpaper
             exec-once=waybar
             exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
@@ -82,6 +96,8 @@ in {
                 }
                 sensitivity = 0
                 accel_profile = flat
+                repeat_rate = 50
+                repeat_delay = 200
             }
 
             general {
@@ -100,13 +116,16 @@ in {
                 inactive_opacity = 0.9
       	        blur {
       	            enabled = true
-      	            size = 9
+      	            size = 10
       	            passes = 3
       	            ignore_opacity = true
       	            new_optimizations = true
       	            xray = true
       	            special = true
                     popups = true
+                    brightness = 1.0
+                    contrast = 1.0
+                    noise = 0.02
       	        }
                 drop_shadow = true
                 shadow_range = 20
@@ -135,35 +154,22 @@ in {
                 use_active_for_splits = true
             }
 
-            master {
-                new_is_master = false
-                special_scale_factor = 0.8
-                new_on_top = false
-                no_gaps_when_only = false
-                inherit_fullscreen = true
-            }
-
             binds {
                 focus_preferred_method = 1
                 allow_workspace_cycles = true
                 workspace_back_and_forth = true
-                scroll_event_delay = 300
-                pass_mouse_when_bound = false
             }
 
             misc {
                 vfr = true
-                no_direct_scanout = false
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true
-                animate_manual_resizes = false
-                mouse_move_enables_dpms = true
-                key_press_enables_dpms = true
                 close_special_on_empty = false
                 background_color = rgb(0f1014)
                 focus_on_activate = true
                 enable_hyprcursor = true
+                hide_cursor_on_key_press = false
             }
 
             xwayland {
@@ -178,9 +184,10 @@ in {
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
 
-            # windowrulev2 = immediate, class:^(dota2)$
+            windowrulev2 = immediate, class:^(dota2)$
             windowrulev2 = fullscreen, class:^(dota2)$
             windowrulev2 = workspace 9 silent, class:^(dota2)$
+            windowrulev2 = rounding 0, xwayland:1
             windowrulev2 = stayfocused, title:^()$,class:^(steam)$
             windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
 

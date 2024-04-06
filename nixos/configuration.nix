@@ -79,7 +79,6 @@
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
-      GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     };
     homeBinInPath = true;
     localBinInPath = true;
@@ -149,13 +148,11 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        intel-compute-runtime
-        vaapiIntel
+        libva
         libvdpau-va-gl
         vaapiVdpau
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        vaapiIntel
         libvdpau-va-gl
         vaapiVdpau
       ];
@@ -169,11 +166,9 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      nvidiaPersistenced = true;
       package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };
-    trackpoint.enable = true;
   };
 
   nix = {
