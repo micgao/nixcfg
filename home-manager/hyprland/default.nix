@@ -181,6 +181,9 @@ in {
             }
 
             layerrule = blur, waybar
+            layerrule = ignorezero, waybar
+            layerrule = blur, notifications
+            layerrule = ignorezero, notifications
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
 
