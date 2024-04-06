@@ -246,6 +246,7 @@
     };
     podman = {
       enable = true;
+      rootless.enable = true;
       dockerCompat = true;
       dockerSocket.enable = true;
     };

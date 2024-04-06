@@ -61,6 +61,7 @@ in {
             # monitor=,preferred,auto,auto
             monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
+            env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
@@ -77,7 +78,6 @@ in {
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11
-            env=GDK_SCALE,2
             env=NVD_BACKEND,direct
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
@@ -181,7 +181,6 @@ in {
             }
 
             layerrule = blur, waybar
-            layerrule = ignorezero, waybar
             layerrule = blur, notifications
             layerrule = ignorezero, notifications
             layerrule = blur, launcher
