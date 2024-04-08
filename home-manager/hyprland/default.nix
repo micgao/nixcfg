@@ -86,7 +86,7 @@ in {
             exec-once=waybar
             exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
             exec-once=[workspace 1 silent] wezterm
-            exec-once=[workspace 2 silent] librewolf
+            exec-once=[workspace 2 silent] firefox-nightly
             exec-once=[workspace 3 silent] emacs
 
             input {
