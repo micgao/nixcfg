@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, stdenv, ... }: {
+{ pkgs, ... }: {
 
   nixpkgs = {
     config = {
