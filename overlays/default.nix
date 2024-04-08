@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, stdenv, ... }:
+{ inputs, pkgs, lib, stdenv, fetchurl, ... }:
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
   modifications = final: prev: {
@@ -11,7 +11,7 @@
     warp-terminal = prev.warp-terminal.overrideAttrs (old: rec {
       pname = "warp-terminal";
       version = "0.2024.04.02.08.02.stable_01";
-      src = pkgs.fetchurl {
+      src = fetchurl {
         url = "https://releases.warp.dev/stable/v${version}/warp-terminal-v${version}-1-x86_64.pkg.tar.zst";
         sha256 = "sha256-xnXRg23AdfCk2TKBr+PZ3wDYqTN4+8wLSodWpmh3D/Y=";
       };
