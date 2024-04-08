@@ -246,7 +246,6 @@
     };
     podman = {
       enable = true;
-      rootless.enable = true;
       dockerCompat = true;
       dockerSocket.enable = true;
     };
@@ -360,6 +359,8 @@
     throttled.enable = true;
     udisks2.enable = true;
     geoclue2.enable = true;
+    mpd.enable = true;
+    mpdscribble.enable = true;
   };
 
   documentation = {

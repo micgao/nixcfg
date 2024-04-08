@@ -186,7 +186,6 @@ in {
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
 
-            windowrulev2 = immediate, class:^(dota2)$
             windowrulev2 = fullscreen, class:^(dota2)$
             windowrulev2 = workspace 9 silent, class:^(dota2)$
             windowrulev2 = rounding 0, xwayland:1

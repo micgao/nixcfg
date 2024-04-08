@@ -32,6 +32,7 @@
       git-credential-gopass
       git-credential-keepassxc
       playerctl
+      mpc-cli
       procs
       megacmd
       protonmail-bridge
