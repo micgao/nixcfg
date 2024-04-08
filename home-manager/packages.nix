@@ -39,7 +39,7 @@
       gimp
       keepassxc
       pavucontrol
-      obsidian
+      # obsidian
       jetbrains-toolbox
       virt-viewer
       thunderbird
