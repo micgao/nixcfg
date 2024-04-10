@@ -15,6 +15,7 @@
       firefox-devedition
       mullvad-browser
       warp-terminal
+      ffmpeg-full
       rustup
       distrobox
       comma
