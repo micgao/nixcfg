@@ -129,7 +129,6 @@
     bluetooth = {
       enable = true;
       package = pkgs.bluez5-experimental;
-      powerOnBoot = true;
       settings = {
         General = {
           Experimental = "true";
@@ -166,7 +165,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
     };
   };
@@ -411,7 +410,6 @@
     };
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.default;
     };
     zsh.enable = true;
     gnupg = {

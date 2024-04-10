@@ -61,7 +61,7 @@ in {
             # monitor=,preferred,auto,auto
             monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
-            env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+            env=WLR_DRM_DEVICES,/dev/dri/card1
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
@@ -91,9 +91,6 @@ in {
 
             input {
                 follow_mouse = 2
-                touchpad {
-                    natural_scroll = false
-                }
                 sensitivity = 0
                 accel_profile = flat
                 repeat_rate = 40
@@ -155,6 +152,7 @@ in {
             }
 
             binds {
+                pass_mouse_when_bound = false
                 focus_preferred_method = 1
                 allow_workspace_cycles = true
                 workspace_back_and_forth = true
@@ -162,6 +160,9 @@ in {
 
             misc {
                 vfr = true
+                vrr = 2
+                no_direct_scanout = false
+                force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true
@@ -170,6 +171,7 @@ in {
                 focus_on_activate = true
                 enable_hyprcursor = true
                 hide_cursor_on_key_press = false
+                new_window_takes_over_fullscreen = 0
             }
 
             xwayland {
@@ -186,9 +188,7 @@ in {
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
 
-            windowrulev2 = fullscreen, class:^(dota2)$
             windowrulev2 = workspace 9 silent, class:^(dota2)$
-            windowrulev2 = rounding 0, xwayland:1
             windowrulev2 = stayfocused, title:^()$,class:^(steam)$
             windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
 
