@@ -41,6 +41,7 @@
       keepassxc
       pavucontrol
       obsidian
+      roon-tui
       jetbrains-toolbox
       virt-viewer
       thunderbird

@@ -17,6 +17,7 @@
       lua-language-server
       luajitPackages.luarocks
       sqlite
+      fswatch
     ];
     viAlias = true;
     vimAlias = true;

@@ -192,6 +192,7 @@
 
   fonts = {
     packages = with pkgs; [
+      hack-font
       material-symbols
       noto-fonts
       noto-fonts-monochrome-emoji
