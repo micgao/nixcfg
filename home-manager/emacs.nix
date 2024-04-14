@@ -20,7 +20,6 @@
     package = pkgs.emacs-pgtk.override {
       withNativeCompilation = true;
       withTreeSitter = true;
-      withGconf = true;
       withPgtk = true;
       withSQLite3 = true;
       withSystemd = true;
