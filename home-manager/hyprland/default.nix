@@ -36,12 +36,6 @@ in {
     libsForQt5.breeze-icons
     libsForQt5.qt5.qtwayland
     hyprpaper
-    wlay
-    wtype
-    wl-clipboard
-    wl-clipboard-x11
-    wlr-randr
-    ydotool
     inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.default
   ];
 
@@ -50,18 +44,18 @@ in {
     enable = true;
     xwayland.enable = true;
     systemd = {
+      enable = true;
       variables = ["--all"];
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
       ];
-      enable = true;
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
-            monitor=HDMI-A-1,1920x1080@144,0x0,1
+            monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
             monitor=eDP-1,disable
-            env=WLR_DRM_DEVICES,/dev/dri/card1
+            env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
@@ -70,6 +64,7 @@ in {
             env=WLR_NO_HARDWARE_CURSORS,1
             env=EGL_PLATFORM,wayland
             env=XCURSOR_SIZE,24
+            env=HYPRCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -78,7 +73,6 @@ in {
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11
-            env=NVD_BACKEND,direct
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm

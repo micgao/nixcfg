@@ -135,7 +135,7 @@ config.freetype_render_target = "Light"
 config.freetype_load_flags = "NO_HINTING"
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.unicode_version = 14
-config.use_cap_height_to_scale_fallback_fonts = true
+config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
@@ -149,16 +149,17 @@ config.tab_and_split_indices_are_zero_based = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.enable_tab_bar = true
-config.window_decorations = "NONE"
-config.window_padding = {
-  left = 2,
-  right = 2,
-  top = 2,
-  bottom = 2,
-}
 config.front_end = "WebGpu"
 config.webgpu_preferred_adapter = gpus[1]
 config.enable_wayland = false
+config.prefer_to_spawn_tabs = true
 config.check_for_updates = false
-
+config.command_palette_bg_color = "#0F1014"
+config.command_palette_fg_color = "#8EB5F5"
+config.command_palette_font_size = 12
+config.unix_domains = {
+  {
+    name = 'unix',
+  },
+}
 return config
