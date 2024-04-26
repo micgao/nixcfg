@@ -85,7 +85,7 @@ in {
 
             input {
                 follow_mouse = 2
-                sensitivity = 0
+                sensitivity = -0.3
                 accel_profile = flat
                 repeat_rate = 40
                 repeat_delay = 350
@@ -155,7 +155,7 @@ in {
             misc {
                 vfr = true
                 vrr = 2
-                no_direct_scanout = false
+                no_direct_scanout = true
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
