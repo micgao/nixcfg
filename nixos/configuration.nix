@@ -233,7 +233,7 @@
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter" ];
+        sansSerif = [ "Source Sans Pro" ];
         serif = [ "Inter" ];
         emoji = [ "Noto Emoji" ];
       };
