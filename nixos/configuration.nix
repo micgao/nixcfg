@@ -126,6 +126,7 @@
   };
 
   hardware = {
+    nvidia-container-toolkit.enable = true;
     bluetooth = {
       enable = true;
       package = pkgs.bluez5-experimental;
@@ -242,7 +243,6 @@
   virtualisation = {
     containers = {
       enable = true;
-      cdi.dynamic.nvidia.enable = true;
     };
     podman = {
       enable = true;
