@@ -9,6 +9,7 @@
     package = inputs.nix-ld-rs.packages.${pkgs.hostPlatform.system}.nix-ld-rs;
     libraries = with pkgs; [
       stdenv.cc.cc
+      fuse
       fuse3
       alsa-lib
       at-spi2-atk
@@ -23,8 +24,10 @@
       freetype
       gdk-pixbuf
       glib
+      gtk2
       gtk3
       libGL
+      libappindicator-gtk2
       libappindicator-gtk3
       libdrm
       libnotify
@@ -55,6 +58,14 @@
       xorg.libxkbfile
       xorg.libxshmfence
       zlib
+      SDL
+      SDL2
+      SDL2_image
+      SDL2_mixer
+      SDL2_ttf
+      SDL_image
+      SDL_mixer
+      SDL_ttf
     ];
   };
 }
