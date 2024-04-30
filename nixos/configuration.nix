@@ -284,6 +284,7 @@
   };
 
   networking = {
+    wireless.iwd.enable = true;
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
@@ -355,10 +356,14 @@
       enable = true;
       openFirewall = true;
     };
-    btrfs.autoScrub.enable = true;
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
     throttled.enable = true;
     udisks2.enable = true;
     geoclue2.enable = true;
+    blueman.enable = true;
     # mpd.enable = true;
     # mpdscribble.enable = true;
   };
@@ -378,6 +383,7 @@
     users.micgao = {
       shell = pkgs.nushell;
       isNormalUser = true;
+      useDefaultShell = false;
       packages = [
         inputs.home-manager.packages.${pkgs.system}.default
       ];
