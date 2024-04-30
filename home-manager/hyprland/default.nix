@@ -63,8 +63,9 @@ in {
             env=WLR_RENDERER,vulkan
             env=WLR_NO_HARDWARE_CURSORS,1
             env=EGL_PLATFORM,wayland
-            env=XCURSOR_SIZE,24
+            env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
+            env=XCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -76,9 +77,11 @@ in {
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
+            env=NVD_BACKEND,direct
+            env=ELECTRON_OZONE_PLATFORM_HINT,auto
             exec-once=hyprpaper
             exec-once=waybar
-            exec-once=hyprctl setcursor ${pointer.name} ${toString pointer.size}
+            exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
             exec-once=[workspace 3 silent] emacs
@@ -231,7 +234,7 @@ in {
             bind = $mainMod CTRL, 9, movetoworkspace, 9
             bind = $mainMod CTRL, 0, movetoworkspace, 10
             bind = $mainMod, S, togglespecialworkspace, magic
-            bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+            bind = $mainMod CTRL, S, movetoworkspace, special:magic
             bind = $mainMod CTRL, x, workspace, m+1
             bind = $mainMod CTRL, z, workspace, m-1
             bindm = $mainMod, mouse:272, movewindow
