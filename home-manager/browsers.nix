@@ -9,12 +9,6 @@
   };
   programs.chromium = {
     enable = true;
-    package = (pkgs.ungoogled-chromium.override {
-      commandLineArgs = [
-        "--enable-features=VaapiVideoDecodeLinuxGL"
-        "--ignore-gpu-blocklist"
-        "--enable-zero-copy"
-      ];
-    });
+    package = pkgs.ungoogled-chromium;
   };
 }
