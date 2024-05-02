@@ -14,7 +14,7 @@
     packages = with pkgs; [
       firefox-devedition
       mullvad-browser
-      zed
+      zed-editor
       (warp-terminal.override { waylandSupport = true; })
       ffmpeg-full
       rustup
