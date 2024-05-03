@@ -12,7 +12,7 @@
     ./nix-colors
     ./qt
     ./starship
-    ./waybar
+    # ./waybar
     ./wezterm
     ./accounts.nix
     ./bat.nix
@@ -79,6 +79,7 @@
       gtk.enable = true;
       x11.enable = true;
     };
+    preferXdgDirectories = true;
   };
 
   news.display = "show";

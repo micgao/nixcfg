@@ -1,6 +1,5 @@
-{ lib, inputs, config, pkgs, ... }:
-let pointer = config.home.pointerCursor;
-in {
+{ lib, inputs, pkgs, ... }:
+{
   imports = [
     inputs.hyprland.homeManagerModules.default
     inputs.hyprlock.homeManagerModules.default
@@ -80,7 +79,7 @@ in {
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
             exec-once=hyprpaper
-            exec-once=waybar
+            # exec-once=waybar
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
@@ -179,7 +178,7 @@ in {
                 nvidia_anti_flicker = true
             }
 
-            layerrule = blur, waybar
+            # layerrule = blur, waybar
             layerrule = blur, notifications
             layerrule = ignorezero, notifications
             layerrule = blur, launcher
