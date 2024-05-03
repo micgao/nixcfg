@@ -364,8 +364,6 @@
     udisks2.enable = true;
     geoclue2.enable = true;
     blueman.enable = true;
-    # mpd.enable = true;
-    # mpdscribble.enable = true;
   };
 
   documentation = {
@@ -428,6 +426,7 @@
         enableBrowserSocket = true;
         enableExtraSocket = true;
         enableSSHSupport = true;
+        pinentryPackage = pkgs.pinentry-gnome3;
       };
     };
   };

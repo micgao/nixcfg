@@ -30,6 +30,7 @@
       circumflex
       fd
       skate
+      envio
       gpg-tui
       git-credential-gopass
       git-credential-keepassxc
