@@ -22,7 +22,7 @@ in
     };
     font = {
       name = "Inter";
-      package = pkgs.google-fonts.override {fonts = ["Inter"];};
+      package = pkgs.google-fonts.override { fonts = [ "Inter" ]; };
     };
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";

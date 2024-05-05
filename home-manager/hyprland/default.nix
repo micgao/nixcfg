@@ -9,9 +9,9 @@
     Unit.Description = "polkit-gnome-authentication-agent-1";
 
     Install = {
-      WantedBy = ["graphical-session.target"];
-      Wants = ["graphical-session.target"];
-      After = ["graphical-session.target"];
+      WantedBy = [ "graphical-session.target" ];
+      Wants = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
     };
 
     Service = {
@@ -44,7 +44,7 @@
     xwayland.enable = true;
     systemd = {
       enable = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto

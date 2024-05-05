@@ -14,9 +14,9 @@
     packages = with pkgs; [
       firefox-devedition
       mullvad-browser
-      zed-editor
-      (warp-terminal.override { waylandSupport = true; })
-      ffmpeg-full
+      # zed-editor
+      # (warp-terminal.override { waylandSupport = true; })
+      ffmpeg_7-full
       rustup
       distrobox
       comma
@@ -30,16 +30,13 @@
       circumflex
       fd
       skate
-      envio
       gpg-tui
-      git-credential-gopass
-      git-credential-keepassxc
       playerctl
       mpc-cli
       procs
       megacmd
       protonmail-bridge
-      gimp
+      # gimp
       keepassxc
       pavucontrol
       obsidian

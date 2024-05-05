@@ -40,7 +40,6 @@
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  systemd.user.services.telephony_client.enable = false;
 
   console = {
     colors = [
@@ -66,7 +65,7 @@
   };
 
   environment = {
-    systemPackages = [pkgs.git];
+    systemPackages = [ pkgs.git ];
     etc = lib.mapAttrs'
       (name: value: {
         name = "nix/path/${name}";
@@ -91,8 +90,8 @@
       xdgOpenUsePortal = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       config = {
-        common.default = ["gtk"];
-        hyprland.default = ["gtk" "hyprland"];
+        common.default = [ "gtk" ];
+        hyprland.default = [ "gtk" "hyprland" ];
       };
     };
   };
@@ -184,7 +183,7 @@
       dates = "weekly";
       options = "--delete-older-than +3";
     };
-    registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
+    registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
   };
 
