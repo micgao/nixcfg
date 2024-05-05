@@ -147,8 +147,10 @@
         libva
         libvdpau-va-gl
         vaapiVdpau
+        nvidia-vaapi-driver
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
+        nvidia-vaapi-driver
         libvdpau-va-gl
         vaapiVdpau
       ];
@@ -164,6 +166,7 @@
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
+      nvidiaPersistenced = true;
     };
   };
 
@@ -298,6 +301,11 @@
   location.provider = "geoclue2";
 
   services = {
+    ollama = {
+      enable = true;
+      sandbox = true;
+      acceleration = "cuda";
+    };
     envfs.enable = lib.mkDefault true;
     hardware.bolt.enable = true;
     thinkfan.enable = true;

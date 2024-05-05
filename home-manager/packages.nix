@@ -23,7 +23,6 @@
       vagrant
       bottles
       spacedrive
-      ollama
       hoppscotch
       curlie
       hurl
