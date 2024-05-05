@@ -32,7 +32,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
-    hyprland.url = "github:hyprwm/Hyprland/?submodules=1";
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1";
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
