@@ -192,14 +192,12 @@
 
   fonts = {
     packages = with pkgs; [
-      # hack-font
       material-symbols
       noto-fonts
       noto-fonts-monochrome-emoji
       roboto
       roboto-mono
       inter
-      corefonts
       paratype-pt-serif
       paratype-pt-sans
       paratype-pt-mono
@@ -229,8 +227,8 @@
         enable = true;
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Source Sans Pro" ];
+        monospace = [ "Cascadia Mono" ];
+        sansSerif = [ "Inter" ];
         serif = [ "Inter" ];
         emoji = [ "Noto Emoji" ];
       };
