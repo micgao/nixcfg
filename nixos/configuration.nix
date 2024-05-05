@@ -189,15 +189,13 @@
 
   fonts = {
     packages = with pkgs; [
-      hack-font
+      # hack-font
       material-symbols
       noto-fonts
       noto-fonts-monochrome-emoji
       roboto
       roboto-mono
       inter
-      commit-mono
-      drafting
       corefonts
       paratype-pt-serif
       paratype-pt-sans
