@@ -124,7 +124,6 @@
   };
 
   hardware = {
-    nvidia-container-toolkit.enable = true;
     bluetooth = {
       enable = true;
       package = pkgs.bluez5-experimental;
