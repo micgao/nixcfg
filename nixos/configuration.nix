@@ -102,8 +102,6 @@
     sudo-rs.enable = true;
     tpm2 = {
       enable = true;
-      abrmd.enable = true;
-      tctiEnvironment.enable = true;
     };
     rtkit.enable = true;
     polkit.enable = true;
@@ -166,7 +164,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       nvidiaSettings = true;
     };
   };
