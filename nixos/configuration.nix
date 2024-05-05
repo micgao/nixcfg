@@ -302,7 +302,7 @@
     ollama = {
       enable = true;
       sandbox = true;
-      acceleration = "cuda";
+      # acceleration = "cuda";
     };
     envfs.enable = lib.mkDefault true;
     hardware.bolt.enable = true;
