@@ -2,7 +2,7 @@
   description = "NixOs config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +36,7 @@
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
-    wezterm.url = "github:wez/wezterm/?dir=nix";
+    wezterm.url = "github:wez/wezterm/d8154bc450432e0b1a2c4ae0b31ab9072081cf53/?dir=nix";
   };
 
   outputs =
