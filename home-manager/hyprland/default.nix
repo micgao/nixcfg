@@ -45,10 +45,6 @@
     systemd = {
       enable = true;
       variables = ["--all"];
-      extraCommands = lib.mkBefore [
-        "systemctl --user stop graphical-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
