@@ -85,8 +85,8 @@
                 follow_mouse = 2
                 sensitivity = -0.4
                 accel_profile = flat
-                repeat_rate = 40
-                repeat_delay = 350
+                repeat_rate = 45
+                repeat_delay = 300
             }
 
             general {
