@@ -166,7 +166,6 @@
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
-      nvidiaPersistenced = true;
     };
   };
 
@@ -227,7 +226,7 @@
         enable = true;
       };
       defaultFonts = {
-        monospace = [ "Cascadia Mono" ];
+        monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
         serif = [ "Inter" ];
         emoji = [ "Noto Emoji" ];

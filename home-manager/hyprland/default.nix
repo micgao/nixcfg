@@ -56,7 +56,7 @@
             env=XDG_SESSION_TYPE,wayland
             env=WLR_RENDERER_ALLOW_SOFTWARE,1
             env=WLR_RENDERER,vulkan
-            env=WLR_NO_HARDWARE_CURSORS,1
+            # env=WLR_NO_HARDWARE_CURSORS,1
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
