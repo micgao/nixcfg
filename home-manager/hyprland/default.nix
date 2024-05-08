@@ -130,10 +130,13 @@
              animations {
                 enabled = true
                 first_launch_animation = true
-                animation = border, 1, 2, default
-                animation = fade, 1, 4, default
-                animation = windows, 1, 3, default, popin 80%
-                animation = workspaces, 1, 2, default, slide
+                bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+                animation = windows, 1, 7, myBezier
+                animation = windowsOut, 1, 7, default, popin 80%
+                animation = border, 1, 10, default
+                animation = borderangle, 1, 8, default
+                animation = fade, 1, 7, default
+                animation = workspaces, 1, 6, default
              }
 
             dwindle {
@@ -152,8 +155,7 @@
 
             misc {
                 vfr = true
-                vrr = 2
-                no_direct_scanout = true
+                no_direct_scanout = false
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
@@ -164,6 +166,7 @@
                 enable_hyprcursor = true
                 hide_cursor_on_key_press = false
                 new_window_takes_over_fullscreen = 0
+                initial_workspace_tracking = 2
             }
 
             xwayland {
@@ -183,6 +186,7 @@
             windowrulev2 = workspace 9 silent, class:^(dota2)$
             windowrulev2 = stayfocused, title:^()$,class:^(steam)$
             windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
+            windowrulev2 = suppressevent maximize, class:.*
 
             workspace = special:scratchpad
 
