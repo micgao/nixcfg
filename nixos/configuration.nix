@@ -164,7 +164,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = true;
     };
   };
@@ -227,8 +227,8 @@
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter" ];
-        serif = [ "Inter" ];
+        sansSerif = [ "Source Sans Pro" ];
+        serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" ];
       };
     };

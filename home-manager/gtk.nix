@@ -6,7 +6,7 @@ in
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Qogir";
+      name = "Qogir Cursors";
       package = pkgs.qogir-icon-theme;
       size = 24;
     };
@@ -19,10 +19,6 @@ in
         scheme = config.colorScheme;
       };
       name = "sequoia";
-    };
-    font = {
-      name = "Inter";
-      package = pkgs.google-fonts.override { fonts = [ "Inter" ]; };
     };
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";

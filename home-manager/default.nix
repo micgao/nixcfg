@@ -73,7 +73,7 @@
     homeDirectory = "/home/${config.home.username}";
     stateVersion = "23.11";
     pointerCursor = {
-      name = "Qogir";
+      name = "Qogir Cursors";
       package = pkgs.qogir-icon-theme;
       size = 24;
       gtk.enable = true;
