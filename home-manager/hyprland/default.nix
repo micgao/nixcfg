@@ -1,6 +1,7 @@
 { lib, inputs, pkgs, ... }:
 {
   imports = [
+    ./hyprpaper.nix
     inputs.hyprland.homeManagerModules.default
     inputs.hyprlock.homeManagerModules.default
   ];
@@ -23,10 +24,6 @@
     };
   };
 
-  # nixpkgs.overlays = [
-  #   inputs.nixpkgs-wayland.overlay
-  # ];
-
   home.packages = with pkgs; [
     qt6.qtwayland
     qt6.qt5compat
@@ -45,6 +42,10 @@
     systemd = {
       enable = true;
       variables = [ "--all" ];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
@@ -55,7 +56,6 @@
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
             env=WLR_RENDERER_ALLOW_SOFTWARE,1
-            # env=WLR_RENDERER,vulkan
             env=WLR_NO_HARDWARE_CURSORS,1
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
@@ -96,7 +96,12 @@
                 col.active_border = rgb(ffbb88) rgb(f58ee0) 90deg
                 col.inactive_border = rgba(9898a6aa)
                 layout = dwindle
-                no_cursor_warps = true
+            }
+
+            cursor {
+                no_warps = true
+                enable_hyprcursor = true
+                no_hardware_cursors = true
             }
 
             decoration {
@@ -163,18 +168,17 @@
                 close_special_on_empty = false
                 background_color = rgb(0f1014)
                 focus_on_activate = true
-                enable_hyprcursor = true
-                hide_cursor_on_key_press = false
                 new_window_takes_over_fullscreen = 0
                 initial_workspace_tracking = 2
             }
 
-            # xwayland {
-            #     force_zero_scaling = true
-            # }
+            xwayland {
+                force_zero_scaling = true
+            }
 
             opengl {
                 nvidia_anti_flicker = true
+                force_introspection = 0
             }
 
             # layerrule = blur, waybar
@@ -262,7 +266,5 @@
       }
     ];
   };
-
-  xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
   xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
 }

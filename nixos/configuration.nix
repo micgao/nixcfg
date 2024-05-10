@@ -169,24 +169,26 @@
     };
   };
 
-  nix = {
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-      flake-registry = "/etc/nix/registry.json";
+      flake-registry = "";
       keep-going = true;
       keep-outputs = true;
       keep-derivations = true;
       warn-dirty = false;
-      log-lines = 20;
+      nix-path = config.nix.nixPath;
     };
+    channel.enable = false;
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than +3";
     };
-    registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
-    nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
   fonts = {
