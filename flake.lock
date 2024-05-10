@@ -808,26 +808,6 @@
         "type": "github"
       }
     },
-    "nix-ld": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1701153607,
-        "narHash": "sha256-h+odOVyiGmEERMECoFOj5P7FPiMR8IPRzroFA4sKivg=",
-        "owner": "Mic92",
-        "repo": "nix-ld",
-        "rev": "bf5aa84a713c31d95b4307e442e966d6c7fd7ae7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mic92",
-        "repo": "nix-ld",
-        "type": "github"
-      }
-    },
     "nix-ld-rs": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -1103,11 +1083,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1715370170,
-        "narHash": "sha256-EcAhpOVmi1L1TfGIRHR6NsnLhTAsAemqpNUs5X7h1p4=",
+        "lastModified": 1715373963,
+        "narHash": "sha256-meEptw3gdLJK2QTzwpuCMpcZmCG6r9r96u7oV2PZ3N0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b655095e46df23e2022dbfb854eb8ac6dc97ee43",
+        "rev": "7d489620a859b2e51dbb312f37c77d19fd2e6c75",
         "type": "github"
       },
       "original": {
@@ -1145,7 +1125,6 @@
         "hyprpicker": "hyprpicker",
         "neovim": "neovim",
         "nix-colors": "nix-colors",
-        "nix-ld": "nix-ld",
         "nix-ld-rs": "nix-ld-rs",
         "nix-your-shell": "nix-your-shell",
         "nixpkgs": "nixpkgs_8",
@@ -1464,11 +1443,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1715354825,
-        "narHash": "sha256-bSv/ziihx5k0UINXP4npRRJH4yArKk1bMJyZmLBM35Q=",
+        "lastModified": 1715373588,
+        "narHash": "sha256-7j7EXaL4rU03BgFmgaz7JPMg0MK41csLtaZJbcIv2eE=",
         "owner": "wez",
         "repo": "wezterm",
-        "rev": "ca27f921e2f5b25fa1a1b4395f972676d685b62c",
+        "rev": "79ce027d3805ed43ff533b19802a4a2e7d9a9623",
         "type": "github"
       },
       "original": {
