@@ -2,7 +2,6 @@
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    inputs.hyprlock.homeManagerModules.default
   ];
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -41,10 +40,6 @@
     systemd = {
       enable = true;
       variables = [ "--all" ];
-      extraCommands = [
-        "systemctl --user stop graphical-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
@@ -55,7 +50,6 @@
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
             env=WLR_RENDERER_ALLOW_SOFTWARE,1
-            env=WLR_NO_HARDWARE_CURSORS,1
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
@@ -74,7 +68,6 @@
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
             exec-once=hyprpaper
-            # exec-once=waybar
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
@@ -180,15 +173,12 @@
                 force_introspection = 0
             }
 
-            # layerrule = blur, waybar
             layerrule = blur, notifications
             layerrule = ignorezero, notifications
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
 
             windowrulev2 = workspace 9 silent, class:^(dota2)$
-            windowrulev2 = stayfocused, title:^()$,class:^(steam)$
-            windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
             windowrulev2 = suppressevent maximize, class:.*
 
             workspace = special:scratchpad
@@ -244,26 +234,5 @@
     '';
   };
 
-  programs.hyprlock = {
-    enable = true;
-    general = {
-      hide_cursor = false;
-    };
-    input-fields = [
-      {
-        monitor = "";
-        fade_on_empty = false;
-        hide_input = true;
-      }
-    ];
-    labels = [
-      {
-        monitor = "";
-        text = "$TIME";
-        valign = "center";
-        halign = "center";
-      }
-    ];
-  };
   xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
 }

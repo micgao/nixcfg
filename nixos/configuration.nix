@@ -10,11 +10,20 @@
   ];
 
   boot = {
-    bootspec.enableValidation = true;
+    bootspec = {
+      enable = true;
+      enableValidation = true;
+    };
     tmp.cleanOnBoot = true;
-    consoleLogLevel = 0;
+    consoleLogLevel = 3;
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [ "quiet" "splash" "nvidia-drm.fbdev=1" ];
+    kernelParams = [
+      "quiet"
+      "splash"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+      "nvidia-drm.fbdev=1"
+    ];
     extraModprobeConfig = ''
       options nvidia-drm modeset=1 fbdev=1
     '';
@@ -33,13 +42,18 @@
       verbose = false;
       systemd = {
         enable = true;
+        network.wait-online.enable = false;
         dbus.enable = true;
       };
     };
     modprobeConfig.enable = true;
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+    };
   };
 
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   console = {
     colors = [
@@ -97,7 +111,6 @@
   };
 
   security = {
-    pam.services.greetd.enableGnomeKeyring = true;
     sudo-rs.enable = true;
     tpm2 = {
       enable = true;
@@ -128,7 +141,10 @@
       package = pkgs.bluez5-experimental;
       settings = {
         General = {
+          AutoEnable = true;
+          DiscoverableTimeout = 0;
           Experimental = "true";
+          KernelExperimental = "true";
         };
       };
     };
@@ -169,29 +185,32 @@
     };
   };
 
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-    in {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      flake-registry = "";
-      keep-going = true;
-      keep-outputs = true;
-      keep-derivations = true;
-      warn-dirty = false;
-      nix-path = config.nix.nixPath;
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+        flake-registry = "";
+        keep-going = true;
+        keep-outputs = true;
+        keep-derivations = true;
+        warn-dirty = false;
+        nix-path = config.nix.nixPath;
+      };
+      channel.enable = false;
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than +3";
+      };
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-    channel.enable = false;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than +3";
-    };
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
 
   fonts = {
+    enableDefaultPackages = false;
     packages = with pkgs; [
       material-symbols
       noto-fonts
@@ -280,18 +299,37 @@
   };
 
   networking = {
-    wireless.iwd.enable = true;
+    wireless = {
+      dbusControlled = true;
+      iwd = {
+        enable = true;
+        settings = {
+          Settings = {
+            AutoConnect = true;
+            AlwaysRandomizeAddress = true;
+          };
+        };
+      };
+    };
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd";
+      wifi = {
+        backend = "iwd";
+        scanRandMacAddress = true;
+        powersave = true;
+        macAddress = "random";
+      };
       dns = "systemd-resolved";
     };
     hostName = "X1E3";
   };
 
   i18n = {
-    supportedLocales =
-      [ "en_US.UTF-8/UTF-8" "en_CA.UTF-8/UTF-8" "fr_CA.UTF-8/UTF-8" ];
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "en_CA.UTF-8/UTF-8"
+      "fr_CA.UTF-8/UTF-8"
+    ];
     defaultLocale = "en_US.UTF-8";
   };
 
@@ -363,7 +401,10 @@
     };
     throttled.enable = true;
     udisks2.enable = true;
-    geoclue2.enable = true;
+    geoclue2 = {
+      enable = true;
+      enableWifi = true;
+    };
     blueman.enable = true;
   };
 
@@ -410,6 +451,21 @@
     seahorse.enable = true;
     steam = {
       enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs:
+          with pkgs; [
+            keyutils
+            libkrb5
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+          ];
+      };
     };
     gamescope = {
       enable = true;
