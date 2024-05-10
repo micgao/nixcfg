@@ -1,7 +1,6 @@
 { lib, inputs, pkgs, ... }:
 {
   imports = [
-    ./hyprpaper.nix
     inputs.hyprland.homeManagerModules.default
     inputs.hyprlock.homeManagerModules.default
   ];
