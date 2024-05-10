@@ -6,7 +6,7 @@ in
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Qogir Cursors";
+      name = "Qogir";
       package = pkgs.qogir-icon-theme;
       size = 24;
     };
