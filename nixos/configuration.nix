@@ -15,12 +15,12 @@
       enableValidation = true;
     };
     tmp.cleanOnBoot = true;
-    consoleLogLevel = 3;
+    consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "quiet"
       "splash"
-      "systemd.show_status=auto"
+      "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "nvidia-drm.fbdev=1"
     ];

@@ -1,8 +1,4 @@
-{ config, pkgs, inputs, ... }: {
-
-  imports = [
-    inputs.nix-ld.nixosModules.nix-ld
-  ];
+{ pkgs, inputs, ... }: {
 
   programs.nix-ld = {
     enable = true;
