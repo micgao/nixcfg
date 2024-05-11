@@ -77,6 +77,7 @@
                 accel_profile = flat
                 repeat_rate = 45
                 repeat_delay = 300
+                float_switch_override_focus = 0
             }
 
             general {
