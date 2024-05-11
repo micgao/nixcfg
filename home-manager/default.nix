@@ -3,7 +3,6 @@
     ./alacritty
     ./bottom
     ./foot
-    ./fuzzel
     ./helix
     ./hyprland
     ./kitty

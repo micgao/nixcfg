@@ -31,6 +31,7 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprpaper.url = "github:hyprwm/hyprpaper";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
   };
