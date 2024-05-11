@@ -136,6 +136,7 @@
   };
 
   hardware = {
+    openrazer.enable = true;
     bluetooth = {
       enable = true;
       package = pkgs.bluez5-experimental;
@@ -438,6 +439,7 @@
         "podman"
         "kvm"
         "rtkit"
+        "openrazer"
       ];
     };
   };

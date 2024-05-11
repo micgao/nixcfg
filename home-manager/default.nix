@@ -12,7 +12,6 @@
     ./nix-colors
     ./qt
     ./starship
-    # ./waybar
     ./wezterm
     ./accounts.nix
     ./bat.nix
@@ -44,6 +43,7 @@
     ./reaper.nix
     ./ripgrep.nix
     ./tealdeer.nix
+    ./tofi.nix
     ./vscodium.nix
     ./xdg.nix
     ./xsettingsd.nix

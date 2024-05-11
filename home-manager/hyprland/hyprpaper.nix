@@ -8,7 +8,6 @@
     preload = /home/micgao/.config/hypr/wallpaper.jpg
     wallpaper = ,/home/micgao/.config/hypr/wallpaper.jpg
     splash = false
-    ipc = off
   '';
 
   systemd.user.services.hyprpaper = {

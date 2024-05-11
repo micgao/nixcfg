@@ -1,18 +1,17 @@
 { lib, inputs, pkgs, ... }:
 {
   imports = [
+    ./hyprpaper.nix
     inputs.hyprland.homeManagerModules.default
   ];
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";
-
     Install = {
       WantedBy = [ "graphical-session.target" ];
       Wants = [ "graphical-session.target" ];
       After = [ "graphical-session.target" ];
     };
-
     Service = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -28,7 +27,6 @@
     libsForQt5.breeze-qt5
     libsForQt5.breeze-gtk
     libsForQt5.breeze-icons
-    libsForQt5.qt5.qtwayland
     hyprpaper
     inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.default
   ];
@@ -93,7 +91,6 @@
             cursor {
                 no_warps = true
                 enable_hyprcursor = true
-                no_hardware_cursors = true
             }
 
             decoration {
@@ -152,7 +149,7 @@
 
             misc {
                 vfr = true
-                no_direct_scanout = false
+                no_direct_scanout = true
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
@@ -191,7 +188,8 @@
             submap = reset
 
             bind = $mainMod, return, exec, wezterm
-            bind = $mainMod, space, exec, fuzzel
+            bind = $mainMod, space, exec, tofi-drun --drun-launch=true
+            bind = $mainMod CTRL, space, exec, tofi-run
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,
             bind = $mainMod, Q, killactive,
@@ -233,6 +231,5 @@
             bindm = $mainMod, mouse:273, resizewindow
     '';
   };
-
   xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
 }
