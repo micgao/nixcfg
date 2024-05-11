@@ -2,12 +2,14 @@
   programs.tofi = {
     enable = true;
     settings = {
-      background-color = "#868690";
+      background-color = "#0F1014";
+      text-color = "#868690";
+      selection-match-color = "#93939C";
       anchor = "top";
       width = "100%";
       height = 30;
       horizontal = true;
-      font-size = 14;
+      font-size = 12;
       font = "/home/micgao/.local/share/fonts/CascadiaMono-Regular.ttf";
       border-width = 0;
       outline-width = 0;
