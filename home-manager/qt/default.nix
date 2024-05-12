@@ -1,7 +1,8 @@
 {
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    style.name = "breeze";
+    platformTheme.name = "qt6ct";
   };
   xdg.configFile."qt5ct/colors/sequoia.conf".source = ./sequoia.conf;
 }

@@ -87,7 +87,6 @@
       })
       config.nix.registry;
     variables = {
-      EDITOR = "nvim";
       NIXOS_OZONE_WL = "1";
     };
     sessionVariables = {
@@ -123,7 +122,6 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      inputs.nixpkgs-wayland.overlay
     ];
     config = {
       allowUnfree = true;
@@ -286,9 +284,6 @@
       package = pkgs.virtualbox.override {
         javaBindings = false;
       };
-      # enableKvm = true;
-      # enableHardening = false;
-      # addNetworkInterface = false;
     };
     vmware.host = {
       enable = true;
@@ -406,7 +401,6 @@
       enable = true;
       enableWifi = true;
     };
-    blueman.enable = true;
   };
 
   documentation = {
@@ -446,10 +440,8 @@
 
   programs = {
     virt-manager.enable = true;
-    command-not-found.enable = false;
     less.enable = true;
     dconf.enable = true;
-    kdeconnect.enable = true;
     seahorse.enable = true;
     steam = {
       enable = true;
@@ -492,12 +484,11 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
+    platformTheme = "qt6ct";
+    style = "breeze";
   };
 
   system = {
     stateVersion = "23.11";
   };
 }
-
