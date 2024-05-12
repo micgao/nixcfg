@@ -33,7 +33,7 @@
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
-    wezterm.url = "github:wez/wezterm/?dir=nix";
+    wezterm.url = "github:wez/wezterm/79ce027d3805ed43ff533b19802a4a2e7d9a9623/?dir=nix";
   };
 
   outputs =
