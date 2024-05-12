@@ -47,10 +47,6 @@
       };
     };
     modprobeConfig.enable = true;
-    plymouth = {
-      enable = true;
-      theme = "breeze";
-    };
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -484,7 +480,6 @@
 
   qt = {
     enable = true;
-    style = "breeze";
   };
 
   system = {
