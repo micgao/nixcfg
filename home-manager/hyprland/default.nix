@@ -189,7 +189,7 @@
             submap = reset
 
             bind = $mainMod, return, exec, wezterm
-            bind = $mainMod, space, exec, tofi-drun --drun-launch=true
+            bind = $mainMod, space, exec, tofi-drun
             bind = $mainMod CTRL, space, exec, tofi-run
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,

@@ -7,7 +7,7 @@
       selection-match-color = "#93939C";
       anchor = "top";
       width = "100%";
-      height = 30;
+      height = 25;
       horizontal = true;
       font-size = 12;
       font = "/home/micgao/.local/share/fonts/CascadiaMono-Regular.ttf";
@@ -20,7 +20,6 @@
       result-spacing = 15;
       min-input-width = 120;
       prompt-text = " > ";
-      matching-algorithm = "fuzzy";
       drun-launch = true;
     };
   };

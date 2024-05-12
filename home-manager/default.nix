@@ -2,7 +2,6 @@
   imports = [
     ./alacritty
     ./bottom
-    ./foot
     ./helix
     ./hyprland
     ./kitty
@@ -18,7 +17,6 @@
     ./cava.nix
     ./direnv.nix
     ./emacs.nix
-    ./feh.nix
     ./fonts.nix
     ./gaming.nix
     ./gh.nix
@@ -33,7 +31,6 @@
     ./neovim.nix
     ./nix-index.nix
     ./nix-your-shell.nix
-    ./nnn.nix
     ./packages.nix
     ./password.nix
     ./playerctld.nix
@@ -41,7 +38,6 @@
     ./pywal.nix
     ./reaper.nix
     ./ripgrep.nix
-    ./tealdeer.nix
     ./tofi.nix
     ./vscodium.nix
     ./xdg.nix

@@ -22,26 +22,6 @@ in
     };
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-      extraConfig = ''
-        gtk-xft-antialias=1
-        gtk-xft-hinting=1
-        gtk-xft-hintstyle="hintmedium"
-        gtk-xft-rgba="rgb"
-      '';
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-xft-antialias = 1;
-      gtk-xft-hinting = 1;
-      gtk-xft-hintstyle = "hintmedium";
-      gtk-xft-rgba = "rgb";
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-xft-antialias = 1;
-      gtk-xft-hinting = 1;
-      gtk-xft-hintstyle = "hintmedium";
-      gtk-xft-rgba = "rgb";
     };
   };
 }
