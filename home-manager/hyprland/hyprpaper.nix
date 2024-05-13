@@ -1,24 +1,15 @@
-{ pkgs
-, inputs
-, lib
-, config
-, ...
-}: {
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = /home/micgao/.config/hypr/wallpaper.jpg
-    wallpaper = ,/home/micgao/.config/hypr/wallpaper.jpg
-    splash = false
-  '';
-
-  systemd.user.services.hyprpaper = {
-    Unit = {
-      Description = "Hyprland wallpaper daemon";
-      PartOf = [ "graphical-session.target" ];
+{
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [
+        "home/micgao/.config/hypr/wallpaper.jpg"
+      ];
+      wallpaper = [
+        "home/micgao/.config/hypr/wallpaper.jpg"
+      ];
+      splash = false;
+      ipc = "off";
     };
-    Service = {
-      ExecStart = "${lib.getExe inputs.hyprpaper.packages.${pkgs.system}.default}";
-      Restart = "on-failure";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

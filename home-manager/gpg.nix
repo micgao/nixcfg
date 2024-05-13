@@ -10,6 +10,6 @@
     enable = true;
     enableSshSupport = true;
     enableExtraSocket = true;
-    pinentryPackage = inputs.nixpkgs-wayland.outputs.packages.${pkgs.stdenv.hostPlatform.system}.wayprompt;
+    pinentryPackage = pkgs.pinentry-all;
   };
 }

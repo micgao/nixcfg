@@ -33,7 +33,6 @@
     ./nix-your-shell.nix
     ./packages.nix
     ./password.nix
-    ./playerctld.nix
     ./pueue.nix
     ./pywal.nix
     ./reaper.nix
