@@ -1,7 +1,10 @@
-{ input, pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
+  inports = [
+    inputs.hyprlock.homeManagerModules.default
+  ];
   programs.hyprlock = {
     enable = true;
-    package = input.hyprlock.packages.${pkgs.hostPlatform.system}.default;
+    package = inputs.hyprlock.packages.${pkgs.hostPlatform.system}.default;
   };
 }
