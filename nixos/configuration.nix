@@ -106,7 +106,10 @@
   };
 
   security = {
-    pam.services.hyprlock = {};
+    pam.services = {
+      hyprlock = {};
+      greetd.enableGnomeKeyring = true;
+    };
     sudo-rs = {
       enable = true;
       wheelNeedsPassword = false;
@@ -214,17 +217,12 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
-      liberation_ttf
-      ttf_bitstream_vera
-      gelasio
-      powerline-symbols
-      lexend
       material-symbols
       noto-fonts
       noto-fonts-monochrome-emoji
       roboto
       roboto-mono
-      inter
+      (google-fonts.override {fonts = ["Inter"];})
       paratype-pt-serif
       paratype-pt-sans
       paratype-pt-mono
@@ -254,10 +252,10 @@
         enable = true;
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Lexend" ];
-        serif = [ "Noto Serif" ];
-        emoji = [ "Noto Emoji" ];
+        monospace = [ "Iosevka SS04" "Symbols Nerd Font" "Noto Emoji" ];
+        sansSerif = [ "Inter" "Symbols Nerd Font" "Noto Emoji" ];
+        serif = [ "Noto Serif" "Symbols Nerd Font" "Noto Emoji" ];
+        emoji = [ "Noto Emoji" "Symbols Nerd Font" ];
       };
     };
   };
