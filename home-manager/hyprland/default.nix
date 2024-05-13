@@ -2,6 +2,7 @@
 {
   imports = [
     ./hyprpaper.nix
+    ./hyprlock.nix
     inputs.hyprland.homeManagerModules.default
   ];
 
