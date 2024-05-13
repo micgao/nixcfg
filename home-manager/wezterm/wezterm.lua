@@ -125,7 +125,7 @@ config.font = wezterm.font_with_fallback {
     family = "Iosevka SS04",
   },
   {
-    family = "Symbols Nerd Font",
+    family = "Symbols Nerd Font Mono",
   },
 }
 config.font_size = 11
@@ -135,7 +135,6 @@ config.freetype_render_target = "Light"
 config.freetype_load_flags = "NO_HINTING"
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.unicode_version = 14
-config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
@@ -152,7 +151,7 @@ config.enable_tab_bar = true
 config.front_end = "WebGpu"
 config.webgpu_preferred_adapter = gpus[1]
 config.enable_wayland = true
-config.prefer_to_spawn_tabs = true
+config.prefer_to_spawn_tabs = false
 config.check_for_updates = false
 config.command_palette_bg_color = "#0F1014"
 config.command_palette_fg_color = "#8EB5F5"

@@ -21,6 +21,7 @@
       min-input-width = 120;
       prompt-text = " > ";
       drun-launch = true;
+      terminal = "wezterm";
     };
   };
 }

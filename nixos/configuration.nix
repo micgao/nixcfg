@@ -106,7 +106,11 @@
   };
 
   security = {
-    sudo-rs.enable = true;
+    pam.services.hyprlock = {};
+    sudo-rs = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
     tpm2 = {
       enable = true;
     };
@@ -130,9 +134,10 @@
   };
 
   hardware = {
-    openrazer.enable = true;
+    enableRedistributableFirmware = true;
     bluetooth = {
       enable = true;
+      powerOnBoot = false;
       package = pkgs.bluez5-experimental;
       settings = {
         General = {
@@ -159,6 +164,7 @@
         libvdpau-va-gl
         vaapiVdpau
         nvidia-vaapi-driver
+        gamescope
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         nvidia-vaapi-driver
@@ -174,9 +180,9 @@
       };
       open = true;
       modesetting.enable = true;
-      powerManagement.enable = true;
+      powerManagement.enable = false;
       package = config.boot.kernelPackages.nvidiaPackages.production;
-      nvidiaSettings = true;
+      nvidiaSettings = false;
     };
   };
 
@@ -193,12 +199,13 @@
         keep-derivations = true;
         warn-dirty = false;
         nix-path = config.nix.nixPath;
+        trusted-users = [ "micgao" ];
       };
       channel.enable = false;
       gc = {
         automatic = true;
         dates = "weekly";
-        options = "--delete-older-than +3";
+        options = "--delete-older-than 14d";
       };
       registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
@@ -207,6 +214,11 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
+      liberation_ttf
+      ttf_bitstream_vera
+      gelasio
+      powerline-symbols
+      lexend
       material-symbols
       noto-fonts
       noto-fonts-monochrome-emoji
@@ -243,7 +255,7 @@
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Source Sans Pro" ];
+        sansSerif = [ "Lexend" ];
         serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" ];
       };
@@ -296,23 +308,21 @@
       iwd = {
         enable = true;
         settings = {
-          Settings = {
-            AutoConnect = true;
-            AlwaysRandomizeAddress = true;
+          General = {
+            EnableNetworkConfiguration = true;
           };
         };
       };
     };
-    networkmanager = {
-      enable = true;
-      wifi = {
-        backend = "iwd";
-        scanRandMacAddress = true;
-        powersave = true;
-        macAddress = "random";
-      };
-      dns = "systemd-resolved";
-    };
+    # networkmanager = {
+    #   enable = true;
+    #   wifi = {
+    #     backend = "iwd";
+    #     scanRandMacAddress = true;
+    #     macAddress = "random";
+    #   };
+    #   dns = "systemd-resolved";
+    # };
     hostName = "X1E3";
   };
 
@@ -325,11 +335,13 @@
     defaultLocale = "en_US.UTF-8";
   };
 
+
   time.timeZone = "America/Toronto";
 
   location.provider = "geoclue2";
 
   services = {
+    timesyncd.enable = true;
     ollama = {
       enable = true;
       sandbox = true;
@@ -425,11 +437,10 @@
         "input"
         "vboxusers"
         "libvirtd"
-        "networkmanager"
         "podman"
+        "networkmanager"
         "kvm"
         "rtkit"
-        "openrazer"
       ];
     };
   };
@@ -473,7 +484,7 @@
         enableBrowserSocket = true;
         enableExtraSocket = true;
         enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-gnome3;
+        pinentryPackage = inputs.nixpkgs-wayland.outputs.packages.${pkgs.stdenv.hostPlatform.system}.wayprompt;
       };
     };
   };

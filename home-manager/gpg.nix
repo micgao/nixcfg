@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   programs.gpg = {
     enable = true;
@@ -10,6 +10,6 @@
     enable = true;
     enableSshSupport = true;
     enableExtraSocket = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentryPackage = inputs.nixpkgs-wayland.outputs.packages.${pkgs.stdenv.hostPlatform.system}.wayprompt;
   };
 }

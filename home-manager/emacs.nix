@@ -7,6 +7,7 @@
     packages = with pkgs; [
       binutils
       xdg-utils
+      xdg-user-dirs
       unrar
       graphviz
       imagemagick
