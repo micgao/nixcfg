@@ -40,6 +40,7 @@
     ./ripgrep.nix
     ./tofi.nix
     ./vscodium.nix
+    ./waybar.nix
     ./xdg.nix
     ./xsettingsd.nix
     ./yazi.nix

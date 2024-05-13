@@ -73,11 +73,11 @@
 
             input {
                 follow_mouse = 2
-                sensitivity = -0.4
+                sensitivity = -0.5
                 accel_profile = flat
                 repeat_rate = 45
                 repeat_delay = 300
-                float_switch_override_focus = 0
+                float_switch_override_focus = 1
             }
 
             general {
