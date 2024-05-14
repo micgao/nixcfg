@@ -5,7 +5,6 @@
   };
   programs.librewolf = {
     enable = true;
-    package = pkgs.librewolf;
   };
   programs.chromium = {
     enable = true;

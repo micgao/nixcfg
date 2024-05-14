@@ -17,6 +17,7 @@
     ./cava.nix
     ./direnv.nix
     ./emacs.nix
+    ./fuzzel.nix
     ./fonts.nix
     ./gaming.nix
     ./gh.nix
@@ -37,9 +38,8 @@
     ./pywal.nix
     ./reaper.nix
     ./ripgrep.nix
-    ./tofi.nix
     ./vscodium.nix
-    ./waybar.nix
+    # ./waybar.nix
     ./xdg.nix
     ./xsettingsd.nix
     ./yazi.nix

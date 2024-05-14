@@ -482,7 +482,7 @@
         enableBrowserSocket = true;
         enableExtraSocket = true;
         enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-all;
+        pinentryPackage = pkgs.pinentry-emacs;
       };
     };
   };

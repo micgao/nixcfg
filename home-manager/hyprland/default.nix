@@ -49,7 +49,8 @@
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
-            exec-once=hyprpaper
+            env=MOZ_DISABLE_RDD_SANDBOX,1
+            # exec-once=hyprpaper
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
@@ -173,8 +174,7 @@
             submap = reset
 
             bind = $mainMod, return, exec, wezterm
-            bind = $mainMod, space, exec, tofi-drun
-            bind = $mainMod CTRL, space, exec, tofi-run
+            bind = $mainMod, space, exec, fuzzel
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,
             bind = $mainMod, Q, killactive,
