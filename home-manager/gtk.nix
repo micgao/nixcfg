@@ -5,6 +5,10 @@ in
 {
   gtk = {
     enable = true;
+    font = {
+      name = "Inter";
+      size = 11;
+    };
     cursorTheme = {
       name = "Qogir";
       package = pkgs.qogir-icon-theme;

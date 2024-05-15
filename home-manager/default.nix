@@ -1,4 +1,4 @@
-{ outputs, lib, config, pkgs, ... }: {
+{ outputs, lib, config, pkgs, inputs, ... }: {
   imports = [
     ./alacritty
     ./bottom

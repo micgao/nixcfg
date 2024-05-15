@@ -31,7 +31,7 @@
         };
         "battery" = {
           format = "{capacity}% {icon}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [ "" "" "" "" "" ];
         };
         "tray" = {
           show-passive-items = true;

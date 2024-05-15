@@ -107,7 +107,7 @@
 
   security = {
     pam.services = {
-      hyprlock = {};
+      hyprlock = { };
       greetd.enableGnomeKeyring = true;
     };
     sudo-rs = {
@@ -217,12 +217,13 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
+      liberation_ttf
       material-symbols
       noto-fonts
       noto-fonts-monochrome-emoji
       roboto
       roboto-mono
-      (google-fonts.override {fonts = ["Inter"];})
+      (google-fonts.override { fonts = [ "Inter" ]; })
       paratype-pt-serif
       paratype-pt-sans
       paratype-pt-mono
@@ -252,9 +253,9 @@
         enable = true;
       };
       defaultFonts = {
-        monospace = [ "Iosevka SS04" "Symbols Nerd Font" "Noto Emoji" ];
-        sansSerif = [ "Inter" "Symbols Nerd Font" "Noto Emoji" ];
-        serif = [ "Noto Serif" "Symbols Nerd Font" "Noto Emoji" ];
+        monospace = [ "Iosevka SS04" ];
+        sansSerif = [ "Inter" "Source Sans Pro" ];
+        serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" "Symbols Nerd Font" ];
       };
     };
@@ -444,6 +445,13 @@
   };
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+      package = pkgs.appimage-run.override {
+        extraPkgs = pkgs: [ pkgs.ffmpeg pkgs.imagemagick ];
+      };
+    };
     virt-manager.enable = true;
     less.enable = true;
     dconf.enable = true;
@@ -489,7 +497,10 @@
 
   qt = {
     enable = true;
+    platformTheme = "qt5ct";
   };
+
+  gtk.iconCache.enable = true;
 
   system = {
     stateVersion = "23.11";

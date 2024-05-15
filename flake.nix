@@ -24,16 +24,26 @@
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+    };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+    };
+    hyprpicker.url = "github:hyprwm/hyprpicker";
     neovim.url = "github:neovim/neovim/?dir=contrib";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
-    wezterm.url = "github:wez/wezterm/79ce027d3805ed43ff533b19802a4a2e7d9a9623/?dir=nix";
+    wezterm.url = "github:wez/wezterm/?dir=nix";
   };
 
   outputs =

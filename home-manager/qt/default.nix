@@ -1,7 +1,7 @@
 {
   qt = {
     enable = true;
-    platformTheme.name = "qt6ct";
+    platformTheme.name = "qtct";
   };
   xdg.configFile."qt5ct/colors/sequoia.conf".source = ./sequoia.conf;
 }

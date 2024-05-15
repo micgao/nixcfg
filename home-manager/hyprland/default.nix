@@ -1,9 +1,9 @@
-{ lib, inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 {
   imports = [
+    inputs.hyprland.homeManagerModules.default
     ./hyprpaper.nix
     ./hyprlock.nix
-    inputs.hyprland.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [
@@ -12,7 +12,6 @@
     libsForQt5.breeze-qt5
     libsForQt5.breeze-gtk
     libsForQt5.breeze-icons
-    hyprpaper
     inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.default
   ];
 
@@ -21,6 +20,7 @@
     xwayland.enable = true;
     systemd = {
       enable = true;
+      enableXdgAutostart = true;
       variables = [ "--all" ];
     };
     extraConfig = ''
@@ -35,6 +35,7 @@
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
+            env=XCURSOR_THEME,qogir
             env=XCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
@@ -50,18 +51,19 @@
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
             env=MOZ_DISABLE_RDD_SANDBOX,1
-            # exec-once=hyprpaper
+            exec-once=${lib.getExe inputs.hyprpaper.packages.${pkgs.system}.default}
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
             exec-once=[workspace 3 silent] emacs
+            exec-once=${lib.getExe inputs.hyprlock.packages.${pkgs.system}.default}
 
             input {
                 follow_mouse = 2
                 sensitivity = -0.5
                 accel_profile = flat
-                repeat_rate = 45
-                repeat_delay = 300
+                repeat_rate = 50
+                repeat_delay = 250
                 float_switch_override_focus = 1
             }
 
@@ -173,7 +175,7 @@
             bind = $mainMod,K,submap,reset
             submap = reset
 
-            bind = $mainMod, return, exec, wezterm
+            bind = $mainMod, return, exec, wezterm --always-new-process
             bind = $mainMod, space, exec, fuzzel
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,
