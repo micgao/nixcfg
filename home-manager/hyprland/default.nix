@@ -51,12 +51,12 @@
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
             env=MOZ_DISABLE_RDD_SANDBOX,1
-            exec-once=${lib.getExe inputs.hyprpaper.packages.${pkgs.system}.default}
+            # exec-once=${lib.getExe inputs.hyprpaper.packages.${pkgs.system}.default}
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
             exec-once=[workspace 3 silent] emacs
-            exec-once=${lib.getExe inputs.hyprlock.packages.${pkgs.system}.default}
+            # exec-once=${lib.getExe inputs.hyprlock.packages.${pkgs.system}.default}
 
             input {
                 follow_mouse = 2
@@ -146,7 +146,6 @@
                 background_color = rgb(0f1014)
                 focus_on_activate = true
                 new_window_takes_over_fullscreen = 0
-                initial_workspace_tracking = 2
             }
 
             xwayland {
@@ -170,9 +169,9 @@
 
             $mainMod = SUPER
 
-            bind = $mainMod,K,submap,clean
+            bind = $mainMod,M,submap,clean
             submap = clean
-            bind = $mainMod,K,submap,reset
+            bind = $mainMod,M,submap,reset
             submap = reset
 
             bind = $mainMod, return, exec, wezterm --always-new-process
