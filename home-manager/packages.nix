@@ -38,7 +38,7 @@
       # gimp
       keepassxc
       pavucontrol
-      # obsidian
+      obsidian
       roon-tui
       jetbrains-toolbox
       virt-viewer
