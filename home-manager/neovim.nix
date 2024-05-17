@@ -19,7 +19,7 @@
       fswatch
     ];
     extraLuaPackages = ps: with ps; [
-      luarocks
+      luajitPackages.luarocks
     ];
     viAlias = true;
     vimAlias = true;
