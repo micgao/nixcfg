@@ -15,9 +15,11 @@
       gnumake
       nodejs
       lua-language-server
-      luajitPackages.luarocks
       sqlite
       fswatch
+    ];
+    extraLuaPackages = with pkgs; [
+      luajitPackages.luarocks
     ];
     viAlias = true;
     vimAlias = true;
