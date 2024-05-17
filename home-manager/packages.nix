@@ -37,7 +37,7 @@
       protonmail-bridge
       # gimp
       keepassxc
-      pavucontrol
+      pwvucontrol
       obsidian
       roon-tui
       jetbrains-toolbox

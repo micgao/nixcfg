@@ -1,9 +1,9 @@
 { inputs, pkgs, ... }:
 {
   nixpkgs = {
-    overlays = [
-      inputs.neovim.overlay
-    ];
+    # overlays = [
+    #   inputs.neovim.overlay
+    # ];
   };
   programs.neovim = {
     enable = true;
