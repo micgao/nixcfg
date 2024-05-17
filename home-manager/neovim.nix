@@ -18,8 +18,8 @@
       sqlite
       fswatch
     ];
-    extraLuaPackages = with pkgs; [
-      luajitPackages.luarocks
+    extraLuaPackages = ps: with ps; [
+      luarocks
     ];
     viAlias = true;
     vimAlias = true;
