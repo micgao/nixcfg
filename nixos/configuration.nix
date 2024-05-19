@@ -342,7 +342,7 @@
     mpdscribble = {
       enable = true;
       host = "127.0.0.1";
-      port = "6600";
+      port = 6600;
       endpoints = {
         "last.fm" = {
           passwordFile = "/home/micgao/.secrets/lastfm_password";
