@@ -35,7 +35,7 @@
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
-            env=XCURSOR_THEME,qogir
+            env=XCURSOR_THEME,Qogir Cursors
             env=XCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
@@ -51,12 +51,10 @@
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
             env=MOZ_DISABLE_RDD_SANDBOX,1
-            # exec-once=${lib.getExe inputs.hyprpaper.packages.${pkgs.system}.default}
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
             exec-once=[workspace 3 silent] emacs
-            # exec-once=${lib.getExe inputs.hyprlock.packages.${pkgs.system}.default}
 
             input {
                 follow_mouse = 2
@@ -158,6 +156,7 @@
             }
 
             layerrule = blur, notifications
+            layerrule = blur, waybar
             layerrule = ignorezero, notifications
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
@@ -174,7 +173,7 @@
             bind = $mainMod,M,submap,reset
             submap = reset
 
-            bind = $mainMod, return, exec, wezterm --always-new-process
+            bind = $mainMod, return, exec, wezterm start --always-new-process
             bind = $mainMod, space, exec, fuzzel
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,

@@ -39,7 +39,7 @@
     ./reaper.nix
     ./ripgrep.nix
     ./vscodium.nix
-    # ./waybar.nix
+    ./waybar.nix
     ./xdg.nix
     ./xsettingsd.nix
     ./yazi.nix

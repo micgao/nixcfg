@@ -8,7 +8,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.neovim;
+    # package = pkgs.neovim;
     extraPackages = with pkgs; [
       gcc
       clang

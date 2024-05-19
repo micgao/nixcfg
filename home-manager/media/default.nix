@@ -1,17 +1,15 @@
-{ pkgs, config, ... }: {
-
-  home = {
-    packages = with pkgs; [
-      mpdscribble
-    ];
-  };
-
+{ pkgs, config, ... }:
+{
   services.mpd = {
     enable = true;
     musicDirectory = "${config.home.homeDirectory}/Music";
     dataDir = "${config.home.homeDirectory}/.mpd";
     playlistDirectory = "${config.home.homeDirectory}/.mpd/playlists";
-    network.startWhenNeeded = true;
+    network = {
+      listenAddress = "127.0.0.1";
+      port = "6600";
+      startWhenNeeded = true;
+    };
     extraConfig = ''
       auto_update "yes"
       follow_outside_symlinks "yes"
@@ -92,6 +90,7 @@
     scripts = with pkgs.mpvScripts; [ sponsorblock ];
     config = {
       profile = "gpu-hq";
+      ytdl-format = "bestvideo+bestaudio";
       user-agent = "Mozilla/5.0";
     };
   };
@@ -103,5 +102,4 @@
       default_keybindings = true;
     };
   };
-  xdg.configFile."mpdscribble/mpdscribble.conf".source = ./mpdscribble.conf;
 }

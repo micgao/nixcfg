@@ -223,7 +223,7 @@
       noto-fonts-monochrome-emoji
       roboto
       roboto-mono
-      (google-fonts.override { fonts = [ "Inter" ]; })
+      (google-fonts.override { fonts = [ "Inter" "Roboto Flex" ]; })
       paratype-pt-serif
       paratype-pt-sans
       paratype-pt-mono
@@ -334,12 +334,22 @@
     defaultLocale = "en_US.UTF-8";
   };
 
-
   time.timeZone = "America/Toronto";
 
   location.provider = "geoclue2";
 
   services = {
+    mpdscribble = {
+      enable = true;
+      host = "127.0.0.1";
+      port = "6600";
+      endpoints = {
+        "last.fm" = {
+          passwordFile = "/home/micgao/.secrets/lastfm_password";
+          username = "micgao";
+        };
+      };
+    };
     timesyncd.enable = true;
     ollama = {
       enable = true;
@@ -490,7 +500,7 @@
         enableBrowserSocket = true;
         enableExtraSocket = true;
         enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-emacs;
+        pinentryPackage = pkgs.pinentry-gnome3;
       };
     };
   };

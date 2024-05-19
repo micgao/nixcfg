@@ -10,6 +10,6 @@
     enable = true;
     enableSshSupport = true;
     enableExtraSocket = true;
-    pinentryPackage = pkgs.pinentry-emacs;
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 }

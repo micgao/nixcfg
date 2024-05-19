@@ -2,7 +2,7 @@
   description = "NixOs config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +38,10 @@
       inputs.systems.follows = "hyprland/systems";
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    neovim.url = "github:neovim/neovim/?dir=contrib";
+    neovim = {
+      url = "github:neovim/neovim/?dir=contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
