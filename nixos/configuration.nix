@@ -288,9 +288,9 @@
     };
     virtualbox.host = {
       enable = true;
-      package = pkgs.virtualbox.override {
-        javaBindings = false;
-      };
+      # package = pkgs.virtualbox.override {
+      #   javaBindings = false;
+      # };
     };
     vmware.host = {
       enable = true;
