@@ -17,6 +17,8 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
+    extraModulePackages = [
+    ];
     kernelParams = [
       "quiet"
       "splash"
@@ -75,7 +77,9 @@
   };
 
   environment = {
-    systemPackages = [ pkgs.git ];
+    systemPackages = with pkgs; [
+      git
+    ];
     etc = lib.mapAttrs'
       (name: value: {
         name = "nix/path/${name}";
@@ -288,9 +292,6 @@
     };
     virtualbox.host = {
       enable = true;
-      # package = pkgs.virtualbox.override {
-      #   javaBindings = false;
-      # };
     };
     vmware.host = {
       enable = true;
@@ -302,6 +303,7 @@
   };
 
   networking = {
+    wireguard.enable = true;
     wireless = {
       dbusControlled = true;
       iwd = {
