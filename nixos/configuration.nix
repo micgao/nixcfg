@@ -188,7 +188,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = false;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       nvidiaSettings = false;
     };
   };
@@ -290,19 +290,19 @@
         runAsRoot = false;
       };
     };
-    virtualbox.host = {
-      enable = true;
-      package = pkgs.virtualbox.override {
-        javaBindings = false;
-      };
-    };
-    vmware.host = {
-      enable = true;
-      extraConfig = ''
-        mks.gl.allowUnsupportedDrivers = "TRUE"
-        mks.vk.allowUnsupportedDevices = "TRUE"
-      '';
-    };
+    # virtualbox.host = {
+    #   enable = true;
+    #   package = pkgs.virtualbox.override {
+    #     javaBindings = false;
+    #   };
+    # };
+    # vmware.host = {
+    #   enable = true;
+    #   extraConfig = ''
+    #     mks.gl.allowUnsupportedDrivers = "TRUE"
+    #     mks.vk.allowUnsupportedDevices = "TRUE"
+    #   '';
+    # };
   };
 
   networking = {
