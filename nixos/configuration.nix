@@ -16,7 +16,7 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     extraModulePackages = [
     ];
     kernelParams = [
@@ -188,7 +188,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = false;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
       nvidiaSettings = false;
     };
   };
