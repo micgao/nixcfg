@@ -416,6 +416,13 @@
     btrfs.autoScrub = {
       enable = true;
       interval = "weekly";
+      fileSystems = [
+        "/nix"
+        "/etc"
+        "/var/log"
+        "/root"
+        "/home"
+      ];
     };
     throttled.enable = true;
     udisks2.enable = true;
@@ -504,7 +511,6 @@
         enable = true;
         enableBrowserSocket = true;
         enableExtraSocket = true;
-        enableSSHSupport = true;
         pinentryPackage = pkgs.pinentry-gnome3;
       };
     };
