@@ -22,6 +22,10 @@
       enable = true;
       enableXdgAutostart = true;
       variables = [ "--all" ];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
@@ -44,13 +48,12 @@
             env=QT_QPA_PLATFORM,wayland;xcb
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
-            env=GDK_BACKEND,wayland,x11
+            env=GDK_BACKEND,wayland,x11,*
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
-            env=MOZ_DISABLE_RDD_SANDBOX,1
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
@@ -76,7 +79,6 @@
 
             cursor {
                 no_warps = true
-                enable_hyprcursor = true
             }
 
             decoration {
@@ -85,8 +87,8 @@
                 inactive_opacity = 0.9
       	        blur {
       	            enabled = true
-      	            size = 10
-      	            passes = 3
+      	            size = 7
+      	            passes = 4
       	            ignore_opacity = true
       	            new_optimizations = true
       	            xray = true
@@ -94,7 +96,7 @@
                     popups = true
                     brightness = 1.0
                     contrast = 1.0
-                    noise = 0.02
+                    noise = 0.01
       	        }
                 drop_shadow = true
                 shadow_range = 20
@@ -135,7 +137,7 @@
 
             misc {
                 vfr = true
-                no_direct_scanout = true
+                font_family = Inter
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
@@ -144,15 +146,11 @@
                 background_color = rgb(0f1014)
                 focus_on_activate = true
                 new_window_takes_over_fullscreen = 0
+                middle_click_paste = false
             }
 
             xwayland {
                 force_zero_scaling = true
-            }
-
-            opengl {
-                nvidia_anti_flicker = true
-                force_introspection = 0
             }
 
             layerrule = blur, notifications

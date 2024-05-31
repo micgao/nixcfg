@@ -17,8 +17,6 @@
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_zen;
-    extraModulePackages = [
-    ];
     kernelParams = [
       "quiet"
       "splash"
@@ -26,9 +24,6 @@
       "rd.udev.log_level=3"
       "nvidia-drm.fbdev=1"
     ];
-    extraModprobeConfig = ''
-      options nvidia-drm modeset=1 fbdev=1
-    '';
     loader = {
       systemd-boot = {
         enable = true;
@@ -52,6 +47,7 @@
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.user.services.telephony_client.enable = false;
 
   console = {
     colors = [
@@ -92,8 +88,6 @@
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
     };
-    homeBinInPath = true;
-    localBinInPath = true;
     shells = with pkgs; [ zsh nushell ];
   };
 
@@ -118,9 +112,7 @@
       enable = true;
       wheelNeedsPassword = false;
     };
-    tpm2 = {
-      enable = true;
-    };
+    tpm2.enable = true;
     rtkit.enable = true;
     polkit.enable = true;
   };
@@ -144,16 +136,7 @@
     enableRedistributableFirmware = true;
     bluetooth = {
       enable = true;
-      powerOnBoot = false;
-      package = pkgs.bluez5-experimental;
-      settings = {
-        General = {
-          AutoEnable = true;
-          DiscoverableTimeout = 0;
-          Experimental = "true";
-          KernelExperimental = "true";
-        };
-      };
+      powerOnBoot = true;
     };
     pulseaudio.enable = false;
     cpu = {
@@ -170,26 +153,22 @@
         libva
         libvdpau-va-gl
         vaapiVdpau
-        nvidia-vaapi-driver
-        gamescope
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        nvidia-vaapi-driver
         libvdpau-va-gl
         vaapiVdpau
       ];
     };
     nvidia = {
       prime = {
-        nvidiaBusId = "PCI:1:0:0";
         intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
         sync.enable = true;
       };
       open = true;
       modesetting.enable = true;
-      powerManagement.enable = false;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
-      nvidiaSettings = false;
+      powerManagement.enable = true;
     };
   };
 
@@ -359,7 +338,6 @@
     ollama = {
       enable = true;
       sandbox = true;
-      # acceleration = "cuda";
     };
     envfs.enable = lib.mkDefault true;
     hardware.bolt.enable = true;
@@ -478,27 +456,8 @@
     less.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
-    steam = {
-      enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
-            keyutils
-            libkrb5
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-          ];
-      };
-    };
-    gamescope = {
-      enable = true;
-    };
+    steam.enable = true;
+    gamescope.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;
