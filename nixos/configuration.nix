@@ -87,6 +87,7 @@
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
+      NVD_BACKEND = "direct";
     };
     shells = with pkgs; [ zsh nushell ];
   };
@@ -268,12 +269,12 @@
         runAsRoot = false;
       };
     };
-    # virtualbox.host = {
-    #   enable = true;
-    #   package = pkgs.virtualbox.override {
-    #     javaBindings = false;
-    #   };
-    # };
+    virtualbox.host = {
+      enable = true;
+      package = pkgs.virtualbox.override {
+        javaBindings = false;
+      };
+    };
     # vmware.host = {
     #   enable = true;
     #   extraConfig = ''
@@ -420,11 +421,9 @@
   sound.enable = false;
 
   users = {
-    defaultUserShell = pkgs.zsh;
     users.micgao = {
       shell = pkgs.nushell;
       isNormalUser = true;
-      useDefaultShell = false;
       packages = [
         inputs.home-manager.packages.${pkgs.system}.default
       ];
@@ -436,7 +435,6 @@
         "vboxusers"
         "libvirtd"
         "podman"
-        "networkmanager"
         "kvm"
         "rtkit"
       ];
