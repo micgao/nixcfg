@@ -31,7 +31,7 @@
             # monitor=,preferred,auto,auto
             monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
-            env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+            env=WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
