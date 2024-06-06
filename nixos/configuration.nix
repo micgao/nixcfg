@@ -87,7 +87,6 @@
     };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
-      NVD_BACKEND = "direct";
     };
     shells = with pkgs; [ zsh nushell ];
   };
@@ -99,7 +98,7 @@
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       config = {
         common.default = [ "gtk" ];
-        hyprland.default = [ "gtk" "hyprland" ];
+        hyprland.default = [ "hyprland" "gtk" ];
       };
     };
   };
@@ -297,15 +296,6 @@
         };
       };
     };
-    # networkmanager = {
-    #   enable = true;
-    #   wifi = {
-    #     backend = "iwd";
-    #     scanRandMacAddress = true;
-    #     macAddress = "random";
-    #   };
-    #   dns = "systemd-resolved";
-    # };
     hostName = "X1E3";
   };
 
@@ -335,10 +325,6 @@
       };
     };
     timesyncd.enable = true;
-    ollama = {
-      enable = true;
-      sandbox = true;
-    };
     envfs.enable = lib.mkDefault true;
     hardware.bolt.enable = true;
     thinkfan.enable = true;
