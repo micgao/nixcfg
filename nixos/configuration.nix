@@ -16,13 +16,14 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "quiet"
       "splash"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "nvidia-drm.fbdev=1"
+      "nvidia.NVreg_EnableGpuFirmware=0"
     ];
     loader = {
       systemd-boot = {
@@ -268,12 +269,12 @@
         runAsRoot = false;
       };
     };
-    virtualbox.host = {
-      enable = true;
-      package = pkgs.virtualbox.override {
-        javaBindings = false;
-      };
-    };
+    # virtualbox.host = {
+    #   enable = true;
+    #   package = pkgs.virtualbox.override {
+    #     javaBindings = false;
+    #   };
+    # };
     # vmware.host = {
     #   enable = true;
     #   extraConfig = ''
