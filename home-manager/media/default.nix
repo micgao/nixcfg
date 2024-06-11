@@ -87,7 +87,6 @@
   programs.mpv = {
     enable = true;
     defaultProfiles = [ "gpu-hq" ];
-    scripts = with pkgs.mpvScripts; [ sponsorblock ];
     config = {
       profile = "gpu-hq";
       ytdl-format = "bestvideo+bestaudio";
