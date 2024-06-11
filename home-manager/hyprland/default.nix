@@ -32,7 +32,7 @@
             env=XDG_SESSION_TYPE,wayland
             env=NIXOS_OZONE_WL,1
             env=WLR_RENDERER_ALLOW_SOFTWARE,1
-            env=WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+            env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
