@@ -16,7 +16,6 @@
       mullvad-browser
       # zed-editor
       # (warp-terminal.override { waylandSupport = true; })
-      ffmpeg_7-full
       rustup
       distrobox
       comma
