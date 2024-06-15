@@ -48,7 +48,7 @@
             env=GDK_BACKEND,wayland,x11,*
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
-            env=GBM_BACKEND,nvidia-drm
+            # env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
             exec-once=hyprctl setcursor qogir_hl

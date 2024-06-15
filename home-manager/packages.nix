@@ -19,7 +19,7 @@
       rustup
       distrobox
       comma
-      vagrant
+      # vagrant
       bottles
       spacedrive
       hoppscotch
