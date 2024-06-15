@@ -8,8 +8,7 @@
   };
   programs.chromium = {
     enable = true;
-    package = pkgs.ungoogled-chromium.override {
-      commandLineArgs = [ "--force-dark-mode" ];
+    package = pkgs.chromium.override {
       enableWideVine = true;
     };
   };
