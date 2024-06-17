@@ -13,6 +13,8 @@
   home = {
     packages = with pkgs; [
       firefox-devedition
+      floorp
+      brave
       mullvad-browser
       # zed-editor
       # (warp-terminal.override { waylandSupport = true; })
