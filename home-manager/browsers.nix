@@ -8,7 +8,7 @@
   };
   programs.chromium = {
     enable = true;
-    package = pkgs.chromium.override {
+    package = pkgs.ungoogled-chromium.override {
       enableWideVine = true;
     };
   };
