@@ -39,6 +39,7 @@
       keepassxc
       pwvucontrol
       obsidian
+      logseq
       roon-tui
       jetbrains-toolbox
       virt-viewer

@@ -30,7 +30,6 @@
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
-            env=NIXOS_OZONE_WL,1
             env=WLR_RENDERER_ALLOW_SOFTWARE,1
             env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=EGL_PLATFORM,wayland
@@ -45,10 +44,10 @@
             env=QT_QPA_PLATFORM,wayland;xcb
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
-            env=GDK_BACKEND,wayland,x11,*
+            env=GDK_BACKEND,wayland,x11
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
-            # env=GBM_BACKEND,nvidia-drm
+            env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
             exec-once=hyprctl setcursor qogir_hl
