@@ -2,7 +2,7 @@
   imports = [
     ./alacritty
     ./bottom
-    # ./helix
+    ./helix
     ./hyprland
     ./kitty
     ./mako
