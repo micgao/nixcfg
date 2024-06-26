@@ -24,7 +24,10 @@
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.hyprlang.follows = "hyprland/hyprlang";

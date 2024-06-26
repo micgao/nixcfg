@@ -134,31 +134,27 @@
   };
 
   hardware = {
-    enableRedistributableFirmware = true;
-    bluetooth = {
+    graphics = {
       enable = true;
-      powerOnBoot = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+        intel-media-driver
+        intel-ocl
+      ];
+      extraPackages32 = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+        intel-media-driver
+        intel-ocl
+      ];
     };
-    pulseaudio.enable = false;
+    enableRedistributableFirmware = true;
     cpu = {
       intel = {
         updateMicrocode = true;
       };
-      x86.msr.enable = true;
-    };
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        libva
-        libvdpau-va-gl
-        vaapiVdpau
-      ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [
-        libvdpau-va-gl
-        vaapiVdpau
-      ];
     };
     nvidia = {
       prime = {
@@ -166,7 +162,7 @@
         nvidiaBusId = "PCI:1:0:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
@@ -271,9 +267,9 @@
     };
     virtualbox.host = {
       enable = true;
-      package = pkgs.virtualbox.override {
-        javaBindings = false;
-      };
+      enableKvm = true;
+      addNetworkInterface = false;
+      enableHardening = false;
     };
     # vmware.host = {
     #   enable = true;
