@@ -83,11 +83,9 @@
         value.source = value.flake;
       })
       config.nix.registry;
-    variables = {
-      NIXOS_OZONE_WL = "1";
-    };
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
+      NIXOS_OZONE_WL = "1";
     };
     shells = with pkgs; [ zsh nushell ];
   };

@@ -32,6 +32,8 @@
             env=XDG_SESSION_TYPE,wayland
             env=WLR_RENDERER_ALLOW_SOFTWARE,1
             env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+            env=__GL_GSYNC_ALLOWED,1
+            env=__GL_VRR_ALLOWED,0
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
@@ -75,6 +77,7 @@
 
             cursor {
                 no_warps = true
+                no_hardware_cursors = true
             }
 
             decoration {
