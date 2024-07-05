@@ -25,7 +25,7 @@
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
-            monitor=HDMI-A-1,1920x1080@144,0x0,1
+            monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
             monitor=eDP-1,disable
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
@@ -144,7 +144,7 @@
                 close_special_on_empty = false
                 background_color = rgb(0f1014)
                 focus_on_activate = true
-                new_window_takes_over_fullscreen = 0
+                new_window_takes_over_fullscreen = 1
                 middle_click_paste = false
             }
 

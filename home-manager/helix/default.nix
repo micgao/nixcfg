@@ -9,7 +9,6 @@
     extraPackages = with pkgs; [
       marksman
       nodePackages.vscode-langservers-extracted
-      nodePackages.vscode-css-languageserver-bin
       nil
       lua-language-server
       nixpkgs-fmt
@@ -29,14 +28,6 @@
         };
         nil = {
           command = lib.getExe pkgs.nil;
-        };
-        vscode-css-language-server = {
-          command = "${pkgs.nodePackages.vscode-css-languageserver-bin}/bin/css-languageserver";
-          args = [ "--stdio" ];
-          config = {
-            provideFormatter = true;
-            css.validate.enable = true;
-          };
         };
       };
       language = [

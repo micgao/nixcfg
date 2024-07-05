@@ -23,7 +23,6 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "nvidia-drm.fbdev=1"
-      "nvidia.NVreg_EnableGpuFirmware=0"
     ];
     loader = {
       systemd-boot = {
@@ -160,7 +159,7 @@
         nvidiaBusId = "PCI:1:0:0";
         sync.enable = true;
       };
-      open = false;
+      open = true;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
