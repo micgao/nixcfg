@@ -16,12 +16,11 @@
       brave
       mullvad-browser
       gitbutler
-      # zed-editor
-      # (warp-terminal.override { waylandSupport = true; })
+      zed-editor
+      (warp-terminal.override { waylandSupport = true; })
       rustup
       distrobox
       comma
-      # vagrant
       bottles
       spacedrive
       hoppscotch
@@ -40,7 +39,6 @@
       keepassxc
       pwvucontrol
       obsidian
-      # logseq
       roon-tui
       jetbrains-toolbox
       virt-viewer

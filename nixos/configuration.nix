@@ -264,9 +264,6 @@
     };
     virtualbox.host = {
       enable = true;
-      enableKvm = true;
-      addNetworkInterface = false;
-      enableHardening = false;
     };
     # vmware.host = {
     #   enable = true;
