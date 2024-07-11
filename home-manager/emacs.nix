@@ -29,6 +29,7 @@
     extraPackages = epkgs: with epkgs; [
       vterm
       mu4e
+      treesit-grammars.with-all-grammars
     ];
   };
 }
