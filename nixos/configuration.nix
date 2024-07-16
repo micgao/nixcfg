@@ -395,8 +395,6 @@
     };
   };
 
-  sound.enable = false;
-
   users = {
     users.micgao = {
       shell = pkgs.nushell;
