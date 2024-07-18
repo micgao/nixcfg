@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
-    hyprpicker.url = "github:hyprwm/hyprpicker";
+    # hyprpicker.url = "github:hyprwm/hyprpicker";
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
