@@ -15,7 +15,7 @@
       firefox-devedition
       brave
       mullvad-browser
-      gitbutler
+      # gitbutler
       zed-editor
       (warp-terminal.override { waylandSupport = true; })
       rustup
