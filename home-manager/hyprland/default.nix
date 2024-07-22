@@ -31,8 +31,7 @@
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
-            env=WLR_RENDERER_ALLOW_SOFTWARE,1
-            env=WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+            env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=__GL_GSYNC_ALLOWED,1
             env=__GL_VRR_ALLOWED,0
             env=EGL_PLATFORM,wayland
@@ -78,7 +77,8 @@
 
             cursor {
                 no_warps = true
-                no_hardware_cursors = true
+                no_hardware_cursors = false
+                allow_dumb_copy = true
             }
 
             decoration {
@@ -115,7 +115,8 @@
                 bezier = myBezier, 0.05, 0.9, 0.1, 1.05
                 animation = windows, 1, 7, myBezier
                 animation = windowsOut, 1, 7, default, popin 80%
-                animation = border, 1, 10, default
+                animation = border, 1, 10, deffalse
+                allow_dumb_copy = true
                 animation = borderangle, 1, 8, default
                 animation = fade, 1, 7, default
                 animation = workspaces, 1, 6, default
