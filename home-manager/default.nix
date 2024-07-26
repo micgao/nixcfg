@@ -35,7 +35,6 @@
     ./packages.nix
     ./password.nix
     ./pueue.nix
-    ./pywal.nix
     ./reaper.nix
     ./ripgrep.nix
     ./vscodium.nix
