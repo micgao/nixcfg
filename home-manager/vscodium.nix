@@ -9,7 +9,6 @@
       vscode-extensions.asvetliakov.vscode-neovim
       vscode-extensions.rust-lang.rust-analyzer
       vscode-extensions.asvetliakov.vscode-neovim
-      vscode-extensions.tabnine.tabnine-vscode
       vscode-extensions.vadimcn.vscode-lldb
     ];
     userSettings = {
@@ -18,7 +17,7 @@
       "workbench.startupEditor" = "none";
       "workbench.activityBar.location" = "hidden";
       "window.titleBarStyle" = "custom";
-      "editor.fontFamily" = "Iosevka SS04 Extended";
+      "editor.fontFamily" = "Iosevka SS04";
       "editor.cursorBlinking" = "solid";
       "editor.cursorSmoothCaretAnimation" = "on";
       "diffEditor.codeLens" = true;
@@ -27,8 +26,6 @@
       "vscode-neovim.neovimClean" = true;
       "rust-analyzer.diagnostics.experimental.enable" = true;
       "rust-analyzer.restartServerOnConfigChange" = true;
-      "tabnine.experimentalAutoImports" = true;
-      "tabnine.receiveBetaChannelUpdates" = true;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };

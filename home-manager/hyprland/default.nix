@@ -7,11 +7,6 @@
   ];
 
   home.packages = with pkgs; [
-    qt6.qtwayland
-    qt6.qt5compat
-    libsForQt5.breeze-qt5
-    libsForQt5.breeze-gtk
-    libsForQt5.breeze-icons
     hyprpicker
     # inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.default
   ];
@@ -31,10 +26,9 @@
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
-            env=AQ_RENDERER_ALLOW_SOFTWARE,1
             env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+            env=AQ_RENDERER_ALLOW_SOFTWARE,1
             env=__GL_GSYNC_ALLOWED,1
-            env=__GL_VRR_ALLOWED,0
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
@@ -78,8 +72,7 @@
 
             cursor {
                 no_warps = true
-                no_hardware_cursors = false
-                allow_dumb_copy = true
+                no_hardware_cursors = true
             }
 
             decoration {
@@ -88,7 +81,7 @@
                 inactive_opacity = 0.9
       	        blur {
       	            enabled = true
-      	            size = 7
+      	            size = 8
       	            passes = 4
       	            ignore_opacity = true
       	            new_optimizations = true
@@ -97,7 +90,7 @@
                     popups = true
                     brightness = 1.0
                     contrast = 1.0
-                    noise = 0.01
+                    noise = 0.02
       	        }
                 drop_shadow = true
                 shadow_range = 20
@@ -107,7 +100,7 @@
                 shadow_offset = 0 2
                 shadow_scale = 1.0
                 dim_inactive = true
-                dim_strength = 0.2
+                dim_strength = 0.1
             }
 
              animations {

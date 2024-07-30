@@ -433,7 +433,6 @@
     hyprland = {
       enable = true;
       xwayland.enable = true;
-      systemd.setPath.enable = true;
     };
     zsh.enable = true;
     gnupg = {
