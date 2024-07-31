@@ -25,7 +25,6 @@
       spacedrive
       hoppscotch
       curlie
-      hurl
       circumflex
       fd
       skate
