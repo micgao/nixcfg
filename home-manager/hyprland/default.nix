@@ -21,7 +21,7 @@
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
-            monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
+            monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
@@ -29,6 +29,7 @@
             env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=AQ_RENDERER_ALLOW_SOFTWARE,1
             env=__GL_GSYNC_ALLOWED,1
+            env=__GL_VRR_ALLOWED,0
             env=EGL_PLATFORM,wayland
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
@@ -54,9 +55,9 @@
 
             input {
                 follow_mouse = 2
-                sensitivity = -0.5
+                sensitivity = -0.4
                 accel_profile = flat
-                repeat_rate = 50
+                repeat_rate = 45
                 repeat_delay = 250
                 float_switch_override_focus = 1
             }
@@ -72,7 +73,8 @@
 
             cursor {
                 no_warps = true
-                no_hardware_cursors = true
+                allow_dumb_copy = true
+                inactive_timeout = 5
             }
 
             decoration {
@@ -132,6 +134,7 @@
             misc {
                 vfr = true
                 font_family = Inter
+                no_direct_scanout = false
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
@@ -139,8 +142,10 @@
                 close_special_on_empty = false
                 background_color = rgb(0f1014)
                 focus_on_activate = true
-                new_window_takes_over_fullscreen = 1
+                new_window_takes_over_fullscreen = 0
                 middle_click_paste = false
+                animate_manual_resizes = true
+                animate_mouse_windowdragging = true
             }
 
             xwayland {

@@ -257,10 +257,8 @@
     };
     libvirtd = {
       enable = true;
-      onBoot = "ignore";
-      qemu = {
-        runAsRoot = false;
-      };
+      nss.enable = true;
+      onShutdown = "shutdown";
     };
     virtualbox.host = {
       enable = true;
