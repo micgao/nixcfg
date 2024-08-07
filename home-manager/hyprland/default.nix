@@ -138,7 +138,6 @@
             misc {
                 vfr = true
                 font_family = Inter
-                no_direct_scanout = false
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true

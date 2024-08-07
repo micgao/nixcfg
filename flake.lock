@@ -130,11 +130,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1722995092,
-        "narHash": "sha256-o9qpu0zYPjw1CZtXvvdxWgaY8MQnCK3+ZGJBNp8mUn4=",
+        "lastModified": 1723024089,
+        "narHash": "sha256-PAy2O2jimo1t5iX8ghurqnIO0WmiE4AAdVL46S7SxNY=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "48fbdaaa312e0fcbfcf2230ba3067777da5cfb0c",
+        "rev": "a20a230b4051096340ee5415d1a8d66648566810",
         "type": "github"
       },
       "original": {
@@ -609,11 +609,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722936497,
-        "narHash": "sha256-UBst8PkhY0kqTgdKiR8MtTBt4c1XmjJoOV11efjsC/o=",
+        "lastModified": 1723015306,
+        "narHash": "sha256-jQnFEtH20/OsDPpx71ntZzGdRlpXhUENSQCGTjn//NA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a6c743980e23f4cef6c2a377f9ffab506568413a",
+        "rev": "b3d5ea65d88d67d4ec578ed11d4d2d51e3de525e",
         "type": "github"
       },
       "original": {
@@ -664,11 +664,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1722956902,
-        "narHash": "sha256-g3cAlVmRtnyqMZw88MKqVNM8eU88XzgNAlXdTkym5q8=",
+        "lastModified": 1723030502,
+        "narHash": "sha256-wNo8YR+VY/OXW9zt7IFyMMJXwKHu0qRl3OfR+QSPVIs=",
         "ref": "refs/heads/main",
-        "rev": "b0a70f63e3865eaa77f0b78a04b230aa583bc95c",
-        "revCount": 5055,
+        "rev": "f36c625e37f8913d8da38365a4783948f2217f02",
+        "revCount": 5062,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1227,11 +1227,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723000827,
-        "narHash": "sha256-hWGr6GHwUvbuM22MyKJM3AYUIJqLR/wVVufahYuXCD0=",
+        "lastModified": 1723018958,
+        "narHash": "sha256-vzJ2xA/hVG/CukzcZJbRAI0qOvMAb3V1rC4bJUtKaIw=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "c34742d2d1191abcef1bd78fb0d1c2451b6de94c",
+        "rev": "99f29da4ac6251e6c6173c58aa9e4a2ba9e51a7f",
         "type": "github"
       },
       "original": {
@@ -1680,11 +1680,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1723004234,
+        "lastModified": 1723029212,
         "narHash": "sha256-w2KlzDdSGo5PR1awwxxtHThEUS4KkFONkKB/vcx+lM8=",
         "owner": "sxyazi",
         "repo": "yazi",
-        "rev": "4aaca4c4329831f507a056ed7e776840f95b63af",
+        "rev": "5df687395777d704224cb27c550307bf972cbeb2",
         "type": "github"
       },
       "original": {
