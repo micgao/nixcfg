@@ -31,6 +31,7 @@
             env=__GL_GSYNC_ALLOWED,1
             env=__GL_VRR_ALLOWED,0
             env=EGL_PLATFORM,wayland
+            env=MOZ_DISABLE_RDD_SANDBOX,1
             env=HYPRCURSOR_THEME,qogir_hl
             env=HYPRCURSOR_SIZE,24
             env=XCURSOR_THEME,Qogir Cursors
@@ -40,6 +41,7 @@
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=QT_QPA_PLATFORM,wayland;xcb
+            env=QT_QPA_PLATFORMTHEME,qt5ct
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11
@@ -48,6 +50,7 @@
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
+            env=NIXOS_OZONE_WL,1
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
@@ -55,7 +58,7 @@
 
             input {
                 follow_mouse = 2
-                sensitivity = -0.4
+                sensitivity = -0.3
                 accel_profile = flat
                 repeat_rate = 45
                 repeat_delay = 250
@@ -72,6 +75,7 @@
             }
 
             cursor {
+                no_hardware_cursors = true
                 no_warps = true
                 allow_dumb_copy = true
                 inactive_timeout = 5
