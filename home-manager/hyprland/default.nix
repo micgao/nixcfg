@@ -27,7 +27,7 @@
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
             env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-            env=AQ_RENDERER_ALLOW_SOFTWARE,1
+            # env=AQ_RENDERER_ALLOW_SOFTWARE,1
             env=__GL_GSYNC_ALLOWED,1
             env=__GL_VRR_ALLOWED,0
             env=EGL_PLATFORM,wayland
