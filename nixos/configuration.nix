@@ -161,7 +161,7 @@
       };
       open = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     };
   };
 
@@ -207,6 +207,7 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
+      jost
       (nerdfonts.override {
         fonts =
           [ "NerdFontsSymbolsOnly" ];
@@ -230,7 +231,7 @@
       };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
-        sansSerif = [ "Inter" "Source Sans Pro" ];
+        sansSerif = [ "Inter" ];
         serif = [ "Noto Serif" ];
         emoji = [ "Noto Emoji" "Symbols Nerd Font" ];
       };
