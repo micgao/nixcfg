@@ -16,6 +16,7 @@
       brave
       mullvad-browser
       # gitbutler
+      stirling-pdf
       zed-editor
       (warp-terminal.override { waylandSupport = true; })
       rustup
