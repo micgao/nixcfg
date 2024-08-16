@@ -48,7 +48,10 @@
     helix.url = "github:helix-editor/helix";
     yazi.url = "github:sxyazi/yazi";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
-    wezterm.url = "github:wez/wezterm/?dir=nix";
+    wezterm = {
+      url = "github:wez/wezterm/?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
