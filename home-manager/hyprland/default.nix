@@ -75,9 +75,10 @@
             }
 
             cursor {
-                no_hardware_cursors = true
+                # no_hardware_cursors = true
                 no_warps = true
                 allow_dumb_copy = true
+                sync_gsettings_theme = true
                 inactive_timeout = 5
             }
 
@@ -133,6 +134,12 @@
                 focus_preferred_method = 1
                 allow_workspace_cycles = true
                 workspace_back_and_forth = true
+            }
+
+            render {
+                explicit_sync = 2
+                explicit_sync_kms = 2
+                direct_scannout = true
             }
 
             misc {
