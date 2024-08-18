@@ -80,6 +80,7 @@
                 allow_dumb_copy = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
+                no_warps = true
             }
 
             decoration {
@@ -134,9 +135,9 @@
             }
 
             render {
-                explicit_sync = 2
-                explicit_sync_kms = 2
-                direct_scannout = true
+                explicit_sync = 0
+                explicit_sync_kms = 1
+                direct_scanout = true
             }
 
             misc {
