@@ -8,7 +8,6 @@
     package = inputs.helix.packages.${pkgs.hostPlatform.system}.default;
     extraPackages = with pkgs; [
       marksman
-      nodePackages.vscode-langservers-extracted
       nil
       lua-language-server
       nixpkgs-fmt
@@ -21,10 +20,6 @@
               command = "clippy";
             };
           };
-        };
-        typescript-language-server = with pkgs.nodePackages; {
-          command = "${typescript-language-server}/bin/typescript-language-server";
-          args = [ "--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib" ];
         };
         nil = {
           command = lib.getExe pkgs.nil;
