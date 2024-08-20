@@ -27,9 +27,8 @@
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
             env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-            # env=AQ_RENDERER_ALLOW_SOFTWARE,1
             env=__GL_GSYNC_ALLOWED,1
-            env=__GL_VRR_ALLOWED,0
+            env=__GL_VRR_ALLOWED,1
             env=EGL_PLATFORM,wayland
             env=MOZ_DISABLE_RDD_SANDBOX,1
             env=HYPRCURSOR_THEME,qogir_hl
@@ -75,16 +74,16 @@
             }
 
             cursor {
-                # no_hardware_cursors = true
+                no_hardware_cursors = true
                 no_warps = true
-                allow_dumb_copy = true
+                # allow_dumb_copy = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
                 no_warps = true
             }
 
             decoration {
-                rounding = 6
+                rounding = 3
                 active_opacity = 1.0
                 inactive_opacity = 0.9
       	        blur {
@@ -135,8 +134,8 @@
             }
 
             render {
-                explicit_sync = 0
-                explicit_sync_kms = 1
+                explicit_sync = 2
+                explicit_sync_kms = 0
                 direct_scanout = true
             }
 
