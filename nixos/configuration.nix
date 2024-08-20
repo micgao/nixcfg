@@ -7,6 +7,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
     inputs.envfs.nixosModules.envfs
+    inputs.nix-ld.nixosModules.nix-ld
   ];
 
   boot = {
