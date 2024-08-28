@@ -134,7 +134,7 @@
             }
 
             render {
-                explicit_sync = 2
+                explicit_sync = 0
                 explicit_sync_kms = 0
                 direct_scanout = true
             }

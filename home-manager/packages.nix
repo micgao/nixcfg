@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
 
   nixpkgs = {
     config = {
@@ -16,6 +16,7 @@
       brave
       mullvad-browser
       # gitbutler
+      inputs.zen.packages."${system}".specific
       stirling-pdf
       zed-editor
       (warp-terminal.override { waylandSupport = true; })
