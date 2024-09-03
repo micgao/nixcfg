@@ -162,6 +162,7 @@
       };
       open = true;
       modesetting.enable = true;
+      gsp.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
@@ -201,9 +202,6 @@
       roboto
       roboto-mono
       (google-fonts.override { fonts = [ "Inter" "Roboto Flex" ]; })
-      paratype-pt-serif
-      paratype-pt-sans
-      paratype-pt-mono
       cascadia-code
       source-code-pro
       source-sans-pro
@@ -316,9 +314,7 @@
       };
     };
     timesyncd.enable = true;
-    envfs.enable = lib.mkDefault true;
     hardware.bolt.enable = true;
-    thinkfan.enable = true;
     fwupd.enable = true;
     resolved = {
       enable = true;
@@ -379,8 +375,8 @@
         "/home"
       ];
     };
+    thermald.enable = false;
     throttled.enable = true;
-    udisks2.enable = true;
     geoclue2 = {
       enable = true;
       enableWifi = true;

@@ -27,14 +27,8 @@
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
             env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-            env=__GL_GSYNC_ALLOWED,1
-            env=__GL_VRR_ALLOWED,1
+            env=__GL_VRR_ALLOWED,0
             env=EGL_PLATFORM,wayland
-            env=MOZ_DISABLE_RDD_SANDBOX,1
-            env=HYPRCURSOR_THEME,qogir_hl
-            env=HYPRCURSOR_SIZE,24
-            env=XCURSOR_THEME,Qogir Cursors
-            env=XCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -49,7 +43,6 @@
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
-            env=NIXOS_OZONE_WL,1
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
@@ -57,7 +50,7 @@
 
             input {
                 follow_mouse = 2
-                sensitivity = -0.3
+                sensitivity = -0.4
                 accel_profile = flat
                 repeat_rate = 45
                 repeat_delay = 250
@@ -75,11 +68,11 @@
 
             cursor {
                 no_hardware_cursors = true
+                no_break_fs_vrr = true
                 no_warps = true
-                # allow_dumb_copy = true
+                allow_dumb_copy = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
-                no_warps = true
             }
 
             decoration {
@@ -134,11 +127,11 @@
             }
 
             render {
-                explicit_sync = 0
+                explicit_sync = 2
                 explicit_sync_kms = 0
-                direct_scanout = true
+                direct_scanout = false
             }
-
+            
             misc {
                 vfr = true
                 font_family = Inter
@@ -153,6 +146,7 @@
                 middle_click_paste = false
                 animate_manual_resizes = true
                 animate_mouse_windowdragging = true
+                enable_swallow = true
             }
 
             xwayland {
