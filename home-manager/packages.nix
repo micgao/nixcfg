@@ -15,7 +15,7 @@
       firefox-devedition
       brave
       mullvad-browser
-      # gitbutler
+      gitbutler
       inputs.zen.packages."${system}".specific
       stirling-pdf
       zed-editor

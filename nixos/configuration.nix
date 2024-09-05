@@ -160,9 +160,9 @@
         nvidiaBusId = "PCI:1:0:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       modesetting.enable = true;
-      gsp.enable = true;
+      gsp.enable = false;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
@@ -329,7 +329,7 @@
     };
     dbus = {
       enable = true;
-      packages = with pkgs; [ gcr gnome.gnome-settings-daemon ];
+      packages = with pkgs; [ gcr gnome-settings-daemon ];
       implementation = "broker";
     };
     gnome.gnome-keyring.enable = true;
