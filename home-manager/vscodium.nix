@@ -22,7 +22,6 @@
       "editor.cursorSmoothCaretAnimation" = "on";
       "diffEditor.codeLens" = true;
       "diffEditor.diffAlgorithm" = "advanced";
-      "vscode-neovim.logLevel" = "none";
       "vscode-neovim.neovimClean" = true;
       "rust-analyzer.diagnostics.experimental.enable" = true;
       "rust-analyzer.restartServerOnConfigChange" = true;
