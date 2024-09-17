@@ -5,14 +5,9 @@
   ];
   home = {
     packages = with pkgs; [
-      binutils
-      xdg-utils
-      xdg-user-dirs
       unrar
       graphviz
       imagemagick
-      zstd
-      gnutls
       texlive.combined.scheme-medium
     ];
   };

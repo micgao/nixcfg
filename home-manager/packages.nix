@@ -12,6 +12,7 @@
 
   home = {
     packages = with pkgs; [
+      code-cursor
       firefox-devedition
       brave
       mullvad-browser
@@ -29,10 +30,12 @@
       curlie
       circumflex
       fd
+      trashy
       skate
       gpg-tui
       playerctl
       mpc-cli
+      vlc
       procs
       megacmd
       protonmail-bridge
