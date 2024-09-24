@@ -67,7 +67,7 @@
             }
 
             cursor {
-                no_hardware_cursors = true
+                no_hardware_cursors = false
                 no_break_fs_vrr = true
                 no_warps = true
                 allow_dumb_copy = true
@@ -179,6 +179,7 @@
             bind = $mainMod, V, togglefloating,
             bind = $mainMod, X, togglesplit,
             bind = $mainMod, P, pseudo,
+            bind = $mainMod, 0, exit,
             bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
             bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
