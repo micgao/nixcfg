@@ -179,7 +179,7 @@
             bind = $mainMod, V, togglefloating,
             bind = $mainMod, X, togglesplit,
             bind = $mainMod, P, pseudo,
-            bind = $mainMod, 0, exit,
+            bind = $mainMod CTRL, 0, exit,
             bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
             bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
