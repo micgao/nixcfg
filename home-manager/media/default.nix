@@ -57,7 +57,6 @@
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "fifo_visualizer";
       visualizer_in_stereo = "yes";
-      visualizer_type = "spectrum";
       visualizer_look = "+|";
       mpd_crossfade_time = "0";
       ncmpcpp_directory = "~/.ncmpcpp";
