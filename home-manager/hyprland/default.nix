@@ -49,8 +49,8 @@
             exec-once=[workspace 3 silent] emacs
 
             input {
-                follow_mouse = 2
-                sensitivity = -0.4
+                follow_mouse = 1
+                sensitivity = -0.3
                 accel_profile = flat
                 repeat_rate = 45
                 repeat_delay = 250
