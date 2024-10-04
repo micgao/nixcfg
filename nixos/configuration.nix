@@ -135,13 +135,19 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers;
+      package32 = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers;
       extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+        libva
         vaapiVdpau
         libvdpau-va-gl
         intel-media-driver
         intel-ocl
       ];
       extraPackages32 = with pkgs; [
+        nvidia-vaapi-driver
+        libva
         vaapiVdpau
         libvdpau-va-gl
         intel-media-driver
@@ -428,7 +434,8 @@
     gamescope.enable = true;
     hyprland = {
       enable = true;
-      xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     zsh.enable = true;
     gnupg = {
@@ -444,7 +451,6 @@
 
   qt = {
     enable = true;
-    platformTheme = "qt5ct";
   };
 
   gtk.iconCache.enable = true;

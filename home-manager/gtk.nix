@@ -10,11 +10,6 @@ in
       package = pkgs.google-fonts.override { fonts = [ "Inter" ]; };
       size = 11;
     };
-    # cursorTheme = {
-    #   name = "Qogir";
-    #   package = pkgs.qogir-icon-theme;
-    #   size = 24;
-    # };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
