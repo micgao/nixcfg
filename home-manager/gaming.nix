@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     protontricks
     winetricks
-    lutris
+    # lutris
     protonup-ng
     vkbasalt
   ];
