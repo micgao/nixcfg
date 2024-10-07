@@ -16,7 +16,6 @@
       firefox-devedition
       brave
       mullvad-browser
-      bisq-desktop
       gitbutler
       inputs.zen.packages."${system}".specific
       stirling-pdf
