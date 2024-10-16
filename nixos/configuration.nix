@@ -155,6 +155,7 @@
       ];
     };
     enableRedistributableFirmware = true;
+    bluetooth.enable = true;
     cpu = {
       intel = {
         updateMicrocode = true;
@@ -308,6 +309,7 @@
   location.provider = "geoclue2";
 
   services = {
+    blueman.enable = true;
     mpdscribble = {
       enable = true;
       host = "127.0.0.1";
