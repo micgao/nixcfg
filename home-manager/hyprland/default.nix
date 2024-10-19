@@ -43,7 +43,6 @@
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
-            env=ELECTRON_OZONE_PLATFORM_HINT,auto
             exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
@@ -51,9 +50,9 @@
 
             input {
                 follow_mouse = 1
-                sensitivity = -0.3
+                sensitivity = -0.2
                 accel_profile = flat
-                repeat_rate = 45
+                repeat_rate = 50
                 repeat_delay = 250
                 float_switch_override_focus = 1
             }
@@ -135,7 +134,6 @@
             
             misc {
                 vfr = true
-                font_family = Inter
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
@@ -162,8 +160,17 @@
 
             windowrulev2 = workspace 9 silent, class:^(dota2)$
             windowrulev2 = suppressevent maximize, class:.*
+            windowrulev2 = bordersize 0, floating:0, onworkspace:w[t1]
+            windowrulev2 = rounding 0, floating:0, onworkspace:w[t1]
+            windowrulev2 = bordersize 0, floating:0, onworkspace:w[tg1]
+            windowrulev2 = rounding 0, floating:0, onworkspace:w[tg1]
+            windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
+            windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
 
             workspace = special:scratchpad
+            workspace = w[t1], gapsout:0, gapsin:0
+            workspace = w[tg1], gapsout:0, gapsin:0
+            workspace = f[1], gapsout:0, gapsin:0
 
             $mainMod = SUPER
 
@@ -172,7 +179,7 @@
             bind = $mainMod,M,submap,reset
             submap = reset
 
-            bind = $mainMod, return, exec, wezterm start --always-new-process
+            bind = $mainMod, return, exec, wezterm
             bind = $mainMod, space, exec, fuzzel
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,

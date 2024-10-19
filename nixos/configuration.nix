@@ -6,7 +6,6 @@
     ./nix-ld.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
-    inputs.envfs.nixosModules.envfs
     inputs.nix-ld.nixosModules.nix-ld
   ];
 
@@ -433,10 +432,14 @@
     seahorse.enable = true;
     steam = {
       enable = true;
-      extest.enable = true;
       protontricks.enable = true;
+      gamescopeSession.enable = true;
     };
-    gamescope.enable = true;
+    nix-ld.dev.enable = true;
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
