@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./cachix.nix
-    ./nix-ld.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
     inputs.nix-ld.nixosModules.nix-ld
