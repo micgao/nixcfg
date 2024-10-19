@@ -213,7 +213,6 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
-      jost
       (nerdfonts.override {
         fonts =
           [ "NerdFontsSymbolsOnly" ];
@@ -432,7 +431,11 @@
     less.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
-    steam.enable = true;
+    steam = {
+      enable = true;
+      extest.enable = true;
+      protontricks.enable = true;
+    };
     gamescope.enable = true;
     hyprland = {
       enable = true;
