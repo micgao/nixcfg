@@ -2,7 +2,7 @@
   description = "NixOs config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "git+https://github.com/hyprwm/Hyprland";
     };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
@@ -36,7 +36,8 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
-    # hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

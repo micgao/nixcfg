@@ -21,6 +21,7 @@
       "splash"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
+      "nvidia-drm.modeset=1"
       "nvidia-drm.fbdev=1"
     ];
     loader = {
@@ -72,6 +73,12 @@
   };
 
   environment = {
+    variables = {
+      GBM_BACKEND = "nvidia-drm";
+      LIBVA_DRIVER_NAME = "nvidia";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      NVD_BACKEND = "direct";
+    };
     systemPackages = with pkgs; [
       git
     ];
@@ -133,23 +140,19 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers;
-      package32 = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers;
+      # package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers;
+      # package32 = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-        libva
         vaapiVdpau
         libvdpau-va-gl
-        intel-media-driver
-        intel-ocl
+        libva
       ];
       extraPackages32 = with pkgs; [
         nvidia-vaapi-driver
-        libva
         vaapiVdpau
         libvdpau-va-gl
-        intel-media-driver
-        intel-ocl
+        libva
       ];
     };
     enableRedistributableFirmware = true;
@@ -165,9 +168,9 @@
         nvidiaBusId = "PCI:1:0:0";
         sync.enable = true;
       };
-      open = true;
+      open = false;
       modesetting.enable = true;
-      gsp.enable = true;
+      gsp.enable = false;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
@@ -418,11 +421,14 @@
   };
 
   programs = {
-    appimage = {
+    uwsm = {
       enable = true;
-      binfmt = true;
-      package = pkgs.appimage-run.override {
-        extraPkgs = pkgs: [ pkgs.ffmpeg pkgs.imagemagick ];
+      waylandCompositors = {
+        hyprland = {
+          prettyName = "Hyprland";
+          comment = "Hyprland compositor managed by UWSM";
+          binPath = "/run/current-system/sw/bin/Hyprland";
+        };
       };
     };
     virt-manager.enable = true;
@@ -431,6 +437,30 @@
     seahorse.enable = true;
     steam = {
       enable = true;
+      package = pkgs.steam.override {
+        extraLibraries = p: with p; [
+          cairo
+          pixman
+          fontconfig
+          freetype
+          xorg.libXext
+          xorg.libX11
+          xorg.libXi
+          gtk3-x11
+          gtk2-x11
+          pipewire
+          libpulseaudio
+          gdk-pixbuf
+          xorg.libxcb
+          libvdpau
+          xorg.libXcursor
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+          libvorbis
+          xorg.libXinerama
+        ];
+      };
       protontricks.enable = true;
       gamescopeSession.enable = true;
     };
