@@ -125,6 +125,9 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+      (self: super: {
+        utillinux = super.util-linux;
+      })
     ];
     config = {
       allowUnfree = true;

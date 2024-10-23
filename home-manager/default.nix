@@ -48,7 +48,13 @@
   ];
 
   nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      (self: super: {
+        utillinux = super.util-linux;
+      })
+    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
