@@ -1,4 +1,4 @@
-{ outputs, lib, config, pkgs, inputs, ... }: {
+{ outputs, config, pkgs, ... }: {
   imports = [
     ./alacritty
     ./bottom
@@ -48,13 +48,7 @@
   ];
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      (self: super: {
-        utillinux = super.util-linux;
-      })
-    ];
+    overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);

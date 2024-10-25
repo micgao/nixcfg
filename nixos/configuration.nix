@@ -125,9 +125,6 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      (self: super: {
-        utillinux = super.util-linux;
-      })
     ];
     config = {
       allowUnfree = true;
@@ -174,7 +171,7 @@
       open = false;
       modesetting.enable = true;
       gsp.enable = false;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 
@@ -355,7 +352,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${lib.getExe config.programs.hyprland.package}";
+          command = "${lib.getExe config.programs.uwsm.package} start select";
           user = "micgao";
         };
       };
@@ -426,6 +423,7 @@
   programs = {
     uwsm = {
       enable = true;
+      package = pkgs.uwsm;
       waylandCompositors = {
         hyprland = {
           prettyName = "Hyprland";
