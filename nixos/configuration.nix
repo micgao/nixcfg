@@ -144,15 +144,16 @@
       # package32 = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-        vaapiVdpau
-        libvdpau-va-gl
         libva
+        libvdpau-va-gl
+        vaapiVdpau
+        gamescope
       ];
-      extraPackages32 = with pkgs; [
+      extraPackages32 = with pkgs.pkgsi686Linux; [
         nvidia-vaapi-driver
-        vaapiVdpau
         libvdpau-va-gl
-        libva
+        vaapiVdpau
+        gamescope
       ];
     };
     enableRedistributableFirmware = true;
@@ -352,7 +353,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${lib.getExe config.programs.uwsm.package} start select";
+          command = "${lib.getExe config.programs.hyprland.package}";
           user = "micgao";
         };
       };
@@ -439,28 +440,21 @@
     steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraLibraries = p: with p; [
-          cairo
-          pixman
-          fontconfig
-          freetype
-          xorg.libXext
-          xorg.libX11
-          xorg.libXi
-          gtk3-x11
-          gtk2-x11
-          pipewire
-          libpulseaudio
-          gdk-pixbuf
-          xorg.libxcb
-          libvdpau
-          xorg.libXcursor
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-          libvorbis
-          xorg.libXinerama
-        ];
+        extraLibraries = pkgs: [ pkgs.xorg.libxcb ];
+        extraPkgs =
+          pkgs: with pkgs; [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
+            gamemode
+          ];
       };
       protontricks.enable = true;
       gamescopeSession.enable = true;
@@ -468,7 +462,6 @@
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
-      capSysNice = true;
     };
     hyprland = {
       enable = true;
