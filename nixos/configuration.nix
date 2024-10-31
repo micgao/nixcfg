@@ -74,10 +74,7 @@
 
   environment = {
     variables = {
-      GBM_BACKEND = "nvidia-drm";
-      LIBVA_DRIVER_NAME = "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      NVD_BACKEND = "direct";
+      EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
       git
@@ -169,9 +166,9 @@
         nvidiaBusId = "PCI:1:0:0";
         sync.enable = true;
       };
-      open = false;
+      open = true;
       modesetting.enable = true;
-      gsp.enable = false;
+      gsp.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
@@ -482,6 +479,7 @@
 
   qt = {
     enable = true;
+    platformTheme = "qt5ct";
   };
 
   gtk.iconCache.enable = true;
