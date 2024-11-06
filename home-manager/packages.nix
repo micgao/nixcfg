@@ -12,6 +12,8 @@
 
   home = {
     packages = with pkgs; [
+      qmk
+      streamlink
       code-cursor
       firefox-devedition
       brave

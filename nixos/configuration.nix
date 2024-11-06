@@ -134,6 +134,7 @@
   };
 
   hardware = {
+    keyboard.qmk.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -161,11 +162,11 @@
       };
     };
     nvidia = {
-      prime = {
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-        sync.enable = true;
-      };
+      # prime = {
+      #   intelBusId = "PCI:0:2:0";
+      #   nvidiaBusId = "PCI:1:0:0";
+      #   sync.enable = true;
+      # };
       open = true;
       modesetting.enable = true;
       gsp.enable = true;

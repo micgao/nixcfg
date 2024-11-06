@@ -6,10 +6,9 @@
     ./hyprlock.nix
   ];
 
-  home.packages = with pkgs; [
-    hyprpicker
+  home.packages = [
     inputs.hyprpolkitagent.packages.${pkgs.hostPlatform.system}.hyprpolkitagent
-    # inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.default
+    inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.hyprpicker
   ];
 
   wayland.windowManager.hyprland = {
@@ -18,7 +17,6 @@
     xwayland.enable = true;
     systemd = {
       enable = true;
-      enableXdgAutostart = true;
       variables = [ "--all" ];
     };
     extraConfig = ''
@@ -28,7 +26,7 @@
             env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
-            env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+            # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=EGL_PLATFORM,wayland
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
@@ -148,13 +146,11 @@
 
             render {
                 explicit_sync = 2
-                explicit_sync_kms = 0
-                direct_scanout = true
+                explicit_sync_kms = 2
             }
             
             misc {
                 vfr = true
-                vrr = 2
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
