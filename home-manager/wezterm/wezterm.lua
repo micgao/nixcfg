@@ -105,6 +105,7 @@ config.set_environment_variables = {
 
 config.term = "wezterm"
 config.enable_kitty_keyboard = true
+config.max_fps = 144
 config.color_scheme = "Sequoia Moonlight"
 config.colors = {
   tab_bar = {

@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -120,8 +120,8 @@
 
   nixpkgs = {
     overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
+      inputs.self.overlays.additions
+      inputs.self.overlays.modifications
     ];
     config = {
       allowUnfree = true;
@@ -129,7 +129,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = { inherit inputs; };
     users = { micgao = import ../home-manager; };
   };
 
@@ -213,6 +213,7 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
+      iosevka-bin.override { variant = "IosevkaSS14"; }
       (nerdfonts.override {
         fonts =
           [ "NerdFontsSymbolsOnly" ];
@@ -237,7 +238,7 @@
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
-        serif = [ "Noto Serif" ];
+        serif = [ "Inter" ];
         emoji = [ "Noto Emoji" "Symbols Nerd Font" ];
       };
     };
@@ -263,7 +264,6 @@
     };
     libvirtd = {
       enable = true;
-      nss.enable = true;
       onShutdown = "shutdown";
     };
     virtualbox.host = {
@@ -304,8 +304,6 @@
   };
 
   time.timeZone = "America/Toronto";
-
-  location.provider = "geoclue2";
 
   services = {
     blueman.enable = true;
@@ -367,10 +365,6 @@
       wireplumber.enable = true;
       socketActivation = true;
     };
-    roon-server = {
-      enable = true;
-      openFirewall = true;
-    };
     btrfs.autoScrub = {
       enable = true;
       interval = "weekly";
@@ -384,10 +378,6 @@
     };
     thermald.enable = false;
     throttled.enable = true;
-    geoclue2 = {
-      enable = true;
-      enableWifi = true;
-    };
   };
 
   documentation = {
@@ -402,9 +392,6 @@
     users.micgao = {
       shell = pkgs.nushell;
       isNormalUser = true;
-      packages = [
-        inputs.home-manager.packages.${pkgs.system}.default
-      ];
       extraGroups = [
         "wheel"
         "video"

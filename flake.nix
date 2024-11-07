@@ -56,7 +56,6 @@
     , ...
     } @ inputs:
     let
-      inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       systems = [ "x86_64-linux" ];
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
@@ -76,7 +75,7 @@
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         X1E3 = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs; };
           modules = [ ./nixos/configuration.nix ];
         };
       };

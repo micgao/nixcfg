@@ -64,6 +64,10 @@
                 col.inactive_border = rgba(9898a6aa)
                 layout = dwindle
                 allow_tearing = true
+                snap {
+                    enabled = true
+                    border_overlap = true
+                }
             }
 
             cursor {
@@ -92,13 +96,6 @@
                     contrast = 1.0
                     noise = 0.02
       	        }
-                drop_shadow = true
-                shadow_range = 20
-                shadow_render_power = 3
-                shadow_ignore_window = true
-                col.shadow = rgba(1E202966)
-                shadow_offset = 0 2
-                shadow_scale = 1.0
                 dim_inactive = true
                 dim_strength = 0.1
             }
@@ -131,6 +128,7 @@
 
             dwindle {
                 pseudotile = true
+                smart_split = true
             }
 
             binds {
@@ -171,8 +169,10 @@
 
             group {
                 groupbar {
-                    height = 18
-                    stacked = false
+                    col.active = rgb(ffbb88) rgb(f58ee0) 90deg
+                    col.inactive = rgba(9898a6aa)
+                    col.locked_active = rgb(ffbb88) rgb(f58ee0) 90deg
+                    col.locked_inactive = rgba(9898a6aa)
                 }
             }
 
