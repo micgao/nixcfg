@@ -218,6 +218,9 @@
         fonts =
           [ "NerdFontsSymbolsOnly" ];
       })
+      inputs.apple-fonts.packages.${pkgs.system}.sf-pro
+      inputs.apple-fonts.packages.${pkgs.system}.sf-mono
+      inputs.apple-fonts.packages.${pkgs.system}.ny
     ];
     fontDir = {
       enable = true;

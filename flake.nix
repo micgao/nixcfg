@@ -47,6 +47,7 @@
     yazi.url = "github:sxyazi/yazi";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
   };
 
   outputs =
