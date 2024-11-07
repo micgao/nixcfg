@@ -213,7 +213,7 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
-      iosevka-bin.override { variant = "IosevkaSS14"; }
+      iosevka-bin.override { variant = "SS14"; }
       (nerdfonts.override {
         fonts =
           [ "NerdFontsSymbolsOnly" ];
