@@ -357,7 +357,14 @@
         };
       };
     };
-    xserver.videoDrivers = [ "nvidia" ];
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+      xkb = {
+        model = "pc105";
+        layout = "us,ca";
+        options = "ctrl:nocaps";
+      };
+    };
     pipewire = {
       enable = true;
       audio.enable = true;

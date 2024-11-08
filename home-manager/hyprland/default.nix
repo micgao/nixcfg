@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -23,9 +23,9 @@
             # monitor=,preferred,auto,auto
             monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
-            env=XDG_SESSION_DESKTOP,Hyprland
             env=XDG_CURRENT_DESKTOP,Hyprland
             env=XDG_SESSION_TYPE,wayland
+            env=XDG_SESSION_DESKTOP,Hyprland
             # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=EGL_PLATFORM,wayland
             env=LIBVA_DRIVER_NAME,nvidia
@@ -33,10 +33,12 @@
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=QT_QPA_PLATFORM,wayland;xcb
-            env=QT_QPA_PLATFORMTHEME,qt5ct
+            # env=QT_QPA_PLATFORMTHEME,qt5ct
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
-            env=GDK_BACKEND,wayland,x11
+            env=GDK_BACKEND,wayland,x11,*
+            env=SDL_VIDEODRIVER,wayland
+            env=CLUTTER_BACKEND,wayland
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
@@ -45,14 +47,15 @@
             exec-once=systemctl --user start hyprpolkitagent
             exec-once=[workspace 1 silent] wezterm
             exec-once=[workspace 2 silent] firefox-nightly
-            exec-once=[workspace 3 silent] emacs
 
             input {
+                kb_layout = us,ca
+                kb_options = ctrl:nocaps
                 follow_mouse = 1
                 sensitivity = -0.4
                 accel_profile = flat
-                repeat_rate = 50
-                repeat_delay = 250
+                repeat_rate = 60
+                repeat_delay = 200
                 float_switch_override_focus = 1
             }
 
@@ -71,7 +74,7 @@
             }
 
             cursor {
-                no_hardware_cursors = true
+                no_hardware_cursors = 2
                 no_break_fs_vrr = true
                 no_warps = true
                 allow_dumb_copy = false
@@ -145,34 +148,39 @@
             render {
                 explicit_sync = 2
                 explicit_sync_kms = 2
+                direct_scanout = true
             }
             
             misc {
                 vfr = true
+                vrr = 2
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true
                 close_special_on_empty = false
+                layers_hog_keyboard_focus = true
                 background_color = rgb(0f1014)
                 focus_on_activate = true
-                new_window_takes_over_fullscreen = 0
-                middle_click_paste = false
+                new_window_takes_over_fullscreen = 1
+                middle_click_paste = true
                 animate_manual_resizes = true
                 animate_mouse_windowdragging = true
                 enable_swallow = true
             }
 
             xwayland {
+                enabled = true
                 force_zero_scaling = true
             }
 
             group {
+                merge_floated_into_tiled_on_groupbar = true
                 groupbar {
-                    col.active = rgb(ffbb88) rgb(f58ee0) 90deg
-                    col.inactive = rgba(9898a6aa)
-                    col.locked_active = rgb(ffbb88) rgb(f58ee0) 90deg
-                    col.locked_inactive = rgba(9898a6aa)
+                    col.active = rgb(111216aa)
+                    col.inactive = rgba(131317aa)
+                    col.locked_active = rgb(111216aa)
+                    col.locked_inactive = rgba(131317aa)
                 }
             }
 
@@ -196,6 +204,7 @@
             submap = reset
 
             bind = $mainMod, return, exec, wezterm
+            bind = $mainMod CTRL, return, exec, kitty
             bind = $mainMod, space, exec, fuzzel
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,
@@ -203,7 +212,7 @@
             bind = $mainMod, V, togglefloating,
             bind = $mainMod, X, togglesplit,
             bind = $mainMod, P, pseudo,
-            bind = $mainMod CTRL, 0, exit,
+            bind = $mainMod CTRL, =, exit,
             bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
             bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
