@@ -213,14 +213,14 @@
       source-code-pro
       source-sans-pro
       iosevka-ss04
-      iosevka-bin.override { variant = "SS14"; }
+      (iosevka-bin.override { variant = "SS14"; })
       (nerdfonts.override {
         fonts =
           [ "NerdFontsSymbolsOnly" ];
       })
-      # inputs.apple-fonts.packages.${pkgs.system}.sf-pro
-      # inputs.apple-fonts.packages.${pkgs.system}.sf-mono
-      # inputs.apple-fonts.packages.${pkgs.system}.ny
+      inputs.apple-fonts.packages.${pkgs.system}.sf-pro
+      inputs.apple-fonts.packages.${pkgs.system}.sf-mono
+      inputs.apple-fonts.packages.${pkgs.system}.ny
     ];
     fontDir = {
       enable = true;
