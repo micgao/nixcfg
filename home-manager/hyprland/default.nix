@@ -54,8 +54,8 @@
                 follow_mouse = 1
                 sensitivity = -0.4
                 accel_profile = flat
-                repeat_rate = 60
-                repeat_delay = 200
+                repeat_rate = 50
+                repeat_delay = 500
                 float_switch_override_focus = 1
             }
 
@@ -131,7 +131,6 @@
 
             dwindle {
                 pseudotile = true
-                smart_split = true
             }
 
             binds {
@@ -177,9 +176,9 @@
             group {
                 merge_floated_into_tiled_on_groupbar = true
                 groupbar {
-                    col.active = rgb(111216aa)
+                    col.active = rgba(111216aa)
                     col.inactive = rgba(131317aa)
-                    col.locked_active = rgb(111216aa)
+                    col.locked_active = rgba(111216aa)
                     col.locked_inactive = rgba(131317aa)
                 }
             }
