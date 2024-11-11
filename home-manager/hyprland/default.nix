@@ -55,7 +55,7 @@
                 sensitivity = -0.4
                 accel_profile = flat
                 repeat_rate = 50
-                repeat_delay = 500
+                repeat_delay = 700
                 float_switch_override_focus = 1
             }
 
