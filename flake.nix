@@ -8,7 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    zen.url = "github:fufexan/zen-browser-flake";
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +47,7 @@
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    zen.url = "github:fufexan/zen-browser-flake";
   };
 
   outputs =

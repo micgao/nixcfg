@@ -417,17 +417,17 @@
   };
 
   programs = {
-    uwsm = {
-      enable = true;
-      package = pkgs.uwsm;
-      waylandCompositors = {
-        hyprland = {
-          prettyName = "Hyprland";
-          comment = "Hyprland compositor managed by UWSM";
-          binPath = "/run/current-system/sw/bin/Hyprland";
-        };
-      };
-    };
+    # uwsm = {
+    #   enable = true;
+    #   package = pkgs.uwsm;
+    #   waylandCompositors = {
+    #     hyprland = {
+    #       prettyName = "Hyprland";
+    #       comment = "Hyprland compositor managed by UWSM";
+    #       binPath = "/run/current-system/sw/bin/Hyprland";
+    #     };
+    #   };
+    # };
     virt-manager.enable = true;
     less.enable = true;
     dconf.enable = true;
