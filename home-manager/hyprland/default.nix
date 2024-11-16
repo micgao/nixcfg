@@ -43,6 +43,7 @@
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
+            # exec-once=uwsm finalize
             exec-once=hyprctl setcursor qogir_hl
             exec-once=systemctl --user start hyprpolkitagent
             exec-once=[workspace 1 silent] wezterm
