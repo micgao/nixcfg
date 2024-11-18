@@ -14,7 +14,7 @@
     ./accounts.nix
     ./bat.nix
     ./browsers.nix
-    ./cava.nix
+    # ./cava.nix
     ./direnv.nix
     ./emacs.nix
     ./fuzzel.nix
