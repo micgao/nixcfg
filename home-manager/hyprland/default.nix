@@ -16,16 +16,13 @@
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
     systemd = {
-      enable = true;
+      enable = false;
       variables = [ "--all" ];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
             monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
-            env=XDG_CURRENT_DESKTOP,Hyprland
-            env=XDG_SESSION_TYPE,wayland
-            env=XDG_SESSION_DESKTOP,Hyprland
             # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=EGL_PLATFORM,wayland
             env=LIBVA_DRIVER_NAME,nvidia
@@ -37,17 +34,17 @@
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
-            env=SDL_VIDEODRIVER,wayland
             env=CLUTTER_BACKEND,wayland
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
-            # exec-once=uwsm finalize
+            exec-once=uwsm finalize
             exec-once=hyprctl setcursor qogir_hl
-            exec-once=systemctl --user start hyprpolkitagent
-            exec-once=[workspace 1 silent] wezterm
-            exec-once=[workspace 2 silent] firefox-nightly
+            exec-once=systemctl --user enable --now hyprpolkitagent.service
+            exec-once=systemctl --user enable --now waybar.service
+            exec-once=[workspace 1 silent] uwsm app -- wezterm
+            exec-once=[workspace 2 silent] uwsm app -- firefox-nightly
 
             input {
                 kb_layout = us,ca
@@ -75,12 +72,11 @@
             }
 
             cursor {
-                no_hardware_cursors = 2
-                no_break_fs_vrr = true
+                no_hardware_cursors = false
                 no_warps = true
-                allow_dumb_copy = false
                 sync_gsettings_theme = true
                 inactive_timeout = 5
+                use_cpu_buffer = true
             }
 
             decoration {
@@ -148,7 +144,7 @@
             render {
                 explicit_sync = 2
                 explicit_sync_kms = 2
-                direct_scanout = true
+                direct_scanout = false
             }
             
             misc {
@@ -203,16 +199,16 @@
             bind = $mainMod,M,submap,reset
             submap = reset
 
-            bind = $mainMod, return, exec, wezterm
-            bind = $mainMod CTRL, return, exec, kitty
-            bind = $mainMod, space, exec, fuzzel
+            bind = $mainMod, return, exec, uwsm app -- wezterm
+            bind = $mainMod CTRL, return, exec, uwsm app -- kitty
+            bind = $mainMod, space, exec, uwsm app -- fuzzel --launch-prefix='uwsm app --'
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,
             bind = $mainMod, Q, killactive,
             bind = $mainMod, V, togglefloating,
             bind = $mainMod, X, togglesplit,
             bind = $mainMod, P, pseudo,
-            bind = $mainMod CTRL, =, exit,
+            bind = $mainMod CTRL, =, exec, loginctl terminate-user ""
             bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
             bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle

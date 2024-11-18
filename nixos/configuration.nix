@@ -107,7 +107,7 @@
   security = {
     pam.services = {
       hyprlock = { };
-      greetd.enableGnomeKeyring = true;
+      # greetd.enableGnomeKeyring = true;
     };
     sudo-rs = {
       enable = true;
@@ -352,7 +352,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${lib.getExe config.programs.hyprland.package}";
+          command = "${lib.getExe config.programs.uwsm.package} start select";
           user = "micgao";
         };
       };
@@ -417,17 +417,16 @@
   };
 
   programs = {
-    # uwsm = {
-    #   enable = true;
-    #   package = pkgs.uwsm;
-    #   waylandCompositors = {
-    #     hyprland = {
-    #       prettyName = "Hyprland";
-    #       comment = "Hyprland compositor managed by UWSM";
-    #       binPath = "/run/current-system/sw/bin/Hyprland";
-    #     };
-    #   };
-    # };
+    uwsm = {
+      enable = true;
+      waylandCompositors = {
+        hyprland = {
+          prettyName = "Hyprland";
+          comment = "Hyprland session managed by UWSM";
+          binPath = "/run/current-system/sw/bin/Hyprland";
+        };
+      };
+    };
     virt-manager.enable = true;
     less.enable = true;
     dconf.enable = true;

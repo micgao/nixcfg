@@ -71,7 +71,6 @@
           background-color: transparent;
       }
     '';
-    systemd.enable = true;
     settings = {
       primary = {
         exclusive = true;

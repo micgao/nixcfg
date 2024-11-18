@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 {
   services.hyprpaper = {
     enable = true;
@@ -13,4 +13,5 @@
       splash = false;
     };
   };
+  systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
 }
