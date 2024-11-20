@@ -72,11 +72,10 @@
             }
 
             cursor {
-                no_hardware_cursors = false
+                no_hardware_cursors = true
                 no_warps = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
-                use_cpu_buffer = true
             }
 
             decoration {
