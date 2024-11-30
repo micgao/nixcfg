@@ -15,7 +15,7 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
       "splash"
@@ -308,10 +308,10 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    # scx = {
-    #   enable = true;
-    #   extraArgs = [];
-    # };
+    scx = {
+      enable = true;
+      extraArgs = [];
+    };
     blueman.enable = true;
     mpdscribble = {
       enable = true;
