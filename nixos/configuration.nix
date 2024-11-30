@@ -47,7 +47,6 @@
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
-  systemd.user.services.telephony_client.enable = false;
 
   console = {
     colors = [
@@ -309,6 +308,10 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    # scx = {
+    #   enable = true;
+    #   extraArgs = [];
+    # };
     blueman.enable = true;
     mpdscribble = {
       enable = true;
@@ -321,20 +324,16 @@
         };
       };
     };
+    nextdns = {
+      enable = true;
+      arguments = [
+        "-config"
+        "ca38bb"
+      ];
+    };
     timesyncd.enable = true;
     hardware.bolt.enable = true;
     fwupd.enable = true;
-    resolved = {
-      enable = true;
-      extraConfig = ''
-        [Resolve]
-        DNS=45.90.28.0#ca38bb.dns.nextdns.io
-        DNS=2a07:a8c0::#ca38bb.dns.nextdns.io
-        DNS=45.90.30.0#ca38bb.dns.nextdns.io
-        DNS=2a07:a8c1::#ca38bb.dns.nextdns.io
-        DNSOverTLS=yes
-      '';
-    };
     dbus = {
       enable = true;
       packages = with pkgs; [ gcr gnome-settings-daemon ];
