@@ -7,7 +7,6 @@ in
     enable = true;
     font = {
       name = "Inter";
-      package = pkgs.google-fonts.override { fonts = [ "Inter" ]; };
       size = 11;
     };
     iconTheme = {

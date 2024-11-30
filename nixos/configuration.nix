@@ -207,16 +207,12 @@
       noto-fonts-monochrome-emoji
       roboto
       roboto-mono
-      (google-fonts.override { fonts = [ "Inter" "Roboto Flex" ]; })
+      roboto-flex
+      inter
       cascadia-code
       source-code-pro
       source-sans-pro
-      iosevka-ss04
-      (iosevka-bin.override { variant = "SS14"; })
-      (nerdfonts.override {
-        fonts =
-          [ "NerdFontsSymbolsOnly" ];
-      })
+      (iosevka-bin.override { variant = "SS04"; })
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro
       inputs.apple-fonts.packages.${pkgs.system}.sf-mono
       inputs.apple-fonts.packages.${pkgs.system}.ny
@@ -241,7 +237,7 @@
         monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
         serif = [ "Inter" ];
-        emoji = [ "Noto Emoji" "Symbols Nerd Font" ];
+        emoji = [ "Noto Emoji" ];
       };
     };
   };
