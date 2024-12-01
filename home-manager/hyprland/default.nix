@@ -17,11 +17,6 @@
     xwayland.enable = true;
     systemd = {
       enable = false;
-      variables = [ "--all" ];
-      extraCommands = [
-        "systemctl --user stop graphical-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
@@ -34,14 +29,12 @@
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=QT_QPA_PLATFORM,wayland;xcb
-            # env=QT_QPA_PLATFORMTHEME,qt5ct
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
             env=CLUTTER_BACKEND,wayland
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=VDPAU_DRIVER,nvidia
-            env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             exec-once=uwsm finalize
             exec-once=hyprctl setcursor qogir_hl
@@ -57,7 +50,7 @@
                 sensitivity = -0.4
                 accel_profile = flat
                 repeat_rate = 50
-                repeat_delay = 700
+                repeat_delay = 500
                 float_switch_override_focus = 1
             }
 
@@ -88,8 +81,8 @@
                 inactive_opacity = 0.9
       	        blur {
       	            enabled = true
-      	            size = 8
-      	            passes = 4
+      	            size = 4
+      	            passes = 2
       	            ignore_opacity = true
       	            new_optimizations = true
       	            xray = true
@@ -147,12 +140,11 @@
             render {
                 explicit_sync = 2
                 explicit_sync_kms = 2
-                direct_scanout = false
+                direct_scanout = true
             }
             
             misc {
                 vfr = true
-                vrr = 2
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
