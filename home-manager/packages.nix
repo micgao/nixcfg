@@ -31,6 +31,7 @@
       hoppscotch
       curlie
       circumflex
+      ffmpeg
       fd
       trashy
       skate
