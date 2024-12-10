@@ -22,7 +22,6 @@
       inputs.zen.packages."${system}".specific
       stirling-pdf
       zed-editor
-      (warp-terminal.override { waylandSupport = true; })
       rustup
       distrobox
       comma
