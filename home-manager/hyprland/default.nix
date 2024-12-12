@@ -45,7 +45,7 @@
 
             input {
                 kb_layout = us,ca
-                kb_options = ctrl:nocaps
+                kb_options = caps:swapescape
                 follow_mouse = 1
                 sensitivity = -0.4
                 accel_profile = flat

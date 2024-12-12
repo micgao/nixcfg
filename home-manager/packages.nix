@@ -18,6 +18,7 @@
       firefox-devedition
       brave
       mullvad-browser
+      gcr
       # gitbutler
       inputs.zen.packages."${system}".specific
       stirling-pdf

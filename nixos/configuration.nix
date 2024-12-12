@@ -9,6 +9,10 @@
   ];
 
   boot = {
+    blacklistedKernelModules = [
+      "kvm"
+      "kvm_intel"
+    ];
     bootspec = {
       enable = true;
       enableValidation = true;
@@ -134,6 +138,7 @@
 
   hardware = {
     keyboard.qmk.enable = true;
+    nvidia-container-toolkit.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -239,9 +244,6 @@
   };
 
   virtualisation = {
-    containers = {
-      enable = true;
-    };
     podman = {
       enable = true;
       dockerCompat = true;
@@ -258,7 +260,7 @@
     };
     libvirtd = {
       enable = true;
-      onShutdown = "shutdown";
+      qemu.package = pkgs.qemu_kvm;
     };
     virtualbox.host = {
       enable = true;
@@ -358,7 +360,7 @@
       xkb = {
         model = "pc105";
         layout = "us,ca";
-        options = "ctrl:nocaps";
+        options = "caps:swapescape";
       };
     };
     pipewire = {
