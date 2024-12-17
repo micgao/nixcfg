@@ -34,6 +34,7 @@
       ffmpeg
       fd
       trashy
+      xdg-utils
       skate
       gpg-tui
       playerctl

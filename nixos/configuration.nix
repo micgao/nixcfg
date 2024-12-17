@@ -360,7 +360,7 @@
       xkb = {
         model = "pc105";
         layout = "us,ca";
-        options = "caps:swapescape";
+        options = "caps:escape_shifted_capslock";
       };
     };
     pipewire = {
