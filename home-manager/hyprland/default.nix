@@ -38,8 +38,6 @@
             env=NVD_BACKEND,direct
             exec-once=uwsm finalize
             exec-once=hyprctl setcursor qogir_hl
-            exec-once=systemctl --user enable --now hyprpolkitagent.service
-            exec-once=systemctl --user enable --now waybar.service
             exec-once=[workspace 1 silent] uwsm app -- wezterm
             exec-once=[workspace 2 silent] uwsm app -- firefox-nightly
 
