@@ -26,7 +26,6 @@
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
-        hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
@@ -35,7 +34,6 @@
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
-        hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
@@ -44,7 +42,6 @@
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
       inputs = {
-        hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
@@ -53,7 +50,6 @@
     hyprpolkitagent = {
       url = "github:hyprwm/hyprpolkitagent";
       inputs = {
-        hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";

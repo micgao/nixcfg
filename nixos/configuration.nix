@@ -96,14 +96,15 @@
   };
 
   xdg = {
+    terminal-exec.enable = true;
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-      config = {
-        common.default = [ "gtk" ];
-        hyprland.default = [ "hyprland" "gtk" ];
-      };
+      configPackages = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+      ];
     };
   };
 
@@ -146,12 +147,17 @@
         nvidia-vaapi-driver
         libva
         libvdpau-va-gl
+        libvdpau
         vaapiVdpau
+        libva-utils
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         nvidia-vaapi-driver
         libvdpau-va-gl
+        libvdpau
         vaapiVdpau
+        libva
+        libva-utils
       ];
     };
     enableRedistributableFirmware = true;
@@ -168,6 +174,7 @@
       #   sync.enable = true;
       # };
       open = true;
+      powerManagement.enable = true;
       modesetting.enable = true;
       gsp.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
@@ -346,11 +353,11 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.uwsm} start select";
+          command = "${lib.getExe pkgs.uwsm} start -S select";
           user = "micgao";
         };
         initial_session = {
-          command = "${lib.getExe pkgs.uwsm} start select";
+          command = "${lib.getExe pkgs.uwsm} start -S select";
           user = "micgao";
         };
       };
