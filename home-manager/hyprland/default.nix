@@ -43,7 +43,6 @@
 
             input {
                 kb_layout = us,ca
-                kb_options = caps:escape_shifted_capslock
                 follow_mouse = 1
                 sensitivity = -0.4
                 accel_profile = flat
@@ -79,16 +78,11 @@
                 inactive_opacity = 0.9
       	        blur {
       	            enabled = true
-      	            size = 4
-      	            passes = 2
       	            ignore_opacity = true
       	            new_optimizations = true
       	            xray = true
       	            special = true
                     popups = true
-                    brightness = 1.0
-                    contrast = 1.0
-                    noise = 0.02
       	        }
                 dim_inactive = true
                 dim_strength = 0.1
@@ -131,18 +125,16 @@
                 workspace_back_and_forth = true
             }
 
-            opengl {
-                force_introspection = 2
-            }
-
             render {
                 explicit_sync = 2
                 explicit_sync_kms = 2
-                direct_scanout = true
+                direct_scanout = false
             }
             
             misc {
                 vfr = true
+                vrr = 2
+                font_family = SF Pro
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
