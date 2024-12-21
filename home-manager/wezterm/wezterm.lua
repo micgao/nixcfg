@@ -155,9 +155,6 @@ config.check_for_updates = false
 config.command_palette_bg_color = "#0F1014"
 config.command_palette_fg_color = "#8EB5F5"
 config.command_palette_font_size = 12
-config.tiling_desktop_environments = {
-  'Wayland'
-}
 config.unix_domains = {
   {
     name = 'unix',

@@ -1,6 +1,15 @@
+{ lib, ... }:
+
+
 {
+
+  systemd.user.services.waybar.Unit.After = lib.mkForce "graphical-session.target";
+
   programs.waybar = {
     enable = true;
+    systemd = {
+      enable = true;
+    };
     style = ''
       @define-color foreground #868690;
       @define-color background #0F1014;

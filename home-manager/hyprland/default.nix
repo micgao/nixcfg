@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -10,6 +10,8 @@
     inputs.hyprpolkitagent.packages.${pkgs.hostPlatform.system}.hyprpolkitagent
     inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.hyprpicker
   ];
+
+  systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
 
   wayland.windowManager.hyprland = {
     enable = true;
