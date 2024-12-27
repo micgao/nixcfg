@@ -5,7 +5,7 @@
     ./cachix.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
-    inputs.nix-ld.nixosModules.nix-ld
+    # inputs.nix-ld.nixosModules.nix-ld
   ];
 
   boot = {
@@ -451,7 +451,7 @@
       protontricks.enable = true;
       gamescopeSession.enable = true;
     };
-    nix-ld.dev.enable = true;
+    # nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
       capSysNice = true;
