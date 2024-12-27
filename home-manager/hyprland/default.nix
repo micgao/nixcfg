@@ -188,7 +188,7 @@
 
             bind = $mainMod, return, exec, uwsm-app -- wezterm
             bind = $mainMod CTRL, return, exec, uwsm-app -- kitty
-            bind = $mainMod, space, exec, uwsm-app -- fuzzel --launch-prefix='uwsm-app --'
+            bind = $mainMod, space, exec, fuzzel --launch-prefix='uwsm-app --'
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,
             bind = $mainMod, Q, killactive,

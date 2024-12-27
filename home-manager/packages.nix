@@ -15,6 +15,7 @@
       qt6.qtwayland
       libnotify
       qmk
+      viddy
       streamlink
       code-cursor
       firefox-devedition
