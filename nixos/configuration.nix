@@ -452,7 +452,6 @@
       gamescopeSession.enable = true;
     };
     nix-ld.dev.enable = true;
-    nix-ld.enable = true;
     gamescope = {
       enable = true;
       capSysNice = true;
