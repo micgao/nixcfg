@@ -14,7 +14,7 @@
     ./accounts.nix
     ./bat.nix
     ./browsers.nix
-    # ./cava.nix
+    ./cava.nix
     ./direnv.nix
     ./emacs.nix
     ./fuzzel.nix
@@ -26,7 +26,7 @@
     ./gpg.nix
     ./gtk.nix
     ./jq.nix
-    ./ledger.nix
+    # ./ledger.nix
     ./mail.nix
     ./neomutt.nix
     ./neovim.nix
