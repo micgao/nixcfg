@@ -421,6 +421,10 @@
   };
 
   programs = {
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+    };
     virt-manager.enable = true;
     less.enable = true;
     dconf.enable = true;
