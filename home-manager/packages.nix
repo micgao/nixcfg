@@ -23,6 +23,7 @@
       gcr
       # gitbutler
       inputs.zen.packages."${system}".specific
+      inputs.ghostty.packages."${system}".default
       stirling-pdf
       zed-editor
       rustup
