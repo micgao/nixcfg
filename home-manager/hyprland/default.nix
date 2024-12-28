@@ -231,5 +231,5 @@
             bindm = $mainMod, mouse:273, resizewindow
     '';
   };
-  xdg.configFile."hypr/wallpaper.jpg".source = ./wallpaper.jpg;
+  xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
 }
