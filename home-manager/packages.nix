@@ -30,7 +30,7 @@
       rustup
       distrobox
       comma
-      bottles
+      # bottles
       spacedrive
       hoppscotch
       curlie
