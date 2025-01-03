@@ -485,6 +485,7 @@
   gtk.iconCache.enable = true;
 
   system = {
+    rebuild.enableNg = true;
     stateVersion = "23.11";
   };
 }
