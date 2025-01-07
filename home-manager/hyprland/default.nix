@@ -25,7 +25,6 @@
             monitor=HDMI-A-1,1920x1080@144,0x0,1
             monitor=eDP-1,disable
             # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-            env=EGL_PLATFORM,wayland
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -34,19 +33,19 @@
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
-            env=CLUTTER_BACKEND,wayland
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-            env=VDPAU_DRIVER,nvidia
             env=NVD_BACKEND,direct
+            env=MOZ_DISABLE_RDD_SANDBOX=1
+            env=__GL_VRR_ALLOWED=0
+            env=__GL_GSYNC_ALLOWED=0
             exec-once=uwsm finalize
-            exec-once=hyprctl setcursor qogir_hl
             exec-once=[workspace 1 silent] uwsm-app -- wezterm
             exec-once=[workspace 2 silent] uwsm-app -- firefox-nightly
 
             input {
                 kb_layout = us,ca
                 follow_mouse = 1
-                sensitivity = -0.4
+                sensitivity = -0.3
                 accel_profile = flat
                 repeat_rate = 50
                 repeat_delay = 500
@@ -68,7 +67,7 @@
             }
 
             cursor {
-                no_hardware_cursors = true
+                no_hardware_cursors = 2
                 no_warps = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
@@ -130,12 +129,12 @@
             render {
                 explicit_sync = 2
                 explicit_sync_kms = 2
-                direct_scanout = false
+                direct_scanout = true
             }
             
             misc {
                 vfr = true
-                vrr = 2
+                vrr = 0
                 font_family = SF Pro
                 force_default_wallpaper = 0
                 disable_autoreload = true
