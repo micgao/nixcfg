@@ -11,7 +11,7 @@
     inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.hyprpicker
   ];
 
-  systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
+  # systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -45,7 +45,7 @@
             input {
                 kb_layout = us,ca
                 follow_mouse = 1
-                sensitivity = -0.3
+                sensitivity = -0.2
                 accel_profile = flat
                 repeat_rate = 50
                 repeat_delay = 500
@@ -59,10 +59,8 @@
                 col.active_border = rgb(ffbb88) rgb(f58ee0) 90deg
                 col.inactive_border = rgba(9898a6aa)
                 layout = dwindle
-                allow_tearing = true
                 snap {
                     enabled = true
-                    border_overlap = true
                 }
             }
 
@@ -74,8 +72,9 @@
             }
 
             decoration {
-                rounding = 3
-                active_opacity = 1.0
+                rounding = 4
+                rounding_power = 3
+                active_opacity = 1
                 inactive_opacity = 0.9
       	        blur {
       	            enabled = true
@@ -129,13 +128,12 @@
             render {
                 explicit_sync = 2
                 explicit_sync_kms = 2
-                direct_scanout = true
             }
             
             misc {
                 vfr = true
                 vrr = 0
-                font_family = SF Pro
+                font_family = Iosevka SS04
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
@@ -145,10 +143,8 @@
                 background_color = rgb(0f1014)
                 focus_on_activate = true
                 new_window_takes_over_fullscreen = 1
-                middle_click_paste = true
                 animate_manual_resizes = true
                 animate_mouse_windowdragging = true
-                enable_swallow = true
             }
 
             xwayland {
@@ -159,11 +155,19 @@
             group {
                 merge_floated_into_tiled_on_groupbar = true
                 groupbar {
+                    render_titles = false
+                    scrolling = false
                     col.active = rgba(111216aa)
                     col.inactive = rgba(131317aa)
                     col.locked_active = rgba(111216aa)
                     col.locked_inactive = rgba(131317aa)
                 }
+            }
+
+            experimental {
+                wide_color_gamut = false
+                hdr = false
+                xx_color_management_v4 = true
             }
 
             layerrule = blur, notifications
@@ -173,7 +177,7 @@
             layerrule = ignorezero, launcher
 
             windowrulev2 = workspace 9 silent, class:^(dota2)$
-            windowrulev2 = immediate, class:^(dota2)$
+            windowrulev2 = fullscreen, class:^(gamescope)$
             windowrulev2 = suppressevent maximize, class:.*
 
             workspace = special:scratchpad

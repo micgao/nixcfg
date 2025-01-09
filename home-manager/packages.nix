@@ -12,7 +12,6 @@
 
   home = {
     packages = with pkgs; [
-      qt6.qtwayland
       libnotify
       qmk
       viddy

@@ -448,22 +448,27 @@
           ];
       };
       protontricks.enable = true;
-      gamescopeSession.enable = true;
+      gamescopeSession = {
+        enable = true;
+        args = [
+          "--rt"
+          "--steam"
+          "--fullscreen"
+          "--hdr-enabled"
+        ];
+      };
     };
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
-      capSysNice = true;
-      args = [
-        "--rt"
-        "--expose-wayland"
-      ];
     };
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       withUWSM = true;
+      systemd.setPath.enable = true;
+
     };
     zsh.enable = true;
     gnupg = {
