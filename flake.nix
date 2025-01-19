@@ -65,7 +65,6 @@
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    zen.url = "github:0xc000022070/zen-browser-flake";
     ghostty.url = "github:ghostty-org/ghostty";
   };
 

@@ -22,7 +22,6 @@
       mullvad-browser
       gcr
       # gitbutler
-      inputs.zen.packages."${system}".twilight
       inputs.ghostty.packages."${system}".default
       stirling-pdf
       zed-editor
