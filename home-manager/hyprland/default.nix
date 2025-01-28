@@ -11,8 +11,6 @@
     inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.hyprpicker
   ];
 
-  # systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
-
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -22,7 +20,7 @@
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
-            monitor=HDMI-A-1,1920x1080@144,0x0,1
+            monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
             monitor=eDP-1,disable
             # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=LIBVA_DRIVER_NAME,nvidia
@@ -36,8 +34,6 @@
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
-            env=__GL_VRR_ALLOWED=0
-            env=__GL_GSYNC_ALLOWED=0
             exec-once=uwsm finalize
             exec-once=[workspace 1 silent] uwsm-app -- wezterm
             exec-once=[workspace 2 silent] uwsm-app -- firefox-nightly
@@ -65,7 +61,8 @@
             }
 
             cursor {
-                no_hardware_cursors = 2
+                no_hardware_cursors = true
+                # use_cpu_buffer = 2
                 no_warps = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
@@ -132,7 +129,7 @@
             
             misc {
                 vfr = true
-                vrr = 0
+                vrr = 2
                 font_family = Iosevka SS04
                 force_default_wallpaper = 0
                 disable_autoreload = true
@@ -177,8 +174,13 @@
             layerrule = ignorezero, launcher
 
             windowrulev2 = workspace 9 silent, class:^(dota2)$
-            windowrulev2 = fullscreen, class:^(gamescope)$
             windowrulev2 = suppressevent maximize, class:.*
+            workspace = w[tv1], gapsout:0, gapsin:0
+            workspace = f[1], gapsout:0, gapsin:0
+            windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
+            windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
+            windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
+            windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
 
             workspace = special:scratchpad
 

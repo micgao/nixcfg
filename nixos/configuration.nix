@@ -308,6 +308,8 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    passSecretService.enable = true;
+    flatpak.enable = true;
     scx = {
       enable = true;
       scheduler = "scx_bpfland";
@@ -332,12 +334,11 @@
         "ca38bb"
       ];
     };
-    timesyncd.enable = true;
     hardware.bolt.enable = true;
     fwupd.enable = true;
     dbus = {
       enable = true;
-      packages = with pkgs; [ gcr gnome-settings-daemon ];
+      packages = with pkgs; [ gcr ];
       implementation = "broker";
     };
     gnome.gnome-keyring.enable = true;
@@ -378,18 +379,17 @@
       wireplumber.enable = true;
       socketActivation = true;
     };
-    btrfs.autoScrub = {
-      enable = true;
-      interval = "weekly";
-      fileSystems = [
-        "/nix"
-        "/etc"
-        "/var/log"
-        "/root"
-        "/home"
-      ];
-    };
-    thermald.enable = false;
+    # btrfs.autoScrub = {
+    #   enable = true;
+    #   interval = "weekly";
+    #   fileSystems = [
+    #     "/nix"
+    #     "/etc"
+    #     "/var/log"
+    #     "/root"
+    #     "/home"
+    #   ];
+    # };
     throttled.enable = true;
   };
 
@@ -425,36 +425,16 @@
       enableVirtualCamera = true;
     };
     virt-manager.enable = true;
-    less.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     steam = {
       enable = true;
-      package = pkgs.steam.override {
-        extraLibraries = pkgs: [ pkgs.xorg.libxcb ];
-        extraPkgs =
-          pkgs: with pkgs; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-            gamemode
-          ];
-      };
+      localNetworkGameTransfers.openFirewall = true;
       protontricks.enable = true;
       gamescopeSession = {
         enable = true;
         args = [
-          "--rt"
           "--steam"
-          "--fullscreen"
-          "--hdr-enabled"
         ];
       };
     };
@@ -468,7 +448,6 @@
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       withUWSM = true;
       systemd.setPath.enable = true;
-
     };
     zsh.enable = true;
     gnupg = {
