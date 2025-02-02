@@ -149,7 +149,6 @@
         libvdpau-va-gl
         libvdpau
         vaapiVdpau
-        libva-utils
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         nvidia-vaapi-driver
@@ -157,7 +156,6 @@
         libvdpau
         vaapiVdpau
         libva
-        libva-utils
       ];
     };
     enableRedistributableFirmware = true;
@@ -177,7 +175,7 @@
       powerManagement.enable = true;
       modesetting.enable = true;
       gsp.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 
