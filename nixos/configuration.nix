@@ -281,7 +281,6 @@
   networking = {
     wireguard.enable = true;
     wireless = {
-      dbusControlled = true;
       iwd = {
         enable = true;
         settings = {
@@ -324,13 +323,6 @@
           username = "micgao";
         };
       };
-    };
-    nextdns = {
-      enable = true;
-      arguments = [
-        "-config"
-        "ca38bb"
-      ];
     };
     hardware.bolt.enable = true;
     fwupd.enable = true;
