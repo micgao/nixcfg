@@ -9,7 +9,7 @@
       vscode-extensions.asvetliakov.vscode-neovim
       vscode-extensions.rust-lang.rust-analyzer
       vscode-extensions.asvetliakov.vscode-neovim
-      vscode-extensions.vadimcn.vscode-lldb
+      # vscode-extensions.vadimcn.vscode-lldb
     ];
     userSettings = {
       "update.mode" = "none";
