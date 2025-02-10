@@ -19,7 +19,6 @@
       code-cursor
       firefox-devedition
       brave
-      mullvad-browser
       gcr
       # gitbutler
       inputs.ghostty.packages."${system}".default
