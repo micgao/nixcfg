@@ -25,8 +25,6 @@
       "splash"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
-      "nvidia-drm.modeset=1"
-      "nvidia-drm.fbdev=1"
     ];
     loader = {
       systemd-boot = {
@@ -111,7 +109,7 @@
   security = {
     pam.services = {
       hyprlock = { };
-      # greetd.enableGnomeKeyring = true;
+      greetd.enableGnomeKeyring = true;
     };
     sudo-rs = {
       enable = true;
@@ -172,9 +170,9 @@
       #   sync.enable = true;
       # };
       open = true;
-      powerManagement.enable = true;
       modesetting.enable = true;
       gsp.enable = true;
+      videoAcceleration = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
