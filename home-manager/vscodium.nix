@@ -7,8 +7,7 @@
     extensions = with pkgs; [
       vscode-extensions.mkhl.direnv
       vscode-extensions.asvetliakov.vscode-neovim
-      vscode-extensions.rust-lang.rust-analyzer
-      vscode-extensions.asvetliakov.vscode-neovim
+      # vscode-extensions.rust-lang.rust-analyzer
       # vscode-extensions.vadimcn.vscode-lldb
     ];
     userSettings = {
