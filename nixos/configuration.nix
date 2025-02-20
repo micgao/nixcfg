@@ -169,10 +169,11 @@
       #   nvidiaBusId = "PCI:1:0:0";
       #   sync.enable = true;
       # };
-      open = true;
+      open = false;
       modesetting.enable = true;
-      gsp.enable = true;
+      gsp.enable = false;
       videoAcceleration = true;
+      forceFullCompositionPipeline = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
