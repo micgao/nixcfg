@@ -18,6 +18,7 @@
       luajitPackages.luarocks
       sqlite
       fswatch
+      tree-sitter
     ];
     viAlias = true;
     vimAlias = true;
