@@ -63,7 +63,6 @@
 
             cursor {
                 no_hardware_cursors = true
-                # use_cpu_buffer = 2
                 no_warps = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
