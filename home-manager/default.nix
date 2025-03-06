@@ -28,7 +28,7 @@
     ./jq.nix
     # ./ledger.nix
     ./mail.nix
-    ./neomutt.nix
+    # ./neomutt.nix
     ./neovim.nix
     ./nix-index.nix
     ./nix-your-shell.nix
