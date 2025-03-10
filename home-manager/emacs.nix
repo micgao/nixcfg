@@ -13,7 +13,7 @@
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk.override {
+    package = pkgs.emacs-igc-pgtk.override {
       withNativeCompilation = true;
       withTreeSitter = true;
       withPgtk = true;
