@@ -17,7 +17,7 @@
       viddy
       streamlink
       code-cursor
-      firefox-devedition
+      firefox-devedition-bin
       brave
       gcr
       # gitbutler
