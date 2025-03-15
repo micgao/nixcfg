@@ -45,7 +45,7 @@
       protonmail-bridge
       # gimp
       keepassxc
-      pwvucontrol
+      pavucontrol
       obsidian
       jetbrains-toolbox
       thunderbird
