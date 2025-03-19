@@ -125,11 +125,13 @@
             render {
                 explicit_sync = 2
                 explicit_sync_kms = 2
+                direct_scanout = 2
+                cm_fs_passthrough = true
+                cm_enabled = true
             }
             
             misc {
                 vfr = true
-                vrr = 2
                 font_family = Iosevka SS04
                 force_default_wallpaper = 0
                 disable_autoreload = true
@@ -162,8 +164,6 @@
             }
 
             experimental {
-                wide_color_gamut = false
-                hdr = false
                 xx_color_management_v4 = true
             }
 
@@ -173,14 +173,15 @@
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
 
-            windowrulev2 = workspace 9 silent, class:^(dota2)$
-            windowrulev2 = suppressevent maximize, class:.*
+            windowrule = workspace 9 silent, class:^(dota2)$
+            windowrule = suppressevent maximize, class:.*
             workspace = w[tv1], gapsout:0, gapsin:0
             workspace = f[1], gapsout:0, gapsin:0
-            windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
-            windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
-            windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
-            windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
+            windowrule = bordersize 0, floating:0, onworkspace:w[tv1]
+            windowrule = rounding 0, floating:0, onworkspace:w[tv1]
+            windowrule = bordersize 0, floating:0, onworkspace:f[1]
+            windowrule = rounding 0, floating:0, onworkspace:f[1]
+            windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
 
             workspace = special:scratchpad
 
