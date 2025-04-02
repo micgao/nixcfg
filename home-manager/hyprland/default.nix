@@ -42,7 +42,7 @@
             input {
                 kb_layout = us,ca
                 follow_mouse = 1
-                sensitivity = -0.2
+                sensitivity = 0
                 accel_profile = flat
                 repeat_rate = 50
                 repeat_delay = 500
