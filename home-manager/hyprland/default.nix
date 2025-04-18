@@ -126,7 +126,7 @@
                 explicit_sync = 2
                 explicit_sync_kms = 2
                 direct_scanout = 2
-                cm_fs_passthrough = true
+                cm_fs_passthrough = 1
                 cm_enabled = true
             }
             
