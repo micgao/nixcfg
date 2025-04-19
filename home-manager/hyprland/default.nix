@@ -33,6 +33,9 @@
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+            env=__GL_VRR_ALLOWED=0
+            env=__GL_GSYNC_ALLOWED=1
+            env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
             exec-once=uwsm finalize

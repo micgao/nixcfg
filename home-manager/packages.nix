@@ -12,14 +12,15 @@
 
   home = {
     packages = with pkgs; [
-      libnotify
       qmk
       viddy
       streamlink
       code-cursor
       firefox-devedition-bin
+      moonlight-qt
       brave
       gcr
+      vulkan-hdr-layer-kwin6
       # gitbutler
       inputs.ghostty.packages."${system}".default
       # zed-editor

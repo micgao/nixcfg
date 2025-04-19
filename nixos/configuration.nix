@@ -79,6 +79,9 @@
     };
     systemPackages = with pkgs; [
       git
+      libnotify
+      util-linux
+      newt
     ];
     etc = lib.mapAttrs'
       (name: value: {
@@ -172,7 +175,7 @@
       open = true;
       modesetting.enable = true;
       videoAcceleration = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 
