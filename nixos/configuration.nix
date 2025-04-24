@@ -106,6 +106,10 @@
         xdg-desktop-portal
         xdg-desktop-portal-gtk
       ];
+      config = {
+        common.default = ["gtk"];
+        hyprland.default = ["gtk" "hyprland"];
+      };
     };
   };
 
@@ -423,14 +427,12 @@
       protontricks.enable = true;
       gamescopeSession = {
         enable = true;
-        args = [
-          "--steam"
-        ];
       };
     };
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;
