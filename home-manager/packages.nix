@@ -17,13 +17,10 @@
       streamlink
       code-cursor
       firefox-devedition-bin
-      moonlight-qt
       brave
       gcr
       vulkan-hdr-layer-kwin6
-      # gitbutler
       inputs.ghostty.packages."${system}".default
-      # zed-editor
       rustup
       distrobox
       comma
@@ -33,7 +30,6 @@
       circumflex
       ffmpeg
       fd
-      trashy
       xdg-utils
       skate
       gpg-tui
@@ -43,7 +39,6 @@
       procs
       megacmd
       protonmail-bridge
-      # gimp
       keepassxc
       pavucontrol
       obsidian
