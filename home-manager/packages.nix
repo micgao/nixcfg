@@ -16,7 +16,7 @@
       viddy
       streamlink
       code-cursor
-      firefox-devedition-bin
+      firefox-devedition
       brave
       gcr
       vulkan-hdr-layer-kwin6
