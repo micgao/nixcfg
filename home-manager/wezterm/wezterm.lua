@@ -132,7 +132,7 @@ config.freetype_interpreter_version = 40
 config.freetype_load_target = "HorizontalLcd"
 config.freetype_render_target = "Light"
 config.freetype_load_flags = "NO_HINTING"
-config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+config.harfbuzz_features = { 'calt = 0', 'clig = 0', 'liga = 0' }
 config.unicode_version = 14
 config.allow_square_glyphs_to_overflow_width = "Never"
 config.cursor_thickness = 2
