@@ -20,8 +20,8 @@
       inputs.firefox-nightly.packages.${pkgs.system}.firefox-devedition-bin
       brave
       gcr
-      vulkan-hdr-layer-kwin6
       inputs.ghostty.packages."${pkgs.system}".default
+      gfn-electron
       rustup
       distrobox
       comma

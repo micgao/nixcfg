@@ -177,10 +177,8 @@
       #   sync.enable = true;
       # };
       open = true;
-      gsp.enable = true;
       modesetting.enable = true;
       videoAcceleration = true;
-      powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
