@@ -129,6 +129,7 @@
                 direct_scanout = 2
                 cm_fs_passthrough = 1
                 cm_enabled = true
+                new_render_scheduling = true
             }
             
             misc {

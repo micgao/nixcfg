@@ -347,11 +347,11 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.uwsm} start -S select";
+          command = "${lib.getExe pkgs.uwsm} start select";
           user = "micgao";
         };
         initial_session = {
-          command = "${lib.getExe pkgs.uwsm} start -S select";
+          command = "${lib.getExe pkgs.uwsm} start select";
           user = "micgao";
         };
       };

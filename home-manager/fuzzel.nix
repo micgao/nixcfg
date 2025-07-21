@@ -9,6 +9,7 @@
         show-actions = "yes";
         icon-theme = "Qogir-dark";
         icons-enabled = "yes";
+        launch-prefix = "uwsm-app -- ";
       };
       colors.background = "131317dd";
       colors.text = "868690ff";
