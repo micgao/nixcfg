@@ -33,7 +33,7 @@
     '';
   };
   programs.ncmpcpp = {
-    enable = true;
+    # enable = true;
     # package = pkgs.ncmpcpp.override {
     #   visualizerSupport = true;
     # };
