@@ -403,11 +403,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1753979285,
-        "narHash": "sha256-0TZU7E77ApcDBufXLwaWbp+PmpikNUiEe6j0S0JCaZ4=",
+        "lastModified": 1753995514,
+        "narHash": "sha256-VNCIFq7keUZ3Ge+jfklxnPqRIBhzqjflTJcv1acZuXI=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "cf9943a3dd9e2fb4d298f04638a799815f38a2ae",
+        "rev": "1901cbf3340652ce04002586443ea635c713e5ce",
         "type": "github"
       },
       "original": {
@@ -1556,11 +1556,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1753985361,
-        "narHash": "sha256-7ymGf3/WFRhAK42rtOsCITwCji/64fvif8bisT1O9Ow=",
+        "lastModified": 1754002657,
+        "narHash": "sha256-JNqi9Rkddm4lqiuB0jhviaB+knXSsJJ/Ae959UtpJBo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "db4c2599f4733f9a6b288aeabe2dd5f391484119",
+        "rev": "6a3f60de4537a8113393ff4c914a1d2d2ae29ec3",
         "type": "github"
       },
       "original": {

@@ -343,7 +343,6 @@
     };
     fstrim.enable = true;
     greetd = {
-      vt = 1;
       enable = true;
       settings = {
         default_session = {
