@@ -383,14 +383,6 @@
     throttled.enable = true;
   };
 
-  documentation = {
-    enable = true;
-    man = {
-      enable = true;
-      generateCaches = true;
-    };
-  };
-
   users = {
     users.micgao = {
       shell = pkgs.nushell;
@@ -457,7 +449,6 @@
   gtk.iconCache.enable = true;
 
   system = {
-    rebuild.enableNg = true;
     stateVersion = "23.11";
   };
 }
