@@ -223,9 +223,6 @@
       source-code-pro
       source-sans-pro
       (iosevka-bin.override { variant = "SS04"; })
-      inputs.apple-fonts.packages.${pkgs.system}.sf-pro
-      inputs.apple-fonts.packages.${pkgs.system}.sf-mono
-      inputs.apple-fonts.packages.${pkgs.system}.ny
     ];
     fontDir = {
       enable = true;
@@ -431,7 +428,7 @@
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
-      capSysNice = true;
+      # capSysNice = true;
     };
     hyprland = {
       enable = true;
