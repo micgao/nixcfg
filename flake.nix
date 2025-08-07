@@ -2,7 +2,7 @@
   description = "NixOs config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,7 +64,6 @@
     yazi.url = "github:sxyazi/yazi";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
-    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     ghostty.url = "github:ghostty-org/ghostty";
   };
 
