@@ -15,7 +15,6 @@
     ];
     bootspec = {
       enable = true;
-      enableValidation = true;
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
