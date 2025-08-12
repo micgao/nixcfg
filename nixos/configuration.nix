@@ -178,7 +178,7 @@
       open = true;
       modesetting.enable = true;
       videoAcceleration = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 
