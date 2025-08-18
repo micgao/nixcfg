@@ -21,7 +21,8 @@
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
-            monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10
+            # monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.7,sdrsaturation,0.9
+            monitor=HDMI-A-1,1920x1080@144,0x0,1,cm,edid
             monitor=eDP-1,disable
             # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=LIBVA_DRIVER_NAME,nvidia
@@ -45,7 +46,7 @@
             input {
                 kb_layout = us,ca
                 follow_mouse = 1
-                sensitivity = 0
+                sensitivity = -0.7
                 accel_profile = flat
                 repeat_rate = 50
                 repeat_delay = 500
@@ -130,6 +131,7 @@
                 cm_fs_passthrough = 1
                 cm_enabled = true
                 new_render_scheduling = true
+                cm_auto_hdr = 1
             }
             
             misc {
@@ -167,6 +169,10 @@
 
             experimental {
                 xx_color_management_v4 = true
+            }
+
+            debug {
+                full_cm_proto = true
             }
 
             layerrule = blur, notifications
