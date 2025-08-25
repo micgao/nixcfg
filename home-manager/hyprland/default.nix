@@ -22,7 +22,7 @@
     extraConfig = ''
             # monitor=,preferred,auto,auto
             # monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.7,sdrsaturation,0.9
-            monitor=HDMI-A-1,1920x1080@144,0x0,1,cm,edid
+            # monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10,cm,edid
             monitor=eDP-1,disable
             # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=LIBVA_DRIVER_NAME,nvidia
@@ -42,6 +42,15 @@
             exec-once=uwsm finalize
             exec-once=[workspace 1 silent] uwsm-app -- wezterm
             exec-once=[workspace 2 silent] uwsm-app -- firefox-nightly
+
+            monitorv2 {
+                output = HDMI-A-1
+                mode = 1920x1080@144
+                position = 0x0
+                scale = 1
+                bitdepth = 10
+                supports_hdr = 1
+            }
 
             input {
                 kb_layout = us,ca
@@ -66,7 +75,7 @@
             }
 
             cursor {
-                no_hardware_cursors = true
+                no_hardware_cursors = 2
                 no_warps = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
@@ -91,7 +100,6 @@
 
              animations {
                 enabled = true
-                first_launch_animation = true
                 bezier = easeOutQuint,0.23,1,0.32,1
                 bezier = easeInOutCubic,0.65,0.05,0.36,1
                 bezier = linear,0,0,1,1
