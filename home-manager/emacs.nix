@@ -12,7 +12,7 @@
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-igc-pgtk;
+    # package = pkgs.emacs-igc-pgtk;
     # extraPackages = epkgs: with epkgs; [
     #   vterm
     #   mu4e
