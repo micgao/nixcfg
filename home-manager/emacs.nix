@@ -13,14 +13,7 @@
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-igc-pgtk.override {
-      withNativeCompilation = true;
-      withTreeSitter = true;
-      withPgtk = true;
-      withSQLite3 = true;
-      withSystemd = true;
-      withSmallJaDic = true;
-    };
+    package = pkgs.emacs-igc-pgtk;
     extraPackages = epkgs: with epkgs; [
       vterm
       mu4e
