@@ -13,10 +13,10 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-igc-pgtk;
-    extraPackages = epkgs: with epkgs; [
-      vterm
-      mu4e
-      treesit-grammars.with-all-grammars
-    ];
+    # extraPackages = epkgs: with epkgs; [
+    #   vterm
+    #   mu4e
+    #   treesit-grammars.with-all-grammars
+    # ];
   };
 }
