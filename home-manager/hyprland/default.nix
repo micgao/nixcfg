@@ -75,7 +75,7 @@
             }
 
             cursor {
-                no_hardware_cursors = 2
+                no_hardware_cursors = 1
                 no_warps = true
                 sync_gsettings_theme = true
                 inactive_timeout = 5
