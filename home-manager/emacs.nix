@@ -8,6 +8,7 @@
       unrar
       graphviz
       imagemagick
+      mu
     ];
   };
   programs.emacs = {
@@ -16,6 +17,8 @@
     extraPackages = epkgs: with epkgs; [
       vterm
       mu4e
+      isync
+      offlineimap
       treesit-grammars.with-all-grammars
     ];
   };

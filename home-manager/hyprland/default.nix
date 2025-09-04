@@ -135,7 +135,7 @@
             }
 
             render {
-                direct_scanout = 2
+                direct_scanout = 0
                 cm_fs_passthrough = 1
                 cm_enabled = true
                 new_render_scheduling = true
