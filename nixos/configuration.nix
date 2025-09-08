@@ -422,7 +422,6 @@
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
-      package = pkgs.gamescope-wsi;
       # capSysNice = true;
     };
     hyprland = {
