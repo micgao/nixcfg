@@ -50,6 +50,8 @@
                 scale = 1
                 bitdepth = 10
                 supports_hdr = 1
+                supports_wide_color = 1
+                cm = srgb
             }
 
             input {

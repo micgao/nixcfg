@@ -334,13 +334,15 @@
     };
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
-    logind = {
-      lidSwitchExternalPower = "ignore";
-      lidSwitchDocked = "ignore";
+    logind.settings.Login = {
+      HandleLidSwitchExternalPower = "ignore";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitch = "ignore";
     };
     fstrim.enable = true;
     greetd = {
       enable = true;
+      useTextGreeter = true;
       settings = {
         default_session = {
           command = "${lib.getExe pkgs.uwsm} start select";
@@ -420,6 +422,7 @@
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
+      package = pkgs.gamescope-wsi;
       # capSysNice = true;
     };
     hyprland = {
