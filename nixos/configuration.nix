@@ -143,6 +143,10 @@
 
   hardware = {
     keyboard.qmk.enable = true;
+    logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
     nvidia-container-toolkit.enable = true;
     graphics = {
       enable = true;

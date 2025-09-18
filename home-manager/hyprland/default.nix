@@ -24,6 +24,7 @@
             # monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.7,sdrsaturation,0.9
             # monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10,cm,edid
             monitor=eDP-1,disable
+            monitor=DP-3,1920x1080@144,0x0,1,cm,auto
             # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
@@ -41,16 +42,16 @@
             exec-once=[workspace 1 silent] uwsm-app -- wezterm
             exec-once=[workspace 2 silent] uwsm-app -- firefox-nightly
 
-            monitorv2 {
-                output = HDMI-A-1
-                mode = 1920x1080@144
-                position = 0x0
-                scale = 1
-                bitdepth = 10
-                supports_hdr = 1
-                supports_wide_color = 1
-                cm = srgb
-            }
+            # monitorv2 {
+            #     output = DP-3
+            #     mode = 1920x1080@144
+            #     position = 0x0
+            #     scale = 1
+            #     # bitdepth = 10
+            #     # supports_hdr = 1
+            #     # supports_wide_color = 1
+            #     cm = auto
+            # }
 
             input {
                 kb_layout = us,ca
@@ -219,8 +220,8 @@
             bind = $mainMod, X, togglesplit,
             bind = $mainMod, P, pseudo,
             bind = $mainMod CTRL, =, exec, loginctl terminate-user ""
-            bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-            bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+            # bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+            # bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
             bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
             bind = $mainMod, H, movefocus, l
             bind = $mainMod, L, movefocus, r
