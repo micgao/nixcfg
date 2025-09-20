@@ -11,6 +11,8 @@
     inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.hyprpicker
   ];
 
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"; 
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -20,12 +22,9 @@
       enable = false;
     };
     extraConfig = ''
-            # monitor=,preferred,auto,auto
-            # monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.7,sdrsaturation,0.9
-            # monitor=HDMI-A-1,1920x1080@144,0x0,1,bitdepth,10,cm,edid
+            monitor=,preferred,auto,auto
             monitor=eDP-1,disable
-            monitor=DP-3,1920x1080@144,0x0,1,cm,auto
-            # env=AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+            # monitor=DP-3,1920x1080@144,0x0,1
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -38,7 +37,6 @@
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
-            exec-once=uwsm finalize
             exec-once=[workspace 1 silent] uwsm-app -- wezterm
             exec-once=[workspace 2 silent] uwsm-app -- firefox-nightly
 
