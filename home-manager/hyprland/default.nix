@@ -35,8 +35,6 @@
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
-            exec-once=[workspace 1 silent] uwsm-app -- wezterm
-            exec-once=[workspace 2 silent] uwsm-app -- firefox-nightly
 
             # monitorv2 {
             #     output = DP-3
@@ -54,7 +52,7 @@
                 follow_mouse = 1
                 sensitivity = -0.7
                 accel_profile = flat
-                repeat_rate = 50
+                repeat_rate = 25
                 repeat_delay = 500
                 float_switch_override_focus = 1
             }
@@ -133,15 +131,16 @@
 
             render {
                 direct_scanout = 0
-                cm_fs_passthrough = 1
+                cm_fs_passthrough = 0
                 cm_enabled = true
                 new_render_scheduling = true
                 cm_auto_hdr = 1
+                send_content_type = true
             }
             
             misc {
                 vfr = true
-                vrr = 1
+                # vrr = 1
                 font_family = Iosevka SS04
                 force_default_wallpaper = 0
                 disable_autoreload = true
@@ -175,10 +174,6 @@
 
             experimental {
                 xx_color_management_v4 = true
-            }
-
-            debug {
-                full_cm_proto = true
             }
 
             layerrule = blur, notifications
