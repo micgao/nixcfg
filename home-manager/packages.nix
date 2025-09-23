@@ -13,10 +13,11 @@
   home = {
     packages = with pkgs; [
       qmk
+      via
       viddy
       streamlink
       code-cursor
-      # opencode
+      opencode
       inputs.firefox-nightly.packages.${pkgs.system}.firefox-devedition-bin
       brave
       gcr

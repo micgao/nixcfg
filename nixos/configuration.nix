@@ -290,6 +290,10 @@
         settings = {
           General = {
             EnableNetworkConfiguration = true;
+            AddressRandomization = "network";
+          };
+          Network = {
+            NameResolvingService = "systemd";
           };
         };
       };
@@ -309,6 +313,7 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    udev.packages = [ pkgs.via ];
     passSecretService.enable = true;
     flatpak.enable = true;
     scx = {

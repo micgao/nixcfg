@@ -140,7 +140,7 @@
             
             misc {
                 vfr = true
-                # vrr = 1
+                vrr = 1
                 font_family = Iosevka SS04
                 force_default_wallpaper = 0
                 disable_autoreload = true
