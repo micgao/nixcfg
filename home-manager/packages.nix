@@ -22,7 +22,6 @@
       brave
       gcr
       inputs.ghostty.packages."${pkgs.system}".default
-      gfn-electron
       rustup
       distrobox
       comma
