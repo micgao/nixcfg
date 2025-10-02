@@ -18,6 +18,7 @@
       luajitPackages.luarocks
       sqlite
       fswatch
+      nixd
     ];
     viAlias = true;
     vimAlias = true;
