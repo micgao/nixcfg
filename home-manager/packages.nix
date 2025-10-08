@@ -13,7 +13,6 @@
   home = {
     packages = with pkgs; [
       qmk
-      via
       viddy
       streamlink
       code-cursor
@@ -23,7 +22,6 @@
       gcr
       inputs.ghostty.packages."${pkgs.system}".default
       rustup
-      distrobox
       comma
       spacedrive
       hoppscotch

@@ -153,17 +153,9 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-        libva
-        libvdpau-va-gl
-        libvdpau
-        vaapiVdpau
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         nvidia-vaapi-driver
-        libvdpau-va-gl
-        libvdpau
-        vaapiVdpau
-        libva
       ];
     };
     enableRedistributableFirmware = true;
@@ -182,6 +174,8 @@
       open = true;
       modesetting.enable = true;
       videoAcceleration = true;
+      powerManagement.enable = true;
+      forceFullCompositionPipeline = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
     };
   };

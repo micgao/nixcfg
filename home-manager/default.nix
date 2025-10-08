@@ -86,5 +86,7 @@
 
   programs.home-manager.enable = true;
 
+  programs.distrobox.enable = true;
+
   systemd.user.startServices = "sd-switch";
 }
