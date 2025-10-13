@@ -310,6 +310,7 @@
     udev.packages = [ pkgs.via ];
     passSecretService.enable = true;
     flatpak.enable = true;
+    auto-cpufreq.enable = true;
     scx = {
       enable = true;
       scheduler = "scx_bpfland";
