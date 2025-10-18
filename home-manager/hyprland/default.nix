@@ -20,7 +20,7 @@
       enable = false;
     };
     extraConfig = ''
-            monitor=,preferred,auto,auto
+            # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
             # monitor=DP-3,1920x1080@144,0x0,1
             env=LIBVA_DRIVER_NAME,nvidia
@@ -36,16 +36,15 @@
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
 
-            # monitorv2 {
-            #     output = DP-3
-            #     mode = 1920x1080@144
-            #     position = 0x0
-            #     scale = 1
-            #     # bitdepth = 10
-            #     # supports_hdr = 1
-            #     # supports_wide_color = 1
-            #     cm = auto
-            # }
+            monitorv2 {
+                output = DP-3
+                mode = 1920x1080@144
+                position = 0x0
+                scale = 1
+                supports_hdr = true
+                bitdepth = 10
+                cm = dcip3
+            }
 
             input {
                 kb_layout = us,ca

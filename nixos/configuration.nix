@@ -175,7 +175,6 @@
       modesetting.enable = true;
       videoAcceleration = true;
       powerManagement.enable = true;
-      forceFullCompositionPipeline = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
     };
   };
@@ -252,15 +251,6 @@
       dockerCompat = true;
       dockerSocket.enable = true;
     };
-    kvmgt = {
-      enable = true;
-      device = "0000:00:02.0";
-      vgpus = {
-        "i915-GVTg_V5_4" = {
-          uuid = [ "f8bcf958-667e-11ee-9014-972c93a54fcc" ];
-        };
-      };
-    };
     libvirtd = {
       enable = true;
     };
@@ -314,7 +304,6 @@
     scx = {
       enable = true;
       scheduler = "scx_bpfland";
-      package = pkgs.scx.rustscheds;
       extraArgs = [];
     };
     blueman.enable = true;
