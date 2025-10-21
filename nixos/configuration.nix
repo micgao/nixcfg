@@ -10,8 +10,6 @@
 
   boot = {
     blacklistedKernelModules = [
-      "kvm"
-      "kvm_intel"
     ];
     bootspec = {
       enable = true;
