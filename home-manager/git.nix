@@ -4,8 +4,12 @@
     git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
-      userName = "Michael G";
-      userEmail = "micgao@pm.me";
+      settings = {
+        user = {
+          name = "Michael G";
+          email = "micgao@pm.me";
+        };
+      };
     };
     git-cliff.enable = true;
     gitui = {
