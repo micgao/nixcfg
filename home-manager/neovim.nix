@@ -1,14 +1,9 @@
 { inputs, pkgs, ... }:
 {
-  nixpkgs = {
-    overlays = [
-      inputs.neovim.overlays.default
-    ];
-  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.neovim;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     extraPackages = with pkgs; [
       gcc
       clang
