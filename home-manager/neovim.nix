@@ -3,7 +3,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    package = inputs.neovim.packages.${pkgs.system}.default;
     extraPackages = with pkgs; [
       gcc
       clang
