@@ -3,7 +3,6 @@
   programs = {
     git = {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
       settings = {
         user = {
           name = "Michael G";
