@@ -33,7 +33,7 @@
       skate
       gpg-tui
       playerctl
-      mpc-cli
+      mpc
       vlc
       procs
       megacmd
