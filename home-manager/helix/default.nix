@@ -5,7 +5,7 @@
 }: {
   programs.helix = {
     enable = true;
-    package = inputs.helix.packages.${pkgs.hostPlatform.system}.default;
+    package = inputs.helix.packages.${pkgs.system}.default;
     extraPackages = with pkgs; [
       marksman
       nil
