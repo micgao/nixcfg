@@ -16,7 +16,7 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "quiet"
       "splash"
@@ -44,8 +44,6 @@
     };
     modprobeConfig.enable = true;
   };
-
-  systemd.services.NetworkManager-wait-online.enable = false;
 
   console = {
     colors = [
@@ -78,7 +76,6 @@
       git
       libnotify
       util-linux
-      newt
     ];
     etc = lib.mapAttrs'
       (name: value: {
@@ -141,10 +138,10 @@
 
   hardware = {
     keyboard.qmk.enable = true;
-    logitech.wireless = {
-      enable = true;
-      enableGraphical = true;
-    };
+    # logitech.wireless = {
+    #   enable = true;
+    #   enableGraphical = true;
+    # };
     nvidia-container-toolkit.enable = true;
     graphics = {
       enable = true;
@@ -274,9 +271,6 @@
             EnableNetworkConfiguration = true;
             AddressRandomization = "network";
           };
-          Network = {
-            NameResolvingService = "systemd";
-          };
         };
       };
     };
@@ -295,7 +289,6 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    udev.packages = [ pkgs.via ];
     passSecretService.enable = true;
     flatpak.enable = true;
     auto-cpufreq.enable = true;
@@ -304,7 +297,7 @@
       scheduler = "scx_bpfland";
       extraArgs = [];
     };
-    blueman.enable = true;
+    # blueman.enable = true;
     mpdscribble = {
       enable = true;
       host = "127.0.0.1";
@@ -404,16 +397,11 @@
     seahorse.enable = true;
     steam = {
       enable = true;
-      localNetworkGameTransfers.openFirewall = true;
-      protontricks.enable = true;
-      gamescopeSession = {
-        enable = true;
-      };
     };
-    nix-ld.dev.enable = true;
+nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
-      # capSysNice = true;
+      capSysNice = true;
     };
     hyprland = {
       enable = true;

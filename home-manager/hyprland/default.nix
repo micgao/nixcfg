@@ -31,10 +31,12 @@
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
-            env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-            env=GBM_BACKEND,nvidia-drm
+            # env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+            # env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
+            env=__GL_GSYNC_ALLOWED=1
+            env=__GL_VRR_ALLOWED=0
 
             monitorv2 {
                 output = DP-3
@@ -42,6 +44,7 @@
                 position = 0x0
                 scale = 1
                 supports_hdr = true
+                supports_wide_color = true
                 bitdepth = 10
                 cm = dcip3
             }
@@ -129,17 +132,16 @@
             }
 
             render {
-                direct_scanout = 0
-                cm_fs_passthrough = 0
+                cm_fs_passthrough = 1
                 cm_enabled = true
                 new_render_scheduling = true
                 cm_auto_hdr = 1
                 send_content_type = true
+                non_shader_cm = 3
             }
             
             misc {
                 vfr = true
-                vrr = 1
                 font_family = Iosevka SS04
                 force_default_wallpaper = 0
                 disable_autoreload = true
@@ -175,14 +177,25 @@
                 xx_color_management_v4 = true
             }
 
+            debug {
+                full_cm_proto = true
+            }
+
             layerrule = blur, notifications
             layerrule = blur, waybar
+            layerrule = blur, notifications
             layerrule = ignorezero, notifications
             layerrule = blur, launcher
             layerrule = ignorezero, launcher
+            layerrule = blur, gtk-layer-shell
+            layerrule = ignorezero, gtk-layer-shell
+            layerrule = noanim, gtk4-layer-shell
 
             windowrule = workspace 9 silent, class:^(dota2)$
             windowrule = suppressevent maximize, class:.*
+
+            windowrulev2 = noblur,class:^()$,title:^()$
+            windowrulev2 = noblur, xwayland:1
 
             workspace = special:scratchpad
 
