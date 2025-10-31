@@ -170,7 +170,7 @@
       modesetting.enable = true;
       videoAcceleration = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     };
   };
 
@@ -398,7 +398,7 @@
     steam = {
       enable = true;
     };
-nix-ld.dev.enable = true;
+    nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
       capSysNice = true;

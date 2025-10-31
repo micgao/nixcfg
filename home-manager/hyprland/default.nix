@@ -7,8 +7,8 @@
   ];
 
   home.packages = [
-    inputs.hyprpolkitagent.packages.${pkgs.hostPlatform.system}.hyprpolkitagent
-    inputs.hyprpicker.packages.${pkgs.hostPlatform.system}.hyprpicker
+    inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
+    inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
   ];
 
   wayland.windowManager.hyprland = {
