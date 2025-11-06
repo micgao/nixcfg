@@ -55,6 +55,14 @@
         systems.follows = "hyprland/systems";
       };
     };
+    hyprqt6engine = {
+      url = "github:hyprwm/hyprqt6engine";
+      inputs = {
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,6 +73,10 @@
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
     ghostty.url = "github:ghostty-org/ghostty";
+    auto-cpufreq = {
+      url = "github:AdnanHodzic/auto-cpufreq";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

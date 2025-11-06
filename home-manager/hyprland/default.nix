@@ -7,9 +7,13 @@
   ];
 
   home.packages = [
-    inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
   ];
+
+  services.hyprpolkitagent = {
+    enable = true;
+    package = inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -36,7 +40,6 @@
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
             env=__GL_GSYNC_ALLOWED=1
-            env=__GL_VRR_ALLOWED=0
 
             monitorv2 {
                 output = DP-3
@@ -138,10 +141,12 @@
                 cm_auto_hdr = 1
                 send_content_type = true
                 non_shader_cm = 3
+                cm_sdr_eotf = 2
             }
             
             misc {
                 vfr = true
+                vrr = 1
                 font_family = Iosevka SS04
                 force_default_wallpaper = 0
                 disable_autoreload = true

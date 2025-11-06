@@ -6,11 +6,10 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
     inputs.nix-ld.nixosModules.nix-ld
+    inputs.auto-cpufreq.nixosModules.default
   ];
 
   boot = {
-    blacklistedKernelModules = [
-    ];
     bootspec = {
       enable = true;
     };
@@ -69,9 +68,6 @@
   };
 
   environment = {
-    variables = {
-      EDITOR = "nvim";
-    };
     systemPackages = with pkgs; [
       git
       libnotify
@@ -138,11 +134,6 @@
 
   hardware = {
     keyboard.qmk.enable = true;
-    # logitech.wireless = {
-    #   enable = true;
-    #   enableGraphical = true;
-    # };
-    nvidia-container-toolkit.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -262,14 +253,17 @@
   };
 
   networking = {
-    wireguard.enable = true;
+    useNetworkd = true;
+    useDHCP = true;
+    wireguard = {
+      enable = true;
+    };
     wireless = {
       iwd = {
         enable = true;
         settings = {
           General = {
             EnableNetworkConfiguration = true;
-            AddressRandomization = "network";
           };
         };
       };
@@ -291,13 +285,11 @@
   services = {
     passSecretService.enable = true;
     flatpak.enable = true;
-    auto-cpufreq.enable = true;
     scx = {
       enable = true;
       scheduler = "scx_bpfland";
       extraArgs = [];
     };
-    # blueman.enable = true;
     mpdscribble = {
       enable = true;
       host = "127.0.0.1";
@@ -388,6 +380,25 @@
   };
 
   programs = {
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        charger = {
+          governor = "performance";
+          energy_performance_preference = "performance";
+          energy_perf_bias = "performance";
+          platform_profile = "performance";
+          turbo = "auto";
+        };
+        battery = {
+          governor = "powersave";
+          energy_performance_preference = "balance_power";
+          energy_perf_bias = "balance_power";
+          platform_profile = "balanced";
+          turbo = "auto";
+        };
+      };
+    };
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;
@@ -401,12 +412,11 @@
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
-      capSysNice = true;
     };
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       withUWSM = true;
     };
     zsh.enable = true;
