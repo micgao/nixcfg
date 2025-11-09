@@ -440,5 +440,6 @@
 
   system = {
     stateVersion = "23.11";
+    rebuild.enableNg = true;
   };
 }

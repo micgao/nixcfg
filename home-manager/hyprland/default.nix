@@ -26,7 +26,6 @@
     extraConfig = ''
             # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
-            # monitor=DP-3,1920x1080@144,0x0,1
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -35,8 +34,8 @@
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
-            # env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-            # env=GBM_BACKEND,nvidia-drm
+            env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+            env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX=1
             env=__GL_GSYNC_ALLOWED=1
