@@ -5,7 +5,6 @@
     ./helix
     ./hyprland
     ./kitty
-    ./mako
     ./media
     ./nix-colors
     ./qt
@@ -15,6 +14,7 @@
     ./bat.nix
     ./browsers.nix
     ./cava.nix
+    ./dunst.nix
     ./direnv.nix
     ./emacs.nix
     ./fuzzel.nix

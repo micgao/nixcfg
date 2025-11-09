@@ -283,6 +283,7 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    upower.enable = true;
     passSecretService.enable = true;
     flatpak.enable = true;
     scx = {
