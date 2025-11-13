@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/master";
+    systems.url = "github:nix-systems/default-linux";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +23,15 @@
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
+    };
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
     };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
@@ -83,13 +93,14 @@
     { self
     , nixpkgs
     , home-manager
+    , systems
     , ...
     } @ inputs:
     let
+      inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" ];
-      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import systems) (system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       });
@@ -102,10 +113,10 @@
       formatter = forEachSystem (pkgs:
         pkgs.nixpkgs-fmt
       );
-      overlays = import ./overlays { inherit inputs; };
+      overlays = import ./overlays { inherit inputs outputs; };
       nixosConfigurations = {
         X1E3 = lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [ ./nixos/configuration.nix ];
         };
       };

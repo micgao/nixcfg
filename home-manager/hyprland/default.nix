@@ -1,10 +1,12 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./hyprpaper.nix
     ./hyprlock.nix
   ];
+
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   home.packages = [
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
@@ -13,6 +15,16 @@
   services.hyprpolkitagent = {
     enable = true;
     package = inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent;
+  };
+
+  services.hypridle = {
+    enable = true;
+    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
+    settings = {
+      general = {
+        lock_cmd = "${lib.getExe config.programs.hyprlock.package}";
+      };
+    };
   };
 
   wayland.windowManager.hyprland = {
@@ -26,19 +38,19 @@
     extraConfig = ''
             # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
-            env=LIBVA_DRIVER_NAME,nvidia
-            env=GTK_THEME,sequoia
-            env=GTK_THEME_VARIANT,dark
-            env=QT_AUTO_SCREEN_SCALE_FACTOR,1
-            env=QT_QPA_PLATFORM,wayland;xcb
-            env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-            env=_JAVA_AWT_WM_NONREPARENTING,1
-            env=GDK_BACKEND,wayland,x11,*
-            env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-            env=GBM_BACKEND,nvidia-drm
-            env=NVD_BACKEND,direct
-            env=MOZ_DISABLE_RDD_SANDBOX=1
-            env=__GL_GSYNC_ALLOWED=1
+            # env=LIBVA_DRIVER_NAME,nvidia
+            # env=GTK_THEME,sequoia
+            # env=GTK_THEME_VARIANT,dark
+            # env=QT_AUTO_SCREEN_SCALE_FACTOR,1
+            # env=QT_QPA_PLATFORM,wayland;xcb
+            # env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+            # env=_JAVA_AWT_WM_NONREPARENTING,1
+            # env=GDK_BACKEND,wayland,x11,*
+            # env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+            # env=GBM_BACKEND,nvidia-drm
+            # env=NVD_BACKEND,direct
+            # env=MOZ_DISABLE_RDD_SANDBOX=1
+            # env=__GL_GSYNC_ALLOWED=1
 
             monitorv2 {
                 output = DP-3
@@ -74,10 +86,9 @@
             }
 
             cursor {
-                no_hardware_cursors = 1
-                no_warps = true
+                no_hardware_cursors = 0
+                use_cpu_buffer = 0
                 sync_gsettings_theme = true
-                inactive_timeout = 5
             }
 
             decoration {
@@ -134,19 +145,20 @@
             }
 
             render {
+                direct_scanout = 2
                 cm_fs_passthrough = 1
                 cm_enabled = true
                 new_render_scheduling = true
                 cm_auto_hdr = 1
                 send_content_type = true
-                non_shader_cm = 3
+                non_shader_cm = 1
                 cm_sdr_eotf = 2
             }
             
             misc {
                 vfr = true
-                vrr = 1
-                font_family = Iosevka SS04
+                vrr = 0
+                font_family = Inter
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true

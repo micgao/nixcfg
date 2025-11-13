@@ -105,7 +105,6 @@ config.set_environment_variables = {
 
 config.term = "wezterm"
 config.enable_kitty_keyboard = true
-config.max_fps = 144
 config.color_scheme = "Sequoia Moonlight"
 config.colors = {
   tab_bar = {
@@ -134,12 +133,12 @@ config.freetype_render_target = "Light"
 config.freetype_load_flags = "NO_HINTING"
 config.harfbuzz_features = { 'calt = 0', 'clig = 0', 'liga = 0' }
 config.unicode_version = 14
-config.allow_square_glyphs_to_overflow_width = "Never"
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
 config.audible_bell = "Disabled"
 config.bold_brightens_ansi_colors = "BrightAndBold"
+config.display_pixel_geometry = "BGR"
 config.scrollback_lines = 9001
 config.enable_scroll_bar = false
 config.hide_tab_bar_if_only_one_tab = false
@@ -155,6 +154,11 @@ config.check_for_updates = false
 config.command_palette_bg_color = "#0F1014"
 config.command_palette_fg_color = "#8EB5F5"
 config.command_palette_font_size = 12
+config.command_palette_font = wezterm.font_with_fallback {
+  {
+    family = "Iosevka SS04",
+  },
+}
 config.unix_domains = {
   {
     name = 'unix',

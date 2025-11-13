@@ -72,8 +72,25 @@
       package = pkgs.qogir-icon-theme;
       size = 24;
       gtk.enable = true;
+      hyprcursor.enable = true;
     };
     preferXdgDirectories = true;
+    sessionVariables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+      GTK_THEME = "sequoia";
+      GTK_THEME_VARIANT = "dark";
+      QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+      QT_QPA_PLATFORM = "wayland;xcb";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+      _JAVA_AWT_WM_NONREPARENTING = 1;
+      GDK_BACKEND = "wayland,x11,*";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      GBM_BACKEND = "nvidia-drm";
+      NVD_BACKEND = "direct";
+      MOZ_DISABLE_RDD_SANDBOX = 1;
+      __GL_GSYNC_ALLOWED = 1;
+      CUDA_DISABLE_PERF_BOOST = 1;
+    };
   };
 
   news.display = "show";

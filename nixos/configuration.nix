@@ -15,7 +15,7 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
       "splash"
@@ -158,9 +158,9 @@
       #   sync.enable = true;
       # };
       open = true;
+      gsp.enable = true;
       modesetting.enable = true;
       videoAcceleration = true;
-      powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
     };
   };
