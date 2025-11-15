@@ -283,7 +283,6 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    upower.enable = true;
     passSecretService.enable = true;
     flatpak.enable = true;
     scx = {
@@ -383,22 +382,6 @@
   programs = {
     auto-cpufreq = {
       enable = true;
-      settings = {
-        charger = {
-          governor = "performance";
-          energy_performance_preference = "performance";
-          energy_perf_bias = "performance";
-          platform_profile = "performance";
-          turbo = "auto";
-        };
-        battery = {
-          governor = "powersave";
-          energy_performance_preference = "balance_power";
-          energy_perf_bias = "balance_power";
-          platform_profile = "balanced";
-          turbo = "auto";
-        };
-      };
     };
     obs-studio = {
       enable = true;

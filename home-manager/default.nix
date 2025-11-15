@@ -16,6 +16,7 @@
     ./cava.nix
     ./dunst.nix
     ./direnv.nix
+    ./distrobox.nix
     ./emacs.nix
     ./fuzzel.nix
     ./fonts.nix
@@ -102,8 +103,6 @@
   };
 
   programs.home-manager.enable = true;
-
-  programs.distrobox.enable = true;
 
   systemd.user.startServices = "sd-switch";
 }
