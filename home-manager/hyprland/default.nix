@@ -145,10 +145,9 @@
             }
 
             render {
-                direct_scanout = 2
                 cm_fs_passthrough = 1
                 cm_enabled = true
-                new_render_scheduling = true
+                new_render_scheduling = false
                 cm_auto_hdr = 1
                 send_content_type = true
                 non_shader_cm = 1
@@ -157,7 +156,7 @@
             
             misc {
                 vfr = true
-                vrr = 0
+                vrr = 2
                 font_family = Inter
                 force_default_wallpaper = 0
                 disable_autoreload = true
