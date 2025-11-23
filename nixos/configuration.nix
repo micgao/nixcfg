@@ -87,9 +87,22 @@
   };
 
   xdg = {
-    terminal-exec.enable = true;
+    terminal-exec = {
+      enable = true;
+      settings = {
+        Hyprland = [
+          "org.wezfurlong.wezterm.desktop"
+          "kitty.desktop"
+        ];
+        default = [
+          "org.wezfurlong.wezterm.desktop"
+          "kitty.desktop"
+        ];
+      };
+    };
     portal = {
       enable = true;
+      xdgOpenUsePortal = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       configPackages = with pkgs; [
         xdg-desktop-portal
@@ -144,7 +157,6 @@
       ];
     };
     enableRedistributableFirmware = true;
-    bluetooth.enable = true;
     cpu = {
       intel = {
         updateMicrocode = true;
@@ -157,7 +169,6 @@
       #   sync.enable = true;
       # };
       open = true;
-      gsp.enable = true;
       modesetting.enable = true;
       videoAcceleration = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;

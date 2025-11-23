@@ -54,7 +54,7 @@
 
             monitorv2 {
                 output = DP-3
-                mode = 1920x1080@144
+                mode = 1920x1080@120
                 position = 0x0
                 scale = 1
                 supports_hdr = true
@@ -95,7 +95,6 @@
                 rounding = 4
                 rounding_power = 3
                 active_opacity = 1
-                inactive_opacity = 0.9
       	        blur {
       	            enabled = true
       	            ignore_opacity = true
@@ -131,6 +130,7 @@
                 animation = workspaces, 1, 1.94, almostLinear, fade
                 animation = workspacesIn, 1, 1.21, almostLinear, fade
                 animation = workspacesOut, 1, 1.94, almostLinear, fade
+                animation = zoomFactor, 1, 7, quick
              }
 
             dwindle {
@@ -145,13 +145,13 @@
             }
 
             render {
-                cm_fs_passthrough = 1
+                cm_fs_passthrough = 2
                 cm_enabled = true
                 new_render_scheduling = false
                 cm_auto_hdr = 1
                 send_content_type = true
-                non_shader_cm = 1
-                cm_sdr_eotf = 2
+                non_shader_cm = 3
+                cm_sdr_eotf = 1
             }
             
             misc {
@@ -166,8 +166,6 @@
                 background_color = rgb(0f1014)
                 focus_on_activate = true
                 new_window_takes_over_fullscreen = 1
-                animate_manual_resizes = true
-                animate_mouse_windowdragging = true
             }
 
             xwayland {
@@ -191,25 +189,22 @@
                 xx_color_management_v4 = true
             }
 
-            debug {
-                full_cm_proto = true
+            windowrule {
+                name = fix-xwayland-drags
+                match:class = ^$
+                match:title = ^$
+                match:xwayland = true
+                match:float = true
+                match:fullscreen = false
+                match:pin = false
+                no_focus = true
             }
 
-            layerrule = blur, notifications
-            layerrule = blur, waybar
-            layerrule = blur, notifications
-            layerrule = ignorezero, notifications
-            layerrule = blur, launcher
-            layerrule = ignorezero, launcher
-            layerrule = blur, gtk-layer-shell
-            layerrule = ignorezero, gtk-layer-shell
-            layerrule = noanim, gtk4-layer-shell
-
-            windowrule = workspace 9 silent, class:^(dota2)$
-            windowrule = suppressevent maximize, class:.*
-
-            windowrulev2 = noblur,class:^()$,title:^()$
-            windowrulev2 = noblur, xwayland:1
+            windowrule {
+                name = suppress-maximize-events
+                match:class = .*
+                suppress_event = maximize
+            }
 
             workspace = special:scratchpad
 
