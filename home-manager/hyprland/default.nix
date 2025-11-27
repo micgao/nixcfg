@@ -86,8 +86,8 @@
             }
 
             cursor {
-                no_hardware_cursors = 0
-                use_cpu_buffer = 0
+                no_hardware_cursors = 1
+                # use_cpu_buffer = 0
                 sync_gsettings_theme = true
             }
 
