@@ -91,6 +91,10 @@
                 sync_gsettings_theme = true
             }
 
+            quirks {
+                prefer_hdr = 1
+            }
+
             decoration {
                 rounding = 4
                 rounding_power = 3
@@ -165,7 +169,6 @@
                 layers_hog_keyboard_focus = true
                 background_color = rgb(0f1014)
                 focus_on_activate = true
-                new_window_takes_over_fullscreen = 1
             }
 
             xwayland {
