@@ -6,8 +6,6 @@
     ./hyprlock.nix
   ];
 
-  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-
   home.packages = [
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
   ];
@@ -27,30 +25,36 @@
     };
   };
 
+  services.hyprlauncher = {
+    enable = true;
+    package = inputs.hyprlauncher.packages.${pkgs.system}.hyprlauncher;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
     xwayland.enable = true;
     systemd = {
-      enable = false;
+      enable = true;
+      variables = ["--all"];
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
-            # env=LIBVA_DRIVER_NAME,nvidia
-            # env=GTK_THEME,sequoia
-            # env=GTK_THEME_VARIANT,dark
-            # env=QT_AUTO_SCREEN_SCALE_FACTOR,1
-            # env=QT_QPA_PLATFORM,wayland;xcb
-            # env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-            # env=_JAVA_AWT_WM_NONREPARENTING,1
-            # env=GDK_BACKEND,wayland,x11,*
-            # env=__GLX_VENDOR_LIBRARY_NAME,nvidia
-            # env=GBM_BACKEND,nvidia-drm
-            # env=NVD_BACKEND,direct
-            # env=MOZ_DISABLE_RDD_SANDBOX=1
-            # env=__GL_GSYNC_ALLOWED=1
+            env=LIBVA_DRIVER_NAME,nvidia
+            env=GTK_THEME,sequoia
+            env=GTK_THEME_VARIANT,dark
+            env=QT_AUTO_SCREEN_SCALE_FACTOR,1
+            env=QT_QPA_PLATFORM,wayland;xcb
+            env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+            env=_JAVA_AWT_WM_NONREPARENTING,1
+            env=GDK_BACKEND,wayland,x11,*
+            env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+            env=GBM_BACKEND,nvidia-drm
+            env=NVD_BACKEND,direct
+            env=MOZ_DISABLE_RDD_SANDBOX=1
+            env=__GL_GSYNC_ALLOWED=1
 
             monitorv2 {
                 output = DP-3
@@ -218,16 +222,15 @@
             bind = $mainMod,M,submap,reset
             submap = reset
 
-            bind = $mainMod, return, exec, uwsm-app -- wezterm
-            bind = $mainMod CTRL, return, exec, uwsm-app -- kitty
-            bind = $mainMod, space, exec, fuzzel --launch-prefix='uwsm-app --'
+            bind = $mainMod, return, exec, wezterm
+            bind = $mainMod CTRL, return, exec, kitty
+            bind = $mainMod, space, exec, hyprlauncher
             bind = $mainMod, F, fullscreen,
             bind = $mainMod, G, togglegroup,
             bind = $mainMod, Q, killactive,
             bind = $mainMod, V, togglefloating,
             bind = $mainMod, X, togglesplit,
             bind = $mainMod, P, pseudo,
-            bind = $mainMod CTRL, =, exec, loginctl terminate-user ""
             # bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             # bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
             bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle

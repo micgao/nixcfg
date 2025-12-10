@@ -1,10 +1,4 @@
-{ lib, ... }:
-
-
 {
-
-  systemd.user.services.waybar.Unit.After = lib.mkForce "graphical-session.target";
-
   programs.waybar = {
     enable = true;
     systemd = {

@@ -331,11 +331,11 @@
       useTextGreeter = true;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.uwsm} start select";
+          command = "start-hyprland";
           user = "micgao";
         };
         initial_session = {
-          command = "${lib.getExe pkgs.uwsm} start select";
+          command = "start-hyprland";
           user = "micgao";
         };
       };
@@ -411,7 +411,6 @@
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-      withUWSM = true;
     };
     zsh.enable = true;
     gnupg = {
