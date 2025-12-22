@@ -58,7 +58,7 @@
 
             monitorv2 {
                 output = DP-3
-                mode = 1920x1080@120
+                mode = 1920x1080@144
                 position = 0x0
                 scale = 1
                 supports_hdr = true
@@ -72,8 +72,8 @@
                 follow_mouse = 1
                 sensitivity = -0.7
                 accel_profile = flat
-                repeat_rate = 25
-                repeat_delay = 500
+                repeat_rate = 30
+                repeat_delay = 400
                 float_switch_override_focus = 1
             }
 
@@ -84,6 +84,7 @@
                 col.active_border = rgb(ffbb88) rgb(f58ee0) 90deg
                 col.inactive_border = rgba(9898a6aa)
                 layout = dwindle
+                locale = en_CA
                 snap {
                     enabled = true
                 }
@@ -153,12 +154,13 @@
             }
 
             render {
-                cm_fs_passthrough = 2
+                direct_scanout = 2
+                cm_fs_passthrough = 1
                 cm_enabled = true
                 new_render_scheduling = false
                 cm_auto_hdr = 1
                 send_content_type = true
-                non_shader_cm = 3
+                non_shader_cm = 1
                 cm_sdr_eotf = 1
             }
             
