@@ -6,7 +6,6 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
     inputs.nix-ld.nixosModules.nix-ld
-    inputs.auto-cpufreq.nixosModules.default
   ];
 
   boot = {
@@ -69,16 +68,15 @@
 
   environment = {
     systemPackages = with pkgs; [
-      git
       libnotify
-      util-linux
+      libsecret
     ];
     etc = lib.mapAttrs'
       (name: value: {
         name = "nix/path/${name}";
         value.source = value.flake;
       })
-      config.nix.registry;
+    config.nix.registry;
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
       NIXOS_OZONE_WL = "1";
@@ -119,6 +117,8 @@
     pam.services = {
       hyprlock = { };
       greetd.enableGnomeKeyring = true;
+      greetd-password.enableGnomeKeyring = true;
+      login.enableGnomeKeyring = true;
     };
     sudo-rs = {
       enable = true;
@@ -293,12 +293,26 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    upower.enable = true;
+    tuned = {
+      enable = true;
+      ppdSupport = true;
+      settings = {
+        daemon = true;
+        dynamic_tuning = true;
+      };
+      ppdSettings = {
+        main = {
+          default = "performance";
+        };
+      };
+    };
     passSecretService.enable = true;
     flatpak.enable = true;
     scx = {
       enable = true;
-      scheduler = "scx_bpfland";
-      extraArgs = [];
+      scheduler = "scx_lavd";
+      extraArgs = ["--performance"];
     };
     mpdscribble = {
       enable = true;
@@ -315,7 +329,7 @@
     fwupd.enable = true;
     dbus = {
       enable = true;
-      packages = with pkgs; [ gcr ];
+      packages = with pkgs; [ gcr gnome-keyring ];
       implementation = "broker";
     };
     gnome.gnome-keyring.enable = true;
@@ -372,6 +386,7 @@
   };
 
   users = {
+    defaultUserShell = pkgs.bashInteractive;
     users.micgao = {
       shell = pkgs.nushell;
       isNormalUser = true;
@@ -390,9 +405,6 @@
   };
 
   programs = {
-    auto-cpufreq = {
-      enable = true;
-    };
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;

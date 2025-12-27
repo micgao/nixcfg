@@ -42,6 +42,8 @@
       streamrip
       monero-gui
       monero-cli
+      rose-pine-hyprcursor
+      inputs.hyprshutdown.packages."${pkgs.system}".default
     ];
   };
 }

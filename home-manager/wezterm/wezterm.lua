@@ -102,6 +102,9 @@ config.keys = {
 config.set_environment_variables = {
   TERMINFO_DIRS = "/home/micgao/.nix-profile/share/terminfo"
 }
+config.default_prog = {
+  "nu"
+}
 
 config.term = "wezterm"
 config.enable_kitty_keyboard = true

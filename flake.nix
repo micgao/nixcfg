@@ -26,55 +26,27 @@
     };
     hypridle = {
       url = "github:hyprwm/hypridle";
-      inputs = {
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
     };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
-      inputs = {
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
-      inputs = {
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
     };
     hyprlauncher = {
       url = "github:hyprwm/hyprlauncher";
     };
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
-      inputs = {
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
     };
     hyprpolkitagent = {
       url = "github:hyprwm/hyprpolkitagent";
-      inputs = {
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
     };
     hyprqt6engine = {
       url = "github:hyprwm/hyprqt6engine";
-      inputs = {
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
+    };
+    hyprshutdown = {
+      url = "github:hyprwm/hyprshutdown";
     };
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -86,10 +58,6 @@
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     wezterm.url = "github:wez/wezterm/?dir=nix";
     ghostty.url = "github:ghostty-org/ghostty";
-    auto-cpufreq = {
-      url = "github:AdnanHodzic/auto-cpufreq";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

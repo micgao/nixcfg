@@ -69,10 +69,11 @@
     homeDirectory = "/home/${config.home.username}";
     stateVersion = "23.11";
     pointerCursor = {
-      name = "Qogir";
-      package = pkgs.qogir-icon-theme;
+      name = "rose-pine-hyprcursor";
+      package = pkgs.rose-pine-hyprcursor;
       size = 24;
       gtk.enable = true;
+      x11.enable = true;
       hyprcursor.enable = true;
     };
     preferXdgDirectories = true;
