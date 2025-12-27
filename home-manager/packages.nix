@@ -44,6 +44,7 @@
       monero-cli
       rose-pine-hyprcursor
       inputs.hyprshutdown.packages."${pkgs.system}".default
+      inputs.hyprpwcenter.packages."${pkgs.system}".default
     ];
   };
 }

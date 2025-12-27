@@ -57,6 +57,7 @@
             env=MOZ_DISABLE_RDD_SANDBOX,1
             env=__GL_GSYNC_ALLOWED,1
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+            env=CUDA_DISABLE_PERF_BOOST,1
 
             monitorv2 {
                 output = DP-3

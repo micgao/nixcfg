@@ -24,6 +24,9 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    hyprpwcenter = {
+      url = "github:hyprwm/hyprpwcenter";
+    };
     hypridle = {
       url = "github:hyprwm/hypridle";
     };
