@@ -44,8 +44,6 @@
             monitor=eDP-1,disable
             env=HYPRCURSOR_THEME,rose-pine-hyprcursor
             env=HYPRCURSOR_SIZE,24
-            env=XCURSOR_THEME,Qogir Cursors
-            env=XCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -61,6 +59,8 @@
             env=__GL_VRR_ALLOWED,1
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=CUDA_DISABLE_PERF_BOOST,1
+
+            exec-once=hyprctl setcursor rose-pine-hyprcursor 24
 
             monitorv2 {
                 output = DP-3

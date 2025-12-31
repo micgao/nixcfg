@@ -191,9 +191,9 @@
         warn-dirty = false;
         nix-path = config.nix.nixPath;
         trusted-users = [ "micgao" ];
+        use-xdg-base-directories = true;
       };
       channel.enable = false;
-      use-xdg-base-directories = true;
       gc = {
         automatic = true;
         dates = "weekly";

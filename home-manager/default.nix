@@ -70,8 +70,8 @@
     homeDirectory = "/home/${config.home.username}";
     stateVersion = "23.11";
     pointerCursor = {
-      name = "rose-pine-hyprcursor";
-      package = pkgs.rose-pine-hyprcursor;
+      name = "BreezeX-RosePine-Linux";
+      package = pkgs.rose-pine-cursor;
       size = 24;
       gtk.enable = true;
       x11.enable = true;
