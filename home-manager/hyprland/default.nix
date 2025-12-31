@@ -44,6 +44,8 @@
             monitor=eDP-1,disable
             env=HYPRCURSOR_THEME,rose-pine-hyprcursor
             env=HYPRCURSOR_SIZE,24
+            env=XCURSOR_THEME,Qogir Cursors
+            env=XCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
@@ -56,6 +58,7 @@
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX,1
             env=__GL_GSYNC_ALLOWED,1
+            env=__GL_VRR_ALLOWED,1
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=CUDA_DISABLE_PERF_BOOST,1
 

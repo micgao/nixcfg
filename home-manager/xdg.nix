@@ -1,8 +1,7 @@
-{ config, pkgs, inputs, ... }:
+{ config, ... }:
 {
   xdg = {
     enable = true;
-    mime.enable = true;
     configHome = config.home.homeDirectory + "/.config";
     cacheHome = config.home.homeDirectory + "/.local/cache";
     userDirs = {

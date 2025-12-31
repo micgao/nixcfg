@@ -141,7 +141,9 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    # useUserPackages = true;
     users = { micgao = import ../home-manager; };
+    backupFileExtension = "backup";
   };
 
   hardware = {
@@ -191,6 +193,7 @@
         trusted-users = [ "micgao" ];
       };
       channel.enable = false;
+      use-xdg-base-directories = true;
       gc = {
         automatic = true;
         dates = "weekly";
@@ -263,6 +266,10 @@
   };
 
   networking = {
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
     useNetworkd = true;
     useDHCP = true;
     wireguard = {
@@ -306,6 +313,10 @@
           default = "performance";
         };
       };
+    };
+    resolved = {
+      enable = true;
+      dnsovertls = "true";
     };
     passSecretService.enable = true;
     flatpak.enable = true;

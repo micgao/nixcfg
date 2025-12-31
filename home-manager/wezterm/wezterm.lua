@@ -102,10 +102,6 @@ config.keys = {
 config.set_environment_variables = {
   TERMINFO_DIRS = "/home/micgao/.nix-profile/share/terminfo"
 }
-config.default_prog = {
-  "nu"
-}
-
 config.term = "wezterm"
 config.enable_kitty_keyboard = true
 config.color_scheme = "Sequoia Moonlight"
@@ -141,7 +137,6 @@ config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
 config.audible_bell = "Disabled"
 config.bold_brightens_ansi_colors = "BrightAndBold"
-config.display_pixel_geometry = "BGR"
 config.scrollback_lines = 9001
 config.enable_scroll_bar = false
 config.hide_tab_bar_if_only_one_tab = false

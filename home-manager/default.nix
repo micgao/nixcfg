@@ -20,6 +20,7 @@
     ./emacs.nix
     ./fuzzel.nix
     ./fonts.nix
+    ./fzf.nix
     ./gaming.nix
     ./gh.nix
     ./git.nix
