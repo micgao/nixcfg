@@ -200,10 +200,6 @@
                 }
             }
 
-            experimental {
-                xx_color_management_v4 = true
-            }
-
             windowrule {
                 name = fix-xwayland-drags
                 match:class = ^$

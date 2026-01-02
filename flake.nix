@@ -9,10 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    nixpkgs-wayland = {
-      url = "github:nix-community/nixpkgs-wayland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-ld = {
       url = "github:nix-community/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,7 +67,6 @@
     , ...
     } @ inputs:
     let
-      inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (system: import nixpkgs {
@@ -87,10 +82,10 @@
       formatter = forEachSystem (pkgs:
         pkgs.nixpkgs-fmt
       );
-      overlays = import ./overlays { inherit inputs outputs; };
+      overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         X1E3 = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs; };
           modules = [ ./nixos/configuration.nix ];
         };
       };
