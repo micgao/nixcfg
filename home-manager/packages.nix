@@ -8,7 +8,7 @@
 
   home = {
     packages = with pkgs; [
-      qmk
+      # qmk
       viddy
       streamlink
       code-cursor
