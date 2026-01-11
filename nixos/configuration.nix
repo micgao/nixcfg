@@ -17,7 +17,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
-      "splash"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
     ];
@@ -41,6 +40,9 @@
       };
     };
     modprobeConfig.enable = true;
+    extraModprobeConfig = ''
+      options nvidia NVreg_UsePageAttributeTable=1
+    '';
   };
 
   console = {
@@ -165,15 +167,9 @@
       };
     };
     nvidia = {
-      # prime = {
-      #   intelBusId = "PCI:0:2:0";
-      #   nvidiaBusId = "PCI:1:0:0";
-      #   sync.enable = true;
-      # };
       open = true;
-      modesetting.enable = true;
-      videoAcceleration = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
+      powerManagement.enable = true;
     };
   };
 
