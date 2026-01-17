@@ -40,15 +40,13 @@
       variables = ["--all"];
     };
     extraConfig = ''
-            # monitor=,preferred,auto,auto
+            monitor=,preferred,auto,auto
             monitor=eDP-1,disable
-            env=HYPRCURSOR_THEME,rose-pine-hyprcursor
-            env=HYPRCURSOR_SIZE,24
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
-            env=QT_QPA_PLATFORM,wayland;xcb
+            env=QT_QPA_PLATFORM,wayland
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
@@ -56,7 +54,6 @@
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX,1
             env=__GL_GSYNC_ALLOWED,1
-            env=__GL_VRR_ALLOWED,1
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=CUDA_DISABLE_PERF_BOOST,1
 
@@ -67,10 +64,10 @@
                 mode = 1920x1080@144
                 position = 0x0
                 scale = 1
-                supports_hdr = true
-                supports_wide_color = true
-                bitdepth = 10
-                cm = dcip3
+                # bitdepth = 10
+                supports_wide_color = 1
+                supports_hdr = 1
+                # cm = wide
             }
 
             input {
@@ -98,7 +95,6 @@
 
             cursor {
                 no_hardware_cursors = 1
-                # use_cpu_buffer = 0
                 sync_gsettings_theme = true
             }
 
@@ -160,14 +156,13 @@
             }
 
             render {
-                direct_scanout = 2
                 cm_fs_passthrough = 1
                 cm_enabled = true
                 new_render_scheduling = false
                 cm_auto_hdr = 1
                 send_content_type = true
-                non_shader_cm = 1
-                cm_sdr_eotf = 1
+                non_shader_cm = 3
+                cm_sdr_eotf = 0
             }
             
             misc {
@@ -181,6 +176,7 @@
                 layers_hog_keyboard_focus = true
                 background_color = rgb(0f1014)
                 focus_on_activate = true
+                on_focus_under_fullscreen = 1
             }
 
             xwayland {
