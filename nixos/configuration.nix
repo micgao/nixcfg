@@ -14,7 +14,7 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    # kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "quiet"
       "rd.systemd.show_status=false"
@@ -167,12 +167,8 @@
       };
     };
     nvidia = {
-      # dynamicBoost.enable = true;
       open = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
-      powerManagement = {
-        enable = true;
-      };
     };
   };
 
@@ -194,10 +190,9 @@
       };
       channel.enable = false;
       gc = {
-        # automatic = true;
-        automatic = false;
-        # dates = "weekly";
-        # options = "--delete-older-than 14d";
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 14d";
       };
       registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;

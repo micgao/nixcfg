@@ -40,7 +40,7 @@
       variables = ["--all"];
     };
     extraConfig = ''
-            monitor=,preferred,auto,auto
+            # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
             env=LIBVA_DRIVER_NAME,nvidia
             env=GTK_THEME,sequoia
