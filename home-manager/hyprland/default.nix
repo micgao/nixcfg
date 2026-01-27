@@ -8,6 +8,7 @@
 
   home.packages = [
     inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
+    inputs.hyprqt6engine.packages.${pkgs.system}.hyprqt6engine
   ];
 
   services.hyprpolkitagent = {
@@ -47,6 +48,7 @@
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=QT_QPA_PLATFORM,wayland
+            env=QT_QPA_PLATFORMTHEME,hyprqt6engine
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*

@@ -445,7 +445,6 @@
 
   qt = {
     enable = true;
-    platformTheme = "qt5ct";
   };
 
   gtk.iconCache.enable = true;
