@@ -33,7 +33,7 @@
       url = "github:hyprwm/hyprpaper";
     };
     hyprlauncher = {
-      url = "github:hyprwm/hyprlauncher";
+      url = "github:hyprwm/hyprlauncher/5fc57350e74a8150a708890feb8baf4e4be07598";
     };
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
