@@ -8,14 +8,15 @@
 
   home = {
     packages = with pkgs; [
-      # qmk
+      qmk
+      stoat-desktop
+      discordo
       viddy
       streamlink
       code-cursor
       opencode
       inputs.firefox-nightly.packages.${pkgs.system}.firefox-devedition-bin
       brave
-      gcr
       inputs.ghostty.packages."${pkgs.system}".default
       rustup
       comma
