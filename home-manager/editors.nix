@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs,  ... }:
 {
   programs.vscode = {
     enable = true;
@@ -9,8 +9,6 @@
         extensions = with pkgs; [
           vscode-extensions.mkhl.direnv
           vscode-extensions.asvetliakov.vscode-neovim
-          # vscode-extensions.rust-lang.rust-analyzer
-          # vscode-extensions.vadimcn.vscode-lldb
         ];
         userSettings = {
           "update.mode" = "none";
@@ -31,4 +29,5 @@
       };
     };
   };
+  programs.zed-editor.enable = true;
 }

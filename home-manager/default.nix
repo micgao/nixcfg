@@ -17,6 +17,7 @@
     ./dunst.nix
     ./direnv.nix
     ./distrobox.nix
+    ./editors.nix
     ./emacs.nix
     ./fuzzel.nix
     ./fonts.nix
@@ -28,9 +29,7 @@
     ./gpg.nix
     ./gtk.nix
     ./jq.nix
-    # ./ledger.nix
     ./mail.nix
-    # ./neomutt.nix
     ./neovim.nix
     ./nix-index.nix
     ./nix-your-shell.nix
@@ -39,7 +38,6 @@
     ./pueue.nix
     ./reaper.nix
     ./ripgrep.nix
-    ./vscodium.nix
     ./waybar.nix
     ./xdg.nix
     ./yazi.nix
