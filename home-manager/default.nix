@@ -6,7 +6,6 @@
     ./hyprland
     ./kitty
     ./media
-    ./nix-colors
     ./qt
     ./starship
     ./wezterm

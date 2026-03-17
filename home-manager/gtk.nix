@@ -1,7 +1,4 @@
-{ pkgs, config, inputs, ... }:
-let
-  nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
-in
+{ pkgs, config, ... }:
 {
   gtk = {
     enable = true;
@@ -12,12 +9,6 @@ in
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };
-    theme = {
-      package = nix-colors-lib.gtkThemeFromScheme {
-        scheme = config.colorScheme;
-      };
-      name = "sequoia";
     };
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
