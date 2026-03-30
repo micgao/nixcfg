@@ -231,7 +231,6 @@
             bind = $mainMod, G, togglegroup,
             bind = $mainMod, Q, killactive,
             bind = $mainMod, V, togglefloating,
-            bind = $mainMod, X, togglesplit,
             bind = $mainMod, P, pseudo,
             # bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             # bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
