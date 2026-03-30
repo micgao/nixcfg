@@ -9,7 +9,6 @@
   home = {
     packages = with pkgs; [
       qmk
-      stoat-desktop
       discordo
       viddy
       streamlink
