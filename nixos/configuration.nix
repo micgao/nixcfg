@@ -248,9 +248,9 @@
     libvirtd = {
       enable = true;
     };
-    virtualbox.host = {
-      enable = true;
-    };
+    # virtualbox.host = {
+    #   enable = true;
+    # };
     # vmware.host = {
     #   enable = true;
     #   extraConfig = ''
