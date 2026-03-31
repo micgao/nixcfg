@@ -44,7 +44,7 @@
             # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
             env=LIBVA_DRIVER_NAME,nvidia
-            env=GTK_THEME,sequoia
+            # env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=QT_QPA_PLATFORM,wayland
@@ -88,7 +88,7 @@
                 border_size = 2
                 col.active_border = rgb(ffbb88) rgb(f58ee0) 90deg
                 col.inactive_border = rgba(9898a6aa)
-                layout = dwindle
+                layout = scrolling
                 locale = en_CA
                 snap {
                     enabled = true
@@ -146,9 +146,6 @@
                 animation = zoomFactor, 1, 7, quick
              }
 
-            dwindle {
-                pseudotile = true
-            }
 
             binds {
                 pass_mouse_when_bound = false
@@ -231,7 +228,6 @@
             bind = $mainMod, G, togglegroup,
             bind = $mainMod, Q, killactive,
             bind = $mainMod, V, togglefloating,
-            bind = $mainMod, P, pseudo,
             # bindl= , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             # bindl= , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
             bindl= , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -268,4 +264,5 @@
     '';
   };
   xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
+  xdg.configFile."hypr/hyprqt6engine.conf".source = ./hyprqt6engine.conf;
 }
