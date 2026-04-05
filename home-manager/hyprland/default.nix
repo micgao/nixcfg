@@ -66,7 +66,7 @@
                 mode = 1920x1080@144
                 position = 0x0
                 scale = 1
-                # bitdepth = 10
+                bitdepth = 10
                 supports_wide_color = 1
                 supports_hdr = 1
                 # cm = wide
@@ -265,4 +265,5 @@
   };
   xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
   xdg.configFile."hypr/hyprqt6engine.conf".source = ./hyprqt6engine.conf;
+  xdg.configFile."hypr/hyprtoolkit.conf".source = ./hyprtoolkit.conf;
 }

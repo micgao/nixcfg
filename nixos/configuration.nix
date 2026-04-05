@@ -248,16 +248,9 @@
     libvirtd = {
       enable = true;
     };
-    # virtualbox.host = {
-    #   enable = true;
-    # };
-    # vmware.host = {
-    #   enable = true;
-    #   extraConfig = ''
-    #     mks.gl.allowUnsupportedDrivers = "TRUE"
-    #     mks.vk.allowUnsupportedDevices = "TRUE"
-    #   '';
-    # };
+    virtualbox.host = {
+      enable = true;
+    };
   };
 
   networking = {
