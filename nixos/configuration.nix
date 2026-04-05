@@ -14,7 +14,7 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages;
     kernelParams = [
       "quiet"
       "rd.systemd.show_status=false"
