@@ -169,6 +169,11 @@
     nvidia = {
       open = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
+      powerManagement = {
+        enable = true;
+        kernelSuspendNotifier = true;
+      };
+      dynamicBoost.enable = true;
     };
   };
 

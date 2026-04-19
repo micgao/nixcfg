@@ -165,7 +165,6 @@
             }
             
             misc {
-                vfr = true
                 font_family = Inter
                 force_default_wallpaper = 0
                 disable_autoreload = true
