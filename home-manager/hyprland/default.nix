@@ -44,7 +44,7 @@
             # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
             env=LIBVA_DRIVER_NAME,nvidia
-            env=GTK_THEME,sequoia
+            # env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=QT_QPA_PLATFORM,wayland;xcb
