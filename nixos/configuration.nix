@@ -316,7 +316,9 @@
     scx = {
       enable = true;
       scheduler = "scx_lavd";
-      extraArgs = ["--performance"];
+      extraArgs = [
+        "--autopilot"
+      ];
     };
     mpdscribble = {
       enable = true;

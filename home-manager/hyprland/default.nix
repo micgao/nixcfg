@@ -44,12 +44,13 @@
             # monitor=,preferred,auto,auto
             monitor=eDP-1,disable
             env=LIBVA_DRIVER_NAME,nvidia
-            # env=GTK_THEME,sequoia
+            env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
-            env=QT_QPA_PLATFORM,wayland
+            env=QT_QPA_PLATFORM,wayland;xcb
             env=QT_QPA_PLATFORMTHEME,hyprqt6engine
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+            env=QT_ENABLE_HIGHDPI_SCALING,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
             env=GBM_BACKEND,nvidia-drm
@@ -69,13 +70,14 @@
                 bitdepth = 10
                 supports_wide_color = 1
                 supports_hdr = 1
+                vrr = 1
                 # cm = wide
             }
 
             input {
                 kb_layout = us,ca
                 follow_mouse = 1
-                sensitivity = -0.7
+                sensitivity = -0.3
                 accel_profile = flat
                 repeat_rate = 30
                 repeat_delay = 400
@@ -95,6 +97,10 @@
                 }
             }
 
+            scrolling {
+                column_width = 1.0
+            }
+
             cursor {
                 no_hardware_cursors = 1
                 sync_gsettings_theme = true
@@ -109,41 +115,39 @@
                 rounding_power = 3
                 active_opacity = 1
       	        blur {
-      	            enabled = true
-      	            ignore_opacity = true
-      	            new_optimizations = true
-      	            xray = true
-      	            special = true
-                    popups = true
+      	            enabled = false
+      	        }
+      	        shadow {
+      	            enabled = false
       	        }
                 dim_inactive = true
                 dim_strength = 0.1
             }
 
              animations {
-                enabled = true
-                bezier = easeOutQuint,0.23,1,0.32,1
-                bezier = easeInOutCubic,0.65,0.05,0.36,1
-                bezier = linear,0,0,1,1
-                bezier = almostLinear,0.5,0.5,0.75,1.0
-                bezier = quick,0.15,0,0.1,1
-                animation = global, 1, 10, default
-                animation = border, 1, 5.39, easeOutQuint
-                animation = windows, 1, 4.79, easeOutQuint
-                animation = windowsIn, 1, 4.1, easeOutQuint, popin 87%
-                animation = windowsOut, 1, 1.49, linear, popin 87%
-                animation = fadeIn, 1, 1.73, almostLinear
-                animation = fadeOut, 1, 1.46, almostLinear
-                animation = fade, 1, 3.03, quick
-                animation = layers, 1, 3.81, easeOutQuint
-                animation = layersIn, 1, 4, easeOutQuint, fade
-                animation = layersOut, 1, 1.5, linear, fade
-                animation = fadeLayersIn, 1, 1.79, almostLinear
-                animation = fadeLayersOut, 1, 1.39, almostLinear
-                animation = workspaces, 1, 1.94, almostLinear, fade
-                animation = workspacesIn, 1, 1.21, almostLinear, fade
-                animation = workspacesOut, 1, 1.94, almostLinear, fade
-                animation = zoomFactor, 1, 7, quick
+                enabled = false
+                # bezier = easeOutQuint,0.23,1,0.32,1
+                # bezier = easeInOutCubic,0.65,0.05,0.36,1
+                # bezier = linear,0,0,1,1
+                # bezier = almostLinear,0.5,0.5,0.75,1.0
+                # bezier = quick,0.15,0,0.1,1
+                # animation = global, 1, 10, default
+                # animation = border, 1, 5.39, easeOutQuint
+                # animation = windows, 1, 4.79, easeOutQuint
+                # animation = windowsIn, 1, 4.1, easeOutQuint, popin 87%
+                # animation = windowsOut, 1, 1.49, linear, popin 87%
+                # animation = fadeIn, 1, 1.73, almostLinear
+                # animation = fadeOut, 1, 1.46, almostLinear
+                # animation = fade, 1, 3.03, quick
+                # animation = layers, 1, 3.81, easeOutQuint
+                # animation = layersIn, 1, 4, easeOutQuint, fade
+                # animation = layersOut, 1, 1.5, linear, fade
+                # animation = fadeLayersIn, 1, 1.79, almostLinear
+                # animation = fadeLayersOut, 1, 1.39, almostLinear
+                # animation = workspaces, 1, 1.94, almostLinear, fade
+                # animation = workspacesIn, 1, 1.21, almostLinear, fade
+                # animation = workspacesOut, 1, 1.94, almostLinear, fade
+                # animation = zoomFactor, 1, 7, quick
              }
 
 
@@ -155,13 +159,13 @@
             }
 
             render {
-                cm_fs_passthrough = 1
                 cm_enabled = true
                 new_render_scheduling = false
                 cm_auto_hdr = 1
                 send_content_type = true
-                non_shader_cm = 3
-                cm_sdr_eotf = 0
+                non_shader_cm = 1
+                cm_sdr_eotf = gamma22
+                commit_timing_enabled = true
             }
             
             misc {
@@ -179,7 +183,6 @@
 
             xwayland {
                 enabled = true
-                force_zero_scaling = true
             }
 
             group {

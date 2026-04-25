@@ -4,6 +4,7 @@
     enable = true;
     defaultEditor = true;
     package = inputs.neovim.packages.${pkgs.system}.default;
+    sideloadInitLua = true;
     extraPackages = with pkgs; [
       gcc
       clang
