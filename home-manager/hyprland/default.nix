@@ -50,15 +50,14 @@
             env=QT_QPA_PLATFORM,wayland;xcb
             env=QT_QPA_PLATFORMTHEME,hyprqt6engine
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-            env=QT_ENABLE_HIGHDPI_SCALING,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
             env=GDK_BACKEND,wayland,x11,*
             env=GBM_BACKEND,nvidia-drm
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX,1
-            env=__GL_GSYNC_ALLOWED,1
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=CUDA_DISABLE_PERF_BOOST,1
+            env=__GL_VRR_ALLOWED,0
 
             exec-once=hyprctl setcursor rose-pine-hyprcursor 24
 
@@ -67,11 +66,8 @@
                 mode = 1920x1080@144
                 position = 0x0
                 scale = 1
-                bitdepth = 10
                 supports_wide_color = 1
                 supports_hdr = 1
-                vrr = 1
-                # cm = wide
             }
 
             input {

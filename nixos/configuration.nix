@@ -40,9 +40,6 @@
       };
     };
     modprobeConfig.enable = true;
-    extraModprobeConfig = ''
-      options nvidia NVreg_UsePageAttributeTable=1
-    '';
   };
 
   console = {
@@ -167,13 +164,13 @@
       };
     };
     nvidia = {
+      branch = "new_feature";
       open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.new_feature;
       powerManagement = {
-        enable = true;
         kernelSuspendNotifier = true;
       };
-      dynamicBoost.enable = true;
+      videoAcceleration = true;
     };
   };
 
