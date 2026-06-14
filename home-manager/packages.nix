@@ -10,6 +10,8 @@
     packages = with pkgs; [
       qmk
       discordo
+      lsfg-vk
+      lsfg-vk-ui
       viddy
       streamlink
       code-cursor

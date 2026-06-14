@@ -14,7 +14,7 @@
     };
     tmp.cleanOnBoot = true;
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "quiet"
       "rd.systemd.show_status=false"
@@ -515,6 +515,7 @@
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
+      enableWsi = true;
     };
     hyprland = {
       enable = true;

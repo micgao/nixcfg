@@ -66,14 +66,12 @@
                 mode = 1920x1080@144
                 position = 0x0
                 scale = 1
-                supports_wide_color = 1
-                supports_hdr = 1
             }
 
             input {
                 kb_layout = us,ca
                 follow_mouse = 1
-                sensitivity = -0.3
+                sensitivity = 0
                 accel_profile = flat
                 repeat_rate = 30
                 repeat_delay = 400
@@ -88,9 +86,6 @@
                 col.inactive_border = rgba(9898a6aa)
                 layout = scrolling
                 locale = en_CA
-                snap {
-                    enabled = true
-                }
             }
 
             scrolling {
@@ -98,12 +93,8 @@
             }
 
             cursor {
-                no_hardware_cursors = 1
+                no_hardware_cursors = 2
                 sync_gsettings_theme = true
-            }
-
-            quirks {
-                prefer_hdr = 1
             }
 
             decoration {
@@ -118,6 +109,10 @@
       	        }
                 dim_inactive = true
                 dim_strength = 0.1
+            }
+
+            debug {
+                invalidate_fp16 = 1
             }
 
              animations {
@@ -146,7 +141,6 @@
                 # animation = zoomFactor, 1, 7, quick
              }
 
-
             binds {
                 pass_mouse_when_bound = false
                 focus_preferred_method = 1
@@ -159,9 +153,9 @@
                 new_render_scheduling = false
                 cm_auto_hdr = 1
                 send_content_type = true
-                non_shader_cm = 1
-                cm_sdr_eotf = gamma22
+                non_shader_cm = 2
                 commit_timing_enabled = true
+                use_fp16 = 1
             }
             
             misc {
