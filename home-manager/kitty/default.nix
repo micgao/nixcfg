@@ -37,5 +37,6 @@
     shellIntegration = {
       enableZshIntegration = true;
     };
+    themeFile = "Sequoia_Moonlight_Dark";
   };
 }

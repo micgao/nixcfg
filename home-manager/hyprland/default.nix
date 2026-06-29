@@ -11,6 +11,8 @@
     inputs.hyprqt6engine.packages.${pkgs.system}.hyprqt6engine
   ];
 
+  programs.hyprland-qt-support.enable = true;
+
   services.hyprpolkitagent = {
     enable = true;
     package = inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent;
@@ -38,7 +40,10 @@
     xwayland.enable = true;
     systemd = {
       enable = true;
-      variables = ["--all"];
+      variables = [
+        "--all"
+      ];
+      enableXdgAutostart = true;
     };
     extraConfig = ''
             # monitor=,preferred,auto,auto
@@ -57,7 +62,6 @@
             env=MOZ_DISABLE_RDD_SANDBOX,1
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
             env=CUDA_DISABLE_PERF_BOOST,1
-            env=__GL_VRR_ALLOWED,0
 
             exec-once=hyprctl setcursor rose-pine-hyprcursor 24
 

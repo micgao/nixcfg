@@ -10,7 +10,6 @@
         };
       };
     };
-    git-cliff.enable = true;
     gitui = {
       enable = true;
       keyConfig = ''

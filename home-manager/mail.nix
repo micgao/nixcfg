@@ -5,9 +5,4 @@
     msmtp.enable = true;
     himalaya.enable = true;
   };
-  # services = {
-  #   mbsync = {
-  #     enable = true;
-  #   };
-  # };
 }

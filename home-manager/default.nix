@@ -18,11 +18,9 @@
     ./distrobox.nix
     ./editors.nix
     ./emacs.nix
-    ./fuzzel.nix
     ./fonts.nix
     ./fzf.nix
     ./gaming.nix
-    ./gh.nix
     ./git.nix
     ./go.nix
     ./gpg.nix
@@ -34,13 +32,10 @@
     ./nix-your-shell.nix
     ./packages.nix
     ./password.nix
-    ./pueue.nix
-    ./reaper.nix
     ./ripgrep.nix
     ./waybar.nix
     ./xdg.nix
     ./yazi.nix
-    ./zathura.nix
     ./zoxide.nix
     ./zsh.nix
   ];
