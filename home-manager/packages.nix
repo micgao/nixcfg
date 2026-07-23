@@ -16,9 +16,9 @@
       streamlink
       code-cursor
       opencode
-      inputs.firefox-nightly.packages.${pkgs.system}.firefox-devedition-bin
+      inputs.firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-devedition-bin
       brave
-      inputs.ghostty.packages."${pkgs.system}".default
+      inputs.ghostty.packages."${pkgs.stdenv.hostPlatform.system}".default
       rustup
       comma
       curlie
@@ -46,8 +46,8 @@
       monero-cli
       rose-pine-hyprcursor
       reaper
-      inputs.hyprshutdown.packages."${pkgs.system}".default
-      inputs.hyprpwcenter.packages."${pkgs.system}".default
+      inputs.hyprshutdown.packages."${pkgs.stdenv.hostPlatform.system}".default
+      inputs.hyprpwcenter.packages."${pkgs.stdenv.hostPlatform.system}".default
     ];
   };
 }

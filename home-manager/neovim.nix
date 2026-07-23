@@ -3,7 +3,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = inputs.neovim.packages.${pkgs.system}.default;
+    package = inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default;
     sideloadInitLua = true;
     extraPackages = with pkgs; [
       gcc

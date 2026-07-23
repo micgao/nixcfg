@@ -18,43 +18,33 @@
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpwcenter = {
       url = "github:hyprwm/hyprpwcenter";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
       url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlauncher = {
       url = "github:hyprwm/hyprlauncher";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpolkitagent = {
       url = "github:hyprwm/hyprpolkitagent";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprqt6engine = {
       url = "github:hyprwm/hyprqt6engine";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprshutdown = {
       url = "github:hyprwm/hyprshutdown";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";

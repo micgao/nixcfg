@@ -3,34 +3,34 @@
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./hyprpaper.nix
-    ./hyprlock.nix
+    # ./hyprlock.nix
   ];
 
   home.packages = [
-    inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
-    inputs.hyprqt6engine.packages.${pkgs.system}.hyprqt6engine
+    inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.hyprpicker
+    inputs.hyprqt6engine.packages.${pkgs.stdenv.hostPlatform.system}.hyprqt6engine
   ];
 
   programs.hyprland-qt-support.enable = true;
 
   services.hyprpolkitagent = {
     enable = true;
-    package = inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent;
+    package = inputs.hyprpolkitagent.packages.${pkgs.stdenv.hostPlatform.system}.hyprpolkitagent;
   };
 
-  services.hypridle = {
-    enable = true;
-    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
-    settings = {
-      general = {
-        lock_cmd = "${lib.getExe config.programs.hyprlock.package}";
-      };
-    };
-  };
+  # services.hypridle = {
+  #   enable = true;
+  #   package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
+  #   settings = {
+  #     general = {
+  #       lock_cmd = "${lib.getExe config.programs.hyprlock.package}";
+  #     };
+  #   };
+  # };
 
   services.hyprlauncher = {
     enable = true;
-    package = inputs.hyprlauncher.packages.${pkgs.system}.hyprlauncher;
+    package = inputs.hyprlauncher.packages.${pkgs.stdenv.hostPlatform.system}.hyprlauncher;
   };
 
   wayland.windowManager.hyprland = {
@@ -46,13 +46,11 @@
       enableXdgAutostart = true;
     };
     extraConfig = ''
-            # monitor=,preferred,auto,auto
-            monitor=eDP-1,disable
             env=LIBVA_DRIVER_NAME,nvidia
             # env=GTK_THEME,sequoia
             env=GTK_THEME_VARIANT,dark
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
-            env=QT_QPA_PLATFORM,wayland;xcb
+            env=QT_QPA_PLATFORM,wayland;x11
             env=QT_QPA_PLATFORMTHEME,hyprqt6engine
             env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
             env=_JAVA_AWT_WM_NONREPARENTING,1
@@ -61,15 +59,26 @@
             env=NVD_BACKEND,direct
             env=MOZ_DISABLE_RDD_SANDBOX,1
             env=__GLX_VENDOR_LIBRARY_NAME,nvidia
+            env=__GL_GSYNC_ALLOWED,1
             env=CUDA_DISABLE_PERF_BOOST,1
+            env=XDG_SESSION_DESKTOP,Hyprland
 
             exec-once=hyprctl setcursor rose-pine-hyprcursor 24
 
             monitorv2 {
                 output = DP-3
                 mode = 1920x1080@144
-                position = 0x0
                 scale = 1
+                position = 0x0
+                supports_wide_color = 1
+                supports_hdr = 1
+                cm = auto
+                vrr = 0
+            }
+
+            monitorv2 {
+                output = eDP-1
+                disabled = true
             }
 
             input {
@@ -89,16 +98,16 @@
                 col.active_border = rgb(ffbb88) rgb(f58ee0) 90deg
                 col.inactive_border = rgba(9898a6aa)
                 layout = scrolling
-                locale = en_CA
+                allow_tearing = true
             }
 
             scrolling {
-                column_width = 1.0
+                column_width = 0.5
             }
 
             cursor {
-                no_hardware_cursors = 2
                 sync_gsettings_theme = true
+                no_warps = true
             }
 
             decoration {
@@ -115,34 +124,8 @@
                 dim_strength = 0.1
             }
 
-            debug {
-                invalidate_fp16 = 1
-            }
-
              animations {
                 enabled = false
-                # bezier = easeOutQuint,0.23,1,0.32,1
-                # bezier = easeInOutCubic,0.65,0.05,0.36,1
-                # bezier = linear,0,0,1,1
-                # bezier = almostLinear,0.5,0.5,0.75,1.0
-                # bezier = quick,0.15,0,0.1,1
-                # animation = global, 1, 10, default
-                # animation = border, 1, 5.39, easeOutQuint
-                # animation = windows, 1, 4.79, easeOutQuint
-                # animation = windowsIn, 1, 4.1, easeOutQuint, popin 87%
-                # animation = windowsOut, 1, 1.49, linear, popin 87%
-                # animation = fadeIn, 1, 1.73, almostLinear
-                # animation = fadeOut, 1, 1.46, almostLinear
-                # animation = fade, 1, 3.03, quick
-                # animation = layers, 1, 3.81, easeOutQuint
-                # animation = layersIn, 1, 4, easeOutQuint, fade
-                # animation = layersOut, 1, 1.5, linear, fade
-                # animation = fadeLayersIn, 1, 1.79, almostLinear
-                # animation = fadeLayersOut, 1, 1.39, almostLinear
-                # animation = workspaces, 1, 1.94, almostLinear, fade
-                # animation = workspacesIn, 1, 1.21, almostLinear, fade
-                # animation = workspacesOut, 1, 1.94, almostLinear, fade
-                # animation = zoomFactor, 1, 7, quick
              }
 
             binds {
@@ -153,30 +136,34 @@
             }
 
             render {
-                cm_enabled = true
-                new_render_scheduling = false
-                cm_auto_hdr = 1
-                send_content_type = true
-                non_shader_cm = 2
-                commit_timing_enabled = true
-                use_fp16 = 1
+                direct_scanout = 1
+            }
+            
+            quirks {
+                skip_non_kms_dmabuf_formats = true
+            }
+            
+            opengl {
+                nvidia_anti_flicker = true
             }
             
             misc {
+                vrr = 0
                 font_family = Inter
                 force_default_wallpaper = 0
                 disable_autoreload = true
                 disable_splash_rendering = true
                 disable_hyprland_logo = true
                 close_special_on_empty = false
-                layers_hog_keyboard_focus = true
                 background_color = rgb(0f1014)
                 focus_on_activate = true
-                on_focus_under_fullscreen = 1
+                mouse_move_enables_dpms = true
+                key_press_enables_dpms = true
             }
 
             xwayland {
                 enabled = true
+                force_zero_scaling = true
             }
 
             group {
@@ -189,6 +176,19 @@
                     col.locked_active = rgba(111216aa)
                     col.locked_inactive = rgba(131317aa)
                 }
+            }
+
+            debug {
+                full_cm_proto = true
+            }
+
+            windowrule {
+                name = dota
+                match:class = dota2
+                immediate = true
+                workspace = 9
+                render_unfocused = true
+                confine_pointer = true
             }
 
             windowrule {

@@ -62,8 +62,10 @@
     homeDirectory = "/home/${config.home.username}";
     stateVersion = "23.11";
     pointerCursor = {
+      enable = true;
       name = "BreezeX-RosePine-Linux";
       package = pkgs.rose-pine-cursor;
+      dotIcons.enable = true;
       size = 24;
       gtk.enable = true;
       x11.enable = true;

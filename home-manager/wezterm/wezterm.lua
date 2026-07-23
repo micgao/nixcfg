@@ -2,8 +2,6 @@ local wezterm = require "wezterm"
 
 local config = {}
 
-local gpus = wezterm.gui.enumerate_gpus()
-
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
@@ -127,11 +125,10 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 11
 config.adjust_window_size_when_changing_font_size = false
 config.freetype_interpreter_version = 40
-config.freetype_load_target = "HorizontalLcd"
+config.freetype_load_target = "Light"
 config.freetype_render_target = "Light"
-config.freetype_load_flags = "NO_HINTING"
+config.freetype_load_flags = "DEFAULT"
 config.harfbuzz_features = { 'calt = 0', 'clig = 0', 'liga = 0' }
-config.unicode_version = 14
 config.cursor_thickness = 2
 config.cursor_blink_rate = 0
 config.default_cursor_style = "SteadyBar"
@@ -141,12 +138,10 @@ config.scrollback_lines = 9001
 config.enable_scroll_bar = false
 config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
-config.tab_and_split_indices_are_zero_based = false
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = true
 config.enable_tab_bar = true
 config.front_end = "WebGpu"
-config.webgpu_preferred_adapter = gpus[1]
+config.webgpu_power_preference = "HighPerformance"
 config.enable_wayland = true
 config.check_for_updates = false
 config.command_palette_bg_color = "#0F1014"

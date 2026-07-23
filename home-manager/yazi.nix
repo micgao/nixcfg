@@ -4,5 +4,6 @@
     enableZshIntegration = true;
     enableNushellIntegration = true;
     package = inputs.yazi.packages.${pkgs.system}.default;
+    shellWrapperName = "y";
   };
 }

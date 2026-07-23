@@ -1,7 +1,8 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, ... }: {
   programs.firefox = {
     enable = true;
-    package = inputs.firefox-nightly.packages.${pkgs.system}.firefox-nightly-bin;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
+    package = inputs.firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
   };
   programs.chromium = {
     enable = true;

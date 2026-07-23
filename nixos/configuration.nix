@@ -10,13 +10,7 @@
 
   boot = {
     tmp.cleanOnBoot = true;
-    consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [
-      "quiet"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-    ];
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot = {
         enable = true;
@@ -27,16 +21,22 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
-      enable = true;
-      includeDefaultModules = true;
-      verbose = false;
       systemd = {
         enable = true;
         network.wait-online.enable = false;
-        dbus.enable = true;
       };
+      kernelModules = [
+        "nvidia"
+      ];
     };
+    consoleLogLevel = 3;
+    kernelParams = [
+      "quiet"
+    ];
     modprobeConfig.enable = true;
+    extraModulePackages = [
+      config.boot.kernelPackages.nvidia_x11
+    ];
   };
 
   console = {
@@ -64,8 +64,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      libnotify
-      libsecret
     ];
     etc = lib.mapAttrs'
       (name: value: {
@@ -85,42 +83,41 @@
       enable = true;
       settings = {
         Hyprland = [
-          "org.wezfurlong.wezterm.desktop"
           "kitty.desktop"
+          "org.wezfurlong.wezterm.desktop"
         ];
         default = [
-          "org.wezfurlong.wezterm.desktop"
           "kitty.desktop"
+          "org.wezfurlong.wezterm.desktop"
         ];
       };
     };
     portal = {
       enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
       configPackages = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk
       ];
       config = {
         common.default = ["gtk"];
-        hyprland.default = ["gtk" "hyprland"];
+        hyprland = {
+          default = ["gtk" "hyprland"];
+        };
       };
     };
   };
 
   security = {
     pam.services = {
-      hyprlock = { };
       greetd.enableGnomeKeyring = true;
-      greetd-password.enableGnomeKeyring = true;
-      login.enableGnomeKeyring = true;
     };
     sudo-rs = {
       enable = true;
       wheelNeedsPassword = false;
     };
-    tpm2.enable = true;
     rtkit.enable = true;
     polkit.enable = true;
   };
@@ -148,10 +145,8 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        nvidia-vaapi-driver
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        nvidia-vaapi-driver
       ];
     };
     enableRedistributableFirmware = true;
@@ -164,37 +159,35 @@
       branch = "new_feature";
       open = true;
       package = config.boot.kernelPackages.nvidiaPackages.new_feature;
-      powerManagement = {
-        kernelSuspendNotifier = true;
-      };
+      modesetting.enable = true;
       videoAcceleration = true;
     };
   };
 
   nix =
     let
-      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+      flakeInputs = lib.filterAttrs (_: v: lib.isType "flake" v) inputs;
     in
     {
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
-        flake-registry = "";
+        flake-registry = "/etc/nix/registry.json";
         keep-going = true;
         keep-outputs = true;
         keep-derivations = true;
         warn-dirty = false;
         nix-path = config.nix.nixPath;
-        trusted-users = [ "micgao" ];
+        trusted-users = [ "root" "@wheel" "micgao" ];
         use-xdg-base-directories = true;
       };
       channel.enable = false;
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 14d";
-      };
-      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+      # gc = {
+      #   automatic = true;
+      #   dates = "weekly";
+      #   options = "--delete-older-than 14d";
+      # };
+      registry = lib.mapAttrs (_: v: { flake = v; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
     };
 
   fonts = {
@@ -244,9 +237,9 @@
       dockerCompat = true;
       dockerSocket.enable = true;
     };
-    libvirtd = {
-      enable = true;
-    };
+    # libvirtd = {
+    #   enable = true;
+    # };
     virtualbox.host = {
       enable = true;
     };
@@ -287,7 +280,13 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    upower.enable = true;
+    thermald = {
+      enable = true;
+      ignoreCpuidCheck = true;
+    };
+    upower = {
+      enable = true;
+    };
     tuned = {
       enable = true;
       ppdSupport = true;
@@ -295,23 +294,15 @@
         daemon = true;
         dynamic_tuning = true;
       };
-      ppdSettings = {
-        main = {
-          default = "performance";
-        };
-      };
     };
-    resolved = {
-      enable = true;
-      dnsovertls = "true";
-    };
-    passSecretService.enable = true;
     flatpak.enable = true;
     scx = {
       enable = true;
       scheduler = "scx_lavd";
       extraArgs = [
-        "--autopilot"
+        "--autopower"
+        "--per-cpu-dsq"
+        "--enable-cpu-bw"
       ];
     };
     mpdscribble = {
@@ -340,19 +331,16 @@
       HandleLidSwitch = "ignore";
     };
     fstrim.enable = true;
+
     greetd = {
       enable = true;
-      useTextGreeter = true;
       settings = {
         default_session = {
-          command = "start-hyprland";
-          user = "micgao";
-        };
-        initial_session = {
-          command = "start-hyprland";
-          user = "micgao";
+          user = "greeter";
+          command = "${lib.getExe pkgs.tuigreet} --time --asterisks";
         };
       };
+      useTextGreeter = true;
     };
     xserver = {
       videoDrivers = [ "nvidia" ];
@@ -370,6 +358,35 @@
       jack.enable = true;
       wireplumber.enable = true;
       socketActivation = true;
+      extraConfig = {
+        pipewire."92-low-latency" = {
+          "context.properties" = {
+            "default.clock.rate" = 48000;
+            "default.clock.quantum" = 32;
+            "default.clock.min-quantum" = 32;
+            "default.clock.max-quantum" = 32;
+          };
+        };
+        pipewire-pulse."92-low-latency" = {
+          "context.properties" = [
+            {
+              name = "libpipewire-module-protocol-pulse";
+              args = { };
+            }
+          ];
+          "pulse.properties" = {
+            "pulse.min.req" = "32/48000";
+            "pulse.default.req" = "32/48000";
+            "pulse.max.req" = "32/48000";
+            "pulse.min.quantum" = "32/48000";
+            "pulse.max.quantum" = "32/48000";
+          };
+          "stream.properties" = {
+            "node.latency" = "32/48000";
+            "resample.quality" = 1;
+          };
+        };
+      };
     };
     # btrfs.autoScrub = {
     #   enable = true;
@@ -382,101 +399,7 @@
     #     "/home"
     #   ];
     # };
-    throttled = {
-      enable = true;
-      extraConfig = ''
-        [GENERAL]
-        # Enable or disable the script execution
-        Enabled: True
-        # SYSFS path for checking if the system is running on AC power
-        Sysfs_Power_Path: /sys/class/power_supply/AC*/online
-        # Auto reload config on changes
-        Autoreload: True
-
-        ## Settings to apply while connected to Battery power
-        [BATTERY]
-        # Update the registers every this many seconds
-        Update_Rate_s: 30
-        # Max package power for time window #1
-        PL1_Tdp_W: 29
-        # Time window #1 duration
-        PL1_Duration_s: 28
-        # Max package power for time window #2
-        PL2_Tdp_W: 44
-        # Time window #2 duration
-        PL2_Duration_S: 0.002
-        # Max allowed temperature before throttling
-        Trip_Temp_C: 85
-        # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-        cTDP: 0
-        # Disable BDPROCHOT (EXPERIMENTAL)
-        Disable_BDPROCHOT: False
-
-        ## Settings to apply while connected to AC power
-        [AC]
-        # Update the registers every this many seconds
-        Update_Rate_s: 5
-        # Max package power for time window #1
-        PL1_Tdp_W: 44
-        # Time window #1 duration
-        PL1_Duration_s: 28
-        # Max package power for time window #2
-        PL2_Tdp_W: 44
-        # Time window #2 duration
-        PL2_Duration_S: 0.002
-        # Max allowed temperature before throttling
-        Trip_Temp_C: 95
-        # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
-        # Uncomment only if you really want to use it
-        HWP_Mode: True
-        # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-        cTDP: 0
-        # Disable BDPROCHOT (EXPERIMENTAL)
-        Disable_BDPROCHOT: True
-
-        # All voltage values are expressed in mV and *MUST* be negative (i.e. undervolt)! 
-        [UNDERVOLT.BATTERY]
-        # CPU core voltage offset (mV)
-        CORE: 0
-        # Integrated GPU voltage offset (mV)
-        GPU: 0
-        # CPU cache voltage offset (mV)
-        CACHE: 0
-        # System Agent voltage offset (mV)
-        UNCORE: 0
-        # Analog I/O voltage offset (mV)
-        ANALOGIO: 0
-
-        # All voltage values are expressed in mV and *MUST* be negative (i.e. undervolt)!
-        [UNDERVOLT.AC]
-        # CPU core voltage offset (mV)
-        CORE: 0
-        # Integrated GPU voltage offset (mV)
-        GPU: 0
-        # CPU cache voltage offset (mV)
-        CACHE: 0
-        # System Agent voltage offset (mV)
-        UNCORE: 0
-        # Analog I/O voltage offset (mV)
-        ANALOGIO: 0
-
-        # [ICCMAX.AC]
-        # # CPU core max current (A)
-        # CORE: 
-        # # Integrated GPU max current (A)
-        # GPU: 
-        # # CPU cache max current (A)
-        # CACHE: 
-
-        # [ICCMAX.BATTERY]
-        # # CPU core max current (A)
-        # CORE: 
-        # # Integrated GPU max current (A)
-        # GPU: 
-        # # CPU cache max current (A)
-        # CACHE: 
-      '';
-    };
+    # };
   };
 
   users = {
@@ -490,7 +413,6 @@
         "audio"
         "input"
         "vboxusers"
-        "libvirtd"
         "podman"
         "kvm"
         "rtkit"
@@ -499,11 +421,12 @@
   };
 
   programs = {
+    gpu-screen-recorder.enable = true;
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;
     };
-    virt-manager.enable = true;
+    # virt-manager.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     steam = {
@@ -516,26 +439,15 @@
     };
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     zsh.enable = true;
-    gnupg = {
-      dirmngr.enable = true;
-      agent = {
-        enable = true;
-        enableBrowserSocket = true;
-        enableExtraSocket = true;
-        pinentryPackage = pkgs.pinentry-gnome3;
-      };
-    };
   };
 
   qt = {
     enable = true;
   };
-
-  gtk.iconCache.enable = true;
 
   system = {
     stateVersion = "23.11";
