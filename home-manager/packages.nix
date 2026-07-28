@@ -39,12 +39,12 @@
       obsidian
       jetbrains-toolbox
       feather
-      (wine.override { wineBuild = "wineWow"; wineRelease = "staging"; fontconfigSupport = true; alsaSupport = true; gtkSupport = true; openglSupport = true; dbusSupport = true; openclSupport = true; cursesSupport = true; vaSupport = true; pulseaudioSupport = true; udevSupport = true; vulkanSupport = true; sdlSupport = true; usbSupport = true; waylandSupport = true; embedInstallers = true; })
+      wineWow64Packages.wayland
+      rose-pine-hyprcursor
       qobuz-dl
       streamrip
       monero-gui
       monero-cli
-      rose-pine-hyprcursor
       reaper
       inputs.hyprshutdown.packages."${pkgs.stdenv.hostPlatform.system}".default
       inputs.hyprpwcenter.packages."${pkgs.stdenv.hostPlatform.system}".default
