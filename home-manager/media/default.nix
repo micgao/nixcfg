@@ -81,15 +81,6 @@
       use_console_editor = "yes";
     };
   };
-  programs.mpv = {
-    enable = true;
-    defaultProfiles = [ "gpu-hq" ];
-    config = {
-      profile = "gpu-hq";
-      ytdl-format = "bestvideo+bestaudio";
-      user-agent = "Mozilla/5.0";
-    };
-  };
   programs.ncspot = {
     enable = true;
     settings = {

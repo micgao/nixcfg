@@ -9,7 +9,8 @@
   home = {
     packages = with pkgs; [
       qmk
-      discordo
+      discord
+      discord-canary
       lsfg-vk
       lsfg-vk-ui
       viddy

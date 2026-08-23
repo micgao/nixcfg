@@ -22,9 +22,6 @@
     hyprpwcenter = {
       url = "github:hyprwm/hyprpwcenter";
     };
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-    };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
     };
@@ -36,12 +33,6 @@
     };
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
-    };
-    hyprpolkitagent = {
-      url = "github:hyprwm/hyprpolkitagent";
-    };
-    hyprqt6engine = {
-      url = "github:hyprwm/hyprqt6engine";
     };
     hyprshutdown = {
       url = "github:hyprwm/hyprshutdown";

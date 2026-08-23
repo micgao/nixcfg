@@ -10,7 +10,7 @@
 
   boot = {
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     loader = {
       systemd-boot = {
         enable = true;
@@ -25,19 +25,15 @@
         enable = true;
         network.wait-online.enable = false;
       };
-      kernelModules = [
-        "nvidia"
-      ];
     };
     consoleLogLevel = 3;
     kernelParams = [
       "quiet"
     ];
     modprobeConfig.enable = true;
-    extraModulePackages = [
-      config.boot.kernelPackages.nvidia_x11
-    ];
   };
+  
+  systemd.network.wait-online.enable = false;
 
   console = {
     colors = [
@@ -83,12 +79,12 @@
       enable = true;
       settings = {
         Hyprland = [
-          "kitty.desktop"
           "org.wezfurlong.wezterm.desktop"
+          "kitty.desktop"
         ];
         default = [
-          "kitty.desktop"
           "org.wezfurlong.wezterm.desktop"
+          "kitty.desktop"
         ];
       };
     };
@@ -96,15 +92,20 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-termfilechooser
       ];
       configPackages = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk
       ];
       config = {
-        common.default = ["gtk"];
+        common = {
+          default = ["gtk"];
+          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+        };
         hyprland = {
-          default = ["gtk" "hyprland"];
+          default = ["hyprland" "gtk"];
+          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         };
       };
     };
@@ -114,12 +115,17 @@
     pam.services = {
       greetd.enableGnomeKeyring = true;
     };
-    sudo-rs = {
+    soteria.enable = true;
+    run0 = {
       enable = true;
       wheelNeedsPassword = false;
+      sudo-shim.enable = true;
+      persistentAuth.enable = true;
     };
     rtkit.enable = true;
     polkit.enable = true;
+    sudo.enable = false;
+    sudo-rs.enable = false;
   };
 
   nixpkgs = {
@@ -156,11 +162,13 @@
       };
     };
     nvidia = {
-      branch = "new_feature";
       open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.new_feature;
+      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
       modesetting.enable = true;
       videoAcceleration = true;
+      powerManagement = {
+        kernelSuspendNotifier = true;
+      };
     };
   };
 
@@ -170,6 +178,7 @@
     in
     {
       settings = {
+        max-jobs = 6;
         experimental-features = [ "nix-command" "flakes" ];
         flake-registry = "/etc/nix/registry.json";
         keep-going = true;
@@ -191,7 +200,6 @@
     };
 
   fonts = {
-    enableDefaultPackages = false;
     packages = with pkgs; [
       liberation_ttf
       material-symbols
@@ -215,10 +223,6 @@
       antialias = true;
       cache32Bit = true;
       includeUserConf = true;
-      subpixel = {
-        rgba = "rgb";
-        lcdfilter = "default";
-      };
       hinting = {
         enable = true;
       };
@@ -246,23 +250,12 @@
   };
 
   networking = {
-    nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
-    useNetworkd = true;
-    useDHCP = true;
-    wireguard = {
+    wireless.allowAuxiliaryImperativeNetworks = true;
+    networkmanager = {
       enable = true;
-    };
-    wireless = {
-      iwd = {
-        enable = true;
-        settings = {
-          General = {
-            EnableNetworkConfiguration = true;
-          };
-        };
+      wifi = {
+        backend = "iwd";
+        powersave = false;
       };
     };
     hostName = "X1E3";
@@ -274,15 +267,16 @@
       "en_CA.UTF-8/UTF-8"
       "fr_CA.UTF-8/UTF-8"
     ];
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "en_CA.UTF-8";
   };
 
   time.timeZone = "America/Toronto";
 
   services = {
-    thermald = {
+    ananicy = {
       enable = true;
-      ignoreCpuidCheck = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos;
     };
     upower = {
       enable = true;
@@ -336,7 +330,6 @@
       enable = true;
       settings = {
         default_session = {
-          user = "greeter";
           command = "${lib.getExe pkgs.tuigreet} --time --asterisks";
         };
       };
@@ -416,12 +409,12 @@
         "podman"
         "kvm"
         "rtkit"
+        "networkmanager"
       ];
     };
   };
 
   programs = {
-    gpu-screen-recorder.enable = true;
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;
@@ -431,18 +424,43 @@
     seahorse.enable = true;
     steam = {
       enable = true;
+      extraPackages = [
+        pkgs.gamescope
+      ];
+      gamescopeSession = {
+        enable = true;
+        steamArgs = [
+          "-pipewire-dmabuf"
+          "-dev"
+          "-console"
+        ];
+        args = [
+          "--steam"
+        ];
+      };
     };
     nix-ld.dev.enable = true;
     gamescope = {
       enable = true;
       enableWsi = true;
+      capSysNice = true;
+      args = [
+        "--rt"
+        "-W 1920"
+        "-H 1080"
+        "-r 144"
+        "--expose-wayland"
+        "--force-grab-cursor"
+        "--adaptive-sync"
+        "--fullscreen"
+        "--max-scale 1"
+      ];
     };
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
-    zsh.enable = true;
   };
 
   qt = {

@@ -15,8 +15,8 @@
       @define-color metal #FDFDFE;
 
       * {
-          font-family: 'Inter', 'Source Sans Pro', sans-serif;
-          font-size: 12.5px;
+          font-family: 'Inter', sans-serif;
+          font-size: 12px;
       }
 
       window#waybar {
@@ -62,7 +62,7 @@
           border-bottom: 3px solid @orange;
       }
 
-      #clock, #battery, #cpu, #memory, #disk, #systemd-failed-units, #network, #pulseaudio, #wireplumber {
+      #clock, #battery {
           margin: 4px 2px;
           background-color: @background;
           border-radius: 4px;
@@ -81,7 +81,7 @@
         fixed-center = true;
         layer = "top";
         position = "top";
-        height = 26;
+        height = 28;
         modules-left = [
           "hyprland/workspaces"
         ];
@@ -90,12 +90,7 @@
         ];
         modules-right = [
           "tray"
-          "systemd-failed-units"
           "battery"
-          "cpu"
-          "memory"
-          "disk"
-          "network"
           "clock"
         ];
         "hyprland/window" = {
@@ -107,14 +102,6 @@
         };
         "tray" = {
           show-passive-items = true;
-        };
-        "disk" = {
-          interval = 30;
-          format = "{used}/{total}";
-        };
-        "memory" = {
-          interval = 30;
-          format = "{percentage}%  ";
         };
         "clock" = {
           interval = 60;
