@@ -1,4 +1,13 @@
 { pkgs, inputs, config, ... }: {
+  imports  = [
+    inputs.helium.homeModules.default
+  ];
+  programs.helium = {
+    enable = true;
+    flags = [
+      "--ozone-platform-hint=auto"
+    ];
+  };
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";

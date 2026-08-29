@@ -9,19 +9,17 @@
   home = {
     packages = with pkgs; [
       qmk
+      faugus-launcher
+      umu-launcher
       discord
       discord-canary
       lsfg-vk
       lsfg-vk-ui
       viddy
-      streamlink
       code-cursor
       opencode
-      inputs.firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-devedition-bin
-      brave
-      inputs.ghostty.packages."${pkgs.stdenv.hostPlatform.system}".default
+      brave-origin
       rustup
-      comma
       curlie
       circumflex
       ffmpeg
@@ -47,8 +45,10 @@
       monero-gui
       monero-cli
       reaper
-      inputs.hyprshutdown.packages."${pkgs.stdenv.hostPlatform.system}".default
-      inputs.hyprpwcenter.packages."${pkgs.stdenv.hostPlatform.system}".default
+      inputs.zen.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-devedition-bin
+      inputs.hyprshutdown.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.hyprpwcenter.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 }

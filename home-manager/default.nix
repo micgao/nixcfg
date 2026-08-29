@@ -22,17 +22,19 @@
     ./fzf.nix
     ./gaming.nix
     ./git.nix
+    ./ghostty.nix
     ./go.nix
     ./gpg.nix
     ./gtk.nix
     ./jq.nix
     ./mail.nix
     ./neovim.nix
-    ./nix-index.nix
     ./nix-your-shell.nix
     ./packages.nix
     ./password.nix
+    ./polkit-agent.nix
     ./ripgrep.nix
+    ./tofi.nix
     ./waybar.nix
     ./xdg.nix
     ./yazi.nix

@@ -3,9 +3,11 @@
   imports = [
     ./hardware-configuration.nix
     ./cachix.nix
+    ./nvidia.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.hyprland.nixosModules.default
     inputs.nix-ld.nixosModules.nix-ld
+    inputs.nix-index-database.nixosModules.default
   ];
 
   boot = {
@@ -30,7 +32,6 @@
     kernelParams = [
       "quiet"
     ];
-    modprobeConfig.enable = true;
   };
   
   systemd.network.wait-online.enable = false;
@@ -60,16 +61,10 @@
 
   environment = {
     systemPackages = with pkgs; [
+      gitFull
     ];
-    etc = lib.mapAttrs'
-      (name: value: {
-        name = "nix/path/${name}";
-        value.source = value.flake;
-      })
-    config.nix.registry;
     sessionVariables = {
       LIBSEAT_BACKEND = "logind";
-      NIXOS_OZONE_WL = "1";
     };
     shells = with pkgs; [ zsh nushell ];
   };
@@ -115,7 +110,6 @@
     pam.services = {
       greetd.enableGnomeKeyring = true;
     };
-    soteria.enable = true;
     run0 = {
       enable = true;
       wheelNeedsPassword = false;
@@ -125,7 +119,6 @@
     rtkit.enable = true;
     polkit.enable = true;
     sudo.enable = false;
-    sudo-rs.enable = false;
   };
 
   nixpkgs = {
@@ -161,43 +154,30 @@
         updateMicrocode = true;
       };
     };
+
     nvidia = {
       open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+      package = config.boot.kernelPackages.nvidiaPackages.new_feature;
       modesetting.enable = true;
       videoAcceleration = true;
       powerManagement = {
         kernelSuspendNotifier = true;
       };
+      moduleParams = {
+      };
     };
   };
 
-  nix =
-    let
-      flakeInputs = lib.filterAttrs (_: v: lib.isType "flake" v) inputs;
-    in
-    {
-      settings = {
-        max-jobs = 6;
-        experimental-features = [ "nix-command" "flakes" ];
-        flake-registry = "/etc/nix/registry.json";
-        keep-going = true;
-        keep-outputs = true;
-        keep-derivations = true;
-        warn-dirty = false;
-        nix-path = config.nix.nixPath;
-        trusted-users = [ "root" "@wheel" "micgao" ];
-        use-xdg-base-directories = true;
-      };
-      channel.enable = false;
-      # gc = {
-      #   automatic = true;
-      #   dates = "weekly";
-      #   options = "--delete-older-than 14d";
-      # };
-      registry = lib.mapAttrs (_: v: { flake = v; }) flakeInputs;
-      nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      flake-registry = "/etc/nix/registry.json";
+      warn-dirty = false;
+      trusted-users = [ "root" "@wheel" "micgao" ];
+      use-xdg-base-directories = true;
     };
+    channel.enable = false;
+  };
 
   fonts = {
     packages = with pkgs; [
@@ -221,11 +201,7 @@
     fontconfig = {
       enable = true;
       antialias = true;
-      cache32Bit = true;
       includeUserConf = true;
-      hinting = {
-        enable = true;
-      };
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
@@ -250,9 +226,18 @@
   };
 
   networking = {
-    wireless.allowAuxiliaryImperativeNetworks = true;
+    dhcpcd.wait = "background";
+    wireless = {
+      iwd.enable = true;
+    };
     networkmanager = {
+      insertNameservers = [
+        "1.1.1.1#one.one.one.one"
+        "9.9.9.9#dns.quad9.net"
+      ];
       enable = true;
+      dns = "systemd-resolved";
+      dhcp = "dhcpcd";
       wifi = {
         backend = "iwd";
         powersave = false;
@@ -273,10 +258,12 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    ananicy = {
+    speechd.enable = false;
+    portmaster.enable = true;
+    lact.enable = true;
+    resolved = {
       enable = true;
-      package = pkgs.ananicy-cpp;
-      rulesProvider = pkgs.ananicy-rules-cachyos;
+      settings.Resolve.DNSOverTLS = "opportunistic";
     };
     upower = {
       enable = true;
@@ -287,17 +274,15 @@
       settings = {
         daemon = true;
         dynamic_tuning = true;
+        reapply_sysctl = false;
       };
     };
     flatpak.enable = true;
-    scx = {
+    scx-loader = {
       enable = true;
-      scheduler = "scx_lavd";
-      extraArgs = [
-        "--autopower"
-        "--per-cpu-dsq"
-        "--enable-cpu-bw"
-      ];
+      config = {
+        default_mode = "Auto";
+      };
     };
     mpdscribble = {
       enable = true;
@@ -314,7 +299,7 @@
     fwupd.enable = true;
     dbus = {
       enable = true;
-      packages = with pkgs; [ gcr gnome-keyring ];
+      packages = with pkgs; [ gcr gnome-settings-daemon ];
       implementation = "broker";
     };
     gnome.gnome-keyring.enable = true;
@@ -325,12 +310,13 @@
       HandleLidSwitch = "ignore";
     };
     fstrim.enable = true;
-
+    seatd.enable = true;
     greetd = {
       enable = true;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.tuigreet} --time --asterisks";
+          user = "greeter";
+          command = "${lib.getExe pkgs.tuigreet}";
         };
       };
       useTextGreeter = true;
@@ -397,24 +383,36 @@
 
   users = {
     defaultUserShell = pkgs.bashInteractive;
-    users.micgao = {
-      shell = pkgs.nushell;
-      isNormalUser = true;
-      extraGroups = [
-        "wheel"
-        "video"
-        "audio"
-        "input"
-        "vboxusers"
-        "podman"
-        "kvm"
-        "rtkit"
-        "networkmanager"
-      ];
+    users = {
+      greeter = {
+        extraGroups = [
+          "seat"
+        ];
+      };
+      micgao = {
+        shell = pkgs.nushell;
+        isNormalUser = true;
+        extraGroups = [
+          "i2c"
+          "wheel"
+          "video"
+          "audio"
+          "input"
+          "vboxusers"
+          "podman"
+          "kvm"
+          "rtkit"
+          "networkmanager"
+        ];
+      };
     };
   };
 
   programs = {
+    nix-index-database = {
+      enable = true;
+      comma.enable = true;
+    };
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;
@@ -436,6 +434,16 @@
         ];
         args = [
           "--steam"
+          "--rt"
+          "-W 1920"
+          "-H 1080"
+          "-r 144"
+          "--expose-wayland"
+          "--xwayland-count 2"
+          "--adaptive-sync"
+          "--prefer-output HDMI-A-1"
+          "--prefer-vk-device 10de:1f95"
+          "--immediate-flips"
         ];
       };
     };
@@ -443,18 +451,6 @@
     gamescope = {
       enable = true;
       enableWsi = true;
-      capSysNice = true;
-      args = [
-        "--rt"
-        "-W 1920"
-        "-H 1080"
-        "-r 144"
-        "--expose-wayland"
-        "--force-grab-cursor"
-        "--adaptive-sync"
-        "--fullscreen"
-        "--max-scale 1"
-      ];
     };
     hyprland = {
       enable = true;

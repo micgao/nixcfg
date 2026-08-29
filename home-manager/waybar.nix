@@ -93,6 +93,9 @@
           "battery"
           "clock"
         ];
+        "hyprland/workspaces" = {
+          show-special = true;
+        };
         "hyprland/window" = {
           separate-outputs = true;
         };

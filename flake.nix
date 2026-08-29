@@ -12,6 +12,10 @@
       url = "github:nix-community/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-your-shell = {
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,9 +32,6 @@
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
     };
-    hyprlauncher = {
-      url = "github:hyprwm/hyprlauncher";
-    };
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
     };
@@ -39,6 +40,13 @@
     };
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
+    };
+    zen = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helium = {
+      url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -68,9 +76,6 @@
       inherit lib;
       packages = forEachSystem (pkgs:
         import ./pkgs { inherit pkgs; }
-      );
-      formatter = forEachSystem (pkgs:
-        pkgs.nixpkgs-fmt
       );
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
