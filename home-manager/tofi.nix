@@ -7,7 +7,7 @@
       height = 30;
       horizontal = true;
       font-size = 12;
-      prompt-text = " >   ";
+      prompt-text = " > ";
       font = "Iosevka SS04";
       outline-width = 0;
       border-width = 0;
@@ -21,7 +21,7 @@
       padding-bottom = 0;
       padding-left = 0;
       padding-right = 1;
-      history = false;
+      history = true;
       drun-launch = true;
     };
   };

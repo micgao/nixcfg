@@ -81,7 +81,7 @@
         fixed-center = true;
         layer = "top";
         position = "top";
-        height = 28;
+        height = 32;
         modules-left = [
           "hyprland/workspaces"
         ];

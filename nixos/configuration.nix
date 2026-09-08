@@ -11,8 +11,9 @@
   ];
 
   boot = {
+    zswap.enable = true;
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot = {
         enable = true;
@@ -27,15 +28,24 @@
         enable = true;
         network.wait-online.enable = false;
       };
+      kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
     };
     consoleLogLevel = 3;
     kernelParams = [
       "quiet"
     ];
   };
-  
-  systemd.network.wait-online.enable = false;
 
+  powerManagement = {
+    cpuFreqGovernor = "performance";
+    scsiLinkPolicy = "max_performance";
+  };
+  
   console = {
     colors = [
       "0F1014"
@@ -63,9 +73,6 @@
     systemPackages = with pkgs; [
       gitFull
     ];
-    sessionVariables = {
-      LIBSEAT_BACKEND = "logind";
-    };
     shells = with pkgs; [ zsh nushell ];
   };
 
@@ -86,12 +93,14 @@
     portal = {
       enable = true;
       extraPortals = with pkgs; [
+        xdg-desktop-portal
         xdg-desktop-portal-gtk
         xdg-desktop-portal-termfilechooser
       ];
       configPackages = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
       ];
       config = {
         common = {
@@ -144,8 +153,12 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
+        intel-media-driver
+        intel-vaapi-driver
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
+        intel-media-driver
+        intel-vaapi-driver
       ];
     };
     enableRedistributableFirmware = true;
@@ -164,6 +177,13 @@
         kernelSuspendNotifier = true;
       };
       moduleParams = {
+        nvidia = {
+          NVreg_UsePageAttributeTable = 1;
+          NVreg_UseKernelSuspendNotifiers = 1;
+        };
+        nvidia-drm = {
+          color_pipeline = 0;
+        };
       };
     };
   };
@@ -173,7 +193,7 @@
       experimental-features = [ "nix-command" "flakes" ];
       flake-registry = "/etc/nix/registry.json";
       warn-dirty = false;
-      trusted-users = [ "root" "@wheel" "micgao" ];
+      trusted-users = [ "@wheel" "micgao" ];
       use-xdg-base-directories = true;
     };
     channel.enable = false;
@@ -226,21 +246,13 @@
   };
 
   networking = {
-    dhcpcd.wait = "background";
     wireless = {
       iwd.enable = true;
     };
     networkmanager = {
-      insertNameservers = [
-        "1.1.1.1#one.one.one.one"
-        "9.9.9.9#dns.quad9.net"
-      ];
       enable = true;
-      dns = "systemd-resolved";
-      dhcp = "dhcpcd";
       wifi = {
         backend = "iwd";
-        powersave = false;
       };
     };
     hostName = "X1E3";
@@ -259,25 +271,28 @@
 
   services = {
     speechd.enable = false;
-    portmaster.enable = true;
-    lact.enable = true;
-    resolved = {
+    userborn = {
       enable = true;
-      settings.Resolve.DNSOverTLS = "opportunistic";
+      static = false;
+      passwordFilesLocation = "/var/lib/nixos";
     };
-    upower = {
-      enable = true;
-    };
+    throttled.enable = true;
+    # portmaster.enable = true;
+    upower.enable = true;
     tuned = {
       enable = true;
       ppdSupport = true;
+      ppdSettings = {
+        main = {
+          default = "performance";
+          battery_detection = false;
+        };
+      };
       settings = {
         daemon = true;
         dynamic_tuning = true;
-        reapply_sysctl = false;
       };
     };
-    flatpak.enable = true;
     scx-loader = {
       enable = true;
       config = {
@@ -295,15 +310,13 @@
         };
       };
     };
-    hardware.bolt.enable = true;
     fwupd.enable = true;
     dbus = {
       enable = true;
-      packages = with pkgs; [ gcr gnome-settings-daemon ];
+      packages = with pkgs; [];
       implementation = "broker";
     };
     gnome.gnome-keyring.enable = true;
-    gvfs.enable = true;
     logind.settings.Login = {
       HandleLidSwitchExternalPower = "ignore";
       HandleLidSwitchDocked = "ignore";
@@ -337,35 +350,6 @@
       jack.enable = true;
       wireplumber.enable = true;
       socketActivation = true;
-      extraConfig = {
-        pipewire."92-low-latency" = {
-          "context.properties" = {
-            "default.clock.rate" = 48000;
-            "default.clock.quantum" = 32;
-            "default.clock.min-quantum" = 32;
-            "default.clock.max-quantum" = 32;
-          };
-        };
-        pipewire-pulse."92-low-latency" = {
-          "context.properties" = [
-            {
-              name = "libpipewire-module-protocol-pulse";
-              args = { };
-            }
-          ];
-          "pulse.properties" = {
-            "pulse.min.req" = "32/48000";
-            "pulse.default.req" = "32/48000";
-            "pulse.max.req" = "32/48000";
-            "pulse.min.quantum" = "32/48000";
-            "pulse.max.quantum" = "32/48000";
-          };
-          "stream.properties" = {
-            "node.latency" = "32/48000";
-            "resample.quality" = 1;
-          };
-        };
-      };
     };
     # btrfs.autoScrub = {
     #   enable = true;
@@ -384,16 +368,19 @@
   users = {
     defaultUserShell = pkgs.bashInteractive;
     users = {
+      root = {
+        initialHashedPassword = "$y$j9T$7lYt4bU0tDXwtmZO.3HRt.$Of4bHRuscOWvNYpJBcIOvVpuzNuXHCGGb32/.k5vKXC";
+      };
       greeter = {
         extraGroups = [
           "seat"
         ];
       };
       micgao = {
+        initialHashedPassword = "$y$j9T$nLDJJCXXgnqjj/ApXu7Ov1$Ztk6yzFzuZnEhyulNaQhXxNTbBHTHSL6JmDL4X/Cju5";
         shell = pkgs.nushell;
         isNormalUser = true;
         extraGroups = [
-          "i2c"
           "wheel"
           "video"
           "audio"
@@ -413,10 +400,7 @@
       enable = true;
       comma.enable = true;
     };
-    obs-studio = {
-      enable = true;
-      enableVirtualCamera = true;
-    };
+    obs-studio.enable = true;
     # virt-manager.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -427,11 +411,6 @@
       ];
       gamescopeSession = {
         enable = true;
-        steamArgs = [
-          "-pipewire-dmabuf"
-          "-dev"
-          "-console"
-        ];
         args = [
           "--steam"
           "--rt"
@@ -440,10 +419,6 @@
           "-r 144"
           "--expose-wayland"
           "--xwayland-count 2"
-          "--adaptive-sync"
-          "--prefer-output HDMI-A-1"
-          "--prefer-vk-device 10de:1f95"
-          "--immediate-flips"
         ];
       };
     };
@@ -465,5 +440,10 @@
 
   system = {
     stateVersion = "23.11";
+    nixos-init.enable = true;
+    etc.overlay = {
+      enable = true;
+      mutable = true;
+    };
   };
 }
