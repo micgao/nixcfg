@@ -28,7 +28,7 @@ red = "#f58ee0"
 yellow = "#8eb6f5"
 
 [directory]
-style = "cyan"
+style = "red"
 
 [character]
 success_symbol = "[~](purple)"
@@ -51,13 +51,12 @@ deleted = "✗"
 stashed = "≡"
 
 [git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bold yellow"
+format = '\([$state( $progress_current/$progress_total)]($style)\)  '
+style = "yellow"
 
 [cmd_duration]
-format = "[$duration]($style) "
+format = " [$duration]($style) "
 style = "yellow"
 
 [nix_shell]
 symbol = " "
-heuristic = true
