@@ -100,16 +100,18 @@
       configPackages = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+        xdg-desktop-portal-termfilechooser
       ];
       config = {
         common = {
           default = ["gtk"];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+          "org.freedesktop.impl.portal.Secret" = "oo7-portal";
         };
         hyprland = {
           default = ["hyprland" "gtk"];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+          "org.freedesktop.impl.portal.Secret" = "oo7-portal";
         };
       };
     };
@@ -117,7 +119,8 @@
 
   security = {
     pam.services = {
-      greetd.enableGnomeKeyring = true;
+      greetd.oo7.enable = true;
+      login.oo7.enable = true;
     };
     run0 = {
       enable = true;
@@ -271,6 +274,7 @@
 
   services = {
     speechd.enable = false;
+    oo7.enable = true;
     userborn = {
       enable = true;
       static = false;
@@ -313,10 +317,8 @@
     fwupd.enable = true;
     dbus = {
       enable = true;
-      packages = with pkgs; [];
       implementation = "broker";
     };
-    gnome.gnome-keyring.enable = true;
     logind.settings.Login = {
       HandleLidSwitchExternalPower = "ignore";
       HandleLidSwitchDocked = "ignore";
@@ -366,7 +368,6 @@
   };
 
   users = {
-    defaultUserShell = pkgs.bashInteractive;
     users = {
       root = {
         initialHashedPassword = "$y$j9T$7lYt4bU0tDXwtmZO.3HRt.$Of4bHRuscOWvNYpJBcIOvVpuzNuXHCGGb32/.k5vKXC";
@@ -403,6 +404,13 @@
     obs-studio.enable = true;
     # virt-manager.enable = true;
     dconf.enable = true;
+    gnupg = {
+      agent = {
+        enable = true;
+        enableSSHSupport = true;
+        pinentryPackage = pkgs.pinentry-curses;
+      };
+    };
     seahorse.enable = true;
     steam = {
       enable = true;
