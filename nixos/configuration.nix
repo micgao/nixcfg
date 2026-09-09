@@ -106,12 +106,10 @@
         common = {
           default = ["gtk"];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-          "org.freedesktop.impl.portal.Secret" = "oo7-portal";
         };
         hyprland = {
           default = ["hyprland" "gtk"];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-          "org.freedesktop.impl.portal.Secret" = "oo7-portal";
         };
       };
     };
@@ -119,8 +117,8 @@
 
   security = {
     pam.services = {
-      greetd.oo7.enable = true;
-      login.oo7.enable = true;
+      greetd.enableGnomeKeyring = true;
+      login.enableGnomeKeyring = true;
     };
     run0 = {
       enable = true;
@@ -274,7 +272,6 @@
 
   services = {
     speechd.enable = false;
-    oo7.enable = true;
     userborn = {
       enable = true;
       static = false;
