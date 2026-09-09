@@ -14,6 +14,8 @@ $line_break\
 $nix_shell\
 $character"""
 
+palette = "moonlight_dark"
+
 [palettes.moonlight_dark]
 background = "#0f1014"
 current_line = "#111216"
@@ -28,7 +30,7 @@ red = "#f58ee0"
 yellow = "#8eb6f5"
 
 [directory]
-style = "red"
+style = "yellow"
 
 [character]
 success_symbol = "[~](purple)"
@@ -51,11 +53,11 @@ deleted = "✗"
 stashed = "≡"
 
 [git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\)  '
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "yellow"
 
 [cmd_duration]
-format = " [$duration]($style) "
+format = " [$duration]($style)"
 style = "yellow"
 
 [nix_shell]
