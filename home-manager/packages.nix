@@ -11,14 +11,22 @@
       qmk
       faugus-launcher
       umu-launcher
-      discord
-      discord-canary
+      (discord.override {
+        commandLineArgs = "--enable-features=WaylandLinuxDrmSyncobj";
+        enableAutoscroll = true;
+      })
+      (discord-canary.override {
+        commandLineArgs = "--enable-features=WaylandLinuxDrmSyncobj";
+        enableAutoscroll = true;
+      })
       lsfg-vk
       lsfg-vk-ui
       viddy
       code-cursor
       opencode
-      brave-origin
+      (brave-origin.override {
+        commandLineArgs = "--enable-features=WaylandLinuxDrmSyncobj";
+      })
       rustup
       curlie
       circumflex
@@ -35,7 +43,9 @@
       protonmail-bridge
       keepassxc
       pavucontrol
-      obsidian
+      (obsidian.override {
+        commandLineArgs = "--enable-features=WaylandLinuxDrmSyncobj";
+      })
       jetbrains-toolbox
       feather
       wineWow64Packages.wayland

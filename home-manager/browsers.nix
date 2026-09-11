@@ -6,6 +6,7 @@
     enable = true;
     flags = [
       "--ozone-platform-hint=auto"
+      "--enable-features=WaylandLinuxDrmSyncobj"
     ];
   };
   programs.firefox = {
@@ -16,5 +17,8 @@
   programs.chromium = {
     enable = true;
     package = pkgs.ungoogled-chromium;
+    commandLineArgs = [
+      "--enable-features=WaylandLinuxDrmSyncobj"
+    ];
   };
 }
