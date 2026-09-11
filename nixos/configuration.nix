@@ -170,9 +170,18 @@
     };
 
     nvidia = {
+      # package = config.boot.kernelPackages.nvidiaPackages.new_feature;
+      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        version = "615.71.09";
+        sha256_64bit = "sha256-zc7tIrvrYSSNGm3qvCWWZz46ZQFpjucayNL9wo87cP4=";
+        openSha256 = "sha256-3gByMYIwFzRaLdDG+roCEOuKRRJDrljG9AlLnRZTirM=";
+        settingsSha256 = "sha256-LK1LU8mDkM/XVRKPBtuOZh9nIP/lGFLAJnmasEX8jhg=";
+        persistencedSha256 = "sha256-qPRb+3d88+2RcpUkoBTbjIaImnQ+jX+/6p1vXcJ5geE=";
+      };
       open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.new_feature;
       modesetting.enable = true;
+      nvidiaSettings = false;
+      nvidiaPersistenced = false;
       videoAcceleration = true;
       powerManagement = {
         kernelSuspendNotifier = true;
@@ -247,9 +256,9 @@
   };
 
   networking = {
-    # wireless = {
-    #   iwd.enable = true;
-    # };
+    wireless = {
+      iwd.enable = true;
+    };
     networkmanager = {
       enable = true;
       wifi = {
@@ -394,6 +403,13 @@
   };
 
   programs = {
+    neovim = {
+      enable = true;
+      package = inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
     nix-index-database = {
       enable = true;
       comma.enable = true;

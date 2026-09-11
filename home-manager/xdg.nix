@@ -6,7 +6,7 @@
       enable = true;
       createDirectories = true;
       desktop = "${config.home.homeDirectory}";
-      setSessionVariables = true;
+      setSessionVariables = false;
     };
   };
 }
