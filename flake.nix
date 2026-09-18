@@ -2,7 +2,7 @@
   description = "NixOs config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     systems.url = "github:nix-systems/default-linux";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -37,6 +37,9 @@
     };
     hyprshutdown = {
       url = "github:hyprwm/hyprshutdown";
+    };
+    volt = {
+      url = "github:keygenesis/volt-gui-nix";
     };
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";

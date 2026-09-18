@@ -18,7 +18,7 @@
       systemd-boot = {
         enable = true;
         editor = false;
-        consoleMode = "auto";
+        consoleMode = "max";
         configurationLimit = 10;
       };
       efi.canTouchEfiVariables = true;
@@ -29,6 +29,7 @@
         network.wait-online.enable = false;
       };
       kernelModules = [
+        "i915"
         "nvidia"
         "nvidia_modeset"
         "nvidia_uvm"
@@ -41,11 +42,8 @@
     ];
   };
 
-  powerManagement = {
-    cpuFreqGovernor = "performance";
-    scsiLinkPolicy = "max_performance";
-  };
-  
+  systemd.user.services.telephony_client.enable = false;
+
   console = {
     colors = [
       "0F1014"
@@ -149,6 +147,18 @@
   };
 
   hardware = {
+    i2c.enable = true;
+    bluetooth = {
+      enable = true;
+      package = pkgs.bluez-experimental;
+      settings = {
+        General = {
+          FastConnectable = true;
+          JustWorksRepairing = "always";
+          Experimental = true;
+        };
+      };
+    };
     keyboard.qmk.enable = true;
     graphics = {
       enable = true;
@@ -188,7 +198,6 @@
       };
       moduleParams = {
         nvidia = {
-          NVreg_UsePageAttributeTable = 1;
           NVreg_UseKernelSuspendNotifiers = 1;
         };
         nvidia-drm = {
@@ -220,8 +229,6 @@
       roboto-flex
       inter
       cascadia-code
-      source-code-pro
-      source-sans-pro
       (iosevka-bin.override { variant = "SS04"; })
     ];
     fontDir = {
@@ -257,7 +264,14 @@
 
   networking = {
     wireless = {
-      iwd.enable = true;
+      iwd ={
+        enable = true;
+        settings = {
+          General = {
+            EnableNetworkConfiguration = true;
+          };
+        };
+      };
     };
     networkmanager = {
       enable = true;
@@ -266,6 +280,11 @@
       };
     };
     hostName = "X1E3";
+    extraHosts = ''
+      0.0.0.0 dota2.com
+      0.0.0.0 www.dota2.com
+      :: dota2.com
+    '';
   };
 
   i18n = {
@@ -280,54 +299,69 @@
   time.timeZone = "America/Toronto";
 
   services = {
+    # udev.extraRules = ''
+    #   ACTION=="add", SUBSYSTEM=="drm", ENV{DEVTYPE}=="drm_connector", ENV{DRM_CONNECTOR_FOR}="$name"
+    #   ACTION=="add", SUBSYSTEM=="i2c", IMPORT{parent}="DRM_CONNECTOR_FOR"
+    #   ACTION=="add", SUBSYSTEM=="i2c", ENV{DRM_CONNECTOR_FOR}=="?*", ATTR{new_device}="ddcci 0x37"
+    # '';
+    # ddccontrol = {
+    #   enable = true;
+    #   package = pkgs.ddcutil-service;
+    # };
     speechd.enable = false;
-    userborn = {
-      enable = true;
-      static = false;
-      passwordFilesLocation = "/var/lib/nixos";
-    };
-    throttled.enable = true;
-    # portmaster.enable = true;
-    upower.enable = true;
     tuned = {
       enable = true;
       ppdSupport = true;
+      settings = {
+        daemon = true;
+        dynamic_tuning = false;
+        reapply_sysctl = true;
+      };
+      recommend = {
+        latency-performance = {};
+      };
       ppdSettings = {
         main = {
           default = "performance";
           battery_detection = false;
         };
-      };
-      settings = {
-        daemon = true;
-        dynamic_tuning = true;
+        profiles = {
+          power-saver = "powersave";
+          balanced = "balanced";
+          performance = "latency-performance";
+        };
       };
     };
+    userborn = {
+      enable = true;
+      static = false;
+      importLegacyState = false;
+    };
+    throttled.enable = true;
+    # portmaster.enable = true;
     scx-loader = {
       enable = true;
       config = {
         default_mode = "Auto";
       };
     };
-    mpdscribble = {
-      enable = true;
-      host = "127.0.0.1";
-      port = 6600;
-      endpoints = {
-        "last.fm" = {
-          passwordFile = "/home/micgao/.secrets/lastfm_password";
-          username = "micgao";
-        };
-      };
-    };
-    fwupd.enable = true;
+    # mpdscribble = {
+    #   enable = true;
+    #   host = "127.0.0.1";
+    #   port = 6600;
+    #   endpoints = {
+    #     "last.fm" = {
+    #       passwordFile = "/home/micgao/.secrets/lastfm_password";
+    #       username = "micgao";
+    #     };
+    #   };
+    # };
+    # fwupd.enable = true;
     dbus = {
       enable = true;
       implementation = "broker";
     };
     logind.settings.Login = {
-      HandleLidSwitchExternalPower = "ignore";
-      HandleLidSwitchDocked = "ignore";
       HandleLidSwitch = "ignore";
     };
     fstrim.enable = true;
@@ -370,7 +404,6 @@
     #     "/home"
     #   ];
     # };
-    # };
   };
 
   users = {
@@ -396,7 +429,10 @@
           "podman"
           "kvm"
           "rtkit"
+          "plugdev"
           "networkmanager"
+          "i2c"
+          "openrazer"
         ];
       };
     };
@@ -421,14 +457,13 @@
       agent = {
         enable = true;
         enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-curses;
       };
     };
     seahorse.enable = true;
     steam = {
       enable = true;
-      extraPackages = [
-        pkgs.gamescope
+      extraPackages = with pkgs; [
+        gamescope
       ];
       gamescopeSession = {
         enable = true;

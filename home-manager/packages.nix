@@ -21,6 +21,7 @@
       })
       lsfg-vk
       lsfg-vk-ui
+      inputs.volt.packages.${pkgs.stdenv.hostPlatform.system}.default
       viddy
       code-cursor
       opencode

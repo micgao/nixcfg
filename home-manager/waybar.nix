@@ -90,11 +90,14 @@
         ];
         modules-right = [
           "tray"
+          "network"
           "battery"
           "clock"
         ];
         "hyprland/workspaces" = {
           show-special = true;
+          on-scroll-up = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ";
+          on-scroll-down = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ";
         };
         "hyprland/window" = {
           separate-outputs = true;
