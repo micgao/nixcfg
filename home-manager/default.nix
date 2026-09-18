@@ -31,7 +31,7 @@
     ./neovim.nix
     ./nix-your-shell.nix
     ./packages.nix
-    ./polkit-agent.nix
+    # ./polkit-agent.nix
     ./ripgrep.nix
     ./tofi.nix
     ./waybar.nix

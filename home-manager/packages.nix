@@ -10,7 +10,6 @@
     packages = with pkgs; [
       qmk
       faugus-launcher
-      umu-launcher
       (discord.override {
         commandLineArgs = "--enable-features=WaylandLinuxDrmSyncobj";
         enableAutoscroll = true;
@@ -47,6 +46,7 @@
       (obsidian.override {
         commandLineArgs = "--enable-features=WaylandLinuxDrmSyncobj";
       })
+      protonup-rs
       jetbrains-toolbox
       feather
       wineWow64Packages.wayland

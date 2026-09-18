@@ -19,6 +19,10 @@
     systemd.enable = false;
   };
 
+  services = {
+    hyprpolkitagent.enable = true;
+  };
+
   xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
   xdg.configFile."hypr/hyprqt6engine.conf".source = ./hyprqt6engine.conf;
   xdg.configFile."hypr/hyprtoolkit.conf".source = ./hyprtoolkit.conf;

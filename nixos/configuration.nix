@@ -115,8 +115,10 @@
 
   security = {
     pam.services = {
-      greetd.enableGnomeKeyring = true;
-      login.enableGnomeKeyring = true;
+      # greetd.enableGnomeKeyring = true;
+      # login.enableGnomeKeyring = true;
+      greetd.oo7.enable = true;
+      login.oo7.enable = true;
     };
     run0 = {
       enable = true;
@@ -299,16 +301,12 @@
   time.timeZone = "America/Toronto";
 
   services = {
-    # udev.extraRules = ''
-    #   ACTION=="add", SUBSYSTEM=="drm", ENV{DEVTYPE}=="drm_connector", ENV{DRM_CONNECTOR_FOR}="$name"
-    #   ACTION=="add", SUBSYSTEM=="i2c", IMPORT{parent}="DRM_CONNECTOR_FOR"
-    #   ACTION=="add", SUBSYSTEM=="i2c", ENV{DRM_CONNECTOR_FOR}=="?*", ATTR{new_device}="ddcci 0x37"
-    # '';
+    speechd.enable = false;
+    oo7.enable = true;
     # ddccontrol = {
     #   enable = true;
     #   package = pkgs.ddcutil-service;
     # };
-    speechd.enable = false;
     tuned = {
       enable = true;
       ppdSupport = true;
@@ -338,7 +336,10 @@
       importLegacyState = false;
     };
     throttled.enable = true;
-    # portmaster.enable = true;
+    # portmaster = {
+    #   enable = true;
+    #   stateDir = "/.rw-etc/upper/portmaster";
+    # };
     scx-loader = {
       enable = true;
       config = {
@@ -363,6 +364,10 @@
     };
     logind.settings.Login = {
       HandleLidSwitch = "ignore";
+    };
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
     };
     fstrim.enable = true;
     seatd.enable = true;
@@ -432,7 +437,6 @@
           "plugdev"
           "networkmanager"
           "i2c"
-          "openrazer"
         ];
       };
     };
@@ -473,8 +477,7 @@
           "-W 1920"
           "-H 1080"
           "-r 144"
-          "--expose-wayland"
-          "--xwayland-count 2"
+          "--adaptive-sync"
         ];
       };
     };

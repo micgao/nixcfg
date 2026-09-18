@@ -45,8 +45,7 @@
                   "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S59ANS0N601485A-part2"
                 ];
                 subvolumes = {
-                  # NOTE: no "/" subvolume here on purpose — root is tmpfs,
-                  # declared separately in ephemeral-root.nix (not disk-backed).
+                  # NOTE: no "/" subvolume here on purpose — root is tmpfs, as declared in ./ephemeral-root.nix
                   "@home" = {
                     mountpoint = "/home";
                     mountOptions = [ "compress=zstd" "noatime" "ssd" ];
