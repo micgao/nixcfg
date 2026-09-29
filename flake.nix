@@ -16,6 +16,7 @@
     ghostty.url = "github:ghostty-org/ghostty";
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     yazi.url = "github:sxyazi/yazi";
+    fsel.url = "github:Mjoyufull/fsel";
     helium = {
       url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs";

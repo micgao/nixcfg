@@ -7,8 +7,9 @@
       ./disko-config.nix
       ./ephemeral-root.nix
       ./cachix.nix
+      ./nix.nix
       ./nvidia.nix
-      ./ollama.nix
+      ./gaming.nix
       inputs.disko.nixosModules.disko
       inputs.nix-index-database.nixosModules.default
       inputs.hyprland.nixosModules.default
@@ -16,6 +17,9 @@
     ];
 
   boot = {
+    kernelModules = [
+      "ntsync"
+    ];
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -35,16 +39,6 @@
         "nvidia_drm"
       ];
     };
-  };
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-      use-xdg-base-directories = true;
-      trusted-users = [ "@wheel" ];
-    };
-    channel.enable = false;
   };
 
   nixpkgs = {
@@ -99,13 +93,18 @@
 	  "plugdev"
 	  "input"
 	  "kvm"
+	  "vboxusers"
 	];
 	packages = with pkgs; [
 	  inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default
 	  inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+	  inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
 	  kitty
+	  gpg-tui
 	  hyprpwcenter
+	  wiremix
 	  obsidian
+	  feather
 	  rose-pine-hyprcursor
 	  rose-pine-cursor
 	  tofi
@@ -113,6 +112,10 @@
 	  keepassxc
 	  ripgrep
 	  fzf
+	  fd
+	  bottom
+	  procs
+	  ov
 	];
       };
     };
@@ -120,6 +123,7 @@
 
   hardware = {
     i2c.enable = true;
+    bluetooth.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -144,6 +148,8 @@
     userborn = {
       enable = true;
       static = false;
+      passwordFilesLocation = "/persist/userborn";
+      importLegacyState = false;
     };
     greetd = {
       enable = true;
@@ -190,6 +196,8 @@
         daemon = true;
         dynamic_tuning = true;
         reapply_sysctl = true;
+	update_interval = 60;
+	sleep_interval = 10;
       };
       recommend = {
         latency-performance = {};
@@ -216,10 +224,15 @@
   };
 
   programs = {
+    nano.enable = false;
+    bcc.enable = true;
     zsh.enable = true;
     nushell.enable = true;
     ssh.startAgent = true;
+    gnupg.agent.enable = true;
     zoxide.enable = true;
+    vivid.enable = true;
+    bat.enable = true;
     foot.enable = true;
     nix-index-database = {
       enable = true;
@@ -251,18 +264,11 @@
       enable = true;
       package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
-    steam = {
-      enable = true;
-      extraPackages = with pkgs; [
-        gamescope
-	mangohud
-      ];
-    };
-    gamescope = {
-      enable = true;
-      enableWsi = true;
-    };
     dconf.enable = true;
+  };
+
+  virtualisation = {
+    virtualbox.host.enable = true;
   };
 
   security = {
@@ -270,12 +276,21 @@
       greetd.oo7.enable = true;
       login.oo7.enable = true;
     };
+    sudo.enable = false;
+    sudo-rs.enable = true;
     rtkit.enable = true;
     polkit.enable = true;
     soteria.enable = true;
+    run0 = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
   };
 
   environment = {
+    variables = {
+      EDITOR = "nvim";
+    };
     shells = with pkgs; [
       zsh
       nushell
@@ -294,8 +309,6 @@
         xdg-desktop-portal-gtk
         xdg-desktop-portal-termfilechooser
       ];
-      configPackages = with pkgs; [
-      ];
       config = {
         common = {
           default = ["gtk"];
@@ -312,13 +325,15 @@
   };
 
   fonts = {
+    enableDefaultPackages = false;
     packages = with pkgs; [
-      noto-fonts
       inter
-      cascadia-code
-      material-symbols
+      besley
       (iosevka-bin.override { variant = "SS04"; })
+      ioskeley-mono.standard
+      noto-fonts-monochrome-emoji
       nerd-fonts.symbols-only
+      material-symbols
     ];
     fontDir = {
       enable = true;
@@ -326,11 +341,22 @@
     };
     fontconfig = {
       enable = true;
+      hinting = {
+        enable = true;
+	style = "medium";
+	autohint = false;
+      };
+      subpixel = {
+        lcdfilter = "light";
+	rgba = "rgb";
+      };
       allowBitmaps = false;
       includeUserConf = true;
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
+	serif = [ "Besley" ];
+        emoji = [ "Noto Emoji" ];
       };
     };
   };
