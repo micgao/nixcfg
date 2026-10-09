@@ -25,7 +25,7 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.X1E3 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.X3D = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix

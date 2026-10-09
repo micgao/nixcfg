@@ -48,7 +48,7 @@
   };
 
   networking = {
-    hostName = "X1E3";
+    hostName = "X3D";
     wireless = {
       iwd ={
         enable = true;
@@ -127,12 +127,6 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-      ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [
-        intel-media-driver
-      ];
     };
     enableRedistributableFirmware = true;
   };
@@ -186,9 +180,6 @@
       enable = true;
       implementation = "broker";
     };
-    logind.settings.Login = {
-      HandleLidSwitch = "ignore";
-    };
     tuned = {
       enable = true;
       ppdSupport = true;
@@ -205,7 +196,6 @@
       ppdSettings = {
         main = {
           default = "performance";
-          battery_detection = false;
         };
         profiles = {
           power-saver = "powersave";
@@ -214,7 +204,6 @@
         };
       };
     };
-    throttled.enable = true;
     scx-loader = {
       enable = true;
       config = {
