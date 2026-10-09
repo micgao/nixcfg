@@ -22,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+    preservation.url = "github:nix-community/preservation";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {

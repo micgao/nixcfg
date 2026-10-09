@@ -3,14 +3,15 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
       ./disko-config.nix
       ./ephemeral-root.nix
+      ./persist.nix
       ./cachix.nix
       ./nix.nix
       ./nvidia.nix
       ./gaming.nix
       inputs.disko.nixosModules.disko
+      inputs.preservation.nixosModules.default
       inputs.nix-index-database.nixosModules.default
       inputs.hyprland.nixosModules.default
       inputs.helium.nixosModules.default
@@ -122,6 +123,7 @@
   };
 
   hardware = {
+    facter.reportPath = ./facter.json;
     i2c.enable = true;
     bluetooth.enable = true;
     graphics = {
