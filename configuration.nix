@@ -11,7 +11,6 @@
       ./nvidia.nix
       ./gaming.nix
       inputs.disko.nixosModules.disko
-      inputs.preservation.nixosModules.default
       inputs.nix-index-database.nixosModules.default
       inputs.hyprland.nixosModules.default
       inputs.helium.nixosModules.default

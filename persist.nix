@@ -1,34 +1,41 @@
+{ lib, ... }:
+
+let
+  persist = "/persist";
+
+  # Directories bind-mounted from /persist onto the ephemeral root
+  directories = [
+    "/etc/NetworkManager/system-connections"
+    "/var/lib/bluetooth"
+    "/var/lib/iwd"
+    "/var/lib/nixos"
+    "/var/lib/systemd/coredump"
+    "/var/lib/systemd/rfkill"
+    "/var/lib/systemd/timers"
+  ];
+
+  # Files under /etc symlinked into /persist/etc
+  etcFiles = [
+    "machine-id"
+  ];
+in
 {
-  fileSystems."/persist".neededForBoot = true;
+  fileSystems = {
+    ${persist}.neededForBoot = true;
+  } // lib.genAttrs directories (dir: {
+    device = "${persist}${dir}";
+    fsType = "none";
+    options = [ "bind" "x-gvfs-hide" ];
+    depends = [ persist ];
+  });
 
-  preservation = {
-    enable = true;
-    preserveAt."/persist" = {
-      directories = [
-        "/etc/NetworkManager/system-connections"
-        "/var/lib/bluetooth"
-        "/var/lib/iwd"
-        "/var/lib/systemd/coredump"
-        "/var/lib/systemd/rfkill"
-        "/var/lib/systemd/timers"
-        { directory = "/var/lib/nixos"; inInitrd = true; }
-      ];
-      files = [
-        { file = "/etc/machine-id"; inInitrd = true; how = "symlink"; configureParent = true; }
-        { file = "/var/lib/systemd/random-seed"; how = "symlink"; inInitrd = true; configureParent = true; }
-      ];
-    };
-  };
+  # Create the bind sources in the initrd, after /persist is mounted at
+  # /sysroot/persist and before the bind mounts run in stage 2
+  boot.initrd.systemd.tmpfiles.settings.persist = lib.genAttrs
+    (map (dir: "/sysroot${persist}${dir}") directories)
+    (_: { d.mode = "0700"; });
 
-  # Commit the machine-id generated on first boot to /persist
-  systemd.services.systemd-machine-id-commit = {
-    unitConfig.ConditionPathIsMountPoint = [
-      ""
-      "/persist/etc/machine-id"
-    ];
-    serviceConfig.ExecStart = [
-      ""
-      "systemd-machine-id-setup --commit --root /persist"
-    ];
-  };
+  environment.etc = lib.genAttrs etcFiles (file: {
+    source = "${persist}/etc/${file}";
+  });
 }
