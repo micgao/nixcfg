@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      # ./hardware-configuration.nix
       ./disko-config.nix
       ./ephemeral-root.nix
       ./cachix.nix
@@ -19,6 +19,9 @@
   boot = {
     kernelModules = [
       "ntsync"
+    ];
+    kernelParams = [
+      "quiet"
     ];
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
@@ -48,7 +51,7 @@
   };
 
   networking = {
-    hostName = "X1E3";
+    hostName = "XDDD";
     wireless = {
       iwd ={
         enable = true;
@@ -64,9 +67,9 @@
       wifi.backend = "iwd";
     };
     extraHosts = ''
-      0.0.0.0 dota2.com
-      0.0.0.0 www.dota2.com
-      :: dota2.com
+      # 0.0.0.0 dota2.com
+      # 0.0.0.0 www.dota2.com
+      # :: dota2.com
     '';
   };
 
@@ -99,6 +102,7 @@
 	  inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default
 	  inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
 	  inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
+	  inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
 	  kitty
 	  gpg-tui
 	  hyprpwcenter
@@ -122,17 +126,12 @@
   };
 
   hardware = {
+    facter.reportPath = ./facter.json;
     i2c.enable = true;
     bluetooth.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-      ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [
-        intel-media-driver
-      ];
     };
     enableRedistributableFirmware = true;
   };
@@ -176,6 +175,22 @@
       jack.enable = true;
       wireplumber.enable = true;
       socketActivation = true;
+      extraConfig = {
+      	pipewire = {
+	  "50-hq-audio" = {
+	    "context-properties" = {
+	      cpu.zero.denormals = true;
+	      default.clock.rate = 48000;
+	      default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 352800 384000 705600 768000 ];
+	      default.clock.quantum = 1024;
+	      default.clock.min-quantum = 512;
+	      default.clock.max-quantum = 8192;
+	      settings.check-quantum = true;
+	      settings.check-rate = true;
+	    };
+	  };
+	};
+      };
     };
     udisks2 = {
       enable = true;
@@ -185,9 +200,6 @@
     dbus = {
       enable = true;
       implementation = "broker";
-    };
-    logind.settings.Login = {
-      HandleLidSwitch = "ignore";
     };
     tuned = {
       enable = true;
@@ -205,7 +217,6 @@
       ppdSettings = {
         main = {
           default = "performance";
-          battery_detection = false;
         };
         profiles = {
           power-saver = "powersave";
@@ -214,7 +225,6 @@
         };
       };
     };
-    throttled.enable = true;
     scx-loader = {
       enable = true;
       config = {
@@ -301,6 +311,7 @@
   };
 
   xdg = {
+    icons.enable = true;
     portal = {
       enable = true;
       xdgOpenUsePortal = true;

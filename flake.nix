@@ -22,10 +22,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.X1E3 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.XDDD = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix

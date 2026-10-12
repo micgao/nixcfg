@@ -55,7 +55,7 @@
                   };
                   "persist" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" "ssd" ];
+                    mountOptions = [ "compress=zstd" "noatime" "ssd" ];
                   };
                   "root" = {
                     mountpoint = "/root";
