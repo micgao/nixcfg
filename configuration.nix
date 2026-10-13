@@ -102,7 +102,7 @@
 	  inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default
 	  inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
 	  inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
-	  inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+	  inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
 	  kitty
 	  gpg-tui
 	  hyprpwcenter

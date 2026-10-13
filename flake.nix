@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
-    llm-agents.url = "github:numtide/llm-agents.nix";
+    claude-desktop.url = "github:patrickjaja/claude-desktop-extra";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
