@@ -3,7 +3,7 @@
 {
   imports =
     [
-      # ./hardware-configuration.nix
+      ./hardware-configuration.nix
       ./disko-config.nix
       ./ephemeral-root.nix
       ./cachix.nix
@@ -15,7 +15,6 @@
       inputs.hyprland.nixosModules.default
       inputs.helium.nixosModules.default
     ];
-
   boot = {
     kernelModules = [
       "ntsync"
@@ -52,6 +51,7 @@
 
   networking = {
     hostName = "XDDD";
+    dhcpcd.enable = false;
     wireless = {
       iwd ={
         enable = true;
@@ -78,55 +78,55 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   users = {
+    mutableUsers = false;
     users = {
       root = {
-        initialHashedPassword = "$y$j9T$9V8u/usg9Qn1.faCoUdpg1$DTJhtuuMX9kV7aKdaa9SpY3RfC8J2IGPsSn.OalVztC";
+        hashedPasswordFile = "/persist/passwd/root";
       };
       micgao = {
         isNormalUser = true;
-	initialHashedPassword = "$y$j9T$gfbd7XBkE5n/5KiLtVwmQ/$tjeFFgYRBpwtpoeFqw6mqD1jxHZmHcOj1OxZqpgYuDC";
-	shell = pkgs.zsh;
-	extraGroups = [
-	  "wheel"
-	  "video"
-	  "audio"
-	  "i2c"
-	  "networkmanager"
-	  "rtkit"
-	  "plugdev"
-	  "input"
-	  "kvm"
-	  "vboxusers"
-	];
-	packages = with pkgs; [
-	  inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default
-	  inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
-	  inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
-	  inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
-	  kitty
-	  gpg-tui
-	  hyprpwcenter
-	  wiremix
-	  obsidian
-	  feather
-	  rose-pine-hyprcursor
-	  rose-pine-cursor
-	  tofi
-	  mangohud
-	  keepassxc
-	  ripgrep
-	  fzf
-	  fd
-	  bottom
-	  procs
-	  ov
-	];
+        hashedPasswordFile = "/persist/passwd/micgao";
+        shell = pkgs.zsh;
+        extraGroups = [
+          "wheel"
+          "video"
+          "audio"
+          "i2c"
+          "networkmanager"
+          "rtkit"
+          "plugdev"
+          "input"
+          "kvm"
+          "vboxusers"
+        ];
+        packages = with pkgs; [
+          inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default
+          inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+          inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
+          inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+          kitty
+          gpg-tui
+          hyprpwcenter
+          wiremix
+          obsidian
+          feather
+          rose-pine-hyprcursor
+          rose-pine-cursor
+          tofi
+          mangohud
+          keepassxc
+          ripgrep
+          fzf
+          fd
+          bottom
+          procs
+          ov
+        ];
       };
     };
   };
 
   hardware = {
-    facter.reportPath = ./facter.json;
     i2c.enable = true;
     bluetooth.enable = true;
     graphics = {
@@ -141,14 +141,14 @@
       videoDrivers = [ "nvidia" ];
       xkb = {
         model = "pc105";
-	layout = "us,ca";
+        layout = "us,ca";
       };
     };
     userborn = {
       enable = true;
       static = false;
-      passwordFilesLocation = "/persist/userborn";
       importLegacyState = false;
+      passwordFilesLocation = "/persist/userborn";
     };
     greetd = {
       enable = true;
@@ -164,7 +164,6 @@
     dunst = {
       enable = true;
       enableWayland = true;
-      enableX11 = false;
     };
     pipewire = {
       enable = true;
@@ -176,20 +175,20 @@
       wireplumber.enable = true;
       socketActivation = true;
       extraConfig = {
-      	pipewire = {
-	  "50-hq-audio" = {
-	    "context-properties" = {
-	      cpu.zero.denormals = true;
-	      default.clock.rate = 48000;
-	      default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 352800 384000 705600 768000 ];
-	      default.clock.quantum = 1024;
-	      default.clock.min-quantum = 512;
-	      default.clock.max-quantum = 8192;
-	      settings.check-quantum = true;
-	      settings.check-rate = true;
-	    };
-	  };
-	};
+        pipewire = {
+          "50-hq-audio" = {
+            "context-properties" = {
+              cpu.zero.denormals = true;
+              default.clock.rate = 48000;
+              default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 352800 384000 705600 768000 ];
+              default.clock.quantum = 1024;
+              default.clock.min-quantum = 512;
+              default.clock.max-quantum = 8192;
+              settings.check-quantum = true;
+              settings.check-rate = true;
+            };
+          };
+        };
       };
     };
     udisks2 = {
@@ -208,8 +207,8 @@
         daemon = true;
         dynamic_tuning = true;
         reapply_sysctl = true;
-	update_interval = 60;
-	sleep_interval = 10;
+        update_interval = 60;
+        sleep_interval = 10;
       };
       recommend = {
         latency-performance = {};
@@ -252,7 +251,7 @@
       enable = true;
       flags = [
         "--ozone-platform-hint=auto"
-	"--enable-features=WaylandLinuxDrmSyncobj"
+        "--enable-features=WaylandLinuxDrmSyncobj"
       ];
     };
     firefox =  {
@@ -287,13 +286,14 @@
       login.oo7.enable = true;
     };
     sudo.enable = false;
-    sudo-rs.enable = true;
+    sudo-rs.enable = false;
     rtkit.enable = true;
     polkit.enable = true;
     soteria.enable = true;
     run0 = {
       enable = true;
       wheelNeedsPassword = false;
+      sudo-shim.enable = true;
     };
   };
 
@@ -324,12 +324,12 @@
         common = {
           default = ["gtk"];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-	  "org.freedesktop.impl.portal.Secret" = "oo7-portal";
+          "org.freedesktop.impl.portal.Secret" = "oo7-portal";
         };
         hyprland = {
           default = ["hyprland" "gtk"];
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-	  "org.freedesktop.impl.portal.Secret" = "oo7-portal";
+          "org.freedesktop.impl.portal.Secret" = "oo7-portal";
         };
       };
     };
@@ -354,19 +354,19 @@
       enable = true;
       hinting = {
         enable = true;
-	style = "medium";
-	autohint = false;
+        style = "medium";
+        autohint = false;
       };
       subpixel = {
         lcdfilter = "light";
-	rgba = "rgb";
+        rgba = "rgb";
       };
       allowBitmaps = false;
       includeUserConf = true;
       defaultFonts = {
         monospace = [ "Iosevka SS04" ];
         sansSerif = [ "Inter" ];
-	serif = [ "Besley" ];
+        serif = [ "Besley" ];
         emoji = [ "Noto Emoji" ];
       };
     };
@@ -381,4 +381,3 @@
     };
   };
 }
-
