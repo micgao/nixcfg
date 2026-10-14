@@ -104,6 +104,7 @@
           inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
           inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
           inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+	  claude-code
           kitty
           gpg-tui
           hyprpwcenter
