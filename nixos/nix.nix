@@ -5,11 +5,13 @@
       experimental-features = [ "nix-command" "flakes" ];
       use-xdg-base-directories = true;
       trusted-users = [ "@wheel" ];
-      build-dir = "/nix/var/nix/builds";
+      build-dir = "/scratch/builds";
     };
     channel.enable = false;
     daemonCPUSchedPolicy = "idle";
     daemonIOSchedClass = "idle";
   };
-  systemd.tmpfiles.rules = [ "d /nix/var/nix/builds 0755 root root -" ];
+  # build-dir lives on the scratch drive, whose mount is nofail. Wants rather
+  # than Requires, so a dead scratch drive still leaves Nix usable to fix it.
+  systemd.services.nix-daemon.unitConfig.WantsMountsFor = [ "/scratch/builds" ];
 }
