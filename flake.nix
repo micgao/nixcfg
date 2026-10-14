@@ -25,7 +25,24 @@
     claude-desktop.url = "github:patrickjaja/claude-desktop-extra";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs:
+  let
+    systems = [ "x86_64-linux" ];
+    forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f (import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    }));
+  in {
+    # Own derivations from ./pkgs, exposed to the system via the overlay
+    # and buildable directly with `nix build .#<name>`.
+    overlays.default = final: prev: import ./pkgs {
+      # prev.lib: the overlay's attribute names must not depend on final.
+      inherit (prev) lib;
+      inherit (final) callPackage;
+    };
+
+    packages = forAllSystems (pkgs: import ./pkgs { inherit (pkgs) lib callPackage; });
+
     nixosConfigurations.XDDD = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [

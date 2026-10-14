@@ -10,6 +10,7 @@
       ./nix.nix
       ./nvidia.nix
       ./gaming.nix
+      ./audirvana.nix
       inputs.disko.nixosModules.disko
       inputs.nix-index-database.nixosModules.default
       inputs.hyprland.nixosModules.default
@@ -47,6 +48,9 @@
     config = {
       allowUnfree = true;
     };
+    overlays = [
+      inputs.self.overlays.default
+    ];
   };
 
   networking = {
