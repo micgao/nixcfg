@@ -67,6 +67,42 @@
           };
         };
       };
+
+      # Fast throwaway space for Nix builds and VMs, kept apart from the
+      # RAID0 pool. Nothing here is backed up. nofail keeps the system
+      # booting if this drive ever dies.
+      scratch = {
+        type = "disk";
+        device = "/dev/disk/by-id/nvme-SKHynix_HFS256GD9TNI-L2B0B_CS04N5942136C771T";
+        content = {
+          type = "gpt";
+          partitions = {
+            scratch = {
+              size = "100%";
+              content = {
+                type = "btrfs";
+                extraArgs = [ "-f" ];
+                subvolumes = {
+                  "builds" = {
+                    mountpoint = "/scratch/builds";
+                    mountOptions = [ "noatime" "ssd" "nofail" ];
+                  };
+                  # libvirt's whole state directory: VM definitions, the
+                  # default image pool and networks all survive the tmpfs root.
+                  "vms" = {
+                    mountpoint = "/var/lib/libvirt";
+                    mountOptions = [ "noatime" "ssd" "nofail" ];
+                  };
+                  "misc" = {
+                    mountpoint = "/scratch/misc";
+                    mountOptions = [ "noatime" "ssd" "nofail" ];
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
     };
   };
 }

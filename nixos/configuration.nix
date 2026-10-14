@@ -101,7 +101,7 @@
           "plugdev"
           "input"
           "kvm"
-          "vboxusers"
+          "libvirtd"
         ];
         packages = with pkgs; [
           inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -279,11 +279,20 @@
       package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     dconf.enable = true;
+    virt-manager.enable = true;
   };
 
   virtualisation = {
-    virtualbox.host.enable = true;
+    libvirtd = {
+      enable = true;
+      # Emulated TPM, needed for Windows 11 guests.
+      qemu.swtpm.enable = true;
+    };
   };
+
+  # The scratch mounts are nofail, so boot does not wait for them. Make the
+  # services that use them wait instead of writing into the tmpfs root.
+  systemd.services.libvirtd.unitConfig.RequiresMountsFor = [ "/var/lib/libvirt" ];
 
   security = {
     pam.services = {
