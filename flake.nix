@@ -29,7 +29,7 @@
     nixosConfigurations.XDDD = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./nixos/configuration.nix
       ];
     };
   };
