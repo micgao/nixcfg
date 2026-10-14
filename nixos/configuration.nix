@@ -55,17 +55,6 @@
 
   networking = {
     hostName = "XDDD";
-    dhcpcd.enable = false;
-    wireless = {
-      iwd ={
-        enable = true;
-        settings = {
-          General = {
-            EnableNetworkConfiguration = true;
-          };
-        };
-      };
-    };
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
@@ -300,14 +289,14 @@
       login.oo7.enable = true;
     };
     sudo.enable = false;
-    sudo-rs.enable = false;
+    sudo-rs.enable = true;
     rtkit.enable = true;
     polkit.enable = true;
     soteria.enable = true;
     run0 = {
       enable = true;
       wheelNeedsPassword = false;
-      sudo-shim.enable = true;
+      # sudo-shim.enable = true;
     };
   };
 
