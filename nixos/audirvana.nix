@@ -19,7 +19,7 @@ in
 
   systemd.user.services.audirvana-studio = {
     description = "Audirvāna Studio";
-    wantedBy = [ "default.target" ];
+    # wantedBy = [ "default.target" ];
     serviceConfig = {
       ExecStartPre = "${pkgs.coreutils}/bin/install -Dm644 ${adminConfig} %E/audirvana/adminconfig.json";
       ExecStart = "${config.security.wrapperDir}/audirvana-studio";

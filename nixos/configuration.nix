@@ -44,9 +44,31 @@
     };
   };
 
+  console = {
+    colors = [
+      "0F1014"
+      "f58ee0"
+      "8eb5f5"
+      "9898a6"
+      "c58fff"
+      "fdfdfe"
+      "ffbb88"
+      "868690"
+      "131317"
+      "f58ee0"
+      "8eb5f5"
+      "9898a6"
+      "c58fff"
+      "fdfdfe"
+      "ffbb88"
+      "868690"
+    ];
+  };
+
   nixpkgs = {
     config = {
       allowUnfree = true;
+      cudaSupport = true;
     };
     overlays = [
       inputs.self.overlays.default
@@ -122,7 +144,6 @@
 
   hardware = {
     i2c.enable = true;
-    bluetooth.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -237,6 +258,7 @@
     vivid.enable = true;
     bat.enable = true;
     foot.enable = true;
+    obs-studio.enable = true;
     nix-index-database = {
       enable = true;
       comma.enable = true;
@@ -272,15 +294,17 @@
   };
 
   virtualisation = {
+    podman = {
+      enable = true;
+      dockerSocket.enable = true;
+      dockerCompat = true;
+    };
     libvirtd = {
       enable = true;
-      # Emulated TPM, needed for Windows 11 guests.
       qemu.swtpm.enable = true;
     };
   };
 
-  # The scratch mounts are nofail, so boot does not wait for them. Make the
-  # services that use them wait instead of writing into the tmpfs root.
   systemd.services.libvirtd.unitConfig.RequiresMountsFor = [ "/var/lib/libvirt" ];
 
   security = {

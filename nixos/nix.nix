@@ -8,10 +8,7 @@
       build-dir = "/scratch/builds";
     };
     channel.enable = false;
-    daemonCPUSchedPolicy = "idle";
-    daemonIOSchedClass = "idle";
   };
-  # build-dir lives on the scratch drive, whose mount is nofail. Wants rather
-  # than Requires, so a dead scratch drive still leaves Nix usable to fix it.
+  # dead scratch drive leaves Nix usable to fix it.
   systemd.services.nix-daemon.unitConfig.WantsMountsFor = [ "/scratch/builds" ];
 }

@@ -10,10 +10,8 @@
   # run before the stage-2 mount and write into the tmpfs underneath it.
   fileSystems."/persist".neededForBoot = true;
 
-  # Keep the same machine-id across boots without putting it in the repo.
-  # systemd follows this symlink when reading /etc/machine-id, which works
-  # because /persist is mounted before PID 1 looks (see neededForBoot above).
-  # The target file must exist before switching to this config.
+  # The target file must exist before switching to this config
+  # (comment off the section on initial install)
   environment.etc."machine-id" = {
     source = "/persist/etc/machine-id";
     mode = "direct-symlink";

@@ -12,13 +12,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "audirvana-studio";
-  version = "3.3.4";
+  version = "3.4.0";
 
   # Versioned file from Audirvana's apt repo. The download page's link always
   # points at the latest release, so it can't be pinned. Run ./update.sh to bump.
   src = fetchurl {
     url = "https://audirvana.com/delivery/linux/apt-repo/pool/non-free/audirvana-studio/audirvana-studio_${finalAttrs.version}_amd64.deb";
-    hash = "sha256-TAR6+Qr3wKVXdu7YCz8Sm5g32JmAybm+kOns1j6RVgo=";
+    hash = "sha256-YfRup7nfUhle3dduD6GUIXh8AzDMFi81me/y69Ggp9o=";
   };
 
   nativeBuildInputs = [
