@@ -11,6 +11,7 @@
       ./nvidia.nix
       ./gaming.nix
       ./audirvana.nix
+      ./rygel.nix
       ./hermes-agent.nix
       inputs.disko.nixosModules.disko
       inputs.nix-index-database.nixosModules.default
