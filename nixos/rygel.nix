@@ -9,30 +9,15 @@ let
     allow-upload=false
     allow-deletion=false
 
-    [LocalSearch]
-    enabled=false
-
-    [ExampleRendererPluginC]
-    enabled=false
-
-    [ExampleRendererPluginVala]
-    enabled=false
-
-    [ExampleServerPluginC]
-    enabled=false
-
-    [ExampleServerPluginVala]
-    enabled=false
-
-    [GstLaunch]
-    enabled=false
-
-    [MediaExport]
-    enabled=false
-
     [Playbin]
     enabled=true
     title=XDDD
+  '';
+  # Rygel loads every plugin in its plugin dir, and the bundled example server
+  # plugins abort at startup (core-dump). Only expose the Playbin renderer.
+  rygelPlugins = pkgs.runCommand "rygel-playbin-plugin" { } ''
+    mkdir $out
+    cp ${pkgs.rygel}/lib/rygel-*/plugins/{playbin.plugin,librygel-playbin.so} $out/
   '';
 in
 {
@@ -44,7 +29,10 @@ in
     description = "Rygel UPnP renderer";
     after = [ "pipewire.service" ];
     wantedBy = [ "default.target" ];
-    environment.GST_PLUGIN_SYSTEM_PATH_1_0 = "${pkgs.pipewire}/lib/gstreamer-1.0";
+    environment = {
+      GST_PLUGIN_SYSTEM_PATH_1_0 = "${pkgs.pipewire}/lib/gstreamer-1.0";
+      RYGEL_PLUGIN_PATH = rygelPlugins;
+    };
     serviceConfig = {
       ExecStart = "${lib.getExe' pkgs.rygel "rygel"} --config ${rygelConfig}";
       Restart = "on-failure";
