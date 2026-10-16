@@ -22,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
     claude-desktop.url = "github:patrickjaja/claude-desktop-extra";
   };
 
