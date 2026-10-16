@@ -47,6 +47,12 @@ in
       Type = "oneshot";
       RemainAfterExit = true;
     };
-    script = config.system.activationScripts."hermes-agent-setup".text;
+    script = ''
+      ${config.system.activationScripts."hermes-agent-setup".text}
+
+      # The module's config.yaml merge runs as root and only chmods the result,
+      # leaving it root-owned and unreadable for the service user.
+      chown ${cfg.user}:${cfg.group} ${cfg.stateDir}/.hermes/config.yaml
+    '';
   };
 }
