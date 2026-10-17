@@ -29,6 +29,14 @@
     ];
   };
 
+  # systemd's journal-nocow.conf sets +C only in stage 2, after the journal
+  # flush has already created the first journal file. Set it on the persisted
+  # directory in the initrd so new journal files inherit it from the start.
+  boot.initrd.systemd.tmpfiles.settings.persist-journal."/sysroot/persist/var/log/journal" = {
+    d.mode = "2755";
+    h.argument = "+C";
+  };
+
   # Bind target in the /etc overlay. Mirrors what nixpkgs does for an
   # immutable overlay (nixos/modules/system/etc/etc-activation.nix).
   environment.etc.machine-id = {
