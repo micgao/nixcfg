@@ -295,11 +295,6 @@
   };
 
   virtualisation = {
-    podman = {
-      enable = true;
-      dockerSocket.enable = true;
-      dockerCompat = true;
-    };
     libvirtd = {
       enable = true;
       qemu.swtpm.enable = true;
