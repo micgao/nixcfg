@@ -49,16 +49,8 @@
                     mountpoint = "/nix";
                     mountOptions = [ "compress=zstd" "noatime" "ssd" ];
                   };
-                  "var-log" = {
-                    mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" "ssd" ];
-                  };
                   "persist" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" "noatime" "ssd" ];
-                  };
-                  "root" = {
-                    mountpoint = "/root";
                     mountOptions = [ "compress=zstd" "noatime" "ssd" ];
                   };
                 };
