@@ -11,7 +11,9 @@ let
   inherit (lib) mkOption types;
 
   # tmpfiles runs after initrd-fs.target, so the binds are ordered behind it
-  # rather than being part of initrd-fs.target themselves.
+  # rather than being part of initrd-fs.target themselves. Ordering only: the
+  # tmpfiles unit conflicts with initrd-switch-root.target, so a Requires= on
+  # it would unmount the binds right before switch-root.
   tmpfiles = "systemd-tmpfiles-setup-sysroot.service";
 
   common = {
@@ -67,8 +69,8 @@ let
     where = target entry.path;
     what = store entry.path;
     type = "none";
-    options = "bind";
-    requires = [ tmpfiles ];
+    # x-initrd.mount: an initrd mount, left alone by stage 2 at shutdown.
+    options = "bind,x-initrd.mount";
     after = [ tmpfiles ];
     before = [ "initrd.target" ];
     requiredBy = [ "initrd.target" ];
