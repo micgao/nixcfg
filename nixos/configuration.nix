@@ -97,11 +97,11 @@
     mutableUsers = false;
     users = {
       root = {
-        hashedPasswordFile = "/persist/passwd/root";
+        hashedPassword = "$y$j9T$kvfE7IWNwj6Q35eNI935c.$GWB.H6eDzZRr0YqTSYOscvEt0cQyfbHHC6Y.Zog1L69";
       };
       micgao = {
         isNormalUser = true;
-        hashedPasswordFile = "/persist/passwd/micgao";
+        hashedPassword = "$y$j9T$UZzeAZSqdDr3TC5IFlDu9/$QBaTYz2fGwsBDw69Xo2ELV1mAlSkD1bTcisUJdsA3i2";
         shell = pkgs.zsh;
         extraGroups = [
           "wheel"
